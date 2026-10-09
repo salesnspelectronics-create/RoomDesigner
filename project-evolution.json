@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V44",
-    "project_evolution_version": "V44",
+    "software_version": "V45",
+    "project_evolution_version": "V45",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V44",
+  "current_source_release": "V45",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -414,6 +414,14 @@
       "phase": "architectural polyline live preview",
       "summary": "Architectural connected polyline now previews provisional segment during drag and commits segments on release.",
       "source_commit": "c07e410c96aa113e0ea7c7635fb3fa16f48a0db1",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V45",
+      "date": "2026-10-09",
+      "phase": "mobile gesture object resize",
+      "summary": "Scale selected architectural objects with two-finger pinch; keep pinch-to-zoom for canvas; remove redundant Pan footer button.",
+      "source_commit": "48aa7d6e56c155781cf27f1325fb4af346452497",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1423,6 +1431,27 @@
         "javascript_syntax": "PASS",
         "Safari_iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-053",
+      "record_type": "user_requirement",
+      "module": "mobile_object_resize",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V45",
+      "status": "source_committed",
+      "user_statement": "پس از انتخاب آبجکت معماری مثل WC بتوان با دو انگشت روی همان آبجکت آن را بزرگ یا کوچک کرد؛ دکمه جابه‌جایی پایین هم زائد است.",
+      "assistant_interpretation": "If both fingers start inside selected unported unlocked object, turn pinch into proportional resize with live feedback and single Undo checkpoint after 14px activation. Otherwise preserve canvas pinch zoom; remove redundant Pan footer button since Select already pans blank regions.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "48aa7d6e56c155781cf27f1325fb4af346452497",
+        "javascript_syntax": "PASS",
+        "iOS_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Object resizing requires both fingers inside the already-selected object at pinch initiation; cable-connected port-bearing equipment excluded. iPhone testing needed."
     }
   ],
   "analyses": [
@@ -1716,14 +1745,31 @@
       "version": "V44",
       "change": "Live preview for architecture polyline, continue from previous endpoint",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V45",
+      "change": "Object pinch-resize and remove redundant Pan button",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V44",
+    "release": "V45",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V45"
+    "development_audit": {
+      "boundary": "V45",
+      "status": "partial",
+      "executed_checks": [
+        "JavaScript syntax PASS"
+      ],
+      "not_executed": [
+        "iPhone Safari touch interaction",
+        "full regression test"
+      ]
+    },
+    "next_development_audit": "V50"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
