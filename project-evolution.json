@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V14",
-    "project_evolution_version": "V14",
+    "software_version": "V15",
+    "project_evolution_version": "V15",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V14",
+  "current_source_release": "V15",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -177,6 +177,14 @@
       "phase": "mobile canvas gesture",
       "summary": "Two-finger pinch zoom around midpoint plus midpoint panning. Suspend single-finger manipulation while multi-touch active.",
       "source_commit": "5ebb66f474fbadc3d85d216d164ba87918c5165f",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V15",
+      "date": "2026-10-09",
+      "phase": "zoom feedback",
+      "summary": "Always-visible live zoom percentage badge, including pinch updates.",
+      "source_commit": "6fed71c356e439607b2b68992b8fa4707a56a02e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -487,6 +495,26 @@
         "javascript_syntax": "PASS",
         "iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-019",
+      "record_type": "user_requirement",
+      "module": "canvas_zoom",
+      "source": "User conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V15",
+      "status": "source_committed",
+      "user_statement": "میزان زوم باید یک جا نوشته شود، مثلاً ۱۲۵ درصد.",
+      "assistant_interpretation": "A small fixed readable zoom percentage on canvas calculated as 960/view.w × 100, updated on every render including pinch and reset.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "6fed71c356e439607b2b68992b8fa4707a56a02e",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -600,14 +628,32 @@
       "version": "V14",
       "change": "Support two-finger pinch zoom in/out on canvas",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V15",
+      "change": "Show zoom percentage continuously on canvas",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V14",
+    "release": "V15",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V15"
+    "development_audit": {
+      "boundary": "V15",
+      "status": "partial",
+      "executed_checks": [
+        "JavaScript syntax verification"
+      ],
+      "not_executed": [
+        "complete source architecture/security audit",
+        "iOS Safari runtime regression tests"
+      ],
+      "blocker": "Runtime acceptance and full audit pending"
+    },
+    "next_development_audit": "V20"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
