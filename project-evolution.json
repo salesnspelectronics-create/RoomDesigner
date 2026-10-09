@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V63",
-    "project_evolution_version": "V63",
+    "software_version": "V64",
+    "project_evolution_version": "V64",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V63",
+  "current_source_release": "V64",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -565,6 +565,13 @@
       "date": "2026-10-10",
       "summary": "RD-073 P0: protect revision wall geometry during save/restore and legacy version handling.",
       "source_commit": "26b64aa53993f135ddf879e88751a61b8ee62882",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V64",
+      "date": "2026-10-10",
+      "summary": "P0 RD-074: detect browser storage failures, avoid false success and offer immediate roomplan export.",
+      "source_commit": "aa78cf10d2850a2fb1cdd6842445d0cd8ba8afba",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2020,16 +2027,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V64",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "safeStorage.setItem swallows localStorage failures while saveLocal announces success; quota/private-storage failures can lose work after reload.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "safeStorage.setItem now reports persistence failure, manual revision save does not report success if rd_profiles or rd_last failed, and a prominent 'not saved / export' header button downloads the current .roomplan.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:8-10,17,159",
-        "review_type": "static_source_only",
-        "severity": "high"
+        "commit": "aa78cf10d2850a2fb1cdd6842445d0cd8ba8afba",
+        "javascript_syntax": "PASS",
+        "quota_security_error_simulation": "NOT_TESTED"
       },
       "recommended_implementation": "Return a persistence result, show failure prominently, keep unsaved status, offer immediate .roomplan export; avoid treating in-memory fallback as durable.",
       "acceptance_criteria": "Force QuotaExceededError and SecurityError; save and reload; verify no success claim and recoverable export."
@@ -2645,10 +2652,16 @@
       "version": "V63",
       "change": "RD-073 revision wall integrity",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V64",
+      "change": "RD-074 browser storage failure detection and emergency export",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V63",
+    "release": "V64",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
