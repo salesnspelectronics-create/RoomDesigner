@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V28",
-    "project_evolution_version": "V28",
+    "software_version": "V29",
+    "project_evolution_version": "V29",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V28",
+  "current_source_release": "V29",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -288,6 +288,14 @@
       "phase": "mobile drawing and equipment controls",
       "summary": "Top-row Save/Copy/Delete + lock toggle; device drag locking, real-time draft cable colors, 18px screen-space micro-bend rejection.",
       "source_commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V29",
+      "date": "2026-10-09",
+      "phase": "orthogonal cable routing",
+      "summary": "Three modes: direct, free-angle broken, orthogonal right-angle broken. Correct preview, persistence and movement rendering.",
+      "source_commit": "83ad80d64a14b9307997b7c3a1ffde9de7c123c7",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -944,6 +952,29 @@
         "javascript_syntax": "PASS",
         "iPhone_Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-036",
+      "record_type": "user_requirement",
+      "module": "cable_routing",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V29",
+      "status": "source_committed",
+      "user_statement": "سه حالت کابل‌کشی: مستقیم، شکسته آزاد با زاویه دلخواه، و شکسته‌ای که همه خطوط دقیقاً افقی یا عمودی باشند حتی اگر کاربر کج لمس کند.",
+      "assistant_interpretation": "Introduce orthogonal third cable mode with auto-inserted 90-degree elbow at nonaligned taps. Preserve direct and free broken modes; preview in right angles and reorthogonalize when endpoints move.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commits": [
+          "52d23b16e49c12ca21f26d4cf92620c201f448ff",
+          "83ad80d64a14b9307997b7c3a1ffde9de7c123c7"
+        ],
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1141,10 +1172,16 @@
       "version": "V28",
       "change": "Top properties actions, device locking, live cable colors and broken-cable tiny segment suppression",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V29",
+      "change": "Three cable route modes; orthogonal routing snaps to horizontal and vertical paths",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V28",
+    "release": "V29",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
