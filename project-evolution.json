@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V58",
-    "project_evolution_version": "V58",
+    "software_version": "V59",
+    "project_evolution_version": "V59",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V58",
+  "current_source_release": "V59",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -526,6 +526,14 @@
       "phase": "floating menu UX",
       "summary": "Floating quick action panel closes on outside clicks, tool actions and gestures; launcher remains visible.",
       "source_commit": "20825290843bac9e0cd8b59967784bda4650ffb4",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V59",
+      "date": "2026-10-09",
+      "phase": "door drag regression",
+      "summary": "Remove fixed device movement boundary and wall-endpoint magnetic trapping; zoom-aware close-range door snap.",
+      "source_commit": "530ef8a429f3aa7df29e4e8955db8693a739a47a",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1848,6 +1856,27 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-068",
+      "record_type": "runtime_review",
+      "module": "door_drag_wall_snap",
+      "source": "User RoomDesigner iPhone screenshot 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V59",
+      "status": "source_committed",
+      "user_statement": "درب کپی‌شده پس از چرخش از حدی پایین‌تر جابه‌جا نمی‌شود و انگار به دیوار پایینی گیر می‌کند.",
+      "assistant_interpretation": "Two code-level causes: fixed dragging bounds x:40..920/y:35..645, and nearest-wall snap using clamped projection to line endpoints within a fixed 28 drawing-unit radius. Remove fixed drag bounds (allow wide world positions); only snap to actual interior of a segment at <=12 CSS px, using active zoom to convert pixel proximity. Preserve manual door rotation.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "530ef8a429f3aa7df29e4e8955db8693a739a47a",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "additional_debugging": "User offered .roomplan JSON export. If scenario persists, request export to reproduce exact positions and wall geometry."
     }
   ],
   "analyses": [
@@ -2225,10 +2254,16 @@
       "version": "V58",
       "change": "Automatic floating quick menu dismissal on other actions",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V59",
+      "change": "Door free dragging outside fixed bounds, snap only near wall segment within CSS pixel threshold",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V58",
+    "release": "V59",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
