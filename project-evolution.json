@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V66",
-    "project_evolution_version": "V66",
+    "software_version": "V67",
+    "project_evolution_version": "V67",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V66",
+  "current_source_release": "V67",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -586,6 +586,13 @@
       "date": "2026-10-10",
       "summary": "RD-076 wall, rotated outline and resolved cable path DXF export.",
       "source_commit": "07f06233285afff5997f48398a50163c52e1fc0d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V67",
+      "date": "2026-10-10",
+      "summary": "RD-077 full-edit device lock guard across quick menu and properties.",
+      "source_commit": "bd4adc4da82355bb436f767fc3f716b9e304a067",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2107,16 +2114,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V67",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "Locked devices cannot drag but remain editable, duplicable and deletable through quick actions and property actions.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "Device lock is full edit lock: blocks drag, pinch resize, quick rotate/copy/delete, properties edits/resize/rotation/duplication/deletion, SVG replacement, but allows selection, view properties, Unlock and Undo.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:101-105,138,148-149,165,167",
-        "review_type": "static_source_only",
-        "severity": "medium"
+        "commit": "bd4adc4da82355bb436f767fc3f716b9e304a067",
+        "javascript_syntax": "PASS",
+        "runtime_lock_matrix": "NOT_TESTED"
       },
       "recommended_implementation": "Define whether lock means all mutations or only transforms; enforce it in a central command guard with deliberate unlock action and visible feedback.",
       "acceptance_criteria": "Lock a device then try drag, resize, rotate, property edit, duplicate and delete through both menus; assert agreed behavior and Undo."
@@ -2684,10 +2691,16 @@
       "version": "V66",
       "change": "RD-076 geometry-aligned DXF export",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V67",
+      "change": "RD-077 consistent locked-device command guard",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V66",
+    "release": "V67",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
