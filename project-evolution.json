@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V52",
-    "project_evolution_version": "V52",
+    "software_version": "V53",
+    "project_evolution_version": "V53",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V52",
+  "current_source_release": "V53",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -478,6 +478,14 @@
       "phase": "adaptive floating toolbar",
       "summary": "Quick dock menu uses icons only and opens toward available horizontal and vertical viewport space.",
       "source_commit": "f0920213ed9a0dc51c9455a01783fb43e4446516",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V53",
+      "date": "2026-10-09",
+      "phase": "architectural vector symbol quality",
+      "summary": "SVG replacements for bed WC TV symbols and per-object stretch-to-bounds control.",
+      "source_commit": "a4e514875dc9072d7038d637bd1f2a4fdbe36875",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1672,6 +1680,27 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-062",
+      "record_type": "user_requirement",
+      "module": "architecture_svg_symbols",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V53",
+      "status": "source_committed",
+      "user_statement": "آیکون‌های تخت، توالت و تلویزیون استاندارد و باکیفیت نیستند؛ برای هر آبجکت SVG اختصاصی بساز و اجازه تغییر اندازه و کشیده‌شدن تصویر داخل محدوده بده.",
+      "assistant_interpretation": "Provide dedicated scalable architectural top-view SVG templates for Bed and Toilet, vector TV elevations; replace hardcoded rudimentary native strokes with SVG image payload. Respect custom SVG override and add stretch-to-box setting in device Properties; when stretch off preserve intrinsic ratio.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "a4e514875dc9072d7038d637bd1f2a4fdbe36875",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "SVG pictograms authored in repo, not sourced from a licensed CAD industry symbol library; television symbol is front view, not strict plan view."
     }
   ],
   "analyses": [
@@ -2013,10 +2042,16 @@
       "version": "V52",
       "change": "Adaptive icon-only floating menu",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V53",
+      "change": "Architectural SVG bed WC TV icon library and optional stretch",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V52",
+    "release": "V53",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
