@@ -1963,6 +1963,179 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-072",
+      "record_type": "user_requirement",
+      "module": "architecture_audit_handoff",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "documentation at V62; fixes V63 or later",
+      "status": "documented",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Provide a complete handoff of V62 source audit findings and executable recommendations in Project Evolution without changing application code.",
+      "implementation_status": "documentation_only",
+      "runtime_status": "not_applicable",
+      "verification_evidence": {
+        "source_commit_reviewed": "1546f3be6f5da0fee824bed2976a50419db827e2",
+        "review_type": "static_source_only"
+      }
+    },
+    {
+      "id": "RD-073",
+      "record_type": "source_audit_finding",
+      "module": "revision_integrity",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Revision snapshot omits walls while Restore assigns snapshot.walls||[]; restoring any saved revision can erase the architectural plan.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:156,159,167",
+        "review_type": "static_source_only",
+        "severity": "critical"
+      },
+      "recommended_implementation": "Include walls and all document geometry in versioned snapshots; migrate legacy snapshots without silently clearing missing fields; restore into a candidate document and save a new revision only after validation.",
+      "acceptance_criteria": "Create walls and devices, save two revisions, restore the older revision; assert wall geometry persists. Restore a legacy snapshot without walls and assert explicit handling rather than deletion."
+    },
+    {
+      "id": "RD-074",
+      "record_type": "source_audit_finding",
+      "module": "storage_integrity",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "safeStorage.setItem swallows localStorage failures while saveLocal announces success; quota/private-storage failures can lose work after reload.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:8-10,17,159",
+        "review_type": "static_source_only",
+        "severity": "high"
+      },
+      "recommended_implementation": "Return a persistence result, show failure prominently, keep unsaved status, offer immediate .roomplan export; avoid treating in-memory fallback as durable.",
+      "acceptance_criteria": "Force QuotaExceededError and SecurityError; save and reload; verify no success claim and recoverable export."
+    },
+    {
+      "id": "RD-075",
+      "record_type": "source_audit_finding",
+      "module": "file_import_validation",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Import accepts only array-shaped devices/cables, replaces the live document before validating nested device/port/cable geometry and references, and does not guarantee a recoverable prior state.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:64,168",
+        "review_type": "static_source_only",
+        "severity": "high"
+      },
+      "recommended_implementation": "Validate schema, IDs, finite coordinates/sizes, port arrays and cable endpoints; normalize supported legacy formats; stage candidate data before commit and preserve current document on any failure.",
+      "acceptance_criteria": "Import malformed ports, missing cable endpoints, NaN/huge geometry, incompatible schema and valid legacy/current files; assert existing document remains intact on rejection."
+    },
+    {
+      "id": "RD-076",
+      "record_type": "source_audit_finding",
+      "module": "dxf_fidelity",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "DXF export omits walls, flattens rotated devices to axis-aligned boxes, and may output raw cable waypoints rather than rendered orthogonal/offset paths.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:64,98-99,163",
+        "review_type": "static_source_only",
+        "severity": "high"
+      },
+      "recommended_implementation": "Build export from shared resolved geometry, include walls/rotation/routing, and explicitly document metadata that DXF cannot represent.",
+      "acceptance_criteria": "Compare rendered plan and parsed DXF for walls, rotated door/symbol, orthogonal cable and offset cable."
+    },
+    {
+      "id": "RD-077",
+      "record_type": "source_audit_finding",
+      "module": "object_lock_semantics",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Locked devices cannot drag but remain editable, duplicable and deletable through quick actions and property actions.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:101-105,138,148-149,165,167",
+        "review_type": "static_source_only",
+        "severity": "medium"
+      },
+      "recommended_implementation": "Define whether lock means all mutations or only transforms; enforce it in a central command guard with deliberate unlock action and visible feedback.",
+      "acceptance_criteria": "Lock a device then try drag, resize, rotate, property edit, duplicate and delete through both menus; assert agreed behavior and Undo."
+    },
+    {
+      "id": "RD-078",
+      "record_type": "source_audit_finding",
+      "module": "render_save_performance",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Every pointer movement invokes full SVG replaceChildren and synchronous JSON serialization/localStorage write through render/saveAuto.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:17,64,140",
+        "review_type": "static_source_only",
+        "severity": "medium"
+      },
+      "recommended_implementation": "Separate render from persistence; schedule rendering with requestAnimationFrame and debounce durable saves on committed mutations; retain flush on pagehide/visibility as feasible.",
+      "acceptance_criteria": "Profile drag/pan/pinch on representative 100/500 object documents on mobile Safari; verify persisted final geometry after reload."
+    },
+    {
+      "id": "RD-079",
+      "record_type": "source_audit_finding",
+      "module": "print_bounds",
+      "source": "Senior source review of RoomDesigner main V62 at 1546f3be6f5da0fee824bed2976a50419db827e2",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V63 or later, sequential releases",
+      "status": "open",
+      "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
+      "assistant_interpretation": "Print forces a 0 0 960 680 viewBox regardless of document bounds or current view, potentially clipping off-canvas geometry.",
+      "implementation_status": "not_started",
+      "runtime_status": "not_tested",
+      "verification_evidence": {
+        "source_location": "index.html:164",
+        "review_type": "static_source_only",
+        "severity": "medium"
+      },
+      "recommended_implementation": "Compute print bounds from resolved document geometry, apply margins and fitting, and expose current-view versus whole-drawing choice if both are needed.",
+      "acceptance_criteria": "Place walls/devices outside initial 960×680, generate print/PDF, verify every intended object is visible."
     }
   ],
   "analyses": [
@@ -2012,6 +2185,94 @@
       "title": "GitHub Pages cache/version",
       "status": "partially_verified",
       "assessment": "User saw stale v0.4 after deployments; cache-busting URL and UI version must be updated with each code release. GitHub Pages build/deploy latency remains."
+    },
+    {
+      "id": "AN-RD-008",
+      "title": "V62 senior source audit and remediation handoff",
+      "status": "open",
+      "source_commit": "1546f3be6f5da0fee824bed2976a50419db827e2",
+      "date": "2026-10-09",
+      "scope": "Static review of standalone main branch; no runtime/browser, build, or device acceptance performed.",
+      "findings": [
+        {
+          "record_id": "RD-073",
+          "module": "revision_integrity",
+          "severity": "critical",
+          "finding": "Revision snapshot omits walls while Restore assigns snapshot.walls||[]; restoring any saved revision can erase the architectural plan.",
+          "recommended_implementation": "Include walls and all document geometry in versioned snapshots; migrate legacy snapshots without silently clearing missing fields; restore into a candidate document and save a new revision only after validation.",
+          "acceptance_criteria": "Create walls and devices, save two revisions, restore the older revision; assert wall geometry persists. Restore a legacy snapshot without walls and assert explicit handling rather than deletion.",
+          "source_location": "index.html:156,159,167"
+        },
+        {
+          "record_id": "RD-074",
+          "module": "storage_integrity",
+          "severity": "high",
+          "finding": "safeStorage.setItem swallows localStorage failures while saveLocal announces success; quota/private-storage failures can lose work after reload.",
+          "recommended_implementation": "Return a persistence result, show failure prominently, keep unsaved status, offer immediate .roomplan export; avoid treating in-memory fallback as durable.",
+          "acceptance_criteria": "Force QuotaExceededError and SecurityError; save and reload; verify no success claim and recoverable export.",
+          "source_location": "index.html:8-10,17,159"
+        },
+        {
+          "record_id": "RD-075",
+          "module": "file_import_validation",
+          "severity": "high",
+          "finding": "Import accepts only array-shaped devices/cables, replaces the live document before validating nested device/port/cable geometry and references, and does not guarantee a recoverable prior state.",
+          "recommended_implementation": "Validate schema, IDs, finite coordinates/sizes, port arrays and cable endpoints; normalize supported legacy formats; stage candidate data before commit and preserve current document on any failure.",
+          "acceptance_criteria": "Import malformed ports, missing cable endpoints, NaN/huge geometry, incompatible schema and valid legacy/current files; assert existing document remains intact on rejection.",
+          "source_location": "index.html:64,168"
+        },
+        {
+          "record_id": "RD-076",
+          "module": "dxf_fidelity",
+          "severity": "high",
+          "finding": "DXF export omits walls, flattens rotated devices to axis-aligned boxes, and may output raw cable waypoints rather than rendered orthogonal/offset paths.",
+          "recommended_implementation": "Build export from shared resolved geometry, include walls/rotation/routing, and explicitly document metadata that DXF cannot represent.",
+          "acceptance_criteria": "Compare rendered plan and parsed DXF for walls, rotated door/symbol, orthogonal cable and offset cable.",
+          "source_location": "index.html:64,98-99,163"
+        },
+        {
+          "record_id": "RD-077",
+          "module": "object_lock_semantics",
+          "severity": "medium",
+          "finding": "Locked devices cannot drag but remain editable, duplicable and deletable through quick actions and property actions.",
+          "recommended_implementation": "Define whether lock means all mutations or only transforms; enforce it in a central command guard with deliberate unlock action and visible feedback.",
+          "acceptance_criteria": "Lock a device then try drag, resize, rotate, property edit, duplicate and delete through both menus; assert agreed behavior and Undo.",
+          "source_location": "index.html:101-105,138,148-149,165,167"
+        },
+        {
+          "record_id": "RD-078",
+          "module": "render_save_performance",
+          "severity": "medium",
+          "finding": "Every pointer movement invokes full SVG replaceChildren and synchronous JSON serialization/localStorage write through render/saveAuto.",
+          "recommended_implementation": "Separate render from persistence; schedule rendering with requestAnimationFrame and debounce durable saves on committed mutations; retain flush on pagehide/visibility as feasible.",
+          "acceptance_criteria": "Profile drag/pan/pinch on representative 100/500 object documents on mobile Safari; verify persisted final geometry after reload.",
+          "source_location": "index.html:17,64,140"
+        },
+        {
+          "record_id": "RD-079",
+          "module": "print_bounds",
+          "severity": "medium",
+          "finding": "Print forces a 0 0 960 680 viewBox regardless of document bounds or current view, potentially clipping off-canvas geometry.",
+          "recommended_implementation": "Compute print bounds from resolved document geometry, apply margins and fitting, and expose current-view versus whole-drawing choice if both are needed.",
+          "acceptance_criteria": "Place walls/devices outside initial 960×680, generate print/PDF, verify every intended object is visible.",
+          "source_location": "index.html:164"
+        }
+      ],
+      "architecture_recommendation": "Before expanding to a reusable engine, separate document model/schema, commands with Undo/lock guard, geometry resolution, render adapters, persistence and export adapters. Keep browser UI independent of the core. Evaluate existing libraries and licenses against explicit requirements before migration; do not replace the renderer merely for structure.",
+      "implementation_order": [
+        "P0 RD-073 revision data preservation",
+        "P0 RD-074 explicit persistence failure",
+        "P1 RD-075 safe import",
+        "P1 RD-076 truthful DXF",
+        "P2 RD-077 lock consistency",
+        "P2 RD-078 rendering and save scheduling",
+        "P2 RD-079 full drawing print bounds"
+      ],
+      "limits": [
+        "Source findings are not claims of iPhone runtime reproduction.",
+        "No source fix, build or runtime test is recorded by this documentation update.",
+        "Software remains V62; fix releases must increment sequentially."
+      ]
     }
   ],
   "deferred_scope": [
@@ -2364,6 +2625,13 @@
       "version": "V62",
       "change": "SVG padlock badge on locked objects",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V62 (documentation only)",
+      "change": "Recorded senior source audit RD-072 through RD-079 and remediation/acceptance handoff AN-RD-008; application source and release version unchanged.",
+      "status": "analysis_recorded",
+      "source_commit_reviewed": "1546f3be6f5da0fee824bed2976a50419db827e2"
     }
   ],
   "current_release_gate": {
