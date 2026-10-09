@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V20",
-    "project_evolution_version": "V20",
+    "software_version": "V21",
+    "project_evolution_version": "V21",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V20",
+  "current_source_release": "V21",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -225,6 +225,14 @@
       "phase": "properties action placement",
       "summary": "Copy/Delete moved to top of device and cable property sheets, Save remains at bottom.",
       "source_commit": "5144c71a6e757768c98bcdfe671c792ffd33757d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V21",
+      "date": "2026-10-09",
+      "phase": "selection and touch regression correction",
+      "summary": "SVG nested port event classification fixed; empty canvas double-tap moved to tap-release gesture rather than pointer down; moving canvas cannot trigger zoom gesture.",
+      "source_commit": "d375d40d1c81d9f1f5275ebd8e0458bd85113774",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -653,6 +661,26 @@
         "commit": "5144c71a6e757768c98bcdfe671c792ffd33757d",
         "javascript_syntax": "PASS"
       }
+    },
+    {
+      "id": "RD-025",
+      "record_type": "runtime_review",
+      "module": "canvas_selection_and_zoom",
+      "source": "User iPhone runtime report in RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V21",
+      "status": "source_fix_committed",
+      "user_statement": "بعد از زوم و کپی‌کردن تجهیز، هیچ‌کدام از دیوایس‌ها انتخاب نمی‌شوند و کشیدن صفحه به جای Pan باعث Zoom می‌شود.",
+      "assistant_interpretation": "Improve SVG hit detection for port subelements by inheriting data-kind from device group; recognize canvas double-tap only on pointerup after two stationary taps, never during drag; cancel doubletap after pan movement or pinch; maintain touch state after completion.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d375d40d1c81d9f1f5275ebd8e0458bd85113774",
+        "javascript_syntax": "PASS",
+        "iOS_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -802,25 +830,19 @@
       "version": "V20",
       "change": "Move Copy/Delete actions to top of properties sheet",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V21",
+      "change": "Correct selection of nested SVG port and prevent drag-as-doubletap after duplicate",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V20",
+    "release": "V21",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V20",
-      "status": "partial",
-      "executed_checks": [
-        "JavaScript syntax verification"
-      ],
-      "not_executed": [
-        "full source architectural/security audit",
-        "mobile Safari regression tests"
-      ],
-      "blocker": "Full gate not closed"
-    },
     "next_development_audit": "V25"
   },
   "handoff": {
