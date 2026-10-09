@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V36",
-    "project_evolution_version": "V36",
+    "software_version": "V37",
+    "project_evolution_version": "V37",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V36",
+  "current_source_release": "V37",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -352,6 +352,14 @@
       "phase": "port anchored cable exit",
       "summary": "Enforce source-port side for orthogonal cable exit in preview, saved and live rendered paths.",
       "source_commit": "248efc03b38d64b250cbca952c27ec74b293c0ff",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V37",
+      "date": "2026-10-09",
+      "phase": "architecture tool library",
+      "summary": "Architecture group adds line, polyline, rectangle, square, WC, TV and Bed. Symbols remain editable vector devices.",
+      "source_commit": "4c0dad8182eeaaa66c2bf82b2a01d7cc7d4a66c7",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1196,6 +1204,27 @@
         "iPhone_runtime": "NOT_TESTED"
       },
       "notes": "Screenshot could also show a separate draft or earlier saved cable; root cause is not uniquely proven by image."
+    },
+    {
+      "id": "RD-045",
+      "record_type": "user_requirement",
+      "module": "architecture_toolbox",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V37",
+      "status": "source_committed",
+      "user_statement": "در معماری ابزار مستطیل، مربع، خط صاف، خط شکسته و نمادهای سرویس بهداشتی، تلویزیون و تخت لازم است.",
+      "assistant_interpretation": "Add seven architecture tool choices to Architecture group: two-tap line, chained polyline, two-tap rectangle and square, and WC/Television/Bed movable vector-symbol devices. Store drawn line/shape boundaries as walls and symbols as no-port devices.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "4c0dad8182eeaaa66c2bf82b2a01d7cc7d4a66c7",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      },
+      "limitations": "Shape lines are wall segments rather than grouped editable primitives; two-tap rectangles and squares do not yet have full CAD handles, and polyline finishes when switching tool."
     }
   ],
   "analyses": [
@@ -1441,10 +1470,16 @@
       "version": "V36",
       "change": "Orthogonal cable source-port exit direction lock",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V37",
+      "change": "Add seven architectural drawing and vector-symbol tools",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V36",
+    "release": "V37",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
