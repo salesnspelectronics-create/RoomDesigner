@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V64",
-    "project_evolution_version": "V64",
+    "software_version": "V65",
+    "project_evolution_version": "V65",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V64",
+  "current_source_release": "V65",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -572,6 +572,13 @@
       "date": "2026-10-10",
       "summary": "P0 RD-074: detect browser storage failures, avoid false success and offer immediate roomplan export.",
       "source_commit": "aa78cf10d2850a2fb1cdd6842445d0cd8ba8afba",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V65",
+      "date": "2026-10-10",
+      "summary": "RD-075 schema validation before import; damaged files cannot replace active document during validation.",
+      "source_commit": "24a1fb4b9945d36ec5849c65cfd080e3264743b7",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2049,16 +2056,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V65",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "Import accepts only array-shaped devices/cables, replaces the live document before validating nested device/port/cable geometry and references, and does not guarantee a recoverable prior state.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "Validate document schema version, finite coordinates, dimensions, IDs, wall geometry, unique IDs and cable endpoint port integrity in a temporary object before replacing doc; preserve legacy missing-walls files as walls:[].",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:64,168",
-        "review_type": "static_source_only",
-        "severity": "high"
+        "commit": "24a1fb4b9945d36ec5849c65cfd080e3264743b7",
+        "javascript_syntax": "PASS",
+        "invalid_file_regression": "NOT_TESTED"
       },
       "recommended_implementation": "Validate schema, IDs, finite coordinates/sizes, port arrays and cable endpoints; normalize supported legacy formats; stage candidate data before commit and preserve current document on any failure.",
       "acceptance_criteria": "Import malformed ports, missing cable endpoints, NaN/huge geometry, incompatible schema and valid legacy/current files; assert existing document remains intact on rejection."
@@ -2658,14 +2665,20 @@
       "version": "V64",
       "change": "RD-074 browser storage failure detection and emergency export",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V65",
+      "change": "RD-075 import schema and topology validation",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V64",
+    "release": "V65",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V65"
+    "next_development_audit": "V70"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
