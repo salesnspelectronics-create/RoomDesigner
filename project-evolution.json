@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V55",
-    "project_evolution_version": "V55",
+    "software_version": "V56",
+    "project_evolution_version": "V56",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V55",
+  "current_source_release": "V56",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -502,6 +502,14 @@
       "phase": "architectural drawing UX",
       "summary": "Automatically switch to Select after single shape or line; continuous polyline remains in draw mode.",
       "source_commit": "93198a7f2a567e1bf7ce8902b2cba6b0b60a9878",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V56",
+      "date": "2026-10-09",
+      "phase": "cross-platform persistent dock",
+      "summary": "Persistent floating shortcuts with idle Undo/Redo, selection-specific actions and visually distinct 90-degree SVG rotation icons.",
+      "source_commit": "a38c3238dbd88b10da4f0de5c5e1d18f7e95bb0a",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1758,6 +1766,28 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-065",
+      "record_type": "user_requirement",
+      "module": "cross_platform_ui_and_floating_dock",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V56",
+      "status": "source_committed",
+      "user_statement": "اولویت محصول برابر موبایل و کامپیوتر است؛ فعلاً روی گوشی تست می‌کنم چون کامپیوتر ندارم. فلواتینگ منو همیشه حاضر باشد و بدون انتخاب Undo/Redo داشته باشد؛ آیکون‌های چرخش ۹۰ درجه با Undo/Redo اشتباه نشوند و مثل Corel متمایز باشند.",
+      "assistant_interpretation": "Keep one shared SVG architecture supporting touch and desktop pointer interactions. Persist the floating dock in idle state with Undo/Redo; show selection quick actions only when selected; replace generic arrows for 90-degree left/right rotation with clear authored SVG icons containing rotated-object silhouette, separate from Undo/Redo. Preserve tooltip/aria accessible descriptions.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "a38c3238dbd88b10da4f0de5c5e1d18f7e95bb0a",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED",
+        "desktop_runtime": "NOT_TESTED"
+      },
+      "limitations": "Icons are original Corel-style vector concepts, not vendor official copyrighted artwork; desktop interaction smoke-testing remains outstanding."
     }
   ],
   "analyses": [
@@ -2117,10 +2147,16 @@
       "version": "V55",
       "change": "One-shot architectural drawing tools return to Select",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V56",
+      "change": "Persistent quick dock, idle Undo/Redo, professional rotation icons, explicit desktop/mobile parity direction",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V55",
+    "release": "V56",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
