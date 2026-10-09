@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V13",
-    "project_evolution_version": "V13",
+    "software_version": "V14",
+    "project_evolution_version": "V14",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V13",
+  "current_source_release": "V14",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -169,6 +169,14 @@
       "phase": "mobile polyline visual continuity",
       "summary": "Persistent visible broken cable during multi-tap entry, stable solid bends and active dashed segment; draft remains across finger release.",
       "source_commit": "cd8d4abe66b4e65eafc040cfa3fd76edfd183787",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V14",
+      "date": "2026-10-09",
+      "phase": "mobile canvas gesture",
+      "summary": "Two-finger pinch zoom around midpoint plus midpoint panning. Suspend single-finger manipulation while multi-touch active.",
+      "source_commit": "5ebb66f474fbadc3d85d216d164ba87918c5165f",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -459,6 +467,26 @@
         "syntax": "PASS",
         "iOS_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-018",
+      "record_type": "user_requirement",
+      "module": "canvas_gestures",
+      "source": "RoomDesigner user conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V14",
+      "status": "source_committed",
+      "user_statement": "باید بشه بوم رو زوم اوت و زوم این با دو انگشت کرد.",
+      "assistant_interpretation": "On touch screens support pinch zoom in/out around midpoint, including midpoint pan. Do not cause move-device or cable waypoint gestures while a two-finger gesture runs.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "5ebb66f474fbadc3d85d216d164ba87918c5165f",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -566,10 +594,16 @@
       "version": "V13",
       "change": "Repair disappearing cable route between taps in mobile wiring",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V14",
+      "change": "Support two-finger pinch zoom in/out on canvas",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V13",
+    "release": "V14",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
