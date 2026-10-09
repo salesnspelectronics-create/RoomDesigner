@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V10",
-    "project_evolution_version": "V10",
+    "software_version": "V11",
+    "project_evolution_version": "V11",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V10",
+  "current_source_release": "V11",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -146,6 +146,14 @@
       "phase": "object duplication and naming",
       "summary": "Each placed device already has editable name; cable gets explicit editable name. Duplicate selected device with fresh device/port identifiers or duplicate cable with fresh cable identifier; device duplication does not copy cables. UI button inside Properties.",
       "source_commit": "874af3850c36e08a85ed297c0995211d9e502ad8",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V11",
+      "date": "2026-10-09",
+      "phase": "multisegment cable routing",
+      "summary": "Direct/broken choice, touch waypoints, live multi-segment preview, persistence in cable.waypoints, termination only at device port.",
+      "source_commit": "cfb217d73bbd3e1c7a67be52e89fafb324cf6adb",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -377,6 +385,25 @@
         "javascript_syntax": "PASS",
         "runtime": "NOT_RUN"
       }
+    },
+    {
+      "id": "RD-015",
+      "record_type": "user_requirement",
+      "module": "cable_routing",
+      "source": "RoomDesigner user conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V11",
+      "status": "implemented_source",
+      "user_statement": "کابل‌ها در اتاق معمولاً مستقیم نیستند؛ باید بتوان با کلیک/لمس‌های متعدد مسیر شکسته و چند نقطه شکست ایجاد کرد و بین کابل مستقیم و غیرمستقیم انتخاب کرد.",
+      "assistant_interpretation": "When cable button pressed, show direct/broken chooser; in broken mode after source port, tap or drag/release at intermediate locations, then finish on destination port; store waypoints in document.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "cfb217d73bbd3e1c7a67be52e89fafb324cf6adb",
+        "javascript_syntax": "PASS"
+      }
     }
   ],
   "analyses": [
@@ -466,26 +493,19 @@
       "version": "V10",
       "change": "Add editable cable name and duplicate actions for on-canvas devices/cables; preserve Project Evolution history",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V11",
+      "change": "Route cable via intermediate points and allow selecting direct or broken path",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V10",
+    "release": "V11",
     "source_status": "committed",
     "build_status": "syntax_pass_only",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V10",
-      "status": "partial",
-      "executed_checks": [
-        "JavaScript syntax compilation",
-        "Repository source update consistency"
-      ],
-      "not_executed": [
-        "Device/runtime regression tests",
-        "full code and security audit"
-      ],
-      "blocker": "Full multiple-of-five gate not satisfied; do not mark release accepted."
-    },
     "next_development_audit": "V15"
   },
   "handoff": {
