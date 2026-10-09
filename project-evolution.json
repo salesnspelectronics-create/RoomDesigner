@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V66",
-    "project_evolution_version": "V66",
+    "software_version": "V69",
+    "project_evolution_version": "V69",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V66",
+  "current_source_release": "V69",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -607,6 +607,13 @@
       "date": "2026-10-10",
       "summary": "RD-076 source fix: include wall segments, rotated device bounds and resolved cable paths in DXF.",
       "source_commit": "07f06233285afff5997f48398a50163c52e1fc0d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V69",
+      "date": "2026-10-10",
+      "summary": "RD-079 print whole plan vs current view, geometry-based bounds; fix queued autosave for New/Open.",
+      "source_commit": "5e5c632bc0541856d1a127b053c01ea184c17a3e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2172,16 +2179,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V69",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "Print forces a 0 0 960 680 viewBox regardless of document bounds or current view, potentially clipping off-canvas geometry.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "Compute global drawing extents from walls, rotated object outlines and cable paths, add margins, fit to print aspect ratio; print menu supports entire drawing vs current view.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:164",
-        "review_type": "static_source_only",
-        "severity": "medium"
+        "commit": "5e5c632bc0541856d1a127b053c01ea184c17a3e",
+        "javascript_syntax": "PASS",
+        "PDF_print_outside_bounds": "NOT_TESTED"
       },
       "recommended_implementation": "Compute print bounds from resolved document geometry, apply margins and fitting, and expose current-view versus whole-drawing choice if both are needed.",
       "acceptance_criteria": "Place walls/devices outside initial 960×680, generate print/PDF, verify every intended object is visible."
@@ -2723,10 +2730,16 @@
       "version": "V66",
       "change": "RD-076 DXF export geometry consistency",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V69",
+      "change": "RD-079 full drawing print extent and print-area selection",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V66",
+    "release": "V69",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
