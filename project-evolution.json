@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V18",
-    "project_evolution_version": "V18",
+    "software_version": "V20",
+    "project_evolution_version": "V20",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V18",
+  "current_source_release": "V20",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -209,6 +209,22 @@
       "phase": "mobile zoom shortcut",
       "summary": "Double tap empty canvas to zoom 1.25x around tap midpoint, separate from device double tap.",
       "source_commit": "d20ba3facc3d2a55c0973d28f850099955f6a129",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V19",
+      "date": "2026-10-09",
+      "phase": "zoom shortcut UX",
+      "summary": "Double-tap blank canvas multiplier 1.25x → 1.5x.",
+      "source_commit": "f3e1844cc114fc6c838be9f1d45d580fc0e0b9d0",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V20",
+      "date": "2026-10-09",
+      "phase": "properties action placement",
+      "summary": "Copy/Delete moved to top of device and cable property sheets, Save remains at bottom.",
+      "source_commit": "5144c71a6e757768c98bcdfe671c792ffd33757d",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -599,6 +615,44 @@
         "javascript_syntax": "PASS",
         "iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-023",
+      "record_type": "user_requirement",
+      "module": "canvas_gestures",
+      "source": "User mobile review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V19",
+      "status": "source_committed",
+      "user_statement": "دابل‌تپ روی جای خالی بوم به‌جای ۲۵ درصد، ۵۰ درصد بزرگ‌نمایی کند؛ برای موبایل بهتر است.",
+      "assistant_interpretation": "Increase double-tap zoom multiplier from 1.25 to 1.5, preserving existing focus at tap point.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "f3e1844cc114fc6c838be9f1d45d580fc0e0b9d0",
+        "javascript_syntax": "PASS"
+      }
+    },
+    {
+      "id": "RD-024",
+      "record_type": "user_requirement",
+      "module": "object_properties",
+      "source": "User mobile review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V20",
+      "status": "source_committed",
+      "user_statement": "کپی و دیلت و عملیات باید بالای پروپرتیز باشند، نه پایین فرم.",
+      "assistant_interpretation": "For both cables and devices, move Copy and Delete to first action row above property fields, leave Save Changes at bottom; do not alter object deletion semantics.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "5144c71a6e757768c98bcdfe671c792ffd33757d",
+        "javascript_syntax": "PASS"
+      }
     }
   ],
   "analyses": [
@@ -736,14 +790,38 @@
       "version": "V18",
       "change": "Add 25 percent empty-canvas double-tap zoom",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V19",
+      "change": "Increase double-tap zoom to 50%",
+      "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V20",
+      "change": "Move Copy/Delete actions to top of properties sheet",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V18",
+    "release": "V20",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V20"
+    "development_audit": {
+      "boundary": "V20",
+      "status": "partial",
+      "executed_checks": [
+        "JavaScript syntax verification"
+      ],
+      "not_executed": [
+        "full source architectural/security audit",
+        "mobile Safari regression tests"
+      ],
+      "blocker": "Full gate not closed"
+    },
+    "next_development_audit": "V25"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
