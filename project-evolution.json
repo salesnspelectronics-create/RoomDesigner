@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V59",
-    "project_evolution_version": "V59",
+    "software_version": "V60",
+    "project_evolution_version": "V60",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V59",
+  "current_source_release": "V60",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -534,6 +534,14 @@
       "phase": "door drag regression",
       "summary": "Remove fixed device movement boundary and wall-endpoint magnetic trapping; zoom-aware close-range door snap.",
       "source_commit": "530ef8a429f3aa7df29e4e8955db8693a739a47a",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V60",
+      "date": "2026-10-09",
+      "phase": "tool lifecycle and quick lock",
+      "summary": "One-shot cable completion returns to Select; selected device quick dock adds Lock/Unlock.",
+      "source_commit": "0cc1d22b43b15e667cede71a1ab7406385b00728",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1877,6 +1885,27 @@
         "iPhone_Safari_runtime": "NOT_TESTED"
       },
       "additional_debugging": "User offered .roomplan JSON export. If scenario persists, request export to reproduce exact positions and wall geometry."
+    },
+    {
+      "id": "RD-069",
+      "record_type": "user_requirement",
+      "module": "cable_tool_lifecycle_and_quick_lock",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V60",
+      "status": "source_committed",
+      "user_statement": "پس از اتمام کابل‌کشی ابزار به انتخاب برگردد؛ Floating Menu گزینه Lock هم داشته باشد.",
+      "assistant_interpretation": "After successfully connecting cable endpoints invoke Select automatically, leaving unfinished routes active. Add contextual Lock/Unlock quick action for selected devices with current state feedback and Undo checkpoint; preserve current selection when unlocking.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "0cc1d22b43b15e667cede71a1ab7406385b00728",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED",
+        "desktop_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2260,14 +2289,20 @@
       "version": "V59",
       "change": "Door free dragging outside fixed bounds, snap only near wall segment within CSS pixel threshold",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V60",
+      "change": "Cable-to-Select automatic transition and floating Lock/Unlock",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V59",
+    "release": "V60",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V60"
+    "next_development_audit": "V65"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
