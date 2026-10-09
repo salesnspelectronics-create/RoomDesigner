@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V48",
-    "project_evolution_version": "V48",
+    "software_version": "V49",
+    "project_evolution_version": "V49",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V48",
+  "current_source_release": "V49",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -446,6 +446,14 @@
       "phase": "architecture transformation controls",
       "summary": "Four prominent 90° rotation and horizontal/vertical mirror buttons for architecture symbols.",
       "source_commit": "857af21f66e67557bd5ebee038035cf523cb6d83",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V49",
+      "date": "2026-10-09",
+      "phase": "magnetic wall snap",
+      "summary": "Snap edges of unported architectural objects to nearby horizontal/vertical wall segments with visual guide while dragging.",
+      "source_commit": "a0e4877483d13f741ae66cd49f49b8f7dfdc438e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1537,6 +1545,27 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-057",
+      "record_type": "user_requirement",
+      "module": "architecture_wall_snap",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V49",
+      "status": "source_committed",
+      "user_statement": "وقتی تخت را به دیوار مستطیلی نزدیک می‌کنم، لبه تخت لحظه‌ای به دیوار بچسبد؛ اگر دوباره حرکت بدهم، بتوانم از حالت چسبیده خارج شوم.",
+      "assistant_interpretation": "Snap bounding-box side of unported architectural objects to nearby horizontal and vertical architectural wall segments within 16 display pixels during drag, preserving free movement outside threshold; display teal dashed alignment guide; preserve existing Door special snap.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "a0e4877483d13f741ae66cd49f49b8f7dfdc438e",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Only horizontal/vertical wall segments currently snap for general objects; door has its own closest-segment snap."
     }
   ],
   "analyses": [
@@ -1854,10 +1883,16 @@
       "version": "V48",
       "change": "Clearly labeled rotate 90 left/right and horizontal/vertical mirror icon buttons",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V49",
+      "change": "Magnetic object-to-wall snapping",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V48",
+    "release": "V49",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
