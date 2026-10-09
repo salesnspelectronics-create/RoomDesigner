@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V23",
-    "project_evolution_version": "V23",
+    "software_version": "V24",
+    "project_evolution_version": "V24",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V23",
+  "current_source_release": "V24",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -248,6 +248,14 @@
       "phase": "zoom reset UX",
       "summary": "Click zoom percentage badge to reset to 100%, and reset viewport automatically when creating a new drawing.",
       "source_commit": "58559f5a9ff1be1a9a5b249aa59d463d82adc86b",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V24",
+      "date": "2026-10-09",
+      "phase": "touch gesture state fix",
+      "summary": "Clear stale touch tracking at duplicate and primary touch; clean on capture loss/blur; enforce pointer identity for drag. Repeated failure after V23 recorded, runtime fix awaiting testing.",
+      "source_commit": "cd3aa2c91bd4fb51e2733599e091eef109463cc5",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -736,6 +744,34 @@
         "javascript_syntax": "PASS",
         "iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-028",
+      "record_type": "runtime_review",
+      "module": "mobile_input_gestures",
+      "source": "User repeated iPhone Safari regression report after RoomDesigner V23",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V24",
+      "status": "source_fix_committed",
+      "user_statement": "در زوم و پس از کپی تجهیز، با کشیدن آن زوم ناخواسته رخ می‌دهد و سایر تجهیزات غیرقابل انتخاب می‌شوند؛ اصلاح قبلی V23 مشکل را رفع نکرد.",
+      "assistant_interpretation": "Treat unexpected pinch zoom and blocked selection as potentially stale pointer/touch state: clear tracked fingers/pinch/drag at copy completion and at new primary touch, window blur and visibility loss; only active pointer may move a selected device; remove cached pointer when capture is lost. Preserve viewport and selected duplicate.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "cd3aa2c91bd4fb51e2733599e091eef109463cc5",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "root_cause_confidence": "probable_not_proven",
+      "regression_scenarios": [
+        "zoom to 200 percent, copy, then drag duplicate; zoom remains fixed",
+        "select original and other devices after copy",
+        "blank canvas drags pan only",
+        "two-finger pinch still zooms",
+        "exit and return to canvas, touch events remain usable"
+      ]
     }
   ],
   "analyses": [
@@ -903,10 +939,16 @@
       "version": "V23",
       "change": "Zoom badge reset to 100% on tap; New Drawing resets zoom and view origin",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V24",
+      "change": "Correct stale touch state and pointer tracking after copy/zoom",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V23",
+    "release": "V24",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
