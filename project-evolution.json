@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V34",
-    "project_evolution_version": "V34",
+    "software_version": "V35",
+    "project_evolution_version": "V35",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V34",
+  "current_source_release": "V35",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -336,6 +336,14 @@
       "phase": "architecture wall foundation",
       "summary": "Cable connection type read-only; add basic line-wall segments through Add menu; clarify pan terminology.",
       "source_commit": "27793af6e8d3873db50df33c2a473539bb800dde",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V35",
+      "date": "2026-10-09",
+      "phase": "architecture navigation correction",
+      "summary": "Wall drawing entry moved from top-level Add menu to Architecture category.",
+      "source_commit": "3d6a200e60b61d1cecaf37b89dbc3fba1ca1606e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1139,6 +1147,26 @@
         "javascript_syntax": "PASS",
         "iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-043",
+      "record_type": "runtime_review",
+      "module": "architecture_menu",
+      "source": "User V34 iPhone screenshot, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V35",
+      "status": "source_committed",
+      "user_statement": "داخل بخش معماری فقط تجهیز رزرو دیده می‌شود؛ ابزار دیوار کجاست؟",
+      "assistant_interpretation": "Previous Wall tool was placed in root Add menu, outside Architecture category. Relocate Wall drawing button directly inside Architecture group screen; remove duplicate from Add root. This is a basic line wall tool, not yet full wall CAD editor.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "3d6a200e60b61d1cecaf37b89dbc3fba1ca1606e",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1372,14 +1400,31 @@
       "version": "V34",
       "change": "Read-only cable type and architectural wall line creation",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V35",
+      "change": "Show wall line drawing tool inside Architecture equipment group",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V34",
+    "release": "V35",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V35"
+    "development_audit": {
+      "boundary": "V35",
+      "status": "partial",
+      "executed_checks": [
+        "Code path inspection and JavaScript parse"
+      ],
+      "not_executed": [
+        "Safari runtime test",
+        "full architectural audit"
+      ]
+    },
+    "next_development_audit": "V40"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
