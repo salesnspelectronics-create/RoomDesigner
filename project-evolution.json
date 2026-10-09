@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V53",
-    "project_evolution_version": "V53",
+    "software_version": "V54",
+    "project_evolution_version": "V54",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V53",
+  "current_source_release": "V54",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -486,6 +486,14 @@
       "phase": "architectural vector symbol quality",
       "summary": "SVG replacements for bed WC TV symbols and per-object stretch-to-bounds control.",
       "source_commit": "a4e514875dc9072d7038d637bd1f2a4fdbe36875",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V54",
+      "date": "2026-10-09",
+      "phase": "categorized architectural floor plan library",
+      "summary": "18 SVG floor-plan symbols in categorized thumbnail picker for furniture, WC/bath, kitchen, opening and structural assets.",
+      "source_commit": "00c1ae46751f9bb439dcc3ac8c65e03caa7771f1",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1701,6 +1709,27 @@
         "iPhone_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "SVG pictograms authored in repo, not sourced from a licensed CAD industry symbol library; television symbol is front view, not strict plan view."
+    },
+    {
+      "id": "RD-063",
+      "record_type": "user_requirement",
+      "module": "architectural_plan_symbol_library",
+      "source": "User RoomDesigner request 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V54",
+      "status": "source_committed",
+      "user_statement": "کتابخانه نمادهای معماری را به مجموعه استاندارد پلان تبدیل کن.",
+      "assistant_interpretation": "Create a reusable categorized architectural plan-style SVG library with 18 floor-plan symbols: furniture, sanitary fixtures, kitchen, doors/windows and structural components. Provide thumbnail picker under Add > Architecture and instantiate independently scalable/rotatable unported SVG vector objects; retain custom per-object SVG override and stretch control.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "00c1ae46751f9bb439dcc3ac8c65e03caa7771f1",
+        "javascript_syntax": "PASS",
+        "iOS_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Plan-style original vector artwork, not officially certified against a specific country CAD drafting standard. No dimensions/scaling in real meters; door/window wall-cut interaction remains separate."
     }
   ],
   "analyses": [
@@ -2048,10 +2077,16 @@
       "version": "V53",
       "change": "Architectural SVG bed WC TV icon library and optional stretch",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V54",
+      "change": "18 grouped architectural floor-plan SVG symbols with previews",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V53",
+    "release": "V54",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
