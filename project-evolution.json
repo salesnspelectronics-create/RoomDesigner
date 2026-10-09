@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V32",
-    "project_evolution_version": "V32",
+    "software_version": "V33",
+    "project_evolution_version": "V33",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V32",
+  "current_source_release": "V33",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -320,6 +320,14 @@
       "phase": "cable editing",
       "summary": "Cable hit-test and double-tap properties; adjustable line thickness/style; cable duplication with distinct parallel route for direct cables.",
       "source_commit": "c84778c9b3c710333655648f5c92539d700a6f3e",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V33",
+      "date": "2026-10-09",
+      "phase": "orthogonal continuity",
+      "summary": "30 CSS pixel perpendicular snap tolerance retains a straight ongoing cable when tapping again after releasing.",
+      "source_commit": "2aabb876a4cac21650d214ce9836c52ddf6f932d",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1062,6 +1070,27 @@
         "iPhone_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Duplicate of a bent cable retains original waypoints and can overlap with its source; no interactive bend editing in this version."
+    },
+    {
+      "id": "RD-040",
+      "record_type": "runtime_review",
+      "module": "orthogonal_cable_routing",
+      "source": "User iPhone screenshot of Room Designer V32, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V33",
+      "status": "source_committed",
+      "user_statement": "وقتی مسیر قائم را رها می‌کنم و دوباره در امتداد همان خط لمس می‌کنم، کابل کمی بالا می‌رود و پله درست می‌شود؛ باید مسیر مستقیم را ادامه بدهد.",
+      "assistant_interpretation": "Orthogonal continuation tolerance of 30 CSS px; if next tap deviates less than tolerance perpendicular to last axis, snap it back to the existing horizontal or vertical axis. Only deliberate deviations produce a 90-degree bend; apply in preview and saved cable rendering.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "2aabb876a4cac21650d214ce9836c52ddf6f932d",
+        "javascript_syntax": "PASS",
+        "geometry_tests": "PASS: near-horizontal tap merged; deliberate turn retained",
+        "iOS_Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1283,12 +1312,18 @@
       "version": "V32",
       "change": "Cable editing and visual duplication support",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V33",
+      "change": "Suppress unintentional doglegs when continuing an orthogonal cable after releasing touch",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V32",
+    "release": "V33",
     "source_status": "committed",
-    "build_status": "javascript_syntax_pass",
+    "build_status": "javascript_syntax_pass_and_2_geometry_tests",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V35"
   },
