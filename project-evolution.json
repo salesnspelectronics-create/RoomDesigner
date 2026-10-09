@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V17",
-    "project_evolution_version": "V17",
+    "software_version": "V18",
+    "project_evolution_version": "V18",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V17",
+  "current_source_release": "V18",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -201,6 +201,14 @@
       "phase": "touch gesture isolation",
       "summary": "Add 14px pinch activation threshold to avoid unintended zoom while translating with two fingers.",
       "source_commit": "8b412a3dfbf1cfbe60d95cc58b2af06addd926f0",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V18",
+      "date": "2026-10-09",
+      "phase": "mobile zoom shortcut",
+      "summary": "Double tap empty canvas to zoom 1.25x around tap midpoint, separate from device double tap.",
+      "source_commit": "d20ba3facc3d2a55c0973d28f850099955f6a129",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -571,6 +579,26 @@
         "syntax": "PASS",
         "safari_runtime": "not_verified"
       }
+    },
+    {
+      "id": "RD-022",
+      "record_type": "user_requirement",
+      "module": "canvas_gestures",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V18",
+      "status": "source_committed",
+      "user_statement": "اگر روی جای خالی بوم دابل کلیک کردم ۲۵ درصد بزرگ شود.",
+      "assistant_interpretation": "Double tap/click in empty canvas, in Select mode, increases existing zoom by 25% around touch point; preserves drag-to-pan and device double-tap Properties.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d20ba3facc3d2a55c0973d28f850099955f6a129",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -702,10 +730,16 @@
       "version": "V17",
       "change": "Decouple canvas translation and pinch scaling using touch-distance threshold",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V18",
+      "change": "Add 25 percent empty-canvas double-tap zoom",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V17",
+    "release": "V18",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
