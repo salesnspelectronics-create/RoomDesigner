@@ -1,0 +1,454 @@
+{
+  "_record_system": {
+    "formal_name": "Project Evolution",
+    "persian_name": "تکامل پروژه",
+    "canonical_format": "JSON",
+    "canonical_filename": "project-evolution.json",
+    "schema_version": 1,
+    "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
+  },
+  "_project_evolution_identity": {
+    "software_version": "V9",
+    "project_evolution_version": "V9",
+    "version_alignment_required": true,
+    "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
+    "applies_to": "RoomDesigner"
+  },
+  "_user_requirement_capture_governance": {
+    "status": "active",
+    "rule": "Preserve a faithful user requirement and separately record interpretation, decision, implementation, verification and runtime acceptance; no undocumented Done.",
+    "required_fields": [
+      "id",
+      "record_type",
+      "module",
+      "source",
+      "source_actor",
+      "recorded_by",
+      "created_at",
+      "target_version",
+      "status",
+      "user_statement",
+      "assistant_interpretation",
+      "implementation_status",
+      "runtime_status",
+      "verification_evidence"
+    ]
+  },
+  "_release_boundary_governance": {
+    "status": "adopted_for_future_releases",
+    "multiple_of_five_release_gate": true,
+    "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
+    "next_due_boundary": "V10"
+  },
+  "_file_documentation": {
+    "title": "RoomDesigner Project Evolution",
+    "role": "Portable change, analysis, requirements and verification ledger",
+    "canonical_filename": "project-evolution.json",
+    "history_rule": "Append only; preserve past requirements and releases; no overwrite of recorded history",
+    "runtime_done_rule": "Only user-confirmed end-to-end runtime can be marked Done.",
+    "companion_guide": "PROJECT-EVOLUTION-INSTRUCTIONS.md"
+  },
+  "_governance_rules": {
+    "authoritative_file": "project-evolution.json",
+    "mandatory_per_version_update": true,
+    "record_every_change": true,
+    "record_compile_and_build_results": true,
+    "record_runtime_results": true,
+    "record_architecture_decisions": true,
+    "record_deferred_scope": true,
+    "preserve_history": true,
+    "done_requires_explicit_user_runtime_confirmation": true
+  },
+  "project": "RoomDesigner",
+  "created_at": "2026-10-09",
+  "current_source_release": "V9",
+  "project_identity_and_technical_profile": {
+    "product_name": "Room Designer — Powered by NSP",
+    "record_scope": "standalone, framework-independent roadmap",
+    "repository": "salesnspelectronics-create/RoomDesigner",
+    "branch": "main",
+    "hosting": "GitHub Pages static",
+    "stack": [
+      "HTML",
+      "CSS",
+      "vanilla JavaScript",
+      "inline SVG drawing"
+    ],
+    "external_dependencies": [],
+    "integration": "NSP Office adapter deferred; no changes in NSPOffice repository",
+    "release_policy": "Integer V1, V2, ...; actual tracked evolution record starts at V9"
+  },
+  "workflow": {
+    "new_item": "Capture user review with source and pending status, and mark implementation separately",
+    "approval": "User feature request authorizes the specified scope; do not silently broaden.",
+    "implementation": "Commit code and ledger changes, record source and verification",
+    "resolved_items": "Runtime Done requires user acceptance",
+    "source_rule": "No claims without verified source evidence",
+    "history_retention_rule": "Do not erase prior releases or superseded decisions"
+  },
+  "history": [
+    {
+      "release": "V1–V3",
+      "date": "2026-10-09",
+      "phase": "early prototype",
+      "source": "Current conversation",
+      "summary": "Initial web/mobile prototype, device catalog, communication types and ports; early iPhone local-file execution failed.",
+      "evidence": "conversation narrative",
+      "runtime_status": "issues_reported"
+    },
+    {
+      "release": "V4",
+      "date": "2026-10-09",
+      "phase": "first repository baseline",
+      "summary": "Standalone HTML prototype published to RoomDesigner repository; README and GitHub Pages deployment steps.",
+      "runtime_status": "user reported initial UI worked only after hosting"
+    },
+    {
+      "release": "V5",
+      "date": "2026-10-09",
+      "phase": "mobile interaction",
+      "summary": "Mobile group picker, double-tap properties, four-side port placement using select, drag-to-nearest-port wiring; syntax fix commit 32ddefae.",
+      "runtime_status": "partially_user_observed"
+    },
+    {
+      "release": "V6",
+      "date": "2026-10-09",
+      "phase": "skipped version number",
+      "summary": "No independently verified V6 release in this chat. Do not fabricate release evidence.",
+      "runtime_status": "not_released"
+    },
+    {
+      "release": "V7",
+      "date": "2026-10-09",
+      "phase": "named users and revision history",
+      "summary": "User selector, Save/Save As, local drawings list, embedded revision snapshots and change summaries.",
+      "source_commit": "b022fcbcca1704aac66ef4c302cfb1a25ba89f38",
+      "runtime_status": "user observed UI"
+    },
+    {
+      "release": "V8",
+      "date": "2026-10-09",
+      "phase": "mobile users and port UX",
+      "summary": "Two entry choices New/Existing User, rename user, direction radio buttons; SVG upload field partial only.",
+      "source_commit": "4d29bd87b065e7d2616df7b70043300314fee40f",
+      "runtime_status": "user confirmed deployment, SVG still pending"
+    },
+    {
+      "release": "V9",
+      "date": "2026-10-09",
+      "phase": "project governance",
+      "summary": "Add independent Project Evolution ledger alongside application and companion guide, preserve decisions, gaps and review history.",
+      "runtime_status": "not_tested"
+    }
+  ],
+  "records": [
+    {
+      "id": "RD-001",
+      "record_type": "user_requirement",
+      "module": "architecture",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "Core مستقل باشد؛ در NSP Office تغییر نده؛ بعداً بتوان در چند نرم‌افزار استفاده کرد.",
+      "assistant_interpretation": "Standalone browser app now, future reusable framework-agnostic core; NSP Office untouched.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-002",
+      "record_type": "user_requirement",
+      "module": "architecture",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "از open source استفاده کن ولی development پیچیده نشود؛ ابتدا صفحات و UX را ببینیم.",
+      "assistant_interpretation": "Prototype implemented in vanilla HTML/CSS/JS; JointJS/Konva decision deferred until PoC.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-003",
+      "record_type": "user_requirement",
+      "module": "ports",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "تجهیز می‌تواند پورت Ethernet، RS-485، RS-232 و چند درگاه مستقل داشته باشد؛ هر کابل به پورت مشخص متصل شود.",
+      "assistant_interpretation": "Port type, color, connector semantics and stable instance ports; cable endpoints reference port ids.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-004",
+      "record_type": "user_requirement",
+      "module": "cables",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "هیچ کابلی بدون مقصد رها نشود؛ کابل رزرو به تجهیز رزرو نقطه‌چین وصل شود.",
+      "assistant_interpretation": "Reserve placeholder device is explicit endpoint; disconnected route must not be committed.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-005",
+      "record_type": "user_requirement",
+      "module": "mobile UX",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V5",
+      "status": "implemented",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "روی آیفون اضافه‌کردن تجهیز دو مرحله‌ای، double tap ویژگی‌ها، drag جابه‌جایی، کشیدن کابل با snap نزدیک پورت باشد.",
+      "assistant_interpretation": "Category -> device chooser, double tap properties, drag, port proximity snapping.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-006",
+      "record_type": "user_requirement",
+      "module": "port editor",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V8",
+      "status": "implemented",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "لوکیشن پورت را از چپ، راست، بالا، پایین به‌صورت تیکی انتخاب کنیم، نه ComboBox.",
+      "assistant_interpretation": "Four radio direction options; types catalog configurable color.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-007",
+      "record_type": "user_requirement",
+      "module": "artwork",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V10",
+      "status": "pending",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "برای تجهیز فقط SVG واقعی قبول کن؛ PNG/JPEG فقط در صورت تبدیل وکتوری واقعی، نه قراردادن bitmap داخل SVG.",
+      "assistant_interpretation": "Reject raster until robust true-vector conversion available; SVG must be sanitized; current file input is not yet wired to rendering.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-008",
+      "record_type": "user_requirement",
+      "module": "export",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "PDF با عنوان/تاریخ و گزارش ارتباطات انتخابی؛ خروجی DXF هم داشته باشد.",
+      "assistant_interpretation": "Basic print-to-PDF and DXF proof of concept; fidelity tests pending.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-009",
+      "record_type": "user_requirement",
+      "module": "storage",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V8",
+      "status": "implemented",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "فعلاً روی GitHub Pages ذخیره محلی باشد؛ ذخیره‌سازی کنار IIS را تا انتقال به IIS انجام نده.",
+      "assistant_interpretation": "Browser local persistence and file transfer now; server write API explicitly deferred.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-010",
+      "record_type": "user_requirement",
+      "module": "users",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V8",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "ورود فقط نام؛ ابتدا دو دکمه کاربر جدید یا موجود؛ بدون ورود به ویرایشگر نرود؛ تغییر نام کاربر ممکن باشد.",
+      "assistant_interpretation": "Name-only user picker with separate two-step flows; no actual authentication; existing active user auto-restores.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-011",
+      "record_type": "user_requirement",
+      "module": "sharing",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "pending",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "تمام کاربران داخلی به نقشه‌ها دسترسی داشته باشند؛ حذف از برنامه ممنوع، حذف فقط از هاست.",
+      "assistant_interpretation": "For local prototype, same-browser documents; cross-device shared storage requires deferred IIS backend; deletion policy applies to future server.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-012",
+      "record_type": "user_requirement",
+      "module": "revisions",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V7",
+      "status": "partially_implemented",
+      "implementation_status": "pending",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "تمام Revisionها، timestamp، اسم ادیتور، شرح و snapshot در همان فایل JSON بماند؛ هیچ Revisionی حذف نشود.",
+      "assistant_interpretation": "Revision snapshots append-only on save, per-document revision id and auto diff; concurrent save check needed only when server exists.",
+      "verification_evidence": null
+    },
+    {
+      "id": "RD-013",
+      "record_type": "user_requirement",
+      "module": "project evolution",
+      "source": "RoomDesigner conversation, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V9",
+      "status": "implemented",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "Project Evolution را کنار نرم‌افزار بگذار؛ آخرین استاندارد و تحلیل‌ها/تاریخچه را ثبت کن تا از دست نروند.",
+      "assistant_interpretation": "Portable authoritative project-evolution.json and companion instructions in repository; v9 record created.",
+      "verification_evidence": null
+    }
+  ],
+  "analyses": [
+    {
+      "id": "AN-RD-001",
+      "title": "Rendering strategy",
+      "status": "open",
+      "assessment": "Use a reusable semantic document model independent of rendering package. Evaluate JointJS Community and Konva.js against connection, routing, render, React embeddability and license before changing core architecture.",
+      "risks": [
+        "renderer-specific persistence",
+        "vendor licensing",
+        "reimplementing 2D gestures needlessly"
+      ]
+    },
+    {
+      "id": "AN-RD-002",
+      "title": "Interface taxonomy",
+      "status": "partially_implemented",
+      "assessment": "Separate communication type, connector type, physical cable type, and device port. Port has stable identity, display color, placement side and attachment capacity. RS-485 is an interface, not a connector."
+    },
+    {
+      "id": "AN-RD-003",
+      "title": "Documents and history",
+      "status": "partially_implemented",
+      "assessment": "Each portable document holds current drawing and all revision snapshots in JSON. Names are not identity, documentId is stable. Restore must append new revision. Local Browser Storage is not shared server storage."
+    },
+    {
+      "id": "AN-RD-004",
+      "title": "Offline vs shared persistence",
+      "status": "deferred",
+      "assessment": "GitHub Pages serves read-only static app; direct file writes require server API on IIS. Do not add this backend until migration is requested. Admin-only deletion must be implemented server-side."
+    },
+    {
+      "id": "AN-RD-005",
+      "title": "Vector symbols security",
+      "status": "open",
+      "assessment": "SVG only; sanitize against scripts, event handlers, external references, foreignObject and risky URLs. Bitmap wrapping is not vectorization. True raster-to-vector is future feature and must be assessed for reliability."
+    },
+    {
+      "id": "AN-RD-006",
+      "title": "Mobile touch fidelity",
+      "status": "pending_runtime",
+      "assessment": "Two-stage category/device picker, double tap for Properties, dragging object, drag-to-connect with snap near ports, PWA/mobile Safari tests. Test on iPhone; syntax validation does not establish gesture correctness."
+    },
+    {
+      "id": "AN-RD-007",
+      "title": "GitHub Pages cache/version",
+      "status": "partially_verified",
+      "assessment": "User saw stale v0.4 after deployments; cache-busting URL and UI version must be updated with each code release. GitHub Pages build/deploy latency remains."
+    }
+  ],
+  "deferred_scope": [
+    "IIS file-backed API",
+    "multi-device user list sync",
+    "admin file deletion",
+    "advanced SVG vectorization",
+    "cloud collaboration",
+    "NSP Office integration",
+    "full DXF fidelity",
+    "complete CAD wall editing",
+    "automatic cable routing"
+  ],
+  "verification_evidence": [
+    {
+      "type": "source",
+      "version": "V8",
+      "result": "GitHub connector commit confirmed",
+      "commit": "4d29bd87b065e7d2616df7b70043300314fee40f"
+    },
+    {
+      "type": "runtime",
+      "version": "V8",
+      "result": "User reports updated UI visible after refresh",
+      "limits": "Not full feature acceptance."
+    }
+  ],
+  "change_log": [
+    {
+      "date": "2026-10-09",
+      "version": "V9",
+      "source": "User instruction in conversation",
+      "change": "Created independent Project Evolution for RoomDesigner from NSP Office V129 governance model; documented requirements, analyses, history, source/runtime gaps",
+      "status": "source_recorded"
+    }
+  ],
+  "current_release_gate": {
+    "release": "V9",
+    "source_status": "documentation_change",
+    "build_status": "not_run",
+    "runtime_status": "pending_user_verification",
+    "next_development_audit": "V10"
+  },
+  "handoff": {
+    "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
+    "known_next_items": [
+      "wire sanitized SVG into component symbol model, draw on canvas and serialize with document",
+      "improve multiple-port editor",
+      "verify first-run gate and rename user flow",
+      "test v8/v9 on iOS Safari"
+    ],
+    "source_of_truth": "project-evolution.json"
+  }
+}
