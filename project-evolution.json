@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V62",
-    "project_evolution_version": "V62",
+    "software_version": "V63",
+    "project_evolution_version": "V63",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V62",
+  "current_source_release": "V63",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -558,6 +558,13 @@
       "phase": "object locking visual affordance",
       "summary": "Visible vector upper-left lock badge for locked devices and architectural doors.",
       "source_commit": "06060d8e974b905c5ce7f8a28b8e69624e9e02b5",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V63",
+      "date": "2026-10-10",
+      "summary": "RD-073 P0: protect revision wall geometry during save/restore and legacy version handling.",
+      "source_commit": "26b64aa53993f135ddf879e88751a61b8ee62882",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1991,16 +1998,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V63",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "Revision snapshot omits walls while Restore assigns snapshot.walls||[]; restoring any saved revision can erase the architectural plan.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "Revision snapshots now include walls/schemaVersion and revision diff includes wall changes; legacy wall-less snapshots preserve current walls after explicit confirmation; invalid snapshot core structure rejected before mutation.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:156,159,167",
-        "review_type": "static_source_only",
-        "severity": "critical"
+        "commit": "26b64aa53993f135ddf879e88751a61b8ee62882",
+        "javascript_syntax": "PASS",
+        "browser_scenarios": "NOT_TESTED"
       },
       "recommended_implementation": "Include walls and all document geometry in versioned snapshots; migrate legacy snapshots without silently clearing missing fields; restore into a candidate document and save a new revision only after validation.",
       "acceptance_criteria": "Create walls and devices, save two revisions, restore the older revision; assert wall geometry persists. Restore a legacy snapshot without walls and assert explicit handling rather than deletion."
@@ -2632,10 +2639,16 @@
       "change": "Recorded senior source audit RD-072 through RD-079 and remediation/acceptance handoff AN-RD-008; application source and release version unchanged.",
       "status": "analysis_recorded",
       "source_commit_reviewed": "1546f3be6f5da0fee824bed2976a50419db827e2"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V63",
+      "change": "RD-073 revision wall integrity",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V62",
+    "release": "V63",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
