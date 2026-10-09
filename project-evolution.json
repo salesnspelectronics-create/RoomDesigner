@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V24",
-    "project_evolution_version": "V24",
+    "software_version": "V25",
+    "project_evolution_version": "V25",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V24",
+  "current_source_release": "V25",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -256,6 +256,14 @@
       "phase": "touch gesture state fix",
       "summary": "Clear stale touch tracking at duplicate and primary touch; clean on capture loss/blur; enforce pointer identity for drag. Repeated failure after V23 recorded, runtime fix awaiting testing.",
       "source_commit": "cd3aa2c91bd4fb51e2733599e091eef109463cc5",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V25",
+      "date": "2026-10-09",
+      "phase": "device dragging regression hotfix",
+      "summary": "Fix incorrect device id/pointer id comparison blocking all object drags in V24.",
+      "source_commit": "82b06454192ff1c14f2dac86fcc500389839a343",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -772,6 +780,26 @@
         "two-finger pinch still zooms",
         "exit and return to canvas, touch events remain usable"
       ]
+    },
+    {
+      "id": "RD-029",
+      "record_type": "runtime_review",
+      "module": "mobile_device_drag",
+      "source": "User iPhone test V24, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V25",
+      "status": "source_fix_committed",
+      "user_statement": "تجهیزات انتخاب می‌شوند، اما بعد از اصلاح قبلی هیچ تجهیزی روی صفحه جابه‌جا نمی‌شود.",
+      "assistant_interpretation": "Confirmed V24 regression: pointerMove compares drag.id (device string ID) with e.pointerId (numeric pointer ID), causing all device-drag movement events to return. Introduce separate drag.pointerId, compare pointer IDs only; preserve drag.id exclusively for device lookup.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "82b06454192ff1c14f2dac86fcc500389839a343",
+        "javascript_syntax": "PASS",
+        "runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -945,14 +973,33 @@
       "version": "V24",
       "change": "Correct stale touch state and pointer tracking after copy/zoom",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V25",
+      "change": "Restore object drag after V24 pointer identity regression",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V24",
+    "release": "V25",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V25"
+    "development_audit": {
+      "boundary": "V25",
+      "status": "partial",
+      "executed_checks": [
+        "Root-cause source inspection",
+        "JavaScript syntax verification"
+      ],
+      "not_executed": [
+        "real iPhone runtime regression suite",
+        "full architecture audit"
+      ],
+      "blocker": "iOS acceptance outstanding"
+    },
+    "next_development_audit": "V30"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
