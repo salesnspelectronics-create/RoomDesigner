@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V61",
-    "project_evolution_version": "V61",
+    "software_version": "V62",
+    "project_evolution_version": "V62",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V61",
+  "current_source_release": "V62",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -550,6 +550,14 @@
       "phase": "floating quick menu visual",
       "summary": "Smiling animated SVG floating launcher while preserving quick actions.",
       "source_commit": "ec5d80a08edcaaa663b201e0922ec2d2a625eb38",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V62",
+      "date": "2026-10-09",
+      "phase": "object locking visual affordance",
+      "summary": "Visible vector upper-left lock badge for locked devices and architectural doors.",
+      "source_commit": "06060d8e974b905c5ce7f8a28b8e69624e9e02b5",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1935,6 +1943,26 @@
         "Safari_runtime": "NOT_TESTED",
         "desktop_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-071",
+      "record_type": "user_requirement",
+      "module": "object_lock_visual_indicator",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V62",
+      "status": "source_committed",
+      "user_statement": "آبجکت‌های قفل‌شده باید یک علامت قفل کوچک در بالا سمت چپ کنار خودشان نشان بدهند.",
+      "assistant_interpretation": "Render explicit small padlock SVG badge at upper-left corner on every locked device, including custom Door renderer which bypassed the old emoji; independent of selection, noninteractive so does not interfere with dragging or hit testing.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "06060d8e974b905c5ce7f8a28b8e69624e9e02b5",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2330,10 +2358,16 @@
       "version": "V61",
       "change": "Smiling SVG launcher with short tap animation",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V62",
+      "change": "SVG padlock badge on locked objects",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V61",
+    "release": "V62",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
