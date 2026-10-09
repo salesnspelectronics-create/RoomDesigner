@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V43",
-    "project_evolution_version": "V43",
+    "software_version": "V44",
+    "project_evolution_version": "V44",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V43",
+  "current_source_release": "V44",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -406,6 +406,14 @@
       "phase": "architectural door symbol",
       "summary": "Add top-layer swing door, visual wall opening, and nearest-wall position/rotation snapping without mutating walls.",
       "source_commit": "d41c3429fe5b7654f7b68ef9598dfd2514f177b7",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V44",
+      "date": "2026-10-09",
+      "phase": "architectural polyline live preview",
+      "summary": "Architectural connected polyline now previews provisional segment during drag and commits segments on release.",
+      "source_commit": "c07e410c96aa113e0ea7c7635fb3fa16f48a0db1",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1395,6 +1403,26 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Visual overlay uses background-colored patch rather than actual clipping; may hide grid behind opening; snapping is to segments modeled in doc.walls."
+    },
+    {
+      "id": "RD-052",
+      "record_type": "runtime_review",
+      "module": "architectural_polyline",
+      "source": "User RoomDesigner iPhone review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V44",
+      "status": "source_committed",
+      "user_statement": "در معماری، خط شکسته پیوسته مثل کابل شکسته قدیمی حین حرکت انگشت لایو نمایش داده نمی‌شود؛ اصلاح کن.",
+      "assistant_interpretation": "Activate dedicated live dashed SVG segment from previous committed polyline vertex to current touch position during pointer move; first touch marks start, subsequent drag-release adds segments, and later touches continue from last endpoint; pinch cancels pending gesture without adding line.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "c07e410c96aa113e0ea7c7635fb3fa16f48a0db1",
+        "javascript_syntax": "PASS",
+        "Safari_iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1682,10 +1710,16 @@
       "version": "V43",
       "change": "Door architectural vector overlay with nearest wall snapping",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V44",
+      "change": "Live preview for architecture polyline, continue from previous endpoint",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V43",
+    "release": "V44",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
