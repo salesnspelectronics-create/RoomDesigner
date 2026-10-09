@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V50",
-    "project_evolution_version": "V50",
+    "software_version": "V51",
+    "project_evolution_version": "V51",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V50",
+  "current_source_release": "V51",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -462,6 +462,14 @@
       "phase": "door angle lock and floating quick actions",
       "summary": "Preserve manually rotated door while moving; floating draggable shortcut menu provides rotate, duplicate, delete, properties.",
       "source_commit": "ed2cb94f8cb12c83ca3c3fc35b1354f8498b0e8c",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V51",
+      "date": "2026-10-09",
+      "phase": "architecture shape drawing snap",
+      "summary": "Snap nested architectural rectangle/square drag start/end to nearby existing wall lines with live alignment indicators.",
+      "source_commit": "6eef2400a71fbfa45fb2f426cd22c7a91cf9c27b",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1615,6 +1623,27 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Dock location not persisted across reload; delete needs confirmation; wall shape copy operation not yet implemented."
+    },
+    {
+      "id": "RD-060",
+      "record_type": "user_requirement",
+      "module": "architecture_drawing_snap",
+      "source": "User RoomDesigner 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V51",
+      "status": "source_committed",
+      "user_statement": "هنگام رسم مستطیل داخلی داخل مستطیل بزرگ اتاق، مانند جابه‌جایی تخت، رسم مستطیل هم به دیوارهای موجود بچسبد.",
+      "assistant_interpretation": "Extend wall magnetic alignment to pointer-down starting corner and pointer-move/release opposite corner of rectangles, squares and lines. Snap independently to existing horizontal or vertical wall coordinates within 15 screen pixels when projection falls within wall segment extent. Show temporary alignment guides.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "6eef2400a71fbfa45fb2f426cd22c7a91cf9c27b",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Supports axis-aligned existing walls; square aspect ratio takes priority over snapping the second axis after constrained geometry; snapping is immediate within threshold, without hysteresis."
     }
   ],
   "analyses": [
@@ -1944,10 +1973,16 @@
       "version": "V50",
       "change": "Fix door rotation reset on snap; add draggable floating quick action menu",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V51",
+      "change": "Magnetic wall alignment during architecture shape creation",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V50",
+    "release": "V51",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
