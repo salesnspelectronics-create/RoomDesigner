@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V49",
-    "project_evolution_version": "V49",
+    "software_version": "V50",
+    "project_evolution_version": "V50",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V49",
+  "current_source_release": "V50",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -454,6 +454,14 @@
       "phase": "magnetic wall snap",
       "summary": "Snap edges of unported architectural objects to nearby horizontal/vertical wall segments with visual guide while dragging.",
       "source_commit": "a0e4877483d13f741ae66cd49f49b8f7dfdc438e",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V50",
+      "date": "2026-10-09",
+      "phase": "door angle lock and floating quick actions",
+      "summary": "Preserve manually rotated door while moving; floating draggable shortcut menu provides rotate, duplicate, delete, properties.",
+      "source_commit": "ed2cb94f8cb12c83ca3c3fc35b1354f8498b0e8c",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1566,6 +1574,47 @@
         "iPhone_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Only horizontal/vertical wall segments currently snap for general objects; door has its own closest-segment snap."
+    },
+    {
+      "id": "RD-058",
+      "record_type": "runtime_review",
+      "module": "architecture_door_rotation",
+      "source": "User RoomDesigner iPhone 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V50",
+      "status": "source_committed",
+      "user_statement": "در پس از چرخش ۹۰ درجه، وقتی جابه‌جایش می‌کنم زاویه به حالت اولیه برمی‌گردد.",
+      "assistant_interpretation": "Stop forcibly assigning door rotation from nearest-wall angle during drag after user has assigned a rotation. Existing legacy doors with undefined rotation may take initial wall orientation.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "ed2cb94f8cb12c83ca3c3fc35b1354f8498b0e8c",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-059",
+      "record_type": "user_requirement",
+      "module": "floating_quick_actions",
+      "source": "User RoomDesigner 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V50",
+      "status": "source_committed",
+      "user_statement": "بعد انتخاب آبجکت یک دکمه شناور قابل جابه‌جایی سمت راست داشته باشم که با باز شدن چرخش، حذف، کپی و ویژگی‌ها سریع در دسترس باشند.",
+      "assistant_interpretation": "Selected object shows floating white circular dock button; can drag dock to new on-screen position; tap expands rotate left/right, copy, delete, properties. Rotation only for unported device symbols. Other selection kinds get copy/delete/properties as applicable.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "ed2cb94f8cb12c83ca3c3fc35b1354f8498b0e8c",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Dock location not persisted across reload; delete needs confirmation; wall shape copy operation not yet implemented."
     }
   ],
   "analyses": [
@@ -1889,14 +1938,20 @@
       "version": "V49",
       "change": "Magnetic object-to-wall snapping",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V50",
+      "change": "Fix door rotation reset on snap; add draggable floating quick action menu",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V49",
+    "release": "V50",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V50"
+    "next_development_audit": "V55"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
