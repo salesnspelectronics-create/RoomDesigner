@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V27",
-    "project_evolution_version": "V27",
+    "software_version": "V28",
+    "project_evolution_version": "V28",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V27",
+  "current_source_release": "V28",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -280,6 +280,14 @@
       "phase": "new drawing mode reset",
       "summary": "New drawing resets to Select, clears cable drawing and pointer states, resets zoom to 100%.",
       "source_commit": "061f3944681f31b224ad6511392cce3e72dbdda2",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V28",
+      "date": "2026-10-09",
+      "phase": "mobile drawing and equipment controls",
+      "summary": "Top-row Save/Copy/Delete + lock toggle; device drag locking, real-time draft cable colors, 18px screen-space micro-bend rejection.",
+      "source_commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -856,6 +864,86 @@
         "javascript_syntax": "PASS",
         "iOS_Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-032",
+      "record_type": "user_requirement",
+      "module": "properties",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V28",
+      "status": "source_committed",
+      "user_statement": "دکمه ثبت تغییرات نیز باید در بالای پنجره ویژگی‌ها کنار کپی و حذف قرار گیرد.",
+      "assistant_interpretation": "Place Save alongside Copy/Delete at top of device and cable properties.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-033",
+      "record_type": "user_requirement",
+      "module": "device_lock",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V28",
+      "status": "source_committed",
+      "user_statement": "برای تجهیز دکمه لاک لازم است تا پس از قفل‌شدن تکان نخورد.",
+      "assistant_interpretation": "Add persistent locked flag to devices, toggle at top of Properties, forbid dragging locked equipment, display lock icon; copies unlocked.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-034",
+      "record_type": "user_requirement",
+      "module": "cable_color",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V28",
+      "status": "source_committed",
+      "user_statement": "کابل در همان لحظه ترسیم باید رنگ پورت مبدأ را بگیرد: سبز، نارنجی، قرمز و غیره.",
+      "assistant_interpretation": "Render live cable path, dashed segment and markers using type color of source port, consistent with completed cable.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-035",
+      "record_type": "user_requirement",
+      "module": "broken_cable_micro_segment",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V28",
+      "status": "source_committed",
+      "user_statement": "در کابل‌کشی شکسته خطوط خیلی کوتاه تصادفی را هوشمندانه حذف کن.",
+      "assistant_interpretation": "Ignore bends shorter than 18 CSS pixels from last committed waypoint, accounting for zoom; also filter at cable completion.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d204880a5816d9a134e175ee9ebae0c6aaaa1c39",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1047,10 +1135,16 @@
       "version": "V27",
       "change": "Reset active tool to Select when starting a new drawing",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V28",
+      "change": "Top properties actions, device locking, live cable colors and broken-cable tiny segment suppression",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V27",
+    "release": "V28",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
