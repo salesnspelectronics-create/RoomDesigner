@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V12",
-    "project_evolution_version": "V12",
+    "software_version": "V13",
+    "project_evolution_version": "V13",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V12",
+  "current_source_release": "V13",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -161,6 +161,14 @@
       "date": "2026-10-09",
       "summary": "Fix mobile cable port hit-testing via SVG screen coordinate transforms, 60px magnetic snap, eliminate duplicate waypoint event registration.",
       "source_commit": "32d9c2e146a0c76929c40689e0f9c6785e049e2d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V13",
+      "date": "2026-10-09",
+      "phase": "mobile polyline visual continuity",
+      "summary": "Persistent visible broken cable during multi-tap entry, stable solid bends and active dashed segment; draft remains across finger release.",
+      "source_commit": "cd8d4abe66b4e65eafc040cfa3fd76edfd183787",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -431,6 +439,26 @@
         "syntax": "PASS",
         "runtime": "not_tested"
       }
+    },
+    {
+      "id": "RD-017",
+      "record_type": "runtime_review",
+      "module": "cable_routing_mobile",
+      "source": "User iPhone runtime report, RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V13",
+      "status": "source_fix_committed",
+      "user_statement": "بعد از انتخاب پورت و رهاکردن انگشت، کابل شکسته غیب می‌شود و فقط با لمس دوباره نقطه‌چین ظاهر می‌شود؛ تا پایان مسیر باید دائم دیده شود و با هر تپ شکست ثابت ثبت شود.",
+      "assistant_interpretation": "Persistent committed-preview polyline visible after every pointerup, solid permanent draft segments, visible bend markers, dotted active segment; preserve draft on pointercancel; do not terminate until valid port.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "cd8d4abe66b4e65eafc040cfa3fd76edfd183787",
+        "syntax": "PASS",
+        "iOS_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -532,10 +560,16 @@
       "version": "V12",
       "change": "Mobile routing usability repair after user's real-device review",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V13",
+      "change": "Repair disappearing cable route between taps in mobile wiring",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V12",
+    "release": "V13",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
