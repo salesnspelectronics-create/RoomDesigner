@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V16",
-    "project_evolution_version": "V16",
+    "software_version": "V17",
+    "project_evolution_version": "V17",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V16",
+  "current_source_release": "V17",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -193,6 +193,14 @@
       "phase": "canvas navigation",
       "summary": "Pan canvas in Select mode by dragging blank area with one finger; pan deltas corrected via SVG screen scale; device dragging and two-finger pinch remain available.",
       "source_commit": "752733679cb30edb3d2a0c99fed057845d8bba69",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V17",
+      "date": "2026-10-09",
+      "phase": "touch gesture isolation",
+      "summary": "Add 14px pinch activation threshold to avoid unintended zoom while translating with two fingers.",
+      "source_commit": "8b412a3dfbf1cfbe60d95cc58b2af06addd926f0",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -543,6 +551,26 @@
         "javascript_syntax": "PASS",
         "iOS_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-021",
+      "record_type": "runtime_review",
+      "module": "canvas_gestures",
+      "source": "User iPhone review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V17",
+      "status": "source_fix_committed",
+      "user_statement": "وقتی به چپ و راست می‌کشم هم‌زمان زوم هم می‌شود؛ حرکت و زوم با هم قاطی شده‌اند.",
+      "assistant_interpretation": "Suppress incidental pinch scaling during parallel two-finger translation; activate zoom only after at least 14 CSS pixels change in inter-finger distance; single-finger blank canvas remains pan-only.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "8b412a3dfbf1cfbe60d95cc58b2af06addd926f0",
+        "syntax": "PASS",
+        "safari_runtime": "not_verified"
+      }
     }
   ],
   "analyses": [
@@ -668,10 +696,16 @@
       "version": "V16",
       "change": "Enable one-finger canvas panning from empty area and update hint",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V17",
+      "change": "Decouple canvas translation and pinch scaling using touch-distance threshold",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V16",
+    "release": "V17",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
