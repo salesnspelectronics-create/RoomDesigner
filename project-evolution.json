@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V33",
-    "project_evolution_version": "V33",
+    "software_version": "V34",
+    "project_evolution_version": "V34",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V33",
+  "current_source_release": "V34",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -328,6 +328,14 @@
       "phase": "orthogonal continuity",
       "summary": "30 CSS pixel perpendicular snap tolerance retains a straight ongoing cable when tapping again after releasing.",
       "source_commit": "2aabb876a4cac21650d214ce9836c52ddf6f932d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V34",
+      "date": "2026-10-09",
+      "phase": "architecture wall foundation",
+      "summary": "Cable connection type read-only; add basic line-wall segments through Add menu; clarify pan terminology.",
+      "source_commit": "27793af6e8d3873db50df33c2a473539bb800dde",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1091,6 +1099,46 @@
         "geometry_tests": "PASS: near-horizontal tap merged; deliberate turn retained",
         "iOS_Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-041",
+      "record_type": "user_requirement",
+      "module": "cable_properties",
+      "source": "User RoomDesigner discussion 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V34",
+      "status": "source_committed",
+      "user_statement": "نوع ارتباط در ویرایش کابل نباید تغییر کند چون اتصال به پورت وابسته است.",
+      "assistant_interpretation": "Remove editable cable type dropdown from Properties; show its value read-only; save does not mutate type.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "27793af6e8d3873db50df33c2a473539bb800dde",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-042",
+      "record_type": "user_requirement",
+      "module": "architecture_walls",
+      "source": "User RoomDesigner discussion 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V34",
+      "status": "source_committed",
+      "user_statement": "برای معماری امکان رسم خط دیوار را اضافه کن؛ جابه‌جایی هم مبهم است.",
+      "assistant_interpretation": "Add independent wall line drawing tool under Add menu; define segments with two taps, persist in doc.walls, render on SVG; clarify Pan tool hint. Further wall editing, snapping, thickness UI and architectural objects remain pending.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "27793af6e8d3873db50df33c2a473539bb800dde",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1318,12 +1366,18 @@
       "version": "V33",
       "change": "Suppress unintentional doglegs when continuing an orthogonal cable after releasing touch",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V34",
+      "change": "Read-only cable type and architectural wall line creation",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V33",
+    "release": "V34",
     "source_status": "committed",
-    "build_status": "javascript_syntax_pass_and_2_geometry_tests",
+    "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V35"
   },
