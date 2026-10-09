@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V42",
-    "project_evolution_version": "V42",
+    "software_version": "V43",
+    "project_evolution_version": "V43",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V42",
+  "current_source_release": "V43",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -398,6 +398,14 @@
       "phase": "architectural shape geometry",
       "summary": "Enforce equal square sides both preview and saved drawing while rectangle keeps independent dimensions.",
       "source_commit": "7a585a8af396663d2fd3b1f8a8665d745cb20e49",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V43",
+      "date": "2026-10-09",
+      "phase": "architectural door symbol",
+      "summary": "Add top-layer swing door, visual wall opening, and nearest-wall position/rotation snapping without mutating walls.",
+      "source_commit": "d41c3429fe5b7654f7b68ef9598dfd2514f177b7",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1366,6 +1374,27 @@
         "geometry_equal_sides": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-051",
+      "record_type": "user_requirement",
+      "module": "architecture_door",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V43",
+      "status": "source_committed",
+      "user_statement": "آبجکت در را در معماری اضافه کن؛ وقتی روی ضلع مربع یا دیوار قرار می‌گیرد، آن قسمت خط ظاهراً قطع شود، اما خط اصلی حذف نشود و خود در در لایه بالاتر باشد.",
+      "assistant_interpretation": "Introduce vector door object in Architecture group; door overlays existing wall with background opening mask and hinge/swing arc. While dragging, snap door center/orientation to nearest wall segment within 28 SVG units. Preserve original wall geometry; door is selectable, movable, resizable, rotatable, copyable using existing device interactions.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "d41c3429fe5b7654f7b68ef9598dfd2514f177b7",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Visual overlay uses background-colored patch rather than actual clipping; may hide grid behind opening; snapping is to segments modeled in doc.walls."
     }
   ],
   "analyses": [
@@ -1647,12 +1676,18 @@
       "version": "V42",
       "change": "Square-versus-rectangle geometric distinction",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V43",
+      "change": "Door architectural vector overlay with nearest wall snapping",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V42",
+    "release": "V43",
     "source_status": "committed",
-    "build_status": "javascript_syntax_and_square_geometry_pass",
+    "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V45"
   },
