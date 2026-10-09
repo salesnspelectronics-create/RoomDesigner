@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V45",
-    "project_evolution_version": "V45",
+    "software_version": "V46",
+    "project_evolution_version": "V46",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V45",
+  "current_source_release": "V46",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -422,6 +422,14 @@
       "phase": "mobile gesture object resize",
       "summary": "Scale selected architectural objects with two-finger pinch; keep pinch-to-zoom for canvas; remove redundant Pan footer button.",
       "source_commit": "48aa7d6e56c155781cf27f1325fb4af346452497",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V46",
+      "date": "2026-10-09",
+      "phase": "accessible pinch scaling",
+      "summary": "Relax proximity requirement and offer explicit selected object Resize mode for small symbols.",
+      "source_commit": "2fb6e6ba9f8d7a8b15b5912f678a268eaae4b266",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1452,6 +1460,26 @@
         "iOS_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Object resizing requires both fingers inside the already-selected object at pinch initiation; cable-connected port-bearing equipment excluded. iPhone testing needed."
+    },
+    {
+      "id": "RD-054",
+      "record_type": "runtime_review",
+      "module": "mobile_object_resize",
+      "source": "User RoomDesigner iPhone feedback 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V46",
+      "status": "source_committed",
+      "user_statement": "وقتی آبجکت کوچک است مثل Window نمی‌توان دو انگشت را روی آن قرار داد؛ به‌جای بزرگ‌شدن آبجکت صفحه زوم می‌شود.",
+      "assistant_interpretation": "Make selected-object pinch recognition work when just one finger is near object and gesture midpoint lies within 180 screen pixels. Also show explicit Resize mode button only for selected unlocked portless objects: while mode active any two-finger pinch on canvas resizes selected object rather than zooming canvas; prevents inaccessible controls on small symbols.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "2fb6e6ba9f8d7a8b15b5912f678a268eaae4b266",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1751,24 +1779,19 @@
       "version": "V45",
       "change": "Object pinch-resize and remove redundant Pan button",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V46",
+      "change": "Small object resize override and robust pinch selection",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V45",
+    "release": "V46",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V45",
-      "status": "partial",
-      "executed_checks": [
-        "JavaScript syntax PASS"
-      ],
-      "not_executed": [
-        "iPhone Safari touch interaction",
-        "full regression test"
-      ]
-    },
     "next_development_audit": "V50"
   },
   "handoff": {
