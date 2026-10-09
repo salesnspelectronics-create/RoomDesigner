@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V57",
-    "project_evolution_version": "V57",
+    "software_version": "V58",
+    "project_evolution_version": "V58",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V57",
+  "current_source_release": "V58",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -518,6 +518,14 @@
       "phase": "architecture shape drag and floating UI icons",
       "summary": "Enable drag-to-move for grouped architectural rectangles/squares, and introduce legible vector toolbar icons.",
       "source_commit": "05759726f3042517ddb5df08056cdcc364e83196",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V58",
+      "date": "2026-10-09",
+      "phase": "floating menu UX",
+      "summary": "Floating quick action panel closes on outside clicks, tool actions and gestures; launcher remains visible.",
+      "source_commit": "20825290843bac9e0cd8b59967784bda4650ffb4",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1820,6 +1828,26 @@
         "iPhone_runtime": "NOT_TESTED"
       },
       "limitations": "Dragging requires starting from the shape outline; older shapes lacking group ID still move one segment at a time."
+    },
+    {
+      "id": "RD-067",
+      "record_type": "runtime_review",
+      "module": "floating_quick_menu_dismissal",
+      "source": "User RoomDesigner iPhone screenshot and feedback 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V58",
+      "status": "source_committed",
+      "user_statement": "وقتی Floating Menu باز است و روی منوی پایین یا هر جای دیگر صفحه اکشن انجام می‌دهم، منوی شناور باید خودکار بسته شود.",
+      "assistant_interpretation": "Dismiss open quick-action panel when pointerdown occurs outside dock (including bottom navigation or overlays), when switching tools or opening/closing sheets, on canvas pointer gesture, on Escape, or after invoking quick action. Keep circular floating launcher visible.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "20825290843bac9e0cd8b59967784bda4650ffb4",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2191,10 +2219,16 @@
       "version": "V57",
       "change": "Move grouped rectangles; refresh SVG floating icons",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V58",
+      "change": "Automatic floating quick menu dismissal on other actions",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V57",
+    "release": "V58",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
