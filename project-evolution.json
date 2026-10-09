@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V47",
-    "project_evolution_version": "V47",
+    "software_version": "V48",
+    "project_evolution_version": "V48",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V47",
+  "current_source_release": "V48",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -438,6 +438,14 @@
       "phase": "architecture objects selection",
       "summary": "Tap and double-tap architectural shapes to select and delete; group newly created rectangles and squares.",
       "source_commit": "9e6e4904f73bcde4a4b967f15235faa8583c4594",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V48",
+      "date": "2026-10-09",
+      "phase": "architecture transformation controls",
+      "summary": "Four prominent 90° rotation and horizontal/vertical mirror buttons for architecture symbols.",
+      "source_commit": "857af21f66e67557bd5ebee038035cf523cb6d83",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1509,6 +1517,26 @@
         "iPhone_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Existing saved rectangles from before V47 lack group IDs; their sides are selectable and deletable separately."
+    },
+    {
+      "id": "RD-056",
+      "record_type": "user_requirement",
+      "module": "architecture_transform_ui",
+      "source": "User iPhone screenshot RoomDesigner 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V48",
+      "status": "source_committed",
+      "user_statement": "برای در و همه آبجکت‌ها کنترل چرخش واضح مثل Corel با چهار آیکون به چپ، راست، ۹۰ درجه این‌طرف و آن‌طرف می‌خواهم.",
+      "assistant_interpretation": "Replace ambiguous 15° arrows with four clearly labeled vector transform controls: rotate 90° left, rotate 90° right, horizontal mirror, vertical mirror. Keep arbitrary numeric rotation. Limit to no-port devices to avoid broken cable-port positions.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "857af21f66e67557bd5ebee038035cf523cb6d83",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1820,10 +1848,16 @@
       "version": "V47",
       "change": "Architectural shape selection, properties and deletion",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V48",
+      "change": "Clearly labeled rotate 90 left/right and horizontal/vertical mirror icon buttons",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V47",
+    "release": "V48",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
