@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V29",
-    "project_evolution_version": "V29",
+    "software_version": "V30",
+    "project_evolution_version": "V30",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V29",
+  "current_source_release": "V30",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -296,6 +296,14 @@
       "phase": "orthogonal cable routing",
       "summary": "Three modes: direct, free-angle broken, orthogonal right-angle broken. Correct preview, persistence and movement rendering.",
       "source_commit": "83ad80d64a14b9307997b7c3a1ffde9de7c123c7",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V30",
+      "date": "2026-10-09",
+      "phase": "orthogonal path cleanup",
+      "summary": "Remove tiny end stubs in L-shaped routing, merge collinear segments and suppress short live-preview artifacts.",
+      "source_commit": "46c5eb0489af2281e632330213587ab03cb7309e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -975,6 +983,27 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-037",
+      "record_type": "runtime_review",
+      "module": "orthogonal_cable_routing",
+      "source": "User screenshot of V29 on iPhone Safari, 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V30",
+      "status": "source_fix_committed",
+      "user_statement": "در مسیر کابل قائم یک خط بسیار کوتاه در انتهای شکست ظاهر شده که نباید وجود داشته باشد؛ مسیر باید تمیز و دقیق باشد.",
+      "assistant_interpretation": "V29 orthogonal algorithm chooses a corner based on dominant displacement, creating tiny terminal stubs. V30 routes minor-axis correction before major leg where possible, merges collinear vertices, and hides preview strokes below 22 CSS pixels.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "46c5eb0489af2281e632330213587ab03cb7309e",
+        "javascript_syntax": "PASS",
+        "orthogonal_geometry_example": "PASS, (0,300)->(100,300)->(110,100) normalizes to (0,300)->(110,300)->(110,100)",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1178,14 +1207,32 @@
       "version": "V29",
       "change": "Three cable route modes; orthogonal routing snaps to horizontal and vertical paths",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V30",
+      "change": "Orthogonal L-bend cleanup based on user screenshot",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V29",
+    "release": "V30",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V30"
+    "development_audit": {
+      "boundary": "V30",
+      "status": "partial",
+      "executed_checks": [
+        "JS syntax validation",
+        "Representative orthogonal geometry test"
+      ],
+      "not_executed": [
+        "iOS Safari runtime",
+        "full architecture audit"
+      ]
+    },
+    "next_development_audit": "V35"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
