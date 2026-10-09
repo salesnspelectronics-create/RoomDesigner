@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V69",
-    "project_evolution_version": "V69",
+    "software_version": "V70",
+    "project_evolution_version": "V70",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V69",
+  "current_source_release": "V70",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -614,6 +614,13 @@
       "date": "2026-10-10",
       "summary": "RD-079 print whole plan vs current view, geometry-based bounds; fix queued autosave for New/Open.",
       "source_commit": "5e5c632bc0541856d1a127b053c01ea184c17a3e",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V70",
+      "date": "2026-10-10",
+      "summary": "Strengthen RD-073/RD-074 restoration and failure state; six schema/snapshot code-level tests passed.",
+      "source_commit": "0e541a111d1d46c599147c2c49f8debffc0c7a88",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2192,6 +2199,26 @@
       },
       "recommended_implementation": "Compute print bounds from resolved document geometry, apply margins and fitting, and expose current-view versus whole-drawing choice if both are needed.",
       "acceptance_criteria": "Place walls/devices outside initial 960×680, generate print/PDF, verify every intended object is visible."
+    },
+    {
+      "id": "RD-080",
+      "record_type": "qa_followup",
+      "module": "revision_storage_qa",
+      "source": "RD-073/RD-074/RD-075 audit follow-up",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V70",
+      "status": "source_committed",
+      "assistant_interpretation": "Reuse validated document topology before restoring historical snapshots; retain storage warning if manual profiles write failed, even after later autosave success; run isolated source-level tests covering historical wall snapshot and invalid topology/geometry.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "0e541a111d1d46c599147c2c49f8debffc0c7a88",
+        "javascript_syntax": "PASS",
+        "pure_source_scenarios": "6/6 PASS",
+        "browser_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2736,14 +2763,27 @@
       "version": "V69",
       "change": "RD-079 full drawing print extent and print-area selection",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V70",
+      "change": "Revision validation, sticky failed save indicator, source-level checks",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V69",
+    "release": "V70",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V70"
+    "next_development_audit": "V75",
+    "open_verification": [
+      "quota and security exception simulation",
+      "legacy Revision restore browser test",
+      "500-object Safari profile",
+      "DXF visual comparison",
+      "print/PDF full bounds"
+    ]
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
