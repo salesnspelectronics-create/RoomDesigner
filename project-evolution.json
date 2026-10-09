@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V67",
-    "project_evolution_version": "V67",
+    "software_version": "V68",
+    "project_evolution_version": "V68",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V67",
+  "current_source_release": "V68",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -593,6 +593,13 @@
       "date": "2026-10-10",
       "summary": "RD-077 full-edit device lock guard across quick menu and properties.",
       "source_commit": "bd4adc4da82355bb436f767fc3f716b9e304a067",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V68",
+      "date": "2026-10-10",
+      "summary": "RD-078 isolate SVG render from storage; RAF pointer rendering and debounced persistence.",
+      "source_commit": "85382dfb069a15e22a34d96ca0fcc11c990fccb6",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2136,16 +2143,16 @@
       "source_actor": "assistant",
       "recorded_by": "assistant",
       "created_at": "2026-10-09",
-      "target_version": "V63 or later, sequential releases",
-      "status": "open",
+      "target_version": "V68",
+      "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "Every pointer movement invokes full SVG replaceChildren and synchronous JSON serialization/localStorage write through render/saveAuto.",
-      "implementation_status": "not_started",
-      "runtime_status": "not_tested",
+      "assistant_interpretation": "Remove synchronous storage write from render, throttle pointerMove and pinch painting via requestAnimationFrame, debounce local persistence at checkpoint/release/Undo/Redo and import.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
       "verification_evidence": {
-        "source_location": "index.html:17,64,140",
-        "review_type": "static_source_only",
-        "severity": "medium"
+        "commit": "85382dfb069a15e22a34d96ca0fcc11c990fccb6",
+        "javascript_syntax": "PASS",
+        "Safari_100_500_profile": "NOT_TESTED"
       },
       "recommended_implementation": "Separate render from persistence; schedule rendering with requestAnimationFrame and debounce durable saves on committed mutations; retain flush on pagehide/visibility as feasible.",
       "acceptance_criteria": "Profile drag/pan/pinch on representative 100/500 object documents on mobile Safari; verify persisted final geometry after reload."
@@ -2697,10 +2704,16 @@
       "version": "V67",
       "change": "RD-077 consistent locked-device command guard",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V68",
+      "change": "RD-078 RAF rendering and debounced autosave",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V67",
+    "release": "V68",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
