@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V56",
-    "project_evolution_version": "V56",
+    "software_version": "V57",
+    "project_evolution_version": "V57",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V56",
+  "current_source_release": "V57",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -510,6 +510,14 @@
       "phase": "cross-platform persistent dock",
       "summary": "Persistent floating shortcuts with idle Undo/Redo, selection-specific actions and visually distinct 90-degree SVG rotation icons.",
       "source_commit": "a38c3238dbd88b10da4f0de5c5e1d18f7e95bb0a",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V57",
+      "date": "2026-10-09",
+      "phase": "architecture shape drag and floating UI icons",
+      "summary": "Enable drag-to-move for grouped architectural rectangles/squares, and introduce legible vector toolbar icons.",
+      "source_commit": "05759726f3042517ddb5df08056cdcc364e83196",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1788,6 +1796,30 @@
         "desktop_runtime": "NOT_TESTED"
       },
       "limitations": "Icons are original Corel-style vector concepts, not vendor official copyrighted artwork; desktop interaction smoke-testing remains outstanding."
+    },
+    {
+      "id": "RD-066",
+      "record_type": "runtime_review",
+      "module": "architecture_dragging_and_quick_icons",
+      "source": "User RoomDesigner iPhone screenshots 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V57",
+      "status": "source_committed",
+      "user_statement": "مستطیل دوم درون اتاق انتخاب می‌شود اما با کشیدن انگشت جابه‌جا نمی‌شود؛ آیکون‌های حذف و سایر دکمه‌های Floating Menu هم مبهم هستند.",
+      "assistant_interpretation": "Start wall-group drag on selected wall segment, move every segment sharing shapeId by delta in map coordinates, checkpoint only after movement threshold. Replace copy/delete/properties quick-action glyphs with explicit SVG duplicate sheets, trash can and settings sliders icons.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commits": [
+          "ca6d8a7fac0859cd3efb12a5f3f9fd1c3c4f0df7",
+          "05759726f3042517ddb5df08056cdcc364e83196"
+        ],
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      },
+      "limitations": "Dragging requires starting from the shape outline; older shapes lacking group ID still move one segment at a time."
     }
   ],
   "analyses": [
@@ -2153,10 +2185,16 @@
       "version": "V56",
       "change": "Persistent quick dock, idle Undo/Redo, professional rotation icons, explicit desktop/mobile parity direction",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V57",
+      "change": "Move grouped rectangles; refresh SVG floating icons",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V56",
+    "release": "V57",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
