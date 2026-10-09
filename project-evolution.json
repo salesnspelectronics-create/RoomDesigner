@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V54",
-    "project_evolution_version": "V54",
+    "software_version": "V55",
+    "project_evolution_version": "V55",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V54",
+  "current_source_release": "V55",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -494,6 +494,14 @@
       "phase": "categorized architectural floor plan library",
       "summary": "18 SVG floor-plan symbols in categorized thumbnail picker for furniture, WC/bath, kitchen, opening and structural assets.",
       "source_commit": "00c1ae46751f9bb439dcc3ac8c65e03caa7771f1",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V55",
+      "date": "2026-10-09",
+      "phase": "architectural drawing UX",
+      "summary": "Automatically switch to Select after single shape or line; continuous polyline remains in draw mode.",
+      "source_commit": "93198a7f2a567e1bf7ce8902b2cba6b0b60a9878",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1730,6 +1738,26 @@
         "iOS_Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Plan-style original vector artwork, not officially certified against a specific country CAD drafting standard. No dimensions/scaling in real meters; door/window wall-cut interaction remains separate."
+    },
+    {
+      "id": "RD-064",
+      "record_type": "user_requirement",
+      "module": "architecture_drawing_tool_lifecycle",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V55",
+      "status": "source_committed",
+      "user_statement": "بعد از کشیدن مستطیل، مربع یا خط ابزار خودکار به انتخاب برگردد تا با لمس تصادفی شکل جدیدی رسم نشود.",
+      "assistant_interpretation": "After successful architectural drawing of line/rectangle/square automatically activate Select; leave polyline active for intentional continuation. Do not switch on too-short canceled gesture.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "93198a7f2a567e1bf7ce8902b2cba6b0b60a9878",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2083,14 +2111,20 @@
       "version": "V54",
       "change": "18 grouped architectural floor-plan SVG symbols with previews",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V55",
+      "change": "One-shot architectural drawing tools return to Select",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V54",
+    "release": "V55",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V55"
+    "next_development_audit": "V60"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
