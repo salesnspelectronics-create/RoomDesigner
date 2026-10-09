@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V46",
-    "project_evolution_version": "V46",
+    "software_version": "V47",
+    "project_evolution_version": "V47",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V46",
+  "current_source_release": "V47",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -430,6 +430,14 @@
       "phase": "accessible pinch scaling",
       "summary": "Relax proximity requirement and offer explicit selected object Resize mode for small symbols.",
       "source_commit": "2fb6e6ba9f8d7a8b15b5912f678a268eaae4b266",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V47",
+      "date": "2026-10-09",
+      "phase": "architecture objects selection",
+      "summary": "Tap and double-tap architectural shapes to select and delete; group newly created rectangles and squares.",
+      "source_commit": "9e6e4904f73bcde4a4b967f15235faa8583c4594",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1480,6 +1488,27 @@
         "javascript_syntax": "PASS",
         "Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-055",
+      "record_type": "runtime_review",
+      "module": "architecture_selection_deletion",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V47",
+      "status": "source_committed",
+      "user_statement": "مستطیل و دیگر اشکال معماری مثل آبجکت‌ها باید قابل انتخاب، دابل‌تپ، باز کردن Properties و حذف باشند.",
+      "assistant_interpretation": "Assign one shape ID to all four new rectangle or square edges; make existing legacy edges individually selectable. Hit-test wall segments, highlight selected whole shape, double-tap opens shape properties with Delete, remove all matching shape segments, preserve Undo checkpoint.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "9e6e4904f73bcde4a4b967f15235faa8583c4594",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Existing saved rectangles from before V47 lack group IDs; their sides are selectable and deletable separately."
     }
   ],
   "analyses": [
@@ -1785,10 +1814,16 @@
       "version": "V46",
       "change": "Small object resize override and robust pinch selection",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V47",
+      "change": "Architectural shape selection, properties and deletion",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V46",
+    "release": "V47",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
