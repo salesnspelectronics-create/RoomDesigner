@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V37",
-    "project_evolution_version": "V37",
+    "software_version": "V38",
+    "project_evolution_version": "V38",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V37",
+  "current_source_release": "V38",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -360,6 +360,14 @@
       "phase": "architecture tool library",
       "summary": "Architecture group adds line, polyline, rectangle, square, WC, TV and Bed. Symbols remain editable vector devices.",
       "source_commit": "4c0dad8182eeaaa66c2bf82b2a01d7cc7d4a66c7",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V38",
+      "date": "2026-10-09",
+      "phase": "undo redo history UI",
+      "summary": "Redo and history controls placed beside Undo in top toolbar; history sheet exposes available steps.",
+      "source_commit": "cf3e5ce3dcf04d69e5bad65b1a5e6e7d048e1ed4",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1225,6 +1233,27 @@
         "iPhone_runtime": "NOT_TESTED"
       },
       "limitations": "Shape lines are wall segments rather than grouped editable primitives; two-tap rectangles and squares do not yet have full CAD handles, and polyline finishes when switching tool."
+    },
+    {
+      "id": "RD-046",
+      "record_type": "user_requirement",
+      "module": "top_toolbar_history",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V38",
+      "status": "source_committed",
+      "user_statement": "منوی جابه‌جایی پایین نرم‌افزار چیست؟ تاریخچه کارهایی که انجام دادیم باید بالای صفحه، کنار Undo و Redo نمایش داده شود.",
+      "assistant_interpretation": "Explain Pan as canvas-only movement. Add Redo with cleared redo stack on every new checkpoint and top-toolbar operation history button beside Undo/Redo, displaying available prior snapshot steps and Undo/Redo controls; clear stacks on new/open.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "cf3e5ce3dcf04d69e5bad65b1a5e6e7d048e1ed4",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "History menu shows numbered snapshot steps, not yet semantic operation names/timestamps; session Undo/Redo stack not persisted across page reloads."
     }
   ],
   "analyses": [
@@ -1476,10 +1505,16 @@
       "version": "V37",
       "change": "Add seven architectural drawing and vector-symbol tools",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V38",
+      "change": "Top Undo/Redo/History and Pan help",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V37",
+    "release": "V38",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
