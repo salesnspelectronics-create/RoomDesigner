@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V60",
-    "project_evolution_version": "V60",
+    "software_version": "V61",
+    "project_evolution_version": "V61",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V60",
+  "current_source_release": "V61",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -542,6 +542,14 @@
       "phase": "tool lifecycle and quick lock",
       "summary": "One-shot cable completion returns to Select; selected device quick dock adds Lock/Unlock.",
       "source_commit": "0cc1d22b43b15e667cede71a1ab7406385b00728",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V61",
+      "date": "2026-10-09",
+      "phase": "floating quick menu visual",
+      "summary": "Smiling animated SVG floating launcher while preserving quick actions.",
+      "source_commit": "ec5d80a08edcaaa663b201e0922ec2d2a625eb38",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1906,6 +1914,27 @@
         "iPhone_Safari_runtime": "NOT_TESTED",
         "desktop_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-070",
+      "record_type": "user_requirement",
+      "module": "floating_menu_launcher_visual",
+      "source": "User RoomDesigner discussion",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V61",
+      "status": "source_committed",
+      "user_statement": "آیکون دکمه شناور خوشگل‌تر و شبیه صورتک خندان باشد، با لمس آن انگار لحظه‌ای بخندد.",
+      "assistant_interpretation": "Replace launcher glyph with custom smiling SVG face and short CSS bounce/tilt animation on opening or closing; retain drag support and accessible action label.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "ec5d80a08edcaaa663b201e0922ec2d2a625eb38",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED",
+        "desktop_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2295,10 +2324,16 @@
       "version": "V60",
       "change": "Cable-to-Select automatic transition and floating Lock/Unlock",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V61",
+      "change": "Smiling SVG launcher with short tap animation",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V60",
+    "release": "V61",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
