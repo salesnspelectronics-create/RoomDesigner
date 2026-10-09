@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V38",
-    "project_evolution_version": "V38",
+    "software_version": "V40",
+    "project_evolution_version": "V40",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V38",
+  "current_source_release": "V40",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -368,6 +368,20 @@
       "phase": "undo redo history UI",
       "summary": "Redo and history controls placed beside Undo in top toolbar; history sheet exposes available steps.",
       "source_commit": "cf3e5ce3dcf04d69e5bad65b1a5e6e7d048e1ed4",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V39",
+      "date": "2026-10-09",
+      "summary": "Normalize overshooting orthogonal cable vertices and remove zero-length/collinear spur geometry.",
+      "source_commit": "74ae8c83c4c1cd28bcd54727fc79dbf69dc581db",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V40",
+      "date": "2026-10-09",
+      "summary": "Pointer-down begins shape, pointer-move shows preview, pointer-up commits. Preserve chained polyline as a tap-based tool. Cancel drawing on pinch.",
+      "source_commit": "9b509664afe9a73a08d7d156fb6a46c194a25e82",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1254,6 +1268,46 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "History menu shows numbered snapshot steps, not yet semantic operation names/timestamps; session Undo/Redo stack not persisted across page reloads."
+    },
+    {
+      "id": "RD-047",
+      "record_type": "user_requirement",
+      "module": "orthogonal_cable_routing",
+      "source": "User RoomDesigner review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V39",
+      "status": "source_committed",
+      "user_statement": "در خط نارنجی کابل یک زائده کوتاه رو به پایین مانده است.",
+      "assistant_interpretation": "Normalize overshooting orthogonal cable vertices and remove zero-length/collinear spur geometry.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "74ae8c83c4c1cd28bcd54727fc79dbf69dc581db",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-048",
+      "record_type": "user_requirement",
+      "module": "architecture_drawing",
+      "source": "User RoomDesigner review 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V40",
+      "status": "source_committed",
+      "user_statement": "مستطیل، مربع و دیوار باید با فشار انگشت در نقطه شروع، کشیدن و رهاکردن در نقطه پایان رسم شوند؛ نه دو لمس جداگانه.",
+      "assistant_interpretation": "Pointer-down begins shape, pointer-move shows preview, pointer-up commits. Preserve chained polyline as a tap-based tool. Cancel drawing on pinch.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "9b509664afe9a73a08d7d156fb6a46c194a25e82",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -1511,14 +1565,37 @@
       "version": "V38",
       "change": "Top Undo/Redo/History and Pan help",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V39",
+      "change": "Normalize overshooting orthogonal cable vertices and remove zero-length/collinear spur geometry.",
+      "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V40",
+      "change": "Pointer-down begins shape, pointer-move shows preview, pointer-up commits. Preserve chained polyline as a tap-based tool. Cancel drawing on pinch.",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V38",
+    "release": "V40",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V40"
+    "development_audit": {
+      "boundary": "V40",
+      "status": "partial",
+      "executed_checks": [
+        "JavaScript syntax verification"
+      ],
+      "not_executed": [
+        "iOS Safari gesture regression suite",
+        "full architecture audit"
+      ]
+    },
+    "next_development_audit": "V45"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
