@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V25",
-    "project_evolution_version": "V25",
+    "software_version": "V27",
+    "project_evolution_version": "V27",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V25",
+  "current_source_release": "V27",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -264,6 +264,22 @@
       "phase": "device dragging regression hotfix",
       "summary": "Fix incorrect device id/pointer id comparison blocking all object drags in V24.",
       "source_commit": "82b06454192ff1c14f2dac86fcc500389839a343",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V26",
+      "date": "2026-10-09",
+      "phase": "pinch/cable gesture isolation",
+      "summary": "Defer cable tap until release; cancel during two-finger pinch.",
+      "source_commit": "acb09bd32d3bdcf494584d4ba20af4dee50cbc76",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V27",
+      "date": "2026-10-09",
+      "phase": "new drawing mode reset",
+      "summary": "New drawing resets to Select, clears cable drawing and pointer states, resets zoom to 100%.",
+      "source_commit": "061f3944681f31b224ad6511392cce3e72dbdda2",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -800,6 +816,46 @@
         "javascript_syntax": "PASS",
         "runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-030",
+      "record_type": "runtime_review",
+      "module": "broken_cable_gestures",
+      "source": "User iPhone report 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V26",
+      "status": "source_fix_committed",
+      "user_statement": "در حالت کابل‌کشی شکسته، حرکت دو انگشت برای زوم باعث کشیده‌شدن خط و ثبت شکست کابل می‌شود.",
+      "assistant_interpretation": "Delay touch cable waypoint registration until pointerup, so a second finger can turn the gesture into pinch zoom without committing cable geometry. Cancel pending cable gesture upon beginning pinch; suppress touch release after pinch.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "acb09bd32d3bdcf494584d4ba20af4dee50cbc76",
+        "javascript_syntax": "PASS",
+        "iOS_Safari_runtime": "NOT_TESTED"
+      }
+    },
+    {
+      "id": "RD-031",
+      "record_type": "user_requirement",
+      "module": "new_drawing",
+      "source": "User iPhone report 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V27",
+      "status": "source_committed",
+      "user_statement": "وقتی نقشه جدید می‌زنم هنوز حالت کابل‌کشی شکسته فعال است؛ باید خودکار به حالت انتخاب برگردد.",
+      "assistant_interpretation": "After confirming New Drawing, clear pointer/touch and pending cable state, restore base 100% viewport, activate Select tool and update its button and hint, rather than retaining Cable Broken tool.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "061f3944681f31b224ad6511392cce3e72dbdda2",
+        "javascript_syntax": "PASS",
+        "iOS_Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -979,26 +1035,25 @@
       "version": "V25",
       "change": "Restore object drag after V24 pointer identity regression",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V26",
+      "change": "Prevent two-finger zoom in broken cable mode from creating waypoints",
+      "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V27",
+      "change": "Reset active tool to Select when starting a new drawing",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V25",
+    "release": "V27",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V25",
-      "status": "partial",
-      "executed_checks": [
-        "Root-cause source inspection",
-        "JavaScript syntax verification"
-      ],
-      "not_executed": [
-        "real iPhone runtime regression suite",
-        "full architecture audit"
-      ],
-      "blocker": "iOS acceptance outstanding"
-    },
     "next_development_audit": "V30"
   },
   "handoff": {
