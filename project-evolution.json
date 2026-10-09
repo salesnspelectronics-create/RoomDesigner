@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V9",
-    "project_evolution_version": "V9",
+    "software_version": "V10",
+    "project_evolution_version": "V10",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V9",
+  "current_source_release": "V10",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -139,6 +139,14 @@
       "phase": "project governance",
       "summary": "Add independent Project Evolution ledger alongside application and companion guide, preserve decisions, gaps and review history.",
       "runtime_status": "not_tested"
+    },
+    {
+      "release": "V10",
+      "date": "2026-10-09",
+      "phase": "object duplication and naming",
+      "summary": "Each placed device already has editable name; cable gets explicit editable name. Duplicate selected device with fresh device/port identifiers or duplicate cable with fresh cable identifier; device duplication does not copy cables. UI button inside Properties.",
+      "source_commit": "874af3850c36e08a85ed297c0995211d9e502ad8",
+      "runtime_status": "pending_user_verification"
     }
   ],
   "records": [
@@ -349,6 +357,26 @@
       "user_statement": "Project Evolution را کنار نرم‌افزار بگذار؛ آخرین استاندارد و تحلیل‌ها/تاریخچه را ثبت کن تا از دست نروند.",
       "assistant_interpretation": "Portable authoritative project-evolution.json and companion instructions in repository; v9 record created.",
       "verification_evidence": null
+    },
+    {
+      "id": "RD-014",
+      "record_type": "user_requirement",
+      "module": "object_editor",
+      "source": "RoomDesigner user conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V10",
+      "status": "implemented_source",
+      "user_statement": "هر آبجکتی که روی صفحه است یک اسم داشته باشد و بشود ازش کپی کرد.",
+      "assistant_interpretation": "Placed devices retain editable labels; cables gain editable names. Copy creates a distinct object with new identifiers, retaining relevant properties. Copied device has fresh port identifiers and no inherited connections; cable copy references same endpoints as original.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "874af3850c36e08a85ed297c0995211d9e502ad8",
+        "javascript_syntax": "PASS",
+        "runtime": "NOT_RUN"
+      }
     }
   ],
   "analyses": [
@@ -432,14 +460,33 @@
       "source": "User instruction in conversation",
       "change": "Created independent Project Evolution for RoomDesigner from NSP Office V129 governance model; documented requirements, analyses, history, source/runtime gaps",
       "status": "source_recorded"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V10",
+      "change": "Add editable cable name and duplicate actions for on-canvas devices/cables; preserve Project Evolution history",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V9",
-    "source_status": "documentation_change",
-    "build_status": "not_run",
+    "release": "V10",
+    "source_status": "committed",
+    "build_status": "syntax_pass_only",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V10"
+    "development_audit": {
+      "boundary": "V10",
+      "status": "partial",
+      "executed_checks": [
+        "JavaScript syntax compilation",
+        "Repository source update consistency"
+      ],
+      "not_executed": [
+        "Device/runtime regression tests",
+        "full code and security audit"
+      ],
+      "blocker": "Full multiple-of-five gate not satisfied; do not mark release accepted."
+    },
+    "next_development_audit": "V15"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
