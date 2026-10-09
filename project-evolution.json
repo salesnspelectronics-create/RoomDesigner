@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V31",
-    "project_evolution_version": "V31",
+    "software_version": "V32",
+    "project_evolution_version": "V32",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V31",
+  "current_source_release": "V32",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -312,6 +312,14 @@
       "phase": "vector symbols and zoom containment",
       "summary": "Device artwork from safe SVG, English default catalog labels, and defensive iOS native-zoom prevention.",
       "source_commit": "9bcc1f295cbfe6d132967c77f5a8ce5c2bfb4ed5",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V32",
+      "date": "2026-10-09",
+      "phase": "cable editing",
+      "summary": "Cable hit-test and double-tap properties; adjustable line thickness/style; cable duplication with distinct parallel route for direct cables.",
+      "source_commit": "c84778c9b3c710333655648f5c92539d700a6f3e",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1033,6 +1041,27 @@
         "iOS_Safari_runtime": "NOT_TESTED"
       },
       "notes": "Existing saved user labels are not renamed automatically; custom part numbers remain user-entered. SVG must be actual vector source with no image/foreignObject/script."
+    },
+    {
+      "id": "RD-039",
+      "record_type": "user_requirement",
+      "module": "cable_properties",
+      "source": "User RoomDesigner discussion 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V32",
+      "status": "source_committed",
+      "user_statement": "با لمس کابل رسم‌شده بتوان آن را انتخاب و امکاناتی مثل ضخامت خط، کپی و دوتاکردن کابل و سایر عملیات را در Properties داشت.",
+      "assistant_interpretation": "Extend cable Properties for editable stroke width 1–24, continuous/dashed style, copy and delete. Implement screen-distance hit testing of cable path with 18px tolerance and double-tap to properties. Duplicate direct route visibly offset while preserving endpoint references; saved cable attributes are backward-compatible.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "c84778c9b3c710333655648f5c92539d700a6f3e",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Duplicate of a bent cable retains original waypoints and can overlap with its source; no interactive bend editing in this version."
     }
   ],
   "analyses": [
@@ -1248,10 +1277,16 @@
       "version": "V31",
       "change": "SVG artwork display, English equipment catalog naming, Safari native zoom guard",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V32",
+      "change": "Cable editing and visual duplication support",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V31",
+    "release": "V32",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
