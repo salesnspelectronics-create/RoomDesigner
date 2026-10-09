@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V68",
-    "project_evolution_version": "V68",
+    "software_version": "V66",
+    "project_evolution_version": "V66",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V68",
+  "current_source_release": "V66",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -600,6 +600,13 @@
       "date": "2026-10-10",
       "summary": "RD-078 isolate SVG render from storage; RAF pointer rendering and debounced persistence.",
       "source_commit": "85382dfb069a15e22a34d96ca0fcc11c990fccb6",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V66",
+      "date": "2026-10-10",
+      "summary": "RD-076 source fix: include wall segments, rotated device bounds and resolved cable paths in DXF.",
+      "source_commit": "07f06233285afff5997f48398a50163c52e1fc0d",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2102,13 +2109,13 @@
       "target_version": "V66",
       "status": "source_committed",
       "user_statement": "«هندآفی بده که همه موارد در آن باشد و پیشنهادات اجرایی را در پراجکت اولوشن این پروژه ثبت کن.»",
-      "assistant_interpretation": "DXF wall entities, rotated outline from object angles, rendered cable path from shared cableDisplayPoints; note vector SVG pictogram internals and rich port metadata remain unexported.",
+      "assistant_interpretation": "DXF exports walls, rotated device bounding boxes and cableDisplayPoints including bends/offsets; detailed SVG symbols and port metadata are not exported.",
       "implementation_status": "source_committed",
       "runtime_status": "pending_user_verification",
       "verification_evidence": {
         "commit": "07f06233285afff5997f48398a50163c52e1fc0d",
         "javascript_syntax": "PASS",
-        "CAD_DXF_visual_compare": "NOT_TESTED"
+        "dxf_render_comparison": "NOT_TESTED"
       },
       "recommended_implementation": "Build export from shared resolved geometry, include walls/rotation/routing, and explicitly document metadata that DXF cannot represent.",
       "acceptance_criteria": "Compare rendered plan and parsed DXF for walls, rotated door/symbol, orthogonal cable and offset cable."
@@ -2710,10 +2717,16 @@
       "version": "V68",
       "change": "RD-078 RAF rendering and debounced autosave",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V66",
+      "change": "RD-076 DXF export geometry consistency",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V68",
+    "release": "V66",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
