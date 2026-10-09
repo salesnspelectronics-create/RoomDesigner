@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V22",
-    "project_evolution_version": "V22",
+    "software_version": "V23",
+    "project_evolution_version": "V23",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V22",
+  "current_source_release": "V23",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -240,6 +240,14 @@
       "date": "2026-10-09",
       "summary": "Geometry-based device hit-testing, stable zoom-aware device movement. Regression reported against V23 but default branch confirmed V21.",
       "source_commit": "db4ca67d589dd2ea5a802633859a5edefccc52a4",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V23",
+      "date": "2026-10-09",
+      "phase": "zoom reset UX",
+      "summary": "Click zoom percentage badge to reset to 100%, and reset viewport automatically when creating a new drawing.",
+      "source_commit": "58559f5a9ff1be1a9a5b249aa59d463d82adc86b",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -708,6 +716,26 @@
         "syntax": "PASS",
         "iOS": "not tested"
       }
+    },
+    {
+      "id": "RD-027",
+      "record_type": "user_requirement",
+      "module": "canvas_zoom",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V23",
+      "status": "source_committed",
+      "user_statement": "وقتی صفحه زوم شده با یک کلیک روی درصد زوم مانند ۲۰۰٪ باید برگردد به ۱۰۰٪؛ هنگام ایجاد نقشه جدید خودکار روی ۱۰۰٪ قرار بگیرد.",
+      "assistant_interpretation": "Turn live zoom indicator into accessible clickable reset control; New Drawing resets viewBox to baseline 960×680 and x/y origin, independently of drawing state.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "58559f5a9ff1be1a9a5b249aa59d463d82adc86b",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -869,10 +897,16 @@
       "version": "V22",
       "change": "Improve selecting and dragging copied devices after zoom",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V23",
+      "change": "Zoom badge reset to 100% on tap; New Drawing resets zoom and view origin",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V22",
+    "release": "V23",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
