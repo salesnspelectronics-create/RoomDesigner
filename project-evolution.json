@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V40",
-    "project_evolution_version": "V40",
+    "software_version": "V41",
+    "project_evolution_version": "V41",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V40",
+  "current_source_release": "V41",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -382,6 +382,14 @@
       "date": "2026-10-09",
       "summary": "Pointer-down begins shape, pointer-move shows preview, pointer-up commits. Preserve chained polyline as a tap-based tool. Cancel drawing on pinch.",
       "source_commit": "9b509664afe9a73a08d7d156fb6a46c194a25e82",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V41",
+      "date": "2026-10-09",
+      "phase": "architecture object transforms",
+      "summary": "Proportional size buttons, rotation buttons and angle input for no-port vector objects, with rotation-aware selection.",
+      "source_commit": "6c4c17a4cc00496b1ba747fcda9888d6d51671c9",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1308,6 +1316,27 @@
         "javascript_syntax": "PASS",
         "iPhone_Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-049",
+      "record_type": "user_requirement",
+      "module": "architecture_symbol_transform",
+      "source": "User RoomDesigner conversation 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V41",
+      "status": "source_committed",
+      "user_statement": "باید بتوان آبجکت‌هایی مثل تلویزیون را بزرگ و کوچک و چرخاند.",
+      "assistant_interpretation": "Add ±20% proportional resize, ±15° rotation and numeric angle editing in Properties for no-port objects including WC, TV, Bed and unported SVG drawings. Rotate SVG group and inverse-rotate hit test around object center. Exclude port-bearing devices to avoid changing cable port attachment semantics.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "6c4c17a4cc00496b1ba747fcda9888d6d51671c9",
+        "javascript_syntax": "PASS",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Rotation for port-bearing equipment not supported yet; controls in Properties, not direct on-canvas handles."
     }
   ],
   "analyses": [
@@ -1577,24 +1606,19 @@
       "version": "V40",
       "change": "Pointer-down begins shape, pointer-move shows preview, pointer-up commits. Preserve chained polyline as a tap-based tool. Cancel drawing on pinch.",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V41",
+      "change": "Resize and rotate architecture symbols through Properties",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V40",
+    "release": "V41",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V40",
-      "status": "partial",
-      "executed_checks": [
-        "JavaScript syntax verification"
-      ],
-      "not_executed": [
-        "iOS Safari gesture regression suite",
-        "full architecture audit"
-      ]
-    },
     "next_development_audit": "V45"
   },
   "handoff": {
