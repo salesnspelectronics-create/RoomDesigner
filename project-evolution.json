@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V35",
-    "project_evolution_version": "V35",
+    "software_version": "V36",
+    "project_evolution_version": "V36",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V35",
+  "current_source_release": "V36",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -344,6 +344,14 @@
       "phase": "architecture navigation correction",
       "summary": "Wall drawing entry moved from top-level Add menu to Architecture category.",
       "source_commit": "3d6a200e60b61d1cecaf37b89dbc3fba1ca1606e",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V36",
+      "date": "2026-10-09",
+      "phase": "port anchored cable exit",
+      "summary": "Enforce source-port side for orthogonal cable exit in preview, saved and live rendered paths.",
+      "source_commit": "248efc03b38d64b250cbca952c27ec74b293c0ff",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -1167,6 +1175,27 @@
         "javascript_syntax": "PASS",
         "iPhone_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-044",
+      "record_type": "runtime_review",
+      "module": "cable_port_lock",
+      "source": "User V35 iPhone screenshot 2026-10-09",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-09",
+      "target_version": "V36",
+      "status": "source_committed",
+      "user_statement": "کابل ابتدا به پورت وصل بود، ولی بعد انگار به سمت دیگری رفت؛ محل اتصال باید روی همان پورت قفل بماند.",
+      "assistant_interpretation": "Orthogonal drawing must leave the source connector along its declared side; never begin by routing backwards across device body. Add port-side-aware initial outgoing segment for preview, completed paths and rendering; actual endpoints continue to derive from live device port IDs.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "248efc03b38d64b250cbca952c27ec74b293c0ff",
+        "javascript_syntax": "PASS",
+        "iPhone_runtime": "NOT_TESTED"
+      },
+      "notes": "Screenshot could also show a separate draft or earlier saved cable; root cause is not uniquely proven by image."
     }
   ],
   "analyses": [
@@ -1406,24 +1435,19 @@
       "version": "V35",
       "change": "Show wall line drawing tool inside Architecture equipment group",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V36",
+      "change": "Orthogonal cable source-port exit direction lock",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V35",
+    "release": "V36",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "development_audit": {
-      "boundary": "V35",
-      "status": "partial",
-      "executed_checks": [
-        "Code path inspection and JavaScript parse"
-      ],
-      "not_executed": [
-        "Safari runtime test",
-        "full architectural audit"
-      ]
-    },
     "next_development_audit": "V40"
   },
   "handoff": {
