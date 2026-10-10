@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V75",
-    "project_evolution_version": "V75",
+    "software_version": "V76",
+    "project_evolution_version": "V76",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V75",
+  "current_source_release": "V76",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -660,6 +660,14 @@
       "phase": "desktop pane interaction",
       "summary": "Pin/unpin with hover auto-hide and animated reveal plus expand/collapse all pane sections, building on V74 drawing fixes.",
       "source_commit": "b30a8fcf966f118dabeff1bb96d3e6bfde5da124",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V76",
+      "date": "2026-10-10",
+      "phase": "desktop runtime review",
+      "summary": "Deduplicate panel collapse/pin controls and align drawn/moved rectangles to existing architectural wall axes/corners.",
+      "source_commit": "df3729f7f039aa191cce015134c88caff9269857",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2367,6 +2375,27 @@
         "browser_runtime": "NOT_TESTED"
       },
       "limitations": "Persistent pin state across reload and full detachable tool windows are not implemented."
+    },
+    {
+      "id": "RD-085",
+      "record_type": "runtime_review",
+      "module": "desktop_panel_control_and_architecture_snapping",
+      "source": "User desktop screenshot and review 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V76",
+      "status": "source_committed",
+      "user_statement": "دکمه جمع کردن پنل و پین قرمز کار تکراری دارند؛ مستطیل دیگر هنوز به مستطیل موجود جذب نمی‌شود. فعلاً همین دو مورد برای یک نسخه اصلاح شوند.",
+      "assistant_interpretation": "Remove redundant pane collapse buttons and retain pin for auto-hide, preserve separate accordion open/close control. Extend shape-corner snapping to wall axes and introduce grouped rectangle dragging snap for alignment with existing wall edges and endpoints.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "df3729f7f039aa191cce015134c88caff9269857",
+        "javascript_syntax": "PASS",
+        "chrome_runtime": "NOT_TESTED"
+      },
+      "limitations": "No actual Chrome drag scenario run; coordinate-based snapping needs user runtime acceptance."
     }
   ],
   "analyses": [
@@ -2947,10 +2976,16 @@
       "version": "V75",
       "change": "Dock pane animated auto-hide/pin plus collapse/expand-all",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V76",
+      "change": "Deduplicate sidebar controls and enhance rectangle-to-rectangle snapping",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V75",
+    "release": "V76",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
