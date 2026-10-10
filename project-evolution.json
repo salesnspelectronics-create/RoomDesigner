@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V74",
-    "project_evolution_version": "V74",
+    "software_version": "V75",
+    "project_evolution_version": "V75",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V74",
+  "current_source_release": "V75",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -652,6 +652,14 @@
       "phase": "desktop architectural editing",
       "summary": "Resize handles, wall corner snap, wheel zoom, inline architecture catalog, polyline explicit finish and Select.",
       "source_commit": "5ddb94e5b96c9d7ff3f867d404ef77a55b3f8209",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V75",
+      "date": "2026-10-10",
+      "phase": "desktop pane interaction",
+      "summary": "Pin/unpin with hover auto-hide and animated reveal plus expand/collapse all pane sections, building on V74 drawing fixes.",
+      "source_commit": "b30a8fcf966f118dabeff1bb96d3e6bfde5da124",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2338,6 +2346,27 @@
         "iPhone_runtime": "NOT_TESTED"
       },
       "limitations": "Shape resizing currently applies to four-segment rectangles/squares only; CAD-level geometric constraints and independent runtime UX acceptance are pending."
+    },
+    {
+      "id": "RD-084",
+      "record_type": "user_requirement",
+      "module": "desktop_dock_auto_hide",
+      "source": "User feedback RoomDesigner desktop 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V75",
+      "status": "source_committed",
+      "user_statement": "پنل‌ها مثل Visual Studio دکمه Pin/Unpin داشته باشند؛ Unpin آنها را باریک کند و با hover ماوس به شکل متحرک باز کند؛ دکمه جمع/بازکردن همه گروه‌ها در سربرگ باشد؛ موارد نسخه قبلی هم در انتشار جدید موجود باشد.",
+      "assistant_interpretation": "Add Pin/Unpin, CSS width animation and mouse hover temporary reveal for left/right desktop panes; collapse/expand-all details per pane. Retain V74 source fixes to resizing geometry, wheel zoom, snapping, tools and one-shot selection.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "b30a8fcf966f118dabeff1bb96d3e6bfde5da124",
+        "javascript_syntax": "PASS",
+        "browser_runtime": "NOT_TESTED"
+      },
+      "limitations": "Persistent pin state across reload and full detachable tool windows are not implemented."
     }
   ],
   "analyses": [
@@ -2912,14 +2941,20 @@
       "version": "V74",
       "change": "Shape resizing, endpoint snapping, desktop wheel zoom and inline architecture Toolbox",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V75",
+      "change": "Dock pane animated auto-hide/pin plus collapse/expand-all",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V74",
+    "release": "V75",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V75"
+    "next_development_audit": "V80"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
