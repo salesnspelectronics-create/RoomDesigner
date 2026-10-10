@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V73",
-    "project_evolution_version": "V73",
+    "software_version": "V74",
+    "project_evolution_version": "V74",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V73",
+  "current_source_release": "V74",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -644,6 +644,14 @@
       "phase": "desktop UX review fixes",
       "summary": "Direct desktop Toolbox equipment and cable actions, architecture grid snapping, history access and unified Persian font.",
       "source_commit": "3680a4c2ff4126d442468d8c3d97fe9ed2ea26b5",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V74",
+      "date": "2026-10-10",
+      "phase": "desktop architectural editing",
+      "summary": "Resize handles, wall corner snap, wheel zoom, inline architecture catalog, polyline explicit finish and Select.",
+      "source_commit": "5ddb94e5b96c9d7ff3f867d404ef77a55b3f8209",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2305,6 +2313,31 @@
         "iPhone_runtime": "NOT_TESTED"
       },
       "limitations": "Existing collapse and width-resize retained; VS-style auto-hide/pin persistence and detailed Project Explorer tree remain unfinished. Google Fonts requires network access; fallback font used offline."
+    },
+    {
+      "id": "RD-083",
+      "record_type": "runtime_review",
+      "module": "desktop_architecture_resizing_and_toolbox",
+      "source": "User Chrome Desktop V73 screenshot and report 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V74",
+      "status": "source_committed",
+      "user_statement": "مستطیل و مربع پس از ترسیم Resize ندارند؛ خط شکسته باید پایان روشن و بازگشت به Select داشته باشد؛ زوم با اسکرول موس و اسنپ کنج‌های شکل لازم است؛ تجهیزات و کتابخانه پلان در دسکتاپ نباید پنجره دوم باز کنند.",
+      "assistant_interpretation": "Add four resize handles for selected four-segment architectural shapes, pointer resizing with Undo and square aspect preservation; endpoint priority snap to existing walls; wheel zoom around cursor in desktop; inline architectural devices and plan symbol library in Toolbox; dedicated polyline finish button and double-click finishing.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commits": [
+          "1a224371827260760607c9c1a705abf75d30d510",
+          "5ddb94e5b96c9d7ff3f867d404ef77a55b3f8209"
+        ],
+        "javascript_syntax": "PASS",
+        "desktop_runtime": "NOT_TESTED",
+        "iPhone_runtime": "NOT_TESTED"
+      },
+      "limitations": "Shape resizing currently applies to four-segment rectangles/squares only; CAD-level geometric constraints and independent runtime UX acceptance are pending."
     }
   ],
   "analyses": [
@@ -2873,10 +2906,16 @@
       "version": "V73",
       "change": "Desktop toolbox direct actions + grid snapping + history + Vazirmatn",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V74",
+      "change": "Shape resizing, endpoint snapping, desktop wheel zoom and inline architecture Toolbox",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V73",
+    "release": "V74",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
