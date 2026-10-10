@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V71",
-    "project_evolution_version": "V71",
+    "software_version": "V72",
+    "project_evolution_version": "V72",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V71",
+  "current_source_release": "V72",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -628,6 +628,14 @@
       "date": "2026-10-10",
       "summary": "Flush pending debounced autosave on background/pagehide to reduce mobile data loss.",
       "source_commit": "28a44211a573627eb3cbb8a08ad448f6ec10ae34",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V72",
+      "date": "2026-10-10",
+      "phase": "desktop workspace",
+      "summary": "Dedicated desktop workspace with left Toolbox, right Properties/Project Explorer, collapsible and width-resizable sidebars; mobile layout retained.",
+      "source_commit": "79db8d0b2eb1b15286e04e23deb2152648883b83",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2245,6 +2253,28 @@
         "javascript_syntax": "PASS",
         "iPhone_Safari_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-081",
+      "record_type": "user_requirement",
+      "module": "responsive_desktop_workspace",
+      "source": "User's desktop runtime screenshots V71 and conversation on 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V72",
+      "status": "source_committed",
+      "user_statement": "نسخه دسکتاپ باید Toolbox واقعی چپ، Properties و Project Explorer راست با رفتار مستقل از موبایل داشته باشد؛ نسخه بعدی در مخزن منتشر شود.",
+      "assistant_interpretation": "Introduce dedicated desktop pane layout on large fine-pointer viewports, with collapsible/resizable left Toolbox, right Properties and Project Explorer, canvas in remaining workspace; preserve mobile layout and drawing engine.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "79db8d0b2eb1b15286e04e23deb2152648883b83",
+        "javascript_syntax": "PASS",
+        "desktop_browser_runtime": "NOT_TESTED",
+        "mobile_runtime": "NOT_TESTED"
+      },
+      "limitations": "Desktop panes are docked and width-resizable; not yet independently undockable. Sidebar Properties is a read-only summary with a command to open full editor, and Project Explorer shows current document counts rather than a navigable hierarchical tree."
     }
   ],
   "analyses": [
@@ -2801,10 +2831,16 @@
       "version": "V71",
       "change": "Browser background/close autosave flush",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V72",
+      "change": "Desktop-only ToolBox/Properties/Explorer docked panels with resize/collapse",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V71",
+    "release": "V72",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
