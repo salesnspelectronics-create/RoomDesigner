@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V70",
-    "project_evolution_version": "V70",
+    "software_version": "V71",
+    "project_evolution_version": "V71",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V70",
+  "current_source_release": "V71",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -621,6 +621,13 @@
       "date": "2026-10-10",
       "summary": "Strengthen RD-073/RD-074 restoration and failure state; six schema/snapshot code-level tests passed.",
       "source_commit": "0e541a111d1d46c599147c2c49f8debffc0c7a88",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V71",
+      "date": "2026-10-10",
+      "summary": "Flush pending debounced autosave on background/pagehide to reduce mobile data loss.",
+      "source_commit": "28a44211a573627eb3cbb8a08ad448f6ec10ae34",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2219,6 +2226,25 @@
         "pure_source_scenarios": "6/6 PASS",
         "browser_runtime": "NOT_TESTED"
       }
+    },
+    {
+      "id": "RD-081",
+      "record_type": "maintenance_fix",
+      "module": "autosave_lifecycle",
+      "source": "RoomDesigner V70 runtime verification follow-up",
+      "source_actor": "assistant",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V71",
+      "status": "source_committed",
+      "assistant_interpretation": "Flush pending debounced browser autosave when the page is hidden or receives pagehide; addresses risk of closing mobile Safari within 500ms debounce window.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "28a44211a573627eb3cbb8a08ad448f6ec10ae34",
+        "javascript_syntax": "PASS",
+        "iPhone_Safari_runtime": "NOT_TESTED"
+      }
     }
   ],
   "analyses": [
@@ -2769,21 +2795,20 @@
       "version": "V70",
       "change": "Revision validation, sticky failed save indicator, source-level checks",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V71",
+      "change": "Browser background/close autosave flush",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V70",
+    "release": "V71",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V75",
-    "open_verification": [
-      "quota and security exception simulation",
-      "legacy Revision restore browser test",
-      "500-object Safari profile",
-      "DXF visual comparison",
-      "print/PDF full bounds"
-    ]
+    "next_development_audit": "V75"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
