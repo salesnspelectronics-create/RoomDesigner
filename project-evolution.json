@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V76",
-    "project_evolution_version": "V76",
+    "software_version": "V77",
+    "project_evolution_version": "V77",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V76",
+  "current_source_release": "V77",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -668,6 +668,14 @@
       "phase": "desktop runtime review",
       "summary": "Deduplicate panel collapse/pin controls and align drawn/moved rectangles to existing architectural wall axes/corners.",
       "source_commit": "df3729f7f039aa191cce015134c88caff9269857",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V77",
+      "date": "2026-10-10",
+      "phase": "desktop UI and selection groups",
+      "summary": "Toolbox moved to right; Properties and Project Explorer moved left; added Select All, Group/Ungroup and grouped drag across shapes/devices/cables.",
+      "source_commit": "6f42f18abc53f469b6462b23cf0685f949cb77f9",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2396,6 +2404,28 @@
         "chrome_runtime": "NOT_TESTED"
       },
       "limitations": "No actual Chrome drag scenario run; coordinate-based snapping needs user runtime acceptance."
+    },
+    {
+      "id": "RD-086",
+      "record_type": "user_requirement",
+      "module": "desktop_panel_swap_and_object_grouping",
+      "source": "User RoomDesigner discussion 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V77",
+      "status": "source_committed",
+      "user_statement": "Toolbox شلوغ سمت چپ به راست منتقل شود، پنل Properties و Project Explorer جای آن را بگیرد، و امکان Select All و Group کردن آبجکت‌ها در ابزار انتخاب ایجاد شود؛ دو تغییر در یک نسخه انجام شود.",
+      "assistant_interpretation": "Swap desktop panel placement while retaining existing panel identities/resize behaviors; add Select All, Group and Ungroup buttons to Toolbox and persistent groupId on devices, architectural wall segments and cables, with whole-group selection and dragging. Keep shared SVG/mobile behavior.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "source_commit": "6f42f18abc53f469b6462b23cf0685f949cb77f9",
+        "javascript_syntax": "PASS",
+        "Chrome_runtime": "NOT_TESTED",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Select All operates on every object in the current plan; individual Ctrl-click subset selection and box selection have not been implemented. Group drag preserves locked device positions and is not a CAD constraint group. Source and PE use separate Git commits because of connector file-update operation."
     }
   ],
   "analyses": [
@@ -2982,10 +3012,16 @@
       "version": "V76",
       "change": "Deduplicate sidebar controls and enhance rectangle-to-rectangle snapping",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V77",
+      "change": "Swap desktop pane positions and implement whole-plan object grouping",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V76",
+    "release": "V77",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
