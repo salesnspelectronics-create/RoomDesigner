@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V72",
-    "project_evolution_version": "V72",
+    "software_version": "V73",
+    "project_evolution_version": "V73",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V72",
+  "current_source_release": "V73",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -636,6 +636,14 @@
       "phase": "desktop workspace",
       "summary": "Dedicated desktop workspace with left Toolbox, right Properties/Project Explorer, collapsible and width-resizable sidebars; mobile layout retained.",
       "source_commit": "79db8d0b2eb1b15286e04e23deb2152648883b83",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V73",
+      "date": "2026-10-10",
+      "phase": "desktop UX review fixes",
+      "summary": "Direct desktop Toolbox equipment and cable actions, architecture grid snapping, history access and unified Persian font.",
+      "source_commit": "3680a4c2ff4126d442468d8c3d97fe9ed2ea26b5",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2275,6 +2283,28 @@
         "mobile_runtime": "NOT_TESTED"
       },
       "limitations": "Desktop panes are docked and width-resizable; not yet independently undockable. Sidebar Properties is a read-only summary with a command to open full editor, and Project Explorer shows current document counts rather than a navigable hierarchical tree."
+    },
+    {
+      "id": "RD-082",
+      "record_type": "runtime_review",
+      "module": "desktop_toolbox_grid_snap_typography",
+      "source": "User's desktop review 2026-10-10",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-10",
+      "target_version": "V73",
+      "status": "source_committed",
+      "user_statement": "مستطیل و مربع به گرید نمی‌چسبند؛ کابل‌کشی و افزودن تجهیز در دسکتاپ باید مستقیم و کامل در Toolbox باشند و پنجره پایین باز نشود. History و Collapse/Pin در پنل‌ها و فونت فارسی یکپارچه باشد.",
+      "assistant_interpretation": "Enable zoom-aware grid snap for architecture point positioning on desktop, preserving wall-alignment priority. Expand Toolbox with direct cable route modes, equipment categories and plan symbols, add History access and a grid snap toggle, use Vazirmatn with safe fallback. Preserve current collapsible resizable panels.",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "commit": "3680a4c2ff4126d442468d8c3d97fe9ed2ea26b5",
+        "javascript_syntax": "PASS",
+        "Windows_browser_runtime": "NOT_TESTED",
+        "iPhone_runtime": "NOT_TESTED"
+      },
+      "limitations": "Existing collapse and width-resize retained; VS-style auto-hide/pin persistence and detailed Project Explorer tree remain unfinished. Google Fonts requires network access; fallback font used offline."
     }
   ],
   "analyses": [
@@ -2837,10 +2867,16 @@
       "version": "V72",
       "change": "Desktop-only ToolBox/Properties/Explorer docked panels with resize/collapse",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V73",
+      "change": "Desktop toolbox direct actions + grid snapping + history + Vazirmatn",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V72",
+    "release": "V73",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
