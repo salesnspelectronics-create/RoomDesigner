@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V77",
-    "project_evolution_version": "V77",
+    "software_version": "V78",
+    "project_evolution_version": "V78",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V77",
+  "current_source_release": "V78",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -676,6 +676,13 @@
       "phase": "desktop UI and selection groups",
       "summary": "Toolbox moved to right; Properties and Project Explorer moved left; added Select All, Group/Ungroup and grouped drag across shapes/devices/cables.",
       "source_commit": "6f42f18abc53f469b6462b23cf0685f949cb77f9",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V78",
+      "date": "2026-10-11",
+      "summary": "Incremental six-request implementation: multi-select modifiers and subset grouping, door-wall attachment, cable labels, existing waypoint drag and selection motion. Not full feature-acceptance validated.",
+      "source_commit": "e4e003777b9bb94f1930df4d40189c0b39502c8d",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2426,6 +2433,61 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Select All operates on every object in the current plan; individual Ctrl-click subset selection and box selection have not been implemented. Group drag preserves locked device positions and is not a CAD constraint group. Source and PE use separate Git commits because of connector file-update operation."
+    },
+    {
+      "id": "RD-087",
+      "record_type": "implementation",
+      "module": "multi_selection",
+      "target_version": "V78",
+      "status": "source_committed",
+      "implementation_status": "partial",
+      "runtime_status": "pending_user_verification",
+      "summary": "Ctrl/Shift/Meta click toggles individual objects; selection group subset supported. Marquee selection remains pending."
+    },
+    {
+      "id": "RD-088",
+      "record_type": "implementation",
+      "module": "grouping",
+      "target_version": "V78",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Group existing selection subset using groupId; current movement/ungroup functionality retained; comprehensive group editing pending."
+    },
+    {
+      "id": "RD-089",
+      "record_type": "implementation",
+      "module": "door_attachment",
+      "target_version": "V78",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Door snap records wall segment attachment and translation of wall segment moves attached door; shape resize and grouped movement need verification."
+    },
+    {
+      "id": "RD-090",
+      "record_type": "implementation",
+      "module": "cable_labels",
+      "target_version": "V78",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Cable name at midpoint of longest segment, light stroke backdrop."
+    },
+    {
+      "id": "RD-091",
+      "record_type": "implementation",
+      "module": "cable_waypoint_edit",
+      "target_version": "V78",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Selected cable displays existing bend handles; dragging existing waypoints supported. Adding/removing bend and endpoints pending."
+    },
+    {
+      "id": "RD-092",
+      "record_type": "implementation",
+      "module": "cable_selected_animation",
+      "target_version": "V78",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Selected cable animated SVG point moving across full cable path, disabled when prefers reduced motion."
     }
   ],
   "analyses": [
@@ -3018,14 +3080,26 @@
       "version": "V77",
       "change": "Swap desktop pane positions and implement whole-plan object grouping",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V78",
+      "change": "Selection/grouping and cable/door interaction improvements (partial feature completion)",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V77",
+    "release": "V78",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V80"
+    "next_development_audit": "V80",
+    "known_gaps": [
+      "marquee selection",
+      "adding and removing cable bend points",
+      "comprehensive group manipulation",
+      "wall resize door attachment synchronization"
+    ]
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
