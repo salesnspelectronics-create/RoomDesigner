@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V86",
-    "project_evolution_version": "V86",
+    "software_version": "V87",
+    "project_evolution_version": "V87",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V86",
+  "current_source_release": "V87",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -741,6 +741,14 @@
       "phase": "desktop architecture symbol editing",
       "summary": "Corner-handle resizing for unlocked SVG plan devices and real SVG symbol thumbnails merged into main Architecture Toolbox grid.",
       "source_commit": "c7aa8bf53a5e76f81b227c070ecc3ec3429775bb",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V87",
+      "date": "2026-10-11",
+      "phase": "desktop editing shortcuts",
+      "summary": "Add Ctrl+Z/X/C/V and visible desktop controls with document-safe internal clipboard.",
+      "source_commit": "e3cdf79b895b7bc6de1d89c5059fc388ed763ade",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2711,6 +2719,27 @@
         "mobile_runtime": "NOT_TESTED"
       },
       "limitations": "Corner resizing uses fixed object center; rotated/flipped symbol geometry and touch resizing need functional runtime verification. Port-bearing electrical equipment intentionally excluded."
+    },
+    {
+      "id": "RD-101",
+      "record_type": "user_requirement",
+      "module": "desktop_keyboard_clipboard",
+      "source": "User RoomDesigner conversation 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V87",
+      "status": "source_committed",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "کلیدهای Ctrl+Z، Ctrl+X، Ctrl+C، Ctrl+V و دکمه‌های روی صفحه برای استفاده از آن‌ها.",
+      "assistant_interpretation": "Implement desktop keyboard shortcuts and visible toolbar controls for internal drawing cut/copy/paste and undo. Clone relevant document objects with fresh IDs, remap ports and internal cables, preserve wall shapes/groups and undo; skip dangling cable endpoints. Do not override shortcuts in form fields; keep mobile toolbar unchanged.",
+      "verification_evidence": {
+        "source_commit": "e3cdf79b895b7bc6de1d89c5059fc388ed763ade",
+        "javascript_syntax": "PASS",
+        "browser_runtime": "NOT_TESTED"
+      },
+      "limitations": "Clipboard is internal to current app page (not OS clipboard); pasted standalone cable without both endpoints is not supported; lock checks cover selected devices, with group/shape behavior pending browser review. No runtime keyboard/browser test yet."
     }
   ],
   "analyses": [
@@ -3396,10 +3425,16 @@
       "version": "V86",
       "change": "SVG plan object corner resize and inline Architecture symbol grid",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V87",
+      "change": "Desktop undo/cut/copy/paste keyboard shortcuts and buttons",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V86",
+    "release": "V87",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
