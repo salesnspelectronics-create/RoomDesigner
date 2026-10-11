@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V134",
-    "project_evolution_version": "V134",
+    "software_version": "V139",
+    "project_evolution_version": "V139",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,7 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V135"
+    "next_due_boundary": "V140"
   },
   "_file_documentation": {
     "title": "RoomDesigner Project Evolution",
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V134",
+  "current_source_release": "V139",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -770,6 +770,13 @@
       "date": "2026-10-11",
       "summary": "Display CorelDRAW SVG on components and catalog placements; add persistent editable component background colors.",
       "record_id": "RD-134-SVG",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V139",
+      "date": "2026-10-11",
+      "summary": "Independent SVG engine, shared 33-symbol library, graphical crop editor, local assignment manager, port-bearing transforms and portable artwork snapshots.",
+      "record_id": "RD-139-SVG-ENGINE",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2922,6 +2929,35 @@
         "visual_pixel_render": "NOT_TESTED"
       },
       "limitations": "Embedded fonts are removed; SVG text uses the available system font. User-provided artwork is used locally for validation and is not published in the repository."
+    },
+    {
+      "id": "RD-139-SVG-ENGINE",
+      "record_type": "feature_implementation",
+      "module": "shared_svg_library_engine",
+      "source": "User-supplied RoomDesigner handoff and follow-up in this Codex chat",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V139",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "یک انجین SVG اضافه کن به روم دیزاینر؛ کتابخانه مشترک، تخصیص همه تجهیزات، Crop، Fit/Center/Stretch، چرخش و پورت، ذخیره سازگار، امنیت و Commit/Push روی main. تست عملی را خودم انجام می‌دهم؛ کار را تمام کن.",
+      "assistant_interpretation": "Implement all SVG library workflows on verified V138 main, preserve legacy documents and equipment/cables, keep browser edits local and publication explicit, then commit/push V139. User owns final runtime acceptance.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "base_commit": "e0fc59928d49ec4415b6543d60e93e87e2af5e9b",
+        "import_regression": "17/17 PASS",
+        "existing_svg_dom": "PASS",
+        "library_engine_checks": "14/14 PASS before final small export/resize/legacy-viewport adjustments",
+        "published_asset_validation": "33 assets / 40 mappings PASS",
+        "chromium_runtime": "NOT_RUN: local executable launch denied by sandbox; user subsequently requested to perform runtime testing themselves",
+        "user_acceptance": "PENDING"
+      },
+      "limitations": [
+        "iPhone, visual crop drag and printed PDF acceptance belong to the user.",
+        "DXF is sampled SVG outline geometry; full SVG fills/fonts/gradients/masks are not CAD entities.",
+        "Library drafts are browser-local; publication is explicit and project artwork snapshots remain portable."
+      ]
     }
   ],
   "analyses": [
@@ -3123,6 +3159,30 @@
         "Apply this change on v133 main without altering the other chat active-layer highlight or symbol changes."
       ],
       "verification": "17 existing import tests, synthetic SVG DOM regression and actual dorbel-c.svg local integration passed; physical Safari acceptance pending."
+    },
+    {
+      "id": "AN-RD-139-SVG-ENGINE",
+      "created_at": "2026-10-11",
+      "title": "Reuse existing SVG paths; separate reusable engine, published assets, local drafts and document snapshots",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "V138 image preserveAspectRatio did not override the embedded SVG root, and rotation/render/resize were gated against port-bearing equipment. No shared manifest or crop editor existed.",
+      "decisions": [
+        "Extract existing planLibrary and architectureSvg artwork into a 33-symbol published library with 40 mappings; preserve legacy fallback metadata.",
+        "Normalize both the image viewport and embedded SVG preserveAspectRatio; share layout and viewport clipping with DXF.",
+        "Use center-based rotation/flip coordinates for artwork, ports, cable endpoints and routing direction.",
+        "Persist original/current SVG snapshots, ID/version, crop and existing transforms so releases do not silently change saved drawings.",
+        "Apply draft assignments only to newly placed equipment; expose an export bundle and validated release helper.",
+        "Reject executable SVG elements, events, external resource URLs, entities and invalid import metadata.",
+        "Preserve genuine white elements in Auto Trim; allow explicit element deletion.",
+        "Respect user follow-up: stop pursuing local browser launch and do not enable automatic browser CI."
+      ],
+      "maintenance_audit": {
+        "prior_ledger_version": "V134",
+        "verified_source_version": "V138",
+        "correction": "Append this correction rather than rewriting V135–V138 history; prior boundary audit status is unverified.",
+        "next_due": "V140"
+      },
+      "runtime_status": "pending_user_verification"
     }
   ],
   "deferred_scope": [
@@ -3680,24 +3740,39 @@
       "change": "Corel font-face compatibility, SVG upload status and configurable component background; synthetic SVG regression test.",
       "record_id": "RD-134-SVG",
       "status": "source_implemented_pending_runtime_acceptance"
+    },
+    {
+      "version": "V139",
+      "date": "2026-10-11",
+      "change": "Shared SVG assets and engine; library manager, Crop editor, fit/center/stretch correction, rotating/flipping/resizing port-bearing equipment, release helper and regression coverage.",
+      "record_id": "RD-139-SVG-ENGINE",
+      "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V139",
+      "date": "2026-10-11",
+      "change": "Correct current Project Evolution metadata from stale V134 to verified source V139. Earlier history is preserved; V135–V138 ledger omissions are not fabricated.",
+      "status": "metadata_alignment_correction",
+      "verified_base_commit": "e0fc59928d49ec4415b6543d60e93e87e2af5e9b"
     }
   ],
   "current_release_gate": {
-    "release": "V134",
-    "source_status": "committed",
-    "build_status": "javascript_syntax_pass",
-    "regression_status": "17 import tests and SVG DOM integration pass",
+    "release": "V139",
+    "source_status": "implemented_for_commit",
+    "build_status": "syntax_pass_before_final_small_adjustments",
+    "regression_status": "17 import tests + existing SVG DOM regression + 14 library/engine checks PASS; publication validation PASS",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V135"
+    "next_development_audit": "V140"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
     "known_next_items": [
-      "wire sanitized SVG into component symbol model, draw on canvas and serialize with document",
-      "improve multiple-port editor",
-      "verify first-run gate and rename user flow",
-      "test v8/v9 on iOS Safari"
+      "User acceptance: crop drag, Auto Trim, port rotation/flip/resize, save/reopen, mobile Safari and SVG/DXF/PDF exports.",
+      "V140 source audit boundary.",
+      "Shared writable backend remains deferred."
     ],
-    "source_of_truth": "project-evolution.json"
+    "source_of_truth": "project-evolution.json",
+    "svg_engine": "Implemented in V139; see SVG-ENGINE.md",
+    "runtime_acceptance_owner": "user"
   }
 }

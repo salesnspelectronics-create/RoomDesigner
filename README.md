@@ -50,3 +50,7 @@ node tests/svg-display.test.cjs
 ```
 
 This test uses a small synthetic Corel-style fixture; user-provided SVG artwork is not included in the repository.
+
+## Shared SVG library (v139)
+
+33 published symbols and 40 type mappings; local library manager, graphical crop/ViewBox editor, reusable SVG engine and port-bearing transforms. See [SVG-ENGINE.md](./SVG-ENGINE.md) for workflows, compatibility, publication and test commands. Final device/browser acceptance is pending the user’s tests.

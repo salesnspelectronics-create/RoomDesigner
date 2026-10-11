@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 1,
+  "version": 1,
+  "symbols": [
+    {
+      "id": "single_bed",
+      "name": "تخت یک‌نفره",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/single_bed.svg",
+      "viewBox": "0 0 80 120",
+      "defaultWidth": 78,
+      "defaultHeight": 125,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "single_bed"
+      ]
+    },
+    {
+      "id": "double_bed",
+      "name": "تخت دونفره",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/double_bed.svg",
+      "viewBox": "0 0 140 120",
+      "defaultWidth": 135,
+      "defaultHeight": 120,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "double_bed"
+      ]
+    },
+    {
+      "id": "sofa",
+      "name": "مبل سه‌نفره",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/sofa.svg",
+      "viewBox": "0 0 175 85",
+      "defaultWidth": 175,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "sofa"
+      ]
+    },
+    {
+      "id": "armchair",
+      "name": "مبل تک‌نفره",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/armchair.svg",
+      "viewBox": "0 0 95 90",
+      "defaultWidth": 95,
+      "defaultHeight": 90,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "armchair"
+      ]
+    },
+    {
+      "id": "table",
+      "name": "میز ناهارخوری",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/table.svg",
+      "viewBox": "0 0 140 100",
+      "defaultWidth": 140,
+      "defaultHeight": 100,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "table"
+      ]
+    },
+    {
+      "id": "desk",
+      "name": "میز کار",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/desk.svg",
+      "viewBox": "0 0 140 75",
+      "defaultWidth": 140,
+      "defaultHeight": 75,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "desk",
+        "workroom"
+      ]
+    },
+    {
+      "id": "wardrobe",
+      "name": "کمد",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/wardrobe.svg",
+      "viewBox": "0 0 135 65",
+      "defaultWidth": 135,
+      "defaultHeight": 65,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "wardrobe",
+        "cabinet"
+      ]
+    },
+    {
+      "id": "washbasin",
+      "name": "روشویی",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/washbasin.svg",
+      "viewBox": "0 0 85 70",
+      "defaultWidth": 85,
+      "defaultHeight": 70,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "washbasin"
+      ]
+    },
+    {
+      "id": "shower",
+      "name": "دوش",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/shower.svg",
+      "viewBox": "0 0 95 95",
+      "defaultWidth": 95,
+      "defaultHeight": 95,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "shower"
+      ]
+    },
+    {
+      "id": "bathtub",
+      "name": "وان",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/bathtub.svg",
+      "viewBox": "0 0 165 85",
+      "defaultWidth": 165,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "bathtub"
+      ]
+    },
+    {
+      "id": "kitchen_sink",
+      "name": "سینک آشپزخانه",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/kitchen_sink.svg",
+      "viewBox": "0 0 130 70",
+      "defaultWidth": 130,
+      "defaultHeight": 70,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "kitchen_sink"
+      ]
+    },
+    {
+      "id": "cooktop",
+      "name": "اجاق گاز",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/cooktop.svg",
+      "viewBox": "0 0 90 90",
+      "defaultWidth": 90,
+      "defaultHeight": 90,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "cooktop"
+      ]
+    },
+    {
+      "id": "refrigerator",
+      "name": "یخچال",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/refrigerator.svg",
+      "viewBox": "0 0 80 95",
+      "defaultWidth": 80,
+      "defaultHeight": 95,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "refrigerator"
+      ]
+    },
+    {
+      "id": "dining_chair",
+      "name": "صندلی",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/dining_chair.svg",
+      "viewBox": "0 0 55 65",
+      "defaultWidth": 55,
+      "defaultHeight": 65,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "dining_chair"
+      ]
+    },
+    {
+      "id": "window",
+      "name": "پنجره پلان",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/window.svg",
+      "viewBox": "0 0 120 25",
+      "defaultWidth": 120,
+      "defaultHeight": 25,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "window"
+      ]
+    },
+    {
+      "id": "sliding_door",
+      "name": "درب کشویی",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/sliding_door.svg",
+      "viewBox": "0 0 130 35",
+      "defaultWidth": 130,
+      "defaultHeight": 35,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "sliding_door"
+      ]
+    },
+    {
+      "id": "column",
+      "name": "ستون پلان",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/column.svg",
+      "viewBox": "0 0 65 65",
+      "defaultWidth": 65,
+      "defaultHeight": 65,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "column"
+      ]
+    },
+    {
+      "id": "stairs",
+      "name": "راه‌پله",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/stairs.svg",
+      "viewBox": "0 0 110 145",
+      "defaultWidth": 110,
+      "defaultHeight": 145,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "stairs"
+      ]
+    },
+    {
+      "id": "bed",
+      "name": "bed",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/bed.svg",
+      "viewBox": "0 0 120 90",
+      "defaultWidth": 120,
+      "defaultHeight": 90,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "bed"
+      ]
+    },
+    {
+      "id": "toilet",
+      "name": "toilet",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/toilet.svg",
+      "viewBox": "0 0 80 110",
+      "defaultWidth": 80,
+      "defaultHeight": 110,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "toilet",
+        "wc"
+      ]
+    },
+    {
+      "id": "television",
+      "name": "television",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/television.svg",
+      "viewBox": "0 0 120 70",
+      "defaultWidth": 120,
+      "defaultHeight": 70,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "television"
+      ]
+    },
+    {
+      "id": "doorbell",
+      "name": "Doorbell",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "controller",
+      "name": "Actuator",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/controller.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "controller",
+        "actuator"
+      ]
+    },
+    {
+      "id": "switch",
+      "name": "Network Switch",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/switch.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "switch",
+        "network_switch"
+      ]
+    },
+    {
+      "id": "supply",
+      "name": "Power Supply",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/supply.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "supply",
+        "power_supply"
+      ]
+    },
+    {
+      "id": "reserve",
+      "name": "Spare Device",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/reserve.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "reserve"
+      ]
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/door.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "door"
+      ]
+    },
+    {
+      "id": "lighting",
+      "name": "Lighting",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/lighting.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "lighting"
+      ]
+    },
+    {
+      "id": "outlet",
+      "name": "Electrical Outlet",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/outlet.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "outlet",
+        "electrical_outlet"
+      ]
+    },
+    {
+      "id": "data_port",
+      "name": "Data Port",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/data_port.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "data_port"
+      ]
+    },
+    {
+      "id": "access_point",
+      "name": "Access Point",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/access_point.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "access_point"
+      ]
+    },
+    {
+      "id": "camera",
+      "name": "Camera",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/camera.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "camera"
+      ]
+    },
+    {
+      "id": "custom",
+      "name": "Custom Device",
+      "category": "custom",
+      "filePath": "assets/svg/custom/custom.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "custom"
+      ]
+    }
+  ]
+}
