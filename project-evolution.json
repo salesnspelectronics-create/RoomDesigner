@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V88",
-    "project_evolution_version": "V88",
+    "software_version": "V132",
+    "project_evolution_version": "V132",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,7 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V10"
+    "next_due_boundary": "V135"
   },
   "_file_documentation": {
     "title": "RoomDesigner Project Evolution",
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V88",
+  "current_source_release": "V132",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -757,6 +757,13 @@
       "summary": "Fix dragging multiple selected objects to translate them together without requiring permanent Group.",
       "source_commit": "ad4674f92d316dc73e616379af4c8d37f7407c85",
       "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V132",
+      "date": "2026-10-11",
+      "summary": "Validate project imports before replacing the active drawing/catalog/types; preserve prior state on rejection and application failure.",
+      "runtime_status": "pending_user_verification",
+      "record_id": "RD-132-IMPORT"
     }
   ],
   "records": [
@@ -2859,6 +2866,30 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Selection movement leaves unselected devices and unselected cables static; cable routes follow translated selected waypoints and normal device port anchors. Overlapping selection, snapping and geometry around linked or externally connected cables require runtime testing."
+    },
+    {
+      "id": "RD-132-IMPORT",
+      "record_type": "audit_fix",
+      "module": "project_import",
+      "source": "User-authorized sequential audit fixes in this chat",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V132",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "خب ایرادی که پیدا کردی روی یکی‌اش شروع کن حل کردن و بعد پوش کن. هر دفعه که حل می‌کنی، ایراد رو برطرف کردی پوش کن. من یکی‌یکی بعداً بهت راه‌حل می‌دم.",
+      "assistant_interpretation": "Fix the first audit finding only: reject malformed imports before replacing the active drawing/catalog/types or writing browser storage; commit and push the fix independently.",
+      "source_implementation": "index.html: prepareRoomImport, applyRoomImport and fileInput change handler; tests/import-validation.test.cjs",
+      "verification_evidence": {
+        "javascript_syntax": "PASS",
+        "regression_tests": "17/17 PASS: node tests/import-validation.test.cjs",
+        "DOM_integration": "PASS in jsdom: invalid catalog/types/layers preserve state and storage; valid Corel-style SVG renders and persists; unsafe SVG rejection preserves drawing",
+        "Chrome_runtime": "NOT_TESTED",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Physical iPhone/Safari acceptance pending. Other audit findings remain separate. Imported communication colors must be hexadecimal; files larger than 25 MiB are rejected."
     }
   ],
   "analyses": [
@@ -3019,6 +3050,31 @@
         "Physical mobile/iPhone pinch and device acceptance remain pending.",
         "Exact graphical parity with the mockup requires user visual review."
       ]
+    },
+    {
+      "id": "AN-RD-132-IMPORT",
+      "created_at": "2026-10-11",
+      "title": "Validate imports before model replacement and persistence",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "decisions": [
+        "Prepare and validate document, layers, revision snapshots, communication types and catalog before mutating active state.",
+        "Reuse SVG sanitizer during import; serialize optional catalog/types before application.",
+        "Keep old bare documents and revision snapshots without walls/layers compatible.",
+        "Restore active model, selection and history if UI application throws; write browser storage only after successful application.",
+        "Valid import with failed browser persistence remains open with an explicit warning.",
+        "Preserve the existing toolbox storage key so release increment does not reset user layout."
+      ],
+      "remaining_risks": [
+        "Real browser and iPhone acceptance pending.",
+        "Other audit findings including hidden save indicator, isolated cable Cut/Paste and incomplete revision layer snapshots are not resolved by this release."
+      ],
+      "governance_correction": "Previous canonical metadata said V88 while the verified main baseline was v131 at da2d360f01d9710e0b73de5bc3536dc4f7fa2222. V132 supersedes stale current-version fields; historical arrays are preserved; no V89-V131 history is fabricated.",
+      "release_boundary_audit": {
+        "previous_boundary": "V130",
+        "status": "source_audit_recorded_runtime_pending",
+        "evidence": "This chat audit and local RoomDesigner-review-v130-fa.md; 9 findings recorded, one addressed in V132",
+        "next_boundary": "V135"
+      }
     }
   ],
   "deferred_scope": [
@@ -3562,14 +3618,22 @@
       "version": "V88",
       "change": "Multi-selection drag moves selected devices, walls and cable waypoints together",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V132",
+      "change": "Atomic validated file import with dependency-free regression tests; synchronize current release metadata with verified Git source.",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "record_id": "RD-132-IMPORT"
     }
   ],
   "current_release_gate": {
-    "release": "V88",
+    "release": "V132",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
+    "regression_status": "17_tests_pass",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V90"
+    "next_development_audit": "V135"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

@@ -25,3 +25,15 @@ RoomDesigner is independent from NSP Office; the latter is intentionally unchang
 ## Project Evolution
 
 Project source of truth: [project-evolution.json](./project-evolution.json). Governance and edit discipline: [PROJECT-EVOLUTION-INSTRUCTIONS.md](./PROJECT-EVOLUTION-INSTRUCTIONS.md). This RoomDesigner record is independent from NSP Office and preserves mobile UX, port/interface, SVG, storage and revision decisions.
+
+## Import validation (v132)
+
+Project imports are validated before replacing the current drawing or writing browser storage. Malformed document geometry, layers, revisions, communication types and catalog entries are rejected; imported SVG uses the existing sanitizer. Supported type colors are hexadecimal CSS colors. Files larger than 25 MiB are rejected. Bare legacy document files can still be opened without replacing the current catalog or communication types.
+
+Run the dependency-free regression tests with Node.js 18 or newer:
+
+```sh
+node tests/import-validation.test.cjs
+```
+
+These tests cover import state/storage preservation and compatibility; they do not replace real browser or iPhone acceptance testing.
