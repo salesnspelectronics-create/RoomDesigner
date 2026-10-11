@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V81",
-    "project_evolution_version": "V81",
+    "software_version": "V82",
+    "project_evolution_version": "V82",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V81",
+  "current_source_release": "V82",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -705,6 +705,13 @@
       "date": "2026-10-11",
       "summary": "Layer/category and group browser and floating group quick actions.",
       "source_commit": "d7ecb2a5b46559dba23f86043aace19250dbeb94",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V82",
+      "date": "2026-10-11",
+      "summary": "Portrait A4 technical print title block without separate cover and optional report.",
+      "source_commit": "01828d6387ecc3916ef971be1ce10bff73249ece",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2563,6 +2570,22 @@
         "javascript_syntax": "PASS"
       },
       "limitations": "Tree is a grouped view over existing records, not full editable named CAD layers; per-item visibility/locking not yet implemented."
+    },
+    {
+      "id": "RD-096",
+      "record_type": "approved_design",
+      "module": "pdf_title_block",
+      "source": "User approval 2026-10-11",
+      "created_at": "2026-10-11",
+      "target_version": "V82",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "One A4 portrait technical drawing sheet with drawing title, adjacent revision V1, date, designer, unit cm caveat and 'Powered by Enspiron Designer' text only. Optional separate connections report; no separate cover page or logo.",
+      "verification_evidence": {
+        "commit": "01828d6387ecc3916ef971be1ce10bff73249ece",
+        "javascript_syntax": "PASS"
+      },
+      "limitations": "True measured print scale requires document physical unit calibration. Browser print headers/footers require user to disable them in print settings. Visual PDF print check pending."
     }
   ],
   "analyses": [
@@ -3179,10 +3202,16 @@
       "version": "V81",
       "change": "Layers/groups explorer and quick menu group controls",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V82",
+      "change": "A4 portrait PDF technical sheet",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V81",
+    "release": "V82",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification"
