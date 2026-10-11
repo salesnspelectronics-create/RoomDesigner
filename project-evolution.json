@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V84",
-    "project_evolution_version": "V84",
+    "software_version": "V85",
+    "project_evolution_version": "V85",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V84",
+  "current_source_release": "V85",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -727,6 +727,13 @@
       "summary": "Desktop reference alignment: application menus, searchable SVG icon cards, grouped object tree, inline contextual properties and bottom canvas status controls.",
       "record_id": "RD-098",
       "runtime_status": "pending V84 browser smoke test and user visual acceptance"
+    },
+    {
+      "release": "V85",
+      "date": "2026-10-11",
+      "summary": "Desktop right-aligned app menus, Persian date, File-menu-only Save, left-drag selection and middle-button pan.",
+      "source_commit": "2fffdcd1a2d163e762771024e9b0dd4fbb3a77b9",
+      "runtime_status": "pending_user_verification"
     }
   ],
   "records": [
@@ -2652,6 +2659,28 @@
         "Physical mobile/iPhone pinch and device acceptance remain pending.",
         "Exact graphical parity with the mockup requires user visual review."
       ]
+    },
+    {
+      "id": "RD-099",
+      "record_type": "runtime_review",
+      "module": "desktop_header_and_selection_gestures",
+      "source": "User V84 desktop runtime review 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V85",
+      "status": "source_committed",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "انتقال منوی فایل و ویرایش به راست؛ حذف دکمه ذخیره مستقل؛ افزودن تاریخ شمسی امروز؛ Selection با کشیدن چپ و Pan با کلید وسط ماوس مثل CorelDRAW.",
+      "assistant_interpretation": "Keep Save in File menu; apply desktop RTL header order and show Persian calendar date; desktop empty-canvas left-drag invokes marquee without Shift, middle-button drag pans, mobile gestures remain as before.",
+      "verification_evidence": {
+        "commit": "2fffdcd1a2d163e762771024e9b0dd4fbb3a77b9",
+        "javascript_syntax": "PASS",
+        "desktop_runtime": "NOT_TESTED",
+        "mobile_runtime": "NOT_TESTED"
+      },
+      "limitations": "Marquee geometry currently selects device centers, wall endpoints and cable waypoints; full intersection behavior and browser middle-mouse autoscroll should be verified in Chrome."
     }
   ],
   "analyses": [
@@ -3325,20 +3354,20 @@
       "change": "Desktop workspace redesign aligned to approved mockup; mobile and SVG engine preserved.",
       "status": "source_implemented_runtime_pending",
       "record_id": "RD-098"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V85",
+      "change": "Desktop header RTL and Corel-like select/pan pointer mapping",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V84",
-    "source_status": "implemented; commit and main publication pending",
-    "build_status": "javascript_syntax_and_adapter_assertions_pass",
-    "runtime_status": "pending_browser_and_user_verification",
-    "next_development_audit": "V85",
-    "open_verification": [
-      "V84 desktop browser smoke and screenshot",
-      "Desktop menu, tool, property, tree, status and panel behavior",
-      "Mobile viewport overflow and touch workflow smoke",
-      "Physical iPhone/Safari pinch, device workflows and user visual acceptance"
-    ]
+    "release": "V85",
+    "source_status": "committed",
+    "build_status": "javascript_syntax_pass",
+    "runtime_status": "pending_user_verification",
+    "next_development_audit": "V90"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
