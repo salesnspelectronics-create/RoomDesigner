@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V78",
-    "project_evolution_version": "V78",
+    "software_version": "V79",
+    "project_evolution_version": "V79",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V78",
+  "current_source_release": "V79",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -683,6 +683,14 @@
       "date": "2026-10-11",
       "summary": "Incremental six-request implementation: multi-select modifiers and subset grouping, door-wall attachment, cable labels, existing waypoint drag and selection motion. Not full feature-acceptance validated.",
       "source_commit": "e4e003777b9bb94f1930df4d40189c0b39502c8d",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V79",
+      "date": "2026-10-11",
+      "phase": "multi-selection and cable route manipulation",
+      "summary": "Add marquee selection and cable bend creation/removal to complement V78 controls.",
+      "source_commit": "bd414f19ceeb63b9a0fb500000df2a582b22942b",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2488,6 +2496,26 @@
       "status": "source_committed",
       "runtime_status": "pending_user_verification",
       "summary": "Selected cable animated SVG point moving across full cable path, disabled when prefers reduced motion."
+    },
+    {
+      "id": "RD-093",
+      "record_type": "implementation_followup",
+      "module": "marquee_selection_and_cable_bend_edit",
+      "source": "2026-10-11 user's request RD-087 through RD-092",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V79",
+      "status": "source_committed",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "assistant_interpretation": "Add Shift+drag rectangle selection on empty canvas; selected cable double click creates waypoint, Alt+double-click on existing waypoint removes it. Current editing and grouping remain available.",
+      "verification_evidence": {
+        "commit": "bd414f19ceeb63b9a0fb500000df2a582b22942b",
+        "javascript_syntax": "PASS",
+        "browser_runtime": "NOT_TESTED"
+      },
+      "limitations": "Some advanced grouped editing and door-wall attachment on wall resize and grouped movement remain unverified/incomplete."
     }
   ],
   "analyses": [
@@ -3086,19 +3114,24 @@
       "version": "V78",
       "change": "Selection/grouping and cable/door interaction improvements (partial feature completion)",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V79",
+      "change": "Shift-drag marquee and double-click cable bend editing",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V78",
+    "release": "V79",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V80",
-    "known_gaps": [
-      "marquee selection",
-      "adding and removing cable bend points",
-      "comprehensive group manipulation",
-      "wall resize door attachment synchronization"
+    "open_verification": [
+      "Windows Chrome and iPhone runtime acceptance for selection, groups, door attachment, cable labels, waypoints and animation",
+      "Door attachment on wall resize and grouped movement",
+      "Cable route bend ordering"
     ]
   },
   "handoff": {
