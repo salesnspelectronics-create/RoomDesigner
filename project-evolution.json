@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V82",
-    "project_evolution_version": "V82",
+    "software_version": "V83",
+    "project_evolution_version": "V83",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V82",
+  "current_source_release": "V83",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -712,6 +712,13 @@
       "date": "2026-10-11",
       "summary": "Portrait A4 technical print title block without separate cover and optional report.",
       "source_commit": "01828d6387ecc3916ef971be1ce10bff73249ece",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V83",
+      "date": "2026-10-11",
+      "summary": "Click-to-restore operation history and draggable cable-name label.",
+      "source_commit": "de07071916217e370b6ca9615eb2534c163a430d",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2586,6 +2593,22 @@
         "javascript_syntax": "PASS"
       },
       "limitations": "True measured print scale requires document physical unit calibration. Browser print headers/footers require user to disable them in print settings. Visual PDF print check pending."
+    },
+    {
+      "id": "RD-097",
+      "record_type": "approved_design",
+      "module": "history_and_cable_label",
+      "source": "User approval 2026-10-11",
+      "created_at": "2026-10-11",
+      "target_version": "V83",
+      "status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "summary": "Click individual history snapshot to restore after confirmation with current state checkpoint; draggable cable name text retains cable label offset in document.",
+      "verification_evidence": {
+        "commit": "de07071916217e370b6ca9615eb2534c163a430d",
+        "javascript_syntax": "PASS"
+      },
+      "limitations": "Historical event names are generic, no state preview; label text is only rendered when cable name is set. Full interactive runtime test pending."
     }
   ],
   "analyses": [
@@ -3208,13 +3231,27 @@
       "version": "V82",
       "change": "A4 portrait PDF technical sheet",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V83",
+      "change": "History restore and cable label positioning",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V82",
+    "release": "V83",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
-    "runtime_status": "pending_user_verification"
+    "runtime_status": "pending_user_verification",
+    "next_development_audit": "V85",
+    "open_verification": [
+      "Desktop and mobile functional smoke tests",
+      "Layer browser render and selection",
+      "PDF print A4 portrait and browser headers settings",
+      "History restore data fidelity",
+      "Cable label drag and persisted offset"
+    ]
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
