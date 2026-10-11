@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V87",
-    "project_evolution_version": "V87",
+    "software_version": "V88",
+    "project_evolution_version": "V88",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V87",
+  "current_source_release": "V88",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -749,6 +749,13 @@
       "phase": "desktop editing shortcuts",
       "summary": "Add Ctrl+Z/X/C/V and visible desktop controls with document-safe internal clipboard.",
       "source_commit": "e3cdf79b895b7bc6de1d89c5059fc388ed763ade",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V88",
+      "date": "2026-10-11",
+      "summary": "Fix dragging multiple selected objects to translate them together without requiring permanent Group.",
+      "source_commit": "ad4674f92d316dc73e616379af4c8d37f7407c85",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2830,6 +2837,28 @@
         "Reproduction on affected browser/plan, including 100 and 500 object cases, with error/timing evidence",
         "No regression to wall/cable/device geometry in DXF"
       ]
+    },
+    {
+      "id": "RD-106",
+      "record_type": "runtime_review_fix",
+      "module": "multiple_selection_move",
+      "source": "User runtime report 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V88",
+      "status": "source_committed",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "وقتی همه آبجکت‌ها را انتخاب می‌کنم، کشیدن یکی فقط همان را حرکت می‌دهد؛ تمام انتخاب باید با هم حرکت کند بدون Group.",
+      "assistant_interpretation": "When pointerdown hits a member of multiSelection, create a nonpersistent multi-move drag with snapshots of devices, grouped architectural segments and cable waypoints; translate all selected elements as a set; one Undo checkpoint per drag; respect locked equipment and keep multiSelection after pointerup.",
+      "verification_evidence": {
+        "source_commit": "ad4674f92d316dc73e616379af4c8d37f7407c85",
+        "javascript_syntax": "PASS",
+        "Chrome_runtime": "NOT_TESTED",
+        "Safari_runtime": "NOT_TESTED"
+      },
+      "limitations": "Selection movement leaves unselected devices and unselected cables static; cable routes follow translated selected waypoints and normal device port anchors. Overlapping selection, snapping and geometry around linked or externally connected cables require runtime testing."
     }
   ],
   "analyses": [
@@ -3527,10 +3556,16 @@
       "version": "V87",
       "change": "Stage RD-102..RD-105 runtime findings; review-only; no product source change or version increment",
       "status": "review_backlog_staged"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V88",
+      "change": "Multi-selection drag moves selected devices, walls and cable waypoints together",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V87",
+    "release": "V88",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
