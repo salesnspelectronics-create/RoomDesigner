@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V83",
-    "project_evolution_version": "V83",
+    "software_version": "V84",
+    "project_evolution_version": "V84",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V83",
+  "current_source_release": "V84",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -720,6 +720,13 @@
       "summary": "Click-to-restore operation history and draggable cable-name label.",
       "source_commit": "de07071916217e370b6ca9615eb2534c163a430d",
       "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V84",
+      "date": "2026-10-11",
+      "summary": "Desktop reference alignment: application menus, searchable SVG icon cards, grouped object tree, inline contextual properties and bottom canvas status controls.",
+      "record_id": "RD-098",
+      "runtime_status": "pending V84 browser smoke test and user visual acceptance"
     }
   ],
   "records": [
@@ -2609,6 +2616,42 @@
         "javascript_syntax": "PASS"
       },
       "limitations": "Historical event names are generic, no state preview; label text is only rendered when cable name is set. Full interactive runtime test pending."
+    },
+    {
+      "id": "RD-098",
+      "record_type": "approved_design",
+      "module": "desktop_ui_alignment",
+      "source": "User-provided V84 handoff and two screenshots in Codex chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-11",
+      "target_version": "V84",
+      "status": "source_implemented_runtime_pending",
+      "user_statement": "# HANDOFF — Room Designer V84\r\n## Desktop UI Design Alignment\r\n\r\n**Repository:** `salesnspelectronics-create/RoomDesigner`  \r\n**Branch:** `main`  \r\n**Last known version:** V83  \r\n**Target version:** V84  \r\n**Priority:** HIGH — Desktop UI/UX  \r\n**Reference:** Three screenshots supplied in the Room Designer conversation, especially the previously AI-designed desktop workspace mockup.\r\n\r\n### Mission\r\n\r\nAs a Senior UI/UX Engineer and Frontend Developer, redesign the existing Room Designer desktop interface to closely match the approved reference mockup.\r\n\r\nThe existing V83 interface must be upgraded visually, not merely recolored. Preserve the underlying SVG drawing engine, existing document model, tools, history, saving, and mobile interactions.\r\n\r\nBefore editing, inspect the current HEAD, existing code, and `project-evolution.json`. Do not overwrite other contributors' work.\r\n\r\n### 1. Desktop Application Header\r\n\r\nImplement a professional application menu bar matching the reference:\r\n\r\n- فایل — File\r\n- ویرایش — Edit\r\n- نمایش — View\r\n- پروژه — Project\r\n- ابزارها — Tools\r\n- تنظیمات — Settings\r\n- راهنما — Help\r\n\r\nInclude Undo/Redo, Save Project, and clear product/version identification.\r\n\r\nAll menu actions must invoke existing functions where available. Do not introduce nonfunctional decorative controls.\r\n\r\n### 2. Right-Side Toolbox\r\n\r\nReplace the current vertically stacked text-button presentation with the reference's compact, icon-based grid cards.\r\n\r\nRequirements:\r\n- Persistent search field with immediate filtering\r\n- Consistent SVG icons, legible Persian labels\r\n- Architecture, Cabling, and Equipment categories\r\n- Visually distinct colored category indicators\r\n- Expandable/collapsible sections\r\n- Selected tool highlighting\r\n- Functional selection of existing tools\r\n- No secondary full-screen modal when an existing tool can be accessed directly from Toolbox\r\n\r\nAvoid inventing unsupported CAD tools simply to match the visual reference.\r\n\r\n### 3. Left-Side Layers & Properties\r\n\r\nCreate a professional sidebar matching the reference.\r\n\r\n**Layers & Groups**\r\n- Tree-style hierarchy for architectural shapes, equipment, cables and existing groups\r\n- Expand/collapse nodes\r\n- Select a drawing object from the tree\r\n- Where supported by the existing model, display working visibility and locking controls\r\n- Do not imply full layer-management functionality if it is not implemented\r\n\r\n**Properties**\r\n- Contextual fields for the selected item\r\n- Position, dimensions, rotation and relevant styling where applicable\r\n- Proper right-to-left text alignment\r\n- Functional editing through existing model operations\r\n- Read-only labels where editing is not yet supported\r\n\r\n### 4. Bottom Desktop Status Bar\r\n\r\nAdd a slim status bar containing:\r\n- Zoom percentage\r\n- Zoom In / Zoom Out\r\n- Pan and Fit View\r\n- Snap status\r\n- Cursor X / Y coordinates\r\n- Drawing units, without incorrectly claiming a calibrated real-world scale\r\n\r\n### 5. Visual System\r\n\r\nUse:\r\n- Consistent Vazirmatn Persian typography with appropriate fallback\r\n- High-contrast professional dark-blue panels\r\n- Compact, readable SVG icon buttons\r\n- Harmonized borders, spacing, hover, focus, disabled and selected states\r\n- Consistent RTL and mixed Persian/English presentation\r\n- Resizable and collapsible side panels\r\n\r\nThe Canvas should remain visually dominant.\r\n\r\n### 6. Mobile Compatibility\r\n\r\nDo not replace the mobile UI with the desktop layout.\r\n\r\nPreserve mobile-specific touch interactions, Bottom Sheets, Floating Menu, pinch zoom and device-selection workflows.\r\n\r\nAny shared CSS changes must be regression-checked at mobile viewport sizes.\r\n\r\n### 7. Scope Restrictions\r\n\r\nThis release is exclusively focused on **desktop UI alignment**.\r\n\r\nDo not independently rewrite the SVG rendering engine, routing, geometry snapping, grouping model, PDF export, database/storage or history implementation.\r\n\r\nAvoid unrelated refactoring and feature expansion.\r\n\r\n### 8. Verification and Acceptance Criteria\r\n\r\n- Desktop layout visually matches the approved mockup as closely as practical.\r\n- Right Toolbox uses searchable icon cards rather than the previous long text-button layout.\r\n- Left sidebar contains Layers/Groups and Properties.\r\n- Top navigation and bottom status bar are present and functional.\r\n- Existing tools continue to work.\r\n- Panel collapse, resize and scrolling function correctly.\r\n- Mobile view remains usable.\r\n- No horizontal overflow or obstructed Canvas interaction.\r\n- JavaScript syntax and available tests pass.\r\n- Browser/runtime checks are reported separately from static checks.\r\n\r\n### 9. Versioning and GitHub\r\n\r\n1. Verify the latest version and HEAD before changes.\r\n2. Work only on the existing `main` branch.\r\n3. Do not force-push.\r\n4. Increment the existing version to V84 only if V83 remains the latest version.\r\n5. Keep source version and Project Evolution aligned.\r\n6. Record implementation scope, limitations and verification status in `project-evolution.json`.\r\n7. Commit and Push the changes.\r\n8. Provide commit SHA, published URL and a concise change report.\r\n\r\n### 10. Final Delivery\r\n\r\nAt completion provide:\r\n- Before/after desktop screenshots where browser testing is available\r\n- List of completed design changes\r\n- List of incomplete or unsupported features\r\n- JavaScript/build/test results\r\n- Mobile regression status\r\n- GitHub commit SHA\r\n- Project Evolution confirmation\r\n- Runtime verification status\r\n\r\n**Important:** Do not classify untested UI interactions as runtime-verified.\r\n\r\n**End of handoff.**\nClarification: تصویر اول، تصویر نهایی کار باشد؛ منوهای آیکونی بزرگ و زیبا، نه صرفاً تغییر رنگ تصویر دوم. فقط کارهای خواسته‌شده انجام شود و سؤال ضروری پیش از اقدام پرسیده شود.",
+      "assistant_interpretation": "Rebuild only the desktop UI around the first screenshot: right icon-card toolbox, left grouped object tree and contextual property form, native top menus and bottom view/status controls, preserving the single-file SVG engine and mobile workflows.",
+      "implementation_status": "implemented in index.html; main publication follows static verification",
+      "runtime_status": "pending V84 browser smoke test and user visual acceptance",
+      "base_commit": "5a683d98f97c3f04525578ff0e0ecfd5e86e63c5",
+      "verification_evidence": {
+        "javascript_syntax": "PASS: node --check",
+        "ui_adapter_checks": "PASS: 16 assertions",
+        "core_preservation": "PASS: original engine, geometry, mobile gestures, persistence, history, PDF/DXF source unchanged; only two catalog refresh hooks added",
+        "mobile_shared_css": "PASS: original shared/mobile base styles retained; new workspace CSS gated by min-width 900px and pointer:fine",
+        "build": "Not applicable: standalone HTML, no package/build system",
+        "browser": "V83 baseline smoke observed in isolated remote browser; V84 runtime pending",
+        "local_browser": "Headless Edge blocked by Windows process/IPC permissions; remote browser available",
+        "baseline_run": "https://agent.tinyfish.ai/runs/f156153b-0b64-4cc8-b4f4-bb45f8ecab1c"
+      },
+      "limitations": [
+        "Visibility is not represented by the current drawing model; no decorative visibility toggles were added.",
+        "Locking is available for devices only; no implied wall/cable/group lock support.",
+        "Wall geometry fields are read-only; existing canvas editing remains available.",
+        "Port-bearing device rotation remains read-only.",
+        "No circle/polygon/free cable tools were invented.",
+        "Drawing coordinates use uncalibrated drawing units, not cm.",
+        "Physical mobile/iPhone pinch and device acceptance remain pending.",
+        "Exact graphical parity with the mockup requires user visual review."
+      ]
     }
   ],
   "analyses": [
@@ -2746,6 +2789,29 @@
         "No source fix, build or runtime test is recorded by this documentation update.",
         "Software remains V62; fix releases must increment sequentially."
       ]
+    },
+    {
+      "id": "AN-RD-098",
+      "title": "V84 desktop reference alignment",
+      "created_at": "2026-10-11",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "decisions": [
+        "Use existing actions through a desktop UI adapter; preserve single-file deployment.",
+        "Use expandable three-column SVG icon cards with live search and selected drawing tool state.",
+        "Reflect real object grouping in the tree and expose supported device locks only.",
+        "Contextual property editing uses existing checkpoint/render/save scheduling; unsupported fields are read-only.",
+        "Keep original mobile UI, gestures, floating menu and sheets; desktop breakpoint requires fine pointer."
+      ],
+      "limitations": [
+        "Visibility is not represented by the current drawing model; no decorative visibility toggles were added.",
+        "Locking is available for devices only; no implied wall/cable/group lock support.",
+        "Wall geometry fields are read-only; existing canvas editing remains available.",
+        "Port-bearing device rotation remains read-only.",
+        "No circle/polygon/free cable tools were invented.",
+        "Drawing coordinates use uncalibrated drawing units, not cm.",
+        "Physical mobile/iPhone pinch and device acceptance remain pending.",
+        "Exact graphical parity with the mockup requires user visual review."
+      ]
     }
   ],
   "deferred_scope": [
@@ -2771,6 +2837,21 @@
       "version": "V8",
       "result": "User reports updated UI visible after refresh",
       "limits": "Not full feature acceptance."
+    },
+    {
+      "type": "static",
+      "version": "V84",
+      "result": {
+        "javascript_syntax": "PASS: node --check",
+        "ui_adapter_checks": "PASS: 16 assertions",
+        "core_preservation": "PASS: original engine, geometry, mobile gestures, persistence, history, PDF/DXF source unchanged; only two catalog refresh hooks added",
+        "mobile_shared_css": "PASS: original shared/mobile base styles retained; new workspace CSS gated by min-width 900px and pointer:fine",
+        "build": "Not applicable: standalone HTML, no package/build system",
+        "browser": "V83 baseline smoke observed in isolated remote browser; V84 runtime pending",
+        "local_browser": "Headless Edge blocked by Windows process/IPC permissions; remote browser available",
+        "baseline_run": "https://agent.tinyfish.ai/runs/f156153b-0b64-4cc8-b4f4-bb45f8ecab1c"
+      },
+      "limits": "Adapter assertions and source comparisons do not establish browser or mobile runtime acceptance."
     }
   ],
   "change_log": [
@@ -3237,20 +3318,26 @@
       "version": "V83",
       "change": "History restore and cable label positioning",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V84",
+      "change": "Desktop workspace redesign aligned to approved mockup; mobile and SVG engine preserved.",
+      "status": "source_implemented_runtime_pending",
+      "record_id": "RD-098"
     }
   ],
   "current_release_gate": {
-    "release": "V83",
-    "source_status": "committed",
-    "build_status": "javascript_syntax_pass",
-    "runtime_status": "pending_user_verification",
+    "release": "V84",
+    "source_status": "implemented; commit and main publication pending",
+    "build_status": "javascript_syntax_and_adapter_assertions_pass",
+    "runtime_status": "pending_browser_and_user_verification",
     "next_development_audit": "V85",
     "open_verification": [
-      "Desktop and mobile functional smoke tests",
-      "Layer browser render and selection",
-      "PDF print A4 portrait and browser headers settings",
-      "History restore data fidelity",
-      "Cable label drag and persisted offset"
+      "V84 desktop browser smoke and screenshot",
+      "Desktop menu, tool, property, tree, status and panel behavior",
+      "Mobile viewport overflow and touch workflow smoke",
+      "Physical iPhone/Safari pinch, device workflows and user visual acceptance"
     ]
   },
   "handoff": {
