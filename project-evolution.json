@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V85",
-    "project_evolution_version": "V85",
+    "software_version": "V86",
+    "project_evolution_version": "V86",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V85",
+  "current_source_release": "V86",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -733,6 +733,14 @@
       "date": "2026-10-11",
       "summary": "Desktop right-aligned app menus, Persian date, File-menu-only Save, left-drag selection and middle-button pan.",
       "source_commit": "2fffdcd1a2d163e762771024e9b0dd4fbb3a77b9",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V86",
+      "date": "2026-10-11",
+      "phase": "desktop architecture symbol editing",
+      "summary": "Corner-handle resizing for unlocked SVG plan devices and real SVG symbol thumbnails merged into main Architecture Toolbox grid.",
+      "source_commit": "c7aa8bf53a5e76f81b227c070ecc3ec3429775bb",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2681,6 +2689,28 @@
         "mobile_runtime": "NOT_TESTED"
       },
       "limitations": "Marquee geometry currently selects device centers, wall endpoints and cable waypoints; full intersection behavior and browser middle-mouse autoscroll should be verified in Chrome."
+    },
+    {
+      "id": "RD-100",
+      "record_type": "runtime_review",
+      "module": "plan_symbol_corner_resize_and_architectural_catalog",
+      "source": "User V85 desktop screenshot and review 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V86",
+      "status": "source_committed",
+      "implementation_status": "source_committed",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "نمادهایی مانند تخت دو نفره و توالت با گرفتن دستگیره گوشه بزرگ و کوچک شوند؛ همه نمادهای پلان با تصویر SVG واقعی در همان معماری و هم‌اندازه آیکون‌های اصلی باشند، نه گروه جداگانه.",
+      "assistant_interpretation": "Render four corner handles for selected unlocked portless SVG devices and support mouse drag resize with Undo; inline 18 existing plan symbols inside Architecture grid and render true SVG thumbnails rather than generic icon.",
+      "verification_evidence": {
+        "source_commit": "c7aa8bf53a5e76f81b227c070ecc3ec3429775bb",
+        "javascript_syntax": "PASS",
+        "desktop_browser_runtime": "NOT_TESTED",
+        "mobile_runtime": "NOT_TESTED"
+      },
+      "limitations": "Corner resizing uses fixed object center; rotated/flipped symbol geometry and touch resizing need functional runtime verification. Port-bearing electrical equipment intentionally excluded."
     }
   ],
   "analyses": [
@@ -3360,10 +3390,16 @@
       "version": "V85",
       "change": "Desktop header RTL and Corel-like select/pan pointer mapping",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V86",
+      "change": "SVG plan object corner resize and inline Architecture symbol grid",
+      "status": "source_committed"
     }
   ],
   "current_release_gate": {
-    "release": "V85",
+    "release": "V86",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
     "runtime_status": "pending_user_verification",
