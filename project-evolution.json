@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V132",
-    "project_evolution_version": "V132",
+    "software_version": "V134",
+    "project_evolution_version": "V134",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V132",
+  "current_source_release": "V134",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -764,6 +764,13 @@
       "summary": "Validate project imports before replacing the active drawing/catalog/types; preserve prior state on rejection and application failure.",
       "runtime_status": "pending_user_verification",
       "record_id": "RD-132-IMPORT"
+    },
+    {
+      "release": "V134",
+      "date": "2026-10-11",
+      "summary": "Display CorelDRAW SVG on components and catalog placements; add persistent editable component background colors.",
+      "record_id": "RD-134-SVG",
+      "runtime_status": "pending_user_verification"
     }
   ],
   "records": [
@@ -2890,6 +2897,31 @@
         "Safari_runtime": "NOT_TESTED"
       },
       "limitations": "Physical iPhone/Safari acceptance pending. Other audit findings remain separate. Imported communication colors must be hexadecimal; files larger than 25 MiB are rejected."
+    },
+    {
+      "id": "RD-134-SVG",
+      "record_type": "runtime_review_fix",
+      "module": "component_svg_and_background",
+      "source": "User report and supplied dorbel-c.svg in this chat",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "target_version": "V134",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "user_statement": "وقتی SVG روی کامپوننت انتخاب و ثبت می‌شود، پیام نامعتبر می‌آید یا نمایش داده نمی‌شود؛ پس‌زمینهٔ آبجکت‌ها قابل تغییر شود و SVG روی کامپوننت نمایش داده شود. خودت commit انجام بده.",
+      "assistant_interpretation": "Accept CorelDRAW class-styled SVG with discarded font-face declarations, preserve artwork and text, expose editable background color in mobile and desktop component properties, keep default SVG background white, persist SVG and color through save/export/import, and push independently on the latest main.",
+      "verification_evidence": {
+        "javascript_syntax": "PASS",
+        "import_regression": "17/17 PASS",
+        "supplied_svg": "PASS in jsdom with actual local dorbel-c.svg: selection, save, rendering DOM, background edit, export/import and catalog placement",
+        "persistent_svg_test": "PASS: tests/svg-display.test.cjs with synthetic Corel fixture",
+        "security": "PASS: SVG script, stylesheet import and external paint URLs rejected",
+        "Safari_runtime": "NOT_TESTED",
+        "visual_pixel_render": "NOT_TESTED"
+      },
+      "limitations": "Embedded fonts are removed; SVG text uses the available system font. User-provided artwork is used locally for validation and is not published in the repository."
     }
   ],
   "analyses": [
@@ -3075,6 +3107,22 @@
         "evidence": "This chat audit and local RoomDesigner-review-v130-fa.md; 9 findings recorded, one addressed in V132",
         "next_boundary": "V135"
       }
+    },
+    {
+      "id": "AN-RD-134-SVG",
+      "created_at": "2026-10-11",
+      "title": "Corel embedded-font rejection and editable component backgrounds",
+      "status": "source_implemented_pending_runtime_acceptance",
+      "root_cause": "The supplied Corel SVG has @font-face src:url(#FontID0). The existing sanitizer rejected any URL in style content before removing embedded fonts, so the SVG never reached the component. The existing white SVG default was insufficient while uploads were rejected.",
+      "decisions": [
+        "Discard font-face declarations before checking remaining class styles for unsafe URL/import/expression content; preserve whitelisted visual class declarations.",
+        "Keep embedded fonts and metadata removed; retain rejection of scripts, event handlers and external references.",
+        "Add backgroundColor to device properties, rendering and import validation; choose contrasting text color for devices without SVG.",
+        "Update upload status and background picker immediately so Save retains the white SVG default or user-chosen color.",
+        "Guard asynchronous SVG reads against selection/document changes or newly locked devices.",
+        "Apply this change on v133 main without altering the other chat active-layer highlight or symbol changes."
+      ],
+      "verification": "17 existing import tests, synthetic SVG DOM regression and actual dorbel-c.svg local integration passed; physical Safari acceptance pending."
     }
   ],
   "deferred_scope": [
@@ -3625,13 +3673,20 @@
       "change": "Atomic validated file import with dependency-free regression tests; synchronize current release metadata with verified Git source.",
       "status": "source_implemented_pending_runtime_acceptance",
       "record_id": "RD-132-IMPORT"
+    },
+    {
+      "version": "V134",
+      "date": "2026-10-11",
+      "change": "Corel font-face compatibility, SVG upload status and configurable component background; synthetic SVG regression test.",
+      "record_id": "RD-134-SVG",
+      "status": "source_implemented_pending_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V132",
+    "release": "V134",
     "source_status": "committed",
     "build_status": "javascript_syntax_pass",
-    "regression_status": "17_tests_pass",
+    "regression_status": "17 import tests and SVG DOM integration pass",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V135"
   },

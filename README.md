@@ -37,3 +37,16 @@ node tests/import-validation.test.cjs
 ```
 
 These tests cover import state/storage preservation and compatibility; they do not replace real browser or iPhone acceptance testing.
+
+## Component SVG display (v134)
+
+CorelDRAW SVG class styles are retained while embedded font definitions are discarded; text uses the available system font. Uploaded artwork remains on the component after saving and export/import. Component background color can be edited in Properties on mobile and desktop; SVG components use white by default.
+
+Optional DOM regression test (development dependency only; Node.js 22.12+):
+
+```sh
+npm install --no-save --package-lock=false jsdom@30.1.2
+node tests/svg-display.test.cjs
+```
+
+This test uses a small synthetic Corel-style fixture; user-provided SVG artwork is not included in the repository.
