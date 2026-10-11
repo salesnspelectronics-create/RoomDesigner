@@ -2740,6 +2740,96 @@
         "browser_runtime": "NOT_TESTED"
       },
       "limitations": "Clipboard is internal to current app page (not OS clipboard); pasted standalone cable without both endpoints is not supported; lock checks cover selected devices, with group/shape behavior pending browser review. No runtime keyboard/browser test yet."
+    },
+    {
+      "record_type": "runtime_review_backlog",
+      "source": "User screenshots and detailed runtime report, 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "status": "staged_pending_fix",
+      "implementation_status": "requires_source_fix_or_reproduction",
+      "runtime_status": "reported_by_user_not_independently_reproduced",
+      "reviewed_source_release": "V87",
+      "id": "RD-102",
+      "module": "port_device_resize",
+      "priority": "P1",
+      "user_statement": "تجهیزات Doorbell و Network Switch روی نقشه با ماوس قابل کوچک و بزرگ شدن نیستند",
+      "source_finding": "V87 desktop corner resize explicitly rejects devices with ports and updateResizeButton likewise rejects them; existing numeric dWidth/dHeight property editor adjusts dimensions.",
+      "action": "Enable secure corner handles for port-bearing devices, update port anchor positions and connected cable endpoints on resizing, honor lock, Undo/Redo and document persistence; distinguish geometry resizing from proportional artwork scaling.",
+      "acceptance": [
+        "Resize port-bearing Doorbell and Network Switch via corner drag",
+        "Connected cable endpoints continue to land on correct port after resize",
+        "Undo/Redo and save/reload restore geometry and connections",
+        "Locked equipment remains protected"
+      ]
+    },
+    {
+      "record_type": "runtime_review_backlog",
+      "source": "User screenshots and detailed runtime report, 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "status": "staged_pending_fix",
+      "implementation_status": "requires_source_fix_or_reproduction",
+      "runtime_status": "reported_by_user_not_independently_reproduced",
+      "reviewed_source_release": "V87",
+      "id": "RD-103",
+      "module": "port_device_rotation",
+      "priority": "P1",
+      "user_statement": "تجهیزات مانند Doorbell قابلیت چرخش ۹۰ درجه چپ/راست و ۱۸۰ درجه ندارند",
+      "source_finding": "V87 rotation menu, saveDevice and rendering transform are conditional on zero ports; thus equipment with ports cannot rotate through existing UI or rendering logic.",
+      "action": "Support rotation for devices with ports, rotate body and port geometries consistently using shared geometry, recalculate cable endpoints, add 90-left/right and 180 controls, preserve visual snapping and undo.",
+      "acceptance": [
+        "Rotate two-port Doorbell 90° left, 90° right, 180°",
+        "Port positions and attached cables follow rotation without detachment",
+        "Save/reload, Undo/Redo and lock guards verified"
+      ]
+    },
+    {
+      "record_type": "runtime_review_backlog",
+      "source": "User screenshots and detailed runtime report, 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "status": "staged_pending_fix",
+      "implementation_status": "requires_source_fix_or_reproduction",
+      "runtime_status": "reported_by_user_not_independently_reproduced",
+      "reviewed_source_release": "V87",
+      "id": "RD-104",
+      "module": "cable_render_layering_and_routing",
+      "priority": "P1",
+      "user_statement": "کابل‌ها در بعضی قسمت‌ها از زیر نماد راه‌پله و دیگر آبجکت‌ها رد می‌شوند و ترتیب نمایش مطلوب نیست",
+      "source_finding": "V87 render() appends cables before devices to the same SVG drawing container; therefore device imagery overpaints intersecting cable segments. User photo shows crossing near stairs. Whether desired rule is topmost cable or rerouting requires decision.",
+      "action": "Specify layer policy for architectural objects/equipment/cables, then separate SVG layers or implement obstacle-aware cable routing/occlusion while preserving selection, labels and ports; provide configurable front/back if needed.",
+      "acceptance": [
+        "Cable overlapping stair symbol visibly follows approved rule, without misleading disappearance",
+        "Port/cable selection and label visibility remain reliable",
+        "Printed PDF and DXF reflect documented visibility/routing policy"
+      ]
+    },
+    {
+      "record_type": "runtime_review_backlog",
+      "source": "User screenshots and detailed runtime report, 2026-10-11",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-11",
+      "status": "staged_pending_fix",
+      "implementation_status": "requires_source_fix_or_reproduction",
+      "runtime_status": "reported_by_user_not_independently_reproduced",
+      "reviewed_source_release": "V87",
+      "id": "RD-105",
+      "module": "dxf_export_freeze",
+      "priority": "P0",
+      "user_statement": "پس از PDF، گرفتن خروجی DXF ظاهراً باعث هنگ رابط می‌شود",
+      "source_finding": "V87 downloadDXF creates a DXF string synchronously across walls, device edges and cable segments; no observed exception, profile, browser console or reproducible file was supplied. Reported PDF→DXF ordering should be reproduced before source changes.",
+      "action": "Reproduce with original .roomplan after Print/Save as PDF and then DXF; inspect browser console, CPU/memory, pop-up/download behavior and execution timing. Add error/finally feedback, large-plan protection and asynchronous generation if profiling proves blocking.",
+      "acceptance": [
+        "PDF then DXF produces non-empty valid DXF and UI remains responsive",
+        "Repeated DXF export produces correctly named files",
+        "Reproduction on affected browser/plan, including 100 and 500 object cases, with error/timing evidence",
+        "No regression to wall/cable/device geometry in DXF"
+      ]
     }
   ],
   "analyses": [
@@ -3431,6 +3521,12 @@
       "version": "V87",
       "change": "Desktop undo/cut/copy/paste keyboard shortcuts and buttons",
       "status": "source_committed"
+    },
+    {
+      "date": "2026-10-11",
+      "version": "V87",
+      "change": "Stage RD-102..RD-105 runtime findings; review-only; no product source change or version increment",
+      "status": "review_backlog_staged"
     }
   ],
   "current_release_gate": {
