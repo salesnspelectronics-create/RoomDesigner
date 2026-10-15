@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V150",
-    "project_evolution_version": "V150",
+    "software_version": "V151",
+    "project_evolution_version": "V151",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V150",
+  "current_source_release": "V151",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -854,6 +854,13 @@
       "date": "2026-10-15",
       "summary": "Show Name / Hide Name checkbox in object context menu.",
       "record_id": "RD-150-CONTEXT-NAME-TOGGLE",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V151",
+      "date": "2026-10-15",
+      "summary": "Architecture and Equipment add buttons and custom catalog manager.",
+      "record_id": "RD-151-TOOLBOX-CUSTOM-ADD-MANAGE",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3255,6 +3262,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-151-TOOLBOX-CUSTOM-ADD-MANAGE",
+      "record_type": "feature_implementation",
+      "module": "desktop_toolbox",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V151",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "کنار عناوین تجهیزات و معماری دکمه + برای افزودن مورد جدید قرار بگیرد، کابل‌کشی دکمه + نداشته باشد و حذف موارد سفارشی از منوی مدیریت انجام شود.",
+      "assistant_interpretation": "Use existing custom device editor for both categories, render architecture entries in architecture section and equipment entries in equipment section, add dedicated custom library delete manager.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "toolbox plus and custom category persisted; management delete action",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3627,6 +3654,19 @@
         "Use Show Name / Hide Name contextual command with checkbox icon.",
         "Apply only to selected editable device.",
         "Reuse existing label renderer and save history."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-151-TOOLBOX-CUSTOM",
+      "created_at": "2026-10-15",
+      "title": "Custom architecture and equipment creation",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Toolbox lacked category-specific add controls and custom deletion manager.",
+      "decisions": [
+        "Plus in Architecture and Equipment only.",
+        "Reuse editor with category metadata and no required port for architecture.",
+        "Manage deletion of custom catalog entries in separate toolbox manager."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4266,15 +4306,21 @@
       "date": "2026-10-15",
       "change": "Right-click Show Name / Hide Name toggle.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V151",
+      "date": "2026-10-15",
+      "change": "Custom toolbox add and delete management.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V150",
+    "release": "V151",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "right-click Show Name/Hide Name with checkbox icon and persisted showLabel; runtime pending",
+    "regression_status": "plus actions for architecture/equipment, custom category saved, deletion manager; runtime pending",
     "runtime_status": "pending_user_verification",
-    "maintenance_audit": "V150 boundary reached; full architecture audit not performed"
+    "maintenance_audit": "V150 audit still pending"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
