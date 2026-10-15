@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
+import {randomUUID} from 'node:crypto';
 
 const source=readFileSync(new URL('../index.html',import.meta.url),'utf8');
 function extractFunction(name){
@@ -30,7 +31,7 @@ test('revision snapshot includes layers, active layer, without nested revisions'
 });
 test('UIDs are unique across a large batch',()=>{
  const uidSource=source.slice(source.indexOf('const issuedIds=new Set()'),source.indexOf('function uid()'))+extractFunction('uid');
- const scope=context(uidSource,{crypto:{randomUUID:()=>globalThis.crypto.randomUUID()}});
+ const scope=context(uidSource,{crypto:{randomUUID}});
  const ids=new Set(Array.from({length:2000},()=>scope.uid()));
  assert.equal(ids.size,2000);assert.ok([...ids].every(id=>id.startsWith('x')));
 });
