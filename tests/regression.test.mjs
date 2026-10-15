@@ -98,7 +98,8 @@ test('successful import clears history and queues mirror save after replacing th
 
 function mirrorHarness(){
  const writes=[],status=[];
- let release;
+ let release,notifyStarted;
+ const started=new Promise(resolve=>{notifyStarted=resolve});
  const gate=new Promise(resolve=>{release=resolve});
  const ctx=context(`
  let doc={id:'a',name:'A',date:'today'},documentEpoch=0,mirrorGeneration=0,mirrorPending=false,mirrorSaveOk=false,primarySaveOk=true,mirrorQueue=Promise.resolve();
@@ -107,16 +108,16 @@ function mirrorHarness(){
  function state(){return {mirrorPending,mirrorSaveOk,documentEpoch,mirrorGeneration}}
  function done(){return mirrorQueue}
  `,{
-  safeStorage:{setItem:()=>true},mirrorOperation:async (_mode,value)=>{writes.push(JSON.parse(value).id);if(writes.length===1)await gate;return true},
+  safeStorage:{setItem:()=>true},mirrorOperation:async (_mode,value)=>{writes.push(JSON.parse(value).id);if(writes.length===1){notifyStarted();await gate}return true},
   persistenceStatus:()=>status.push('updated'),
   $:()=>({textContent:''}),notify:()=>{}
  });
- return {ctx,writes,status,release};
+ return {ctx,writes,status,release,started};
 }
 test('consecutive saves serialize IndexedDB writes and retain latest generation',async()=>{
  const h=mirrorHarness();
  h.ctx.saveAuto();h.ctx.change({id:'b',name:'B',date:'today'});h.ctx.saveAuto();
- await Promise.resolve();await Promise.resolve();await Promise.resolve();
+ await h.started;
  assert.deepEqual(h.writes,['a']);
  h.release();await h.ctx.done();
  assert.deepEqual(h.writes,['a','b']);
