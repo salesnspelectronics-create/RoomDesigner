@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V140",
-    "project_evolution_version": "V140",
+    "software_version": "V141",
+    "project_evolution_version": "V141",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V140",
+  "current_source_release": "V141",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -784,6 +784,13 @@
       "date": "2026-10-15",
       "summary": "Restore architectural door leaf/swing instead of generic library SVG; align DXF and newly placed doors.",
       "record_id": "RD-140-DOOR-RENDER",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V141",
+      "date": "2026-10-15",
+      "summary": "Stretch portless plan symbol SVG with resized object bounds by default, preserving explicit SVG modes.",
+      "record_id": "RD-141-PLAN-SVG-RESIZE",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2985,6 +2992,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-141-PLAN-SVG-RESIZE",
+      "record_type": "bug_fix",
+      "module": "plan_symbol_svg_resize",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V141",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "وقتی تخت یا آبجکت پلان را بزرگ می‌کنم SVG داخلی همراه با آبجکت بزرگ نمی‌شود؛ باید Stretch شود.",
+      "assistant_interpretation": "Default portless plan symbols to stretch while respecting explicitly saved SVG modes; unify rendering and DXF geometry.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "deviceSvgMode used by canvas, DXF, desktop and mobile properties; explicit svgMode preserved",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3222,6 +3249,19 @@
         "Render native swing/leaf for legacy door objects holding shared-library SVG references.",
         "Retain user-uploaded SVG without library asset ID as intentional customization.",
         "Record V140 audit boundary: full maintenance audit remains pending."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-141-PLAN-SVG-RESIZE",
+      "created_at": "2026-10-15",
+      "title": "Plan SVG default fit prevents proportional object bounds fill",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Canvas and DXF default to fit mode even for portless architecture symbols, so resized object bounds grow while art retains intrinsic aspect ratio.",
+      "decisions": [
+        "Default portless non-door plan symbols to stretch.",
+        "Keep explicit fit/center/stretch modes for user customization.",
+        "Apply same mode in DXF and property controls."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -3801,15 +3841,20 @@
       "date": "2026-10-15",
       "change": "Fix default library SVG overriding architectural door representation in canvas and DXF; preserve explicit uploaded custom SVG.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V141",
+      "date": "2026-10-15",
+      "change": "Default plan-symbol SVG resize to stretch, synchronize canvas/DXF and mode selectors.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V140",
+    "release": "V141",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "door native rendering and DXF branches aligned; automated browser regression not run",
+    "regression_status": "mode selection unified for canvas, DXF, mobile and desktop properties; browser regression not run",
     "runtime_status": "pending_user_verification",
-    "maintenance_audit": "V140 boundary audit due; full source audit not performed; limited to door regression",
     "next_development_audit": "V145"
   },
   "handoff": {
