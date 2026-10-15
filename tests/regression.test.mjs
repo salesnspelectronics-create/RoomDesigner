@@ -95,3 +95,50 @@ test('successful import clears history and queues mirror save after replacing th
  assert.deepEqual(h.ops,['saved']);
  assert.equal(h.persisted.get('rd_types'),'{"new":true}');
 });
+
+function mirrorHarness(){
+ const writes=[],status=[];
+ let release;
+ const gate=new Promise(resolve=>{release=resolve});
+ const ctx=context(`
+ let doc={id:'a',name:'A',date:'today'},documentEpoch=0,mirrorGeneration=0,mirrorPending=false,mirrorSaveOk=false,primarySaveOk=true,mirrorQueue=Promise.resolve();
+ `+extractFunction('saveAuto')+`
+ function change(next){doc=next}
+ function state(){return {mirrorPending,mirrorSaveOk,documentEpoch,mirrorGeneration}}
+ function done(){return mirrorQueue}
+ `,{
+  safeStorage:{setItem:()=>true},mirrorOperation:async (_mode,value)=>{writes.push(JSON.parse(value).id);if(writes.length===1)await gate;return true},
+  persistenceStatus:()=>status.push('updated'),
+  $:()=>({textContent:''}),notify:()=>{}
+ });
+ return {ctx,writes,status,release};
+}
+test('consecutive saves serialize IndexedDB writes and retain latest generation',async()=>{
+ const h=mirrorHarness();
+ h.ctx.saveAuto();h.ctx.change({id:'b',name:'B',date:'today'});h.ctx.saveAuto();
+ await Promise.resolve();await Promise.resolve();await Promise.resolve();
+ assert.deepEqual(h.writes,['a']);
+ h.release();await h.ctx.done();
+ assert.deepEqual(h.writes,['a','b']);
+ assert.equal(h.ctx.state().mirrorPending,false);
+ assert.equal(h.ctx.state().mirrorSaveOk,true);
+ assert.equal(h.ctx.state().mirrorGeneration,2);
+});
+test('late recovery cannot overwrite a newer unsaved drawing',async()=>{
+ let release;
+ const pending=new Promise(resolve=>{release=resolve});
+ const c=context(`
+ let doc={id:'current',devices:[],cables:[]},documentEpoch=0,drawingChangedSinceStartup=false,mirrorQueue=Promise.resolve();
+ `+extractFunction('recoverMirrorOnStartup')+`
+ function edit(){documentEpoch++;drawingChangedSinceStartup=true;doc={id:'edited',devices:[],cables:[]}}
+ function state(){return doc.id}
+ `,{
+ mirrorOperation:async()=>await pending,
+ validateRoomDocument:x=>x,
+ readLocalJSON:()=>null,render:()=>{},updateHistoryControls:()=>{},notify:()=>{}
+ });
+ const recovery=c.recoverMirrorOnStartup();
+ c.edit();release(JSON.stringify({id:'stale',devices:[],cables:[]}));
+ await recovery;
+ assert.equal(c.state(),'edited');
+});
