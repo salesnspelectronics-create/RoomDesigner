@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V143",
-    "project_evolution_version": "V143",
+    "software_version": "V144",
+    "project_evolution_version": "V144",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V143",
+  "current_source_release": "V144",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -805,6 +805,13 @@
       "date": "2026-10-15",
       "summary": "Hide selection/resize overlays when their device or wall layer is hidden.",
       "record_id": "RD-143-HIDDEN-LAYER-SELECTION",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V144",
+      "date": "2026-10-15",
+      "summary": "Reduce visual size and opacity of resize selection handles without losing clickability.",
+      "record_id": "RD-144-SELECTION-HANDLES",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3066,6 +3073,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-144-SELECTION-HANDLES",
+      "record_type": "bug_fix",
+      "module": "selection_resize_handles",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V144",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "دستگیره‌های نارنجی انتخاب آبجکت خیلی بزرگ و پررنگ‌اند و با پورت‌های تجهیز اشتباه می‌شوند؛ کوچک‌تر و کم‌رنگ‌تر شوند.",
+      "assistant_interpretation": "Reduce visual handle footprint and opacity while retaining usable pointer hit target and distinguishing orange selection outline from colored ports.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "7px viewport-relative handles at 55% fill/stroke opacity; outline 1.5px 60% opacity; hit radius 12px",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3344,6 +3371,20 @@
         "Apply effective visibility to wall shape corner overlays.",
         "Suppress cable draft anchor indicators for hidden devices.",
         "Preserve selection state so unhiding a layer restores its selection."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-144-SELECTION-HANDLES",
+      "created_at": "2026-10-15",
+      "title": "Resize selection handles too visually similar to device ports",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Selection handles were rendered as opaque 12x12 orange-outlined squares, matching the size and square shape of colored device ports.",
+      "decisions": [
+        "Reduce selection handles to 7 screen pixels at all zoom levels.",
+        "Set selection handle fill and outline opacity to 55%.",
+        "Reduce selected device outline width and opacity.",
+        "Retain a 12 screen pixel mouse hit radius so handles remain operable."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -3941,13 +3982,19 @@
       "date": "2026-10-15",
       "change": "Respect layer visibility for device/wall selection handles and cable draft anchors.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V144",
+      "date": "2026-10-15",
+      "change": "Smaller translucent resize handles and lighter selected-device outline.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V143",
+    "release": "V144",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "selection overlays and cable draft anchors gated by effective layer visibility; runtime unverified",
+    "regression_status": "resize handles scaled to 7 screen pixels, 55% opacity; selected outline reduced; mouse hit radius retained at 12px; runtime unverified",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V145"
   },
