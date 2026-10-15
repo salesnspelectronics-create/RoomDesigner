@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V151",
-    "project_evolution_version": "V151",
+    "software_version": "V152",
+    "project_evolution_version": "V152",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V151",
+  "current_source_release": "V152",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -861,6 +861,13 @@
       "date": "2026-10-15",
       "summary": "Architecture and Equipment add buttons and custom catalog manager.",
       "record_id": "RD-151-TOOLBOX-CUSTOM-ADD-MANAGE",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V152",
+      "date": "2026-10-15",
+      "summary": "Persian context menu and transparent background for SVG-backed devices; import compatibility pending sample.",
+      "record_id": "RD-152-PERSIAN-CONTEXT-TRANSPARENT-ARTWORK",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3282,6 +3289,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-152-PERSIAN-CONTEXT-TRANSPARENT-ARTWORK",
+      "record_type": "bug_fix",
+      "module": "desktop_context_and_svg_render",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V152",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "منوی کلیک راست فارسی شود؛ SVG آبجکت‌ها زمینه سفید نداشته باشند؛ SVG Import خطای نامعتبر یا ناامن می‌دهد.",
+      "assistant_interpretation": "Localize context menu and remove opaque SVG backdrop; investigate import rejection with exact user SVG sample rather than relaxing security without evidence.",
+      "implementation_status": "partial_source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "Persian commands; transparent body for SVG artwork; importer rejection unresolved pending sample",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3669,6 +3696,18 @@
         "Manage deletion of custom catalog entries in separate toolbox manager."
       ],
       "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-152-SVG-IMPORT",
+      "created_at": "2026-10-15",
+      "title": "SVG import rejection requires sample",
+      "status": "pending_sample",
+      "root_cause": "Current SvgEngine.sanitize rejects unsupported nodes/attributes and dangerous references; exact user file not yet available.",
+      "decisions": [
+        "Do not disable SVG security checks without analyzing rejected file.",
+        "Request failing SVG sample for targeted compatibility fix."
+      ],
+      "runtime_status": "pending_user_sample"
     }
   ],
   "deferred_scope": [
@@ -4312,15 +4351,20 @@
       "date": "2026-10-15",
       "change": "Custom toolbox add and delete management.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V152",
+      "date": "2026-10-15",
+      "change": "Persian right-click menu and no opaque background behind SVG devices.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V151",
+    "release": "V152",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "plus actions for architecture/equipment, custom category saved, deletion manager; runtime pending",
-    "runtime_status": "pending_user_verification",
-    "maintenance_audit": "V150 audit still pending"
+    "regression_status": "localized object context menu and removed opaque device backdrop behind SVG artwork; user sample needed for SVG import sanitizer diagnosis",
+    "runtime_status": "pending_user_verification"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
