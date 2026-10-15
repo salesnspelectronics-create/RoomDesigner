@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V144",
-    "project_evolution_version": "V144",
+    "software_version": "V145",
+    "project_evolution_version": "V145",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V144",
+  "current_source_release": "V145",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -812,6 +812,13 @@
       "date": "2026-10-15",
       "summary": "Reduce visual size and opacity of resize selection handles without losing clickability.",
       "record_id": "RD-144-SELECTION-HANDLES",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V145",
+      "date": "2026-10-15",
+      "summary": "Desktop right-click object menu and toolbar rotate left/right 90°.",
+      "record_id": "RD-145-DESKTOP-CONTEXT-ROTATE",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3093,6 +3100,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-145-DESKTOP-CONTEXT-ROTATE",
+      "record_type": "feature_implementation",
+      "module": "desktop_context_menu_and_toolbar",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V145",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در مد ویندوز کلیک راست روی آبجکت‌ها منوی Delete و دستورات بیاید، نه منوی پیش‌فرض Chrome؛ بالای صفحه کنار Group/Ungroup دو دکمه Rotate 90° چپ و راست اضافه شود.",
+      "assistant_interpretation": "Add object-scoped right-click context menu for desktop mode and 90-degree rotate actions next to group controls.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "contextmenu preventDefault for canvas objects, custom actions; toolbar left/right rotate wired and disabled without editable device",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3385,6 +3412,20 @@
         "Set selection handle fill and outline opacity to 55%.",
         "Reduce selected device outline width and opacity.",
         "Retain a 12 screen pixel mouse hit radius so handles remain operable."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-145-DESKTOP-CONTEXT-ROTATE",
+      "created_at": "2026-10-15",
+      "title": "Missing object context menu and toolbar rotation",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "No contextmenu listener for drawing objects and desktop shortcut bar had no rotation actions.",
+      "decisions": [
+        "Intercept browser context menu only on drawing objects in desktop layout.",
+        "Show Copy/Cut/Duplicate/Delete and applicable Rotate/Ungroup actions.",
+        "Use existing checkpoint, save and render flow for rotation.",
+        "Disable rotate toolbar controls unless editable device is selected."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -3988,15 +4029,22 @@
       "date": "2026-10-15",
       "change": "Smaller translucent resize handles and lighter selected-device outline.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V145",
+      "date": "2026-10-15",
+      "change": "Add Windows-style object right-click context menu and rotate toolbar actions.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V144",
+    "release": "V145",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "resize handles scaled to 7 screen pixels, 55% opacity; selected outline reduced; mouse hit radius retained at 12px; runtime unverified",
+    "regression_status": "context menu scoped to desktop drawing objects; toolbar rotate actions bound to device selection",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V145"
+    "maintenance_audit": "V145 boundary audit due; full audit not performed",
+    "next_development_audit": "V150"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
