@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V145",
-    "project_evolution_version": "V145",
+    "software_version": "V146",
+    "project_evolution_version": "V146",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V145",
+  "current_source_release": "V146",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -819,6 +819,13 @@
       "date": "2026-10-15",
       "summary": "Desktop right-click object menu and toolbar rotate left/right 90°.",
       "record_id": "RD-145-DESKTOP-CONTEXT-ROTATE",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V146",
+      "date": "2026-10-15",
+      "summary": "Context icons, corner resize cursor, draggable orthogonal cable bends.",
+      "record_id": "RD-146-CONTEXT-RESIZE-CABLE-BENDS",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3120,6 +3127,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-146-CONTEXT-RESIZE-CABLE-BENDS",
+      "record_type": "feature_implementation",
+      "module": "desktop_interactions",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V146",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "به Rotate و Cut/Copy/Duplicate/Delete آیکون اضافه شود، نشانگر ماوس روی گوشه آبجکت Resize شود و گوشه‌های ۹۰ درجه کابل قابل Drag باشند.",
+      "assistant_interpretation": "Iconize object context actions and toolbar rotations, indicate device corner resize with diagonal cursor, and permit drag editing of generated orthogonal cable bends.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "iconized menu and toolbar; pointermove resize cursor; orthogonal bend handles and pointer drag setup",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3426,6 +3453,19 @@
         "Show Copy/Cut/Duplicate/Delete and applicable Rotate/Ungroup actions.",
         "Use existing checkpoint, save and render flow for rotation.",
         "Disable rotate toolbar controls unless editable device is selected."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-146-DESKTOP-INTERACTIONS",
+      "created_at": "2026-10-15",
+      "title": "Improve desktop object and cable editing affordances",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Context commands lacked icons; corner hit detection did not update cursor; only manually persisted cable waypoints were draggable.",
+      "decisions": [
+        "Add distinct icons and full rotate labels.",
+        "Show diagonal resize cursor at editable device corners.",
+        "Expose generated orthogonal bends and convert them into editable waypoints when dragged."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4035,15 +4075,20 @@
       "date": "2026-10-15",
       "change": "Add Windows-style object right-click context menu and rotate toolbar actions.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V146",
+      "date": "2026-10-15",
+      "change": "Desktop context iconography and interactive resize/cable bend affordances.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V145",
+    "release": "V146",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "context menu scoped to desktop drawing objects; toolbar rotate actions bound to device selection",
+    "regression_status": "icons added to object menu; resize cursor near corners; orthogonal cable bends expose drag handles; runtime pending",
     "runtime_status": "pending_user_verification",
-    "maintenance_audit": "V145 boundary audit due; full audit not performed",
     "next_development_audit": "V150"
   },
   "handoff": {
