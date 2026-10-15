@@ -158,3 +158,24 @@ test('rollback failure identifies damaged storage keys and prevents success noti
  assert.equal(h.sandbox.state().id,'before');
  assert.equal(h.ops.length,0);
 });
+
+test('undo rejects invalid history without mutating stacks',()=>{
+ const c=context("let doc={id:'current',devices:[],cables:[]},history=['{invalid'],redoHistory=[],selection=null,multiSelection=null;"+
+ extractFunction('applyHistoryStep')+extractFunction('performUndo')+
+ "function state(){return {id:doc.id,history:[...history],redoHistory:[...redoHistory]}}",
+ {validateRoomDocument:x=>x,notify:()=>{},clearPointerState:()=>{},scheduleSave:()=>{},render:()=>{},updateHistoryControls:()=>{}});
+ c.performUndo();
+ assert.equal(c.state().id,'current');
+ assert.deepEqual(Array.from(c.state().history),['{invalid']);
+ assert.equal(c.state().redoHistory.length,0);
+});
+test('undo and redo round-trip a valid snapshot',()=>{
+ const before={id:'before',devices:[],cables:[],walls:[]};
+ const after={id:'after',devices:[],cables:[],walls:[]};
+ const code="let doc="+JSON.stringify(after)+",history=["+JSON.stringify(JSON.stringify(before))+"],redoHistory=[],selection=null,multiSelection=null;"+
+ extractFunction('applyHistoryStep')+extractFunction('performUndo')+extractFunction('performRedo')+
+ "function state(){return {id:doc.id,history:[...history],redoHistory:[...redoHistory]}}";
+ const c=context(code,{validateRoomDocument:x=>x,notify:()=>{},clearPointerState:()=>{},scheduleSave:()=>{},render:()=>{},updateHistoryControls:()=>{}});
+ c.performUndo();assert.equal(c.state().id,'before');
+ c.performRedo();assert.equal(c.state().id,'after');
+});
