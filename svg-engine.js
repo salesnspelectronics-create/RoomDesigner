@@ -24,10 +24,14 @@
   for(const n of [r,...r.querySelectorAll('*')]){
    if(n.namespaceURI!==NS||!allowed.has(n.localName.toLowerCase()))return null;
    for(const a of [...n.attributes]){
+    // RD-012: never allow an XML base URI or namespace escape to turn local
+    // fragment references into external network requests.
+    if(a.name==='xml:base'||a.name==='base'||(a.namespaceURI&&!['http://www.w3.org/2000/xmlns/','http://www.w3.org/1999/xlink','http://www.w3.org/XML/1998/namespace'].includes(a.namespaceURI)))return null;
+    if(a.namespaceURI==='http://www.w3.org/XML/1998/namespace'&&a.localName!=='space')return null;
     if(/^on/i.test(a.name)||/javascript:|expression\s*\(|@import|\\/i.test(a.value))return null;
     if(/href/i.test(a.name)&&!/^#[\w.-]+$/.test(a.value))return null;
     if(/url\s*\(/i.test(a.value)&&!/^url\(\s*#[\w.-]+\s*\)$/.test(a.value))return null;
-    if(a.name==='style'&&/url\s*\(/i.test(a.value))return null;
+    if(a.name==='style'&&/url\s*\(|@|[<>]/i.test(a.value))return null;
    }
    const css=(n.getAttribute('class')||'').split(/\s+/).map(c=>rules.get(c)).filter(Boolean).join(';');if(css)n.setAttribute('style',(n.getAttribute('style')||'')+';'+css);n.removeAttribute('class');
   }
