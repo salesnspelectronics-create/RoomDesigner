@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V142",
-    "project_evolution_version": "V142",
+    "software_version": "V143",
+    "project_evolution_version": "V143",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V142",
+  "current_source_release": "V143",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -798,6 +798,13 @@
       "date": "2026-10-15",
       "summary": "Re-route cables from current positions and sides of both ports after port movement.",
       "record_id": "RD-142-CABLE-PORT-ROUTING",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V143",
+      "date": "2026-10-15",
+      "summary": "Hide selection/resize overlays when their device or wall layer is hidden.",
+      "record_id": "RD-143-HIDDEN-LAYER-SELECTION",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3039,6 +3046,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-143-HIDDEN-LAYER-SELECTION",
+      "record_type": "bug_fix",
+      "module": "layer_visibility_selection",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V143",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "وقتی لایه دستگاه انتخاب‌شده را Hide می‌کنم، دستگیره‌های نارنجی انتخاب/Resize روی صفحه باقی می‌مانند.",
+      "assistant_interpretation": "Gate device and wall selection overlays and draft cable anchor indicators by the effective object/layer visibility.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "device outline overlay requires layerVisible; wall corner overlay requires visible member; cable draft anchor requires visible device",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3303,6 +3330,20 @@
         "Filter stored bends inside either device clearance region.",
         "Persist manual bends rather than auto-generated path geometry for new cables.",
         "Keep legacy documents readable; require runtime testing for dense layouts."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-143-HIDDEN-LAYER-SELECTION",
+      "created_at": "2026-10-15",
+      "title": "Selection overlay bypasses layer visibility filter",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Main drawing loops filter objects by layerVisible, but selection resize handles are appended in separate unconditional passes.",
+      "decisions": [
+        "Apply layerVisible to device selection handles.",
+        "Apply effective visibility to wall shape corner overlays.",
+        "Suppress cable draft anchor indicators for hidden devices.",
+        "Preserve selection state so unhiding a layer restores its selection."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -3894,13 +3935,19 @@
       "date": "2026-10-15",
       "change": "Dynamic two-ended cable port routing, discard stale near-device bends, persist manual bends only.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V143",
+      "date": "2026-10-15",
+      "change": "Respect layer visibility for device/wall selection handles and cable draft anchors.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V142",
+    "release": "V143",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "both port stubs recomputed from current port geometry; new cable stores user bends instead of generated route; runtime unverified",
+    "regression_status": "selection overlays and cable draft anchors gated by effective layer visibility; runtime unverified",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V145"
   },
