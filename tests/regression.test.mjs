@@ -9,12 +9,13 @@ const source=readFileSync(new URL('../index.html',import.meta.url),'utf8');
 function extractFunction(name){
  const start=source.indexOf('function '+name+'(');
  assert.ok(start>=0,name+' exists');
+ const isAsync=source.slice(Math.max(0,start-6),start)==='async ';
  const body=source.indexOf('{',start);let depth=0,quote='',escape=false;
  for(let i=body;i<source.length;i++){
   const c=source[i];
   if(quote){if(escape)escape=false;else if(c==='\\')escape=true;else if(c===quote)quote='';continue}
   if(c==="'"||c==='"'||c==='\x60'){quote=c;continue}
-  if(c==='{')depth++;else if(c==='}'&&!--depth)return source.slice(start,i+1);
+  if(c==='{')depth++;else if(c==='}'&&!--depth)return (isAsync?'async ':'')+source.slice(start,i+1);
  }
  throw Error('Unterminated '+name);
 }
@@ -56,7 +57,7 @@ test('failed import write is tracked for rollback, including the failing key',()
  const impl=source.slice(i,j);
  assert.match(impl,/applied\.push\(key\);if\(!safeStorage\.setItem\(key,value\)\)/);
  assert.match(impl,/rollbackStorage\(\)/);
- assert.match(impl,/if\(old===null\)safeStorage\.removeItem\(key\)/);
+ assert.match(impl,/old===null\?safeStorage\.removeItem\(key\):safeStorage\.setItem\(key,old\)/);
 });
 
 function importHarness(failKey=null){
