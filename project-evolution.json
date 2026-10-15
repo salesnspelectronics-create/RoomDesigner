@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V139",
-    "project_evolution_version": "V139",
+    "software_version": "V140",
+    "project_evolution_version": "V140",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V139",
+  "current_source_release": "V140",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -777,6 +777,13 @@
       "date": "2026-10-11",
       "summary": "Independent SVG engine, shared 33-symbol library, graphical crop editor, local assignment manager, port-bearing transforms and portable artwork snapshots.",
       "record_id": "RD-139-SVG-ENGINE",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V140",
+      "date": "2026-10-15",
+      "summary": "Restore architectural door leaf/swing instead of generic library SVG; align DXF and newly placed doors.",
+      "record_id": "RD-140-DOOR-RENDER",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -2958,6 +2965,26 @@
         "DXF is sampled SVG outline geometry; full SVG fills/fonts/gradients/masks are not CAD entities.",
         "Library drafts are browser-local; publication is explicit and project artwork snapshots remain portable."
       ]
+    },
+    {
+      "id": "RD-140-DOOR-RENDER",
+      "record_type": "bug_fix",
+      "module": "architecture_door",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V140",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در قبلاً به شکل بازشوی درست معماری نمایش داده می‌شد؛ اکنون مانند یک آبجکت شده است. نمایش قبلی را برگردان.",
+      "assistant_interpretation": "Keep architectural door's native leaf and swing-arc rendering even if an older document has a default shared-library SVG; do not assign generic SVG to new doors; preserve explicit custom SVG uploads.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "source": "static assertion: door render and DXF both use native branch for library SVG; new door skips automatic SVG assignment",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3182,6 +3209,20 @@
         "correction": "Append this correction rather than rewriting V135–V138 history; prior boundary audit status is unverified.",
         "next_due": "V140"
       },
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-140-DOOR",
+      "created_at": "2026-10-15",
+      "title": "Default SVG overrides architectural door geometry",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "V139 default SVG assignment adds d.svg to new doors; native architectural door rendering and DXF were gated on !d.svg.",
+      "decisions": [
+        "Do not assign default SVG to architectural door kind.",
+        "Render native swing/leaf for legacy door objects holding shared-library SVG references.",
+        "Retain user-uploaded SVG without library asset ID as intentional customization.",
+        "Record V140 audit boundary: full maintenance audit remains pending."
+      ],
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3754,15 +3795,22 @@
       "change": "Correct current Project Evolution metadata from stale V134 to verified source V139. Earlier history is preserved; V135–V138 ledger omissions are not fabricated.",
       "status": "metadata_alignment_correction",
       "verified_base_commit": "e0fc59928d49ec4415b6543d60e93e87e2af5e9b"
+    },
+    {
+      "version": "V140",
+      "date": "2026-10-15",
+      "change": "Fix default library SVG overriding architectural door representation in canvas and DXF; preserve explicit uploaded custom SVG.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V139",
+    "release": "V140",
     "source_status": "implemented_for_commit",
-    "build_status": "syntax_pass_before_final_small_adjustments",
-    "regression_status": "17 import tests + existing SVG DOM regression + 14 library/engine checks PASS; publication validation PASS",
+    "build_status": "static_source_assertions_passed; browser_not_run",
+    "regression_status": "door native rendering and DXF branches aligned; automated browser regression not run",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V140"
+    "maintenance_audit": "V140 boundary audit due; full source audit not performed; limited to door regression",
+    "next_development_audit": "V145"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
