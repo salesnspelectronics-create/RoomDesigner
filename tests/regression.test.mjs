@@ -72,10 +72,10 @@ function importHarness(failKey=null){
  const sandbox=context(`
  let doc={id:'before',devices:[],cables:[],walls:[]},types={old:true},catalog=[];
  let selection=null,multiSelection=null,history=['previous'],redoHistory=[],drag=null,wallGesture=null,wallStart=null,polyPreview=null,start=null,routePoints=[],previewPoint=null,cableGesture=null,tool='select',resizeMode=false;
- let documentEpoch=0,drawingChangedSinceStartup=false,persistTimer=null;
+ let documentEpoch=0,drawingChangedSinceStartup=false,persistTimer=null,manualSaveFailed=false;
  `+extractFunction('applyRoomImport')+`
  function state(){return {id:doc.id,history:[...history],epoch:documentEpoch}}
- `,{safeStorage,populateDesktopToolbox:()=>{},setTool:()=>{},updateHistoryControls:()=>{},render:()=>{},clearPointerState:()=>{},clearTimeout:()=>{},saveAuto:()=>{ops.push('saved')},close:()=>{},notify:()=>{},ops});
+ `,{safeStorage,populateDesktopToolbox:()=>{},setTool:()=>{},updateHistoryControls:()=>{},render:()=>{},clearPointerState:()=>{},clearTimeout:()=>{},saveAuto:()=>{ops.push('saved')},persistenceStatus:()=>{},close:()=>{},notify:()=>{},ops});
  return {sandbox,persisted,ops,initial,safeStorage};
 }
 test('injected import write failure restores document, history and stored keys',()=>{
