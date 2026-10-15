@@ -7,8 +7,11 @@
  function serialize(root){return new XMLSerializer().serializeToString(root)}
  function viewBox(value){const b=Array.isArray(value)?value:String(value||'').trim().split(/[ ,]+/).map(Number);if(b.length!==4||!b.every(Number.isFinite)||b[2]<=0||b[3]<=0)throw Error('ViewBox نامعتبر است');return b.slice()}
  function sanitize(raw){
-  if(typeof raw!=='string'||!raw||raw.length>250000||/<!DOCTYPE|<!ENTITY/i.test(raw))return null;
-  const p=parse(raw),r=p.documentElement;if(p.querySelector('parsererror')||r.localName!=='svg'||r.namespaceURI!==NS)return null;
+  if(typeof raw!=='string'||!raw||raw.length>250000||/<!ENTITY/i.test(raw))return null;
+  // Permit only the standard, external SVG 1.1 DTD declaration; never resolve external entities.
+  const standardDtd=/<!DOCTYPE\s+svg\s+PUBLIC\s+["']-\/\/W3C\/\/DTD SVG 1\.1\/\/EN["']\s+["']http:\/\/www\.w3\.org\/Graphics\/SVG\/1\.1\/DTD\/svg11\.dtd["']\s*>/gi;
+  const withoutDtd=raw.replace(standardDtd,'');if(/<!DOCTYPE/i.test(withoutDtd))return null;
+  const p=parse(withoutDtd),r=p.documentElement;if(p.querySelector('parsererror')||r.localName!=='svg'||r.namespaceURI!==NS)return null;
   const rules=new Map();
   for(const style of [...r.querySelectorAll('style')]){
    const css=(style.textContent||'').replace(/@font-face\s*\{[^{}]*\}/gi,'');
@@ -16,6 +19,7 @@
    for(const match of css.matchAll(/\.([\w-]+)\s*\{([^{}]*)\}/g))rules.set(match[1],match[2].split(';').map(x=>x.trim()).filter(x=>/^(fill|stroke|stroke-width|stroke-linejoin|stroke-linecap|stroke-miterlimit|fill-rule|opacity|fill-opacity|stroke-opacity|font-size|font-family|font-weight)\s*:/i.test(x)).join(';'));
    style.remove();
   }
+  // Embedded CorelDRAW font glyphs are nonessential and can contain unsupported nodes.
   for(const n of [...r.querySelectorAll('font,metadata')])n.remove();
   for(const n of [r,...r.querySelectorAll('*')]){
    if(n.namespaceURI!==NS||!allowed.has(n.localName.toLowerCase()))return null;

@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V152",
-    "project_evolution_version": "V152",
+    "software_version": "V153",
+    "project_evolution_version": "V153",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V152",
+  "current_source_release": "V153",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -868,6 +868,13 @@
       "date": "2026-10-15",
       "summary": "Persian context menu and transparent background for SVG-backed devices; import compatibility pending sample.",
       "record_id": "RD-152-PERSIAN-CONTEXT-TRANSPARENT-ARTWORK",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V153",
+      "date": "2026-10-15",
+      "summary": "Permit standard SVG 1.1 CorelDRAW DTD for safe import.",
+      "record_id": "RD-153-CORELDRAW-SVG-IMPORT",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3309,6 +3316,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-153-CORELDRAW-SVG-IMPORT",
+      "record_type": "bug_fix",
+      "module": "svg_engine_import",
+      "source": "User SVG sample dorbel-c(2).svg 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V153",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "SVG فایل درب زنگ CorelDRAW در Import به عنوان ناامن یا نامعتبر رد می‌شود.",
+      "assistant_interpretation": "Allow exact standard SVG 1.1 external DTD declaration without resolving external entities, continue stripping embedded fonts and unsafe CSS.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "sample includes SVG 1.1 DOCTYPE, embedded font glyphs and @font-face; sanitizer previously rejected DOCTYPE outright",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3708,6 +3735,19 @@
         "Request failing SVG sample for targeted compatibility fix."
       ],
       "runtime_status": "pending_user_sample"
+    },
+    {
+      "id": "AN-RD-153-CORELDRAW-IMPORT",
+      "created_at": "2026-10-15",
+      "title": "CorelDRAW SVG Import DTD compatibility",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "SvgEngine.sanitize rejects every DOCTYPE, including the standard SVG 1.1 public declaration in supplied file.",
+      "decisions": [
+        "Permit exact standard SVG 1.1 DTD only.",
+        "Reject any other DOCTYPE and ENTITY.",
+        "Retain removal of embedded font and @font-face rules."
+      ],
+      "runtime_status": "pending_user_verification"
     }
   ],
   "deferred_scope": [
@@ -4357,13 +4397,19 @@
       "date": "2026-10-15",
       "change": "Persian right-click menu and no opaque background behind SVG devices.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V153",
+      "date": "2026-10-15",
+      "change": "SVG import compatibility for standard SVG 1.1 DOCTYPE.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V152",
+    "release": "V153",
     "source_status": "implemented_for_commit",
-    "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "localized object context menu and removed opaque device backdrop behind SVG artwork; user sample needed for SVG import sanitizer diagnosis",
+    "build_status": "source inspection only; browser not run",
+    "regression_status": "CorelDRAW standard SVG 1.1 doctype normalization; security restrictions retained",
     "runtime_status": "pending_user_verification"
   },
   "handoff": {
