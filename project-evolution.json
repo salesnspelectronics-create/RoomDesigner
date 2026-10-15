@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V146",
-    "project_evolution_version": "V146",
+    "software_version": "V147",
+    "project_evolution_version": "V147",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V146",
+  "current_source_release": "V147",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -826,6 +826,13 @@
       "date": "2026-10-15",
       "summary": "Context icons, corner resize cursor, draggable orthogonal cable bends.",
       "record_id": "RD-146-CONTEXT-RESIZE-CABLE-BENDS",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V147",
+      "date": "2026-10-15",
+      "summary": "Actuator label property and snapping to nearby walls/grid.",
+      "record_id": "RD-147-DEVICE-LABEL-SNAP",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3147,6 +3154,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-147-DEVICE-LABEL-SNAP",
+      "record_type": "bug_fix",
+      "module": "device_properties_and_snap",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V147",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "نام Actuator زیر آبجکت قابل نمایش و ویرایش از Property باشد؛ آبجکت‌هایی مانند Actuator به گرید و دیوارهای مجاور Snap شوند.",
+      "assistant_interpretation": "Expose showLabel in desktop Properties, display label below any SVG artwork when enabled, allow devices with ports to snap to walls and apply desktop grid snap when no wall snap.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "showLabel checkbox and change handler; deviceArtwork label rendering; no ports exclusion in snapObjectToWall; 20-unit grid near snap",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3466,6 +3493,20 @@
         "Add distinct icons and full rotate labels.",
         "Show diagonal resize cursor at editable device corners.",
         "Expose generated orthogonal bends and convert them into editable waypoints when dragged."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-147-DEVICE-LABEL-SNAP",
+      "created_at": "2026-10-15",
+      "title": "Actuator labels and snapping",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Desktop property panel omitted showLabel; SVG label renderer was gated by d.svg only; wall snap rejected all port-equipped devices; device drag lacked grid snap.",
+      "decisions": [
+        "Expose showLabel as a desktop property checkbox.",
+        "Render labels under artwork for both embedded and library SVG assets.",
+        "Remove blanket exclusion of port-equipped devices from wall snapping.",
+        "Snap dragged devices to 20-unit grid when enabled and no wall snap applies."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4081,13 +4122,19 @@
       "date": "2026-10-15",
       "change": "Desktop context iconography and interactive resize/cable bend affordances.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V147",
+      "date": "2026-10-15",
+      "change": "Device label toggle and port-equipped object snapping.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V146",
+    "release": "V147",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "icons added to object menu; resize cursor near corners; orthogonal cable bends expose drag handles; runtime pending",
+    "regression_status": "showLabel exposed in desktop property and artwork labels use deviceArtwork; wall and grid snapping now apply to port-equipped objects; runtime pending",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V150"
   },
