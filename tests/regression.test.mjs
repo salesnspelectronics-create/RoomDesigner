@@ -48,3 +48,13 @@ test('layer lock, cable hit testing and archive guards are present',()=>{
  assert.match(source,/const MAX_EMBEDDED_REVISIONS=20/);
  assert.match(source,/if\(!layerVisible\(c\)\)continue/);
 });
+
+test('failed import write is tracked for rollback, including the failing key',()=>{
+ const i=source.indexOf('function applyRoomImport(candidate)');
+ const j=source.indexOf("$('fileInput').addEventListener",i);
+ assert.ok(i>=0&&j>i);
+ const impl=source.slice(i,j);
+ assert.match(impl,/applied\.push\(key\);if\(!safeStorage\.setItem\(key,value\)\)/);
+ assert.match(impl,/rollbackStorage\(\)/);
+ assert.match(impl,/if\(old===null\)safeStorage\.removeItem\(key\)/);
+});
