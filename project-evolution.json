@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V147",
-    "project_evolution_version": "V147",
+    "software_version": "V148",
+    "project_evolution_version": "V148",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V147",
+  "current_source_release": "V148",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -833,6 +833,13 @@
       "date": "2026-10-15",
       "summary": "Actuator label property and snapping to nearby walls/grid.",
       "record_id": "RD-147-DEVICE-LABEL-SNAP",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V148",
+      "date": "2026-10-15",
+      "summary": "Fix right-click context menu on architectural rectangle edges and multi-selection.",
+      "record_id": "RD-148-WALL-CONTEXT-MENU",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3174,6 +3181,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-148-WALL-CONTEXT-MENU",
+      "record_type": "bug_fix",
+      "module": "desktop_context_menu",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V148",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "کلیک راست روی خط‌های مستطیل معماری منوی Chrome را نشان می‌دهد، برخلاف آبجکت‌های بزرگ؛ منوی اختصاصی برای همه آبجکت‌ها و انتخاب چندگانه بیاید.",
+      "assistant_interpretation": "Suppress Chrome context menu across the canvas, use geometric findTarget for pointer-events:none architectural walls, preserve multi-selection when right-clicking a selected member.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "canvas scoped preventDefault; findTarget fallback; preserve selected multi; no browser test",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3507,6 +3534,19 @@
         "Render labels under artwork for both embedded and library SVG assets.",
         "Remove blanket exclusion of port-equipped devices from wall snapping.",
         "Snap dragged devices to 20-unit grid when enabled and no wall snap applies."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-148-WALL-CONTEXT-MENU",
+      "created_at": "2026-10-15",
+      "title": "Architectural wall right-click fallback",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Architectural wall paths are drawn with pointer-events:none and no data-kind attributes, so event-target selector misses them and browser context menu appears.",
+      "decisions": [
+        "Intercept contextmenu at canvas boundary in desktop layout.",
+        "Resolve walls via existing geometric hit-testing.",
+        "Keep multi-selection intact when right-clicking one of its members."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4128,13 +4168,19 @@
       "date": "2026-10-15",
       "change": "Device label toggle and port-equipped object snapping.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V148",
+      "date": "2026-10-15",
+      "change": "Consistent desktop context menu for walls and canvas selection.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V147",
+    "release": "V148",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "showLabel exposed in desktop property and artwork labels use deviceArtwork; wall and grid snapping now apply to port-equipped objects; runtime pending",
+    "regression_status": "contextmenu suppressed throughout canvas, wall hit test fallback, multi-selection preserved; runtime pending",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V150"
   },
