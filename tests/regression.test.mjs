@@ -76,7 +76,7 @@ function importHarness(failKey=null){
  `+extractFunction('applyRoomImport')+`
  function state(){return {id:doc.id,history:[...history],epoch:documentEpoch}}
  `,{safeStorage,populateDesktopToolbox:()=>{},setTool:()=>{},updateHistoryControls:()=>{},render:()=>{},clearPointerState:()=>{},clearTimeout:()=>{},saveAuto:()=>{ops.push('saved')},close:()=>{},notify:()=>{},ops});
- return {sandbox,persisted,ops,initial};
+ return {sandbox,persisted,ops,initial,safeStorage};
 }
 test('injected import write failure restores document, history and stored keys',()=>{
  const h=importHarness('rd_types');
@@ -141,4 +141,19 @@ test('late recovery cannot overwrite a newer unsaved drawing',async()=>{
  c.edit();release(JSON.stringify({id:'stale',devices:[],cables:[]}));
  await recovery;
  assert.equal(c.state(),'edited');
+});
+
+test('rollback failure identifies damaged storage keys and prevents success notification',()=>{
+ const h=importHarness('rd_types');
+ h.persisted.set('rd_catalog','old');
+ const originalSet=h.safeStorage;
+ // The harness exposes the same storage object to the imported function.
+ originalSet.setItem=(key,value)=>{
+  if(key==='rd_types'&&value==='{"new":true}')return false;
+  if(key==='rd_last'&&value==='{"old":true}')return false;
+  h.persisted.set(key,String(value));return true;
+ };
+ assert.throws(()=>h.sandbox.applyRoomImport({doc:{id:'incoming',devices:[],cables:[]},types:{new:true},catalog:[],typesJSON:'{"new":true}',catalogJSON:null}),/بازگردانی اطلاعات مرورگر ناموفق بود.*rd_last/);
+ assert.equal(h.sandbox.state().id,'before');
+ assert.equal(h.ops.length,0);
 });
