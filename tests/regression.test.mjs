@@ -58,3 +58,40 @@ test('failed import write is tracked for rollback, including the failing key',()
  assert.match(impl,/rollbackStorage\(\)/);
  assert.match(impl,/if\(old===null\)safeStorage\.removeItem\(key\)/);
 });
+
+function importHarness(failKey=null){
+ const persisted=new Map([['rd_last','{"old":true}'],['rd_types','{"oldType":true}']]);
+ let failed=false;
+ const safeStorage={
+  getItem:key=>persisted.has(key)?persisted.get(key):null,
+  setItem(key,value){if(key===failKey&&!failed){failed=true;return false}persisted.set(key,String(value));return true},
+  removeItem:key=>{persisted.delete(key);return true}
+ };
+ const ops=[];
+ const initial={id:'before',devices:[],cables:[],walls:[]};
+ const sandbox=context(`
+ let doc={id:'before',devices:[],cables:[],walls:[]},types={old:true},catalog=[];
+ let selection=null,multiSelection=null,history=['previous'],redoHistory=[],drag=null,wallGesture=null,wallStart=null,polyPreview=null,start=null,routePoints=[],previewPoint=null,cableGesture=null,tool='select',resizeMode=false;
+ let documentEpoch=0,drawingChangedSinceStartup=false,persistTimer=null;
+ `+extractFunction('applyRoomImport')+`
+ function state(){return {id:doc.id,history:[...history],epoch:documentEpoch}}
+ `,{safeStorage,populateDesktopToolbox:()=>{},setTool:()=>{},updateHistoryControls:()=>{},render:()=>{},clearPointerState:()=>{},clearTimeout:()=>{},saveAuto:()=>{ops.push('saved')},close:()=>{},notify:()=>{},ops});
+ return {sandbox,persisted,ops,initial};
+}
+test('injected import write failure restores document, history and stored keys',()=>{
+ const h=importHarness('rd_types');
+ assert.throws(()=>h.sandbox.applyRoomImport({doc:{id:'incoming',devices:[],cables:[]},types:{new:true},catalog:[],typesJSON:'{"new":true}',catalogJSON:null}),/ناموفق/);
+ assert.equal(h.sandbox.state().id,'before');
+ assert.deepEqual(Array.from(h.sandbox.state().history),['previous']);
+ assert.equal(h.persisted.get('rd_last'),'{"old":true}');
+ assert.equal(h.persisted.get('rd_types'),'{"oldType":true}');
+ assert.equal(h.ops.length,0);
+});
+test('successful import clears history and queues mirror save after replacing the document',()=>{
+ const h=importHarness();
+ h.sandbox.applyRoomImport({doc:{id:'incoming',devices:[],cables:[]},types:{new:true},catalog:[],typesJSON:'{"new":true}',catalogJSON:null});
+ assert.equal(h.sandbox.state().id,'incoming');
+ assert.equal(h.sandbox.state().history.length,0);
+ assert.deepEqual(h.ops,['saved']);
+ assert.equal(h.persisted.get('rd_types'),'{"new":true}');
+});
