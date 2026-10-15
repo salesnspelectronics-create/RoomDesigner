@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V148",
-    "project_evolution_version": "V148",
+    "software_version": "V149",
+    "project_evolution_version": "V149",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V148",
+  "current_source_release": "V149",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -840,6 +840,13 @@
       "date": "2026-10-15",
       "summary": "Fix right-click context menu on architectural rectangle edges and multi-selection.",
       "record_id": "RD-148-WALL-CONTEXT-MENU",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V149",
+      "date": "2026-10-15",
+      "summary": "Show Group/Ungroup relationships in layer tree with chain icons.",
+      "record_id": "RD-149-GROUP-LAYER-VISIBILITY",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3201,6 +3208,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-149-GROUP-LAYER-VISIBILITY",
+      "record_type": "feature_implementation",
+      "module": "desktop_layer_tree",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V149",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "گروپ و آنگروپ‌ها در لایه‌ها معلوم نیستند؛ مثل فتوشاپ با نماد زنجیر مشخص شوند.",
+      "assistant_interpretation": "Show group membership with chain icons and collapsible group sections within original layers, updating after Group/Ungroup.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "groupId signature, group rows, chain markers, expansion preservation",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3547,6 +3574,19 @@
         "Intercept contextmenu at canvas boundary in desktop layout.",
         "Resolve walls via existing geometric hit-testing.",
         "Keep multi-selection intact when right-clicking one of its members."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-149-GROUP-LAYER-VISIBILITY",
+      "created_at": "2026-10-15",
+      "title": "Group membership missing from Layers tree",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Layer tree listed each object flat and its render signature excluded groupId, so Group/Ungroup did not refresh group presentation.",
+      "decisions": [
+        "Keep each object in original layer.",
+        "Add collapsible group headings and chain icons for grouped objects.",
+        "Track groupId in render signature and preserve expansion."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4174,13 +4214,19 @@
       "date": "2026-10-15",
       "change": "Consistent desktop context menu for walls and canvas selection.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V149",
+      "date": "2026-10-15",
+      "change": "Layer tree group membership and collapsible linked groups.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V148",
+    "release": "V149",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "contextmenu suppressed throughout canvas, wall hit test fallback, multi-selection preserved; runtime pending",
+    "regression_status": "groupId included in layer tree signature; grouped rows with chain indicator and collapsible group; runtime pending",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V150"
   },
