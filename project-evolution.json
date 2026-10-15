@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V141",
-    "project_evolution_version": "V141",
+    "software_version": "V142",
+    "project_evolution_version": "V142",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V141",
+  "current_source_release": "V142",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -791,6 +791,13 @@
       "date": "2026-10-15",
       "summary": "Stretch portless plan symbol SVG with resized object bounds by default, preserving explicit SVG modes.",
       "record_id": "RD-141-PLAN-SVG-RESIZE",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V142",
+      "date": "2026-10-15",
+      "summary": "Re-route cables from current positions and sides of both ports after port movement.",
+      "record_id": "RD-142-CABLE-PORT-ROUTING",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3012,6 +3019,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-142-CABLE-PORT-ROUTING",
+      "record_type": "bug_fix",
+      "module": "cable_routing",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V142",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "بعد از کابل‌کشی، با تغییر مکان پورت دستگاه، کابل زیر دستگاه می‌رود؛ مسیر باید از پورت جدید دوباره شکل بگیرد.",
+      "assistant_interpretation": "Recalculate both cable end exit stubs from current port sides on every render and avoid reusing generated bends as persisted manual waypoints.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "two current port side stubs; near-device stale waypoint filter; new cables store raw user bends",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3262,6 +3289,20 @@
         "Default portless non-door plan symbols to stretch.",
         "Keep explicit fit/center/stretch modes for user customization.",
         "Apply same mode in DXF and property controls."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-142-CABLE-PORT-ROUTING",
+      "created_at": "2026-10-15",
+      "title": "Cable route retains old endpoint bends after port-side edits",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "The route generator persisted auto-generated intermediate points and only constrained the source side, leaving the destination approach and old bends invalid after port relocation.",
+      "decisions": [
+        "Generate exit stubs from current port sides at both ends.",
+        "Filter stored bends inside either device clearance region.",
+        "Persist manual bends rather than auto-generated path geometry for new cables.",
+        "Keep legacy documents readable; require runtime testing for dense layouts."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -3847,13 +3888,19 @@
       "date": "2026-10-15",
       "change": "Default plan-symbol SVG resize to stretch, synchronize canvas/DXF and mode selectors.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V142",
+      "date": "2026-10-15",
+      "change": "Dynamic two-ended cable port routing, discard stale near-device bends, persist manual bends only.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V141",
+    "release": "V142",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "mode selection unified for canvas, DXF, mobile and desktop properties; browser regression not run",
+    "regression_status": "both port stubs recomputed from current port geometry; new cable stores user bends instead of generated route; runtime unverified",
     "runtime_status": "pending_user_verification",
     "next_development_audit": "V145"
   },
