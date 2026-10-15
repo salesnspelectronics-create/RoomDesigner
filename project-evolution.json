@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V149",
-    "project_evolution_version": "V149",
+    "software_version": "V150",
+    "project_evolution_version": "V150",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V149",
+  "current_source_release": "V150",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -847,6 +847,13 @@
       "date": "2026-10-15",
       "summary": "Show Group/Ungroup relationships in layer tree with chain icons.",
       "record_id": "RD-149-GROUP-LAYER-VISIBILITY",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V150",
+      "date": "2026-10-15",
+      "summary": "Show Name / Hide Name checkbox in object context menu.",
+      "record_id": "RD-150-CONTEXT-NAME-TOGGLE",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3228,6 +3235,26 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-150-CONTEXT-NAME-TOGGLE",
+      "record_type": "feature_implementation",
+      "module": "desktop_context_menu",
+      "source": "User Runtime Review 2026-10-15",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-15",
+      "target_version": "V150",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در منوی کلیک راست تیک نمایش نام و Show Name / Hide Name باشد و نام آبجکت زیر آن نمایش داده شود.",
+      "assistant_interpretation": "Provide checked/unchecked Show Name / Hide Name menu action for device objects, persisting showLabel and using existing below-artwork label rendering.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": {
+        "static": "conditional checkbox icon and showLabel toggle with checkpoint/scheduleSave/render",
+        "browser": "not run",
+        "user_acceptance": "pending"
+      }
     }
   ],
   "analyses": [
@@ -3587,6 +3614,19 @@
         "Keep each object in original layer.",
         "Add collapsible group headings and chain icons for grouped objects.",
         "Track groupId in render signature and preserve expansion."
+      ],
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-150-CONTEXT-NAME-TOGGLE",
+      "created_at": "2026-10-15",
+      "title": "Right-click device name visibility toggle",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "showLabel was only exposed in properties, not desktop context menu.",
+      "decisions": [
+        "Use Show Name / Hide Name contextual command with checkbox icon.",
+        "Apply only to selected editable device.",
+        "Reuse existing label renderer and save history."
       ],
       "runtime_status": "pending_user_verification"
     }
@@ -4220,15 +4260,21 @@
       "date": "2026-10-15",
       "change": "Layer tree group membership and collapsible linked groups.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V150",
+      "date": "2026-10-15",
+      "change": "Right-click Show Name / Hide Name toggle.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V149",
+    "release": "V150",
     "source_status": "implemented_for_commit",
     "build_status": "static_source_assertions_passed; browser_not_run",
-    "regression_status": "groupId included in layer tree signature; grouped rows with chain indicator and collapsible group; runtime pending",
+    "regression_status": "right-click Show Name/Hide Name with checkbox icon and persisted showLabel; runtime pending",
     "runtime_status": "pending_user_verification",
-    "next_development_audit": "V150"
+    "maintenance_audit": "V150 boundary reached; full architecture audit not performed"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
