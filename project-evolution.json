@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V236",
-    "project_evolution_version": "V236",
+    "software_version": "V237",
+    "project_evolution_version": "V237",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V236",
+  "current_source_release": "V237",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -917,6 +917,12 @@
       "release": "V236",
       "date": "2026-10-17",
       "summary": "RD-CANDIDATE-004: notify explicitly if localStorage write fails and asynchronous IndexedDB mirror promise rejects; existing normal failure path and generation checks retained.",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V237",
+      "date": "2026-10-17",
+      "summary": "AUD-001/AUD-002: do not treat a previously completed IndexedDB mirror write as current durable state during a new pending mirror save; add four-case persistenceStatus regression test. Browser runtime acceptance pending.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -4575,10 +4581,16 @@
       "date": "2026-10-17",
       "change": "RD-CANDIDATE-004: show backup/export warning in saveAuto rejected-mirror catch when primary persistence also failed.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V237",
+      "date": "2026-10-17",
+      "change": "AUD-001/AUD-002: only accept mirrorSaveOk as durable when mirrorPending is false; add pending/settled/primary-success/both-failure regression scenarios.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V236",
+    "release": "V237",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
     "runtime_status": "pending_user_verification"
   },

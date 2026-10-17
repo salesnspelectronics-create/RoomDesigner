@@ -180,3 +180,26 @@ test('undo and redo round-trip a valid snapshot',()=>{
  c.performUndo();assert.equal(c.state().id,'before');
  c.performRedo();assert.equal(c.state().id,'after');
 });
+
+
+test('backup status does not treat stale IndexedDB success as current while a new save is pending',()=>{
+ const backup={style:{},setAttribute(name,value){this[name]=value}};
+ const c=context(
+  'let mirrorSaveOk=true,mirrorPending=true,manualSaveFailed=false;'+
+  extractFunction('persistenceStatus')+
+  'function setState(saved,pending){mirrorSaveOk=saved;mirrorPending=pending}',
+  {$:()=>backup}
+ );
+ c.persistenceStatus(false);
+ assert.notEqual(backup.style.display,'none','stale mirror success must not hide backup warning');
+ assert.match(backup.title,/ذخیره پایدار ناموفق/);
+ c.setState(true,false);
+ c.persistenceStatus(false);
+ assert.equal(backup.style.display,'none','completed successful backup can be marked durable');
+ c.setState(false,true);
+ c.persistenceStatus(true);
+ assert.equal(backup.style.display,'none','successful primary write is already durable');
+ c.setState(false,false);
+ c.persistenceStatus(false);
+ assert.notEqual(backup.style.display,'none','both failed writes must expose backup action');
+});
