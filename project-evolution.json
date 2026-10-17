@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V228",
-    "project_evolution_version": "V228",
+    "software_version": "V229",
+    "project_evolution_version": "V229",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V228",
+  "current_source_release": "V229",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -887,6 +887,12 @@
       "release": "V228",
       "date": "2026-10-17",
       "summary": "RD-074: tolerate denied sessionStorage during mobile/desktop layout initialization. Ledger entries V155–V227 remain unbackfilled; Git history is authoritative for those versions.",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V229",
+      "date": "2026-10-17",
+      "summary": "RD-154: avoid stale localStorage reads after quota-denied writes and failed removals; maintain cross-tab reads for normal keys.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3364,6 +3370,22 @@
       "implementation_status": "source_implemented",
       "runtime_status": "pending_user_verification",
       "verification_evidence": "Isolated source-function regression: 6/6 cases pass after fix; blocked read/getter fail on V227; main inline JS syntax passes; browser/device runtime not executed."
+    },
+    {
+      "id": "RD-154-STORAGE-FALLBACK-STALE-READ",
+      "record_type": "bug_fix",
+      "module": "browser_persistence",
+      "source": "scheduled GitHub regression on main, 2026-10-17",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-17",
+      "target_version": "V229",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در رگرسیون ساعتی یک نقص جدید، غیرتکراری و بازتولیدشده را با آزمون و کنترل تداخل اصلاح و ثبت کن.",
+      "assistant_interpretation": "When localStorage writes/removals fail but reads succeed, safeStorage returns stale disk data rather than the volatile fallback. Track volatile keys only after failed mutations.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": "Source-function reproduction: stale reads after quota-denied write and failed removal; 10 post-fix assertions passed; full inline JavaScript syntax passed; Node suite and iPhone runtime not executed."
     }
   ],
   "analyses": [
@@ -3793,6 +3815,23 @@
         "Device-level Runtime Review remains pending.",
         "The Project Evolution ledger has a pre-existing V155–V227 historical gap."
       ]
+    },
+    {
+      "id": "AN-RD-154-STORAGE-FALLBACK",
+      "created_at": "2026-10-17",
+      "title": "Stale reads following localStorage quota-denied mutations",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Failed writes only updated fallbackStore; getItem still preferred readable but stale localStorage. Failed removals likewise exposed deleted keys.",
+      "decisions": [
+        "Shadow localStorage for keys whose most recent write or removal failed.",
+        "Clear the volatile shadow on successful persistent mutations; preserve normal external updates.",
+        "Keep IndexedDB recovery and existing persistence warnings unchanged."
+      ],
+      "remaining_risks": [
+        "Volatile fallback does not survive reload; export warning remains necessary.",
+        "Browser/iPhone Safari Runtime Review is pending.",
+        "Historical Project Evolution V155–V227 release gap remains."
+      ]
     }
   ],
   "deferred_scope": [
@@ -3843,6 +3882,17 @@
         "javascript_syntax": "PASS: complete inline application script parsed by JavaScript Function constructor",
         "repository_suite": "NOT_RUN: repository Node.js tests unavailable in connector-only environment",
         "device_runtime": "NOT_RUN: user to review iPhone/Safari"
+      }
+    },
+    {
+      "type": "isolated_js_regression",
+      "version": "V229",
+      "result": {
+        "pre_fix": "FAIL: stale reads reproduced after quota-denied write and denied removal",
+        "post_fix": "PASS: 10 post-fix assertions; 2 baseline reproduction checks",
+        "javascript_syntax": "PASS: complete inline application script parses",
+        "repository_suite": "NOT_RUN: connector-only execution",
+        "device_runtime": "NOT_RUN: user review"
       }
     }
   ],
@@ -4471,10 +4521,16 @@
       "date": "2026-10-17",
       "change": "RD-074: Guard blocked sessionStorage access in layout initialization; ledger V155–V227 historical gap remains unbackfilled.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V229",
+      "date": "2026-10-17",
+      "change": "RD-154: Shadow stale persistent storage after failed writes/removals; clear shadow on success.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V228",
+    "release": "V229",
     "source_status": "implemented",
     "runtime_status": "pending_user_verification"
   },
@@ -4484,7 +4540,8 @@
       "Verify RD-074 mobile startup on iPhone Safari and storage-restricted previews; runtime acceptance pending.",
       "User acceptance: crop drag, Auto Trim, port rotation/flip/resize, save/reopen, mobile Safari and SVG/DXF/PDF exports.",
       "V140 source audit boundary.",
-      "Shared writable backend remains deferred."
+      "Shared writable backend remains deferred.",
+      "Verify RD-154 quota-denied localStorage write/remove behavior in Safari; runtime acceptance pending."
     ],
     "source_of_truth": "project-evolution.json",
     "svg_engine": "Implemented in V139; see SVG-ENGINE.md",

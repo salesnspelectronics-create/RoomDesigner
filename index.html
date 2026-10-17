@@ -178,10 +178,12 @@ if(typeof window.SvgLibraryBuiltin==='undefined')window.SvgLibraryBuiltin={manif
 // iOS Files/Quick Look and sandboxed file:// previews may disallow localStorage.
 // Degrade gracefully to volatile in-memory storage instead of aborting initialization.
 const fallbackStore = new Map();
+// RD-154: failed writes/removals must shadow stale, still-readable localStorage data.
+const volatileStorageKeys = new Set();
 const safeStorage = {
- getItem(key) { try { return window.localStorage.getItem(key); } catch (_) { return fallbackStore.get(key) ?? null; } },
- setItem(key,value) { try { window.localStorage.setItem(key,String(value)); fallbackStore.set(key,String(value)); return true; } catch (error) { fallbackStore.set(key,String(value)); return false; } },
- removeItem(key) { fallbackStore.delete(key); try { window.localStorage.removeItem(key); return true; } catch (_) { return false; } }
+ getItem(key) { if (volatileStorageKeys.has(key)) return fallbackStore.get(key) ?? null; try { return window.localStorage.getItem(key); } catch (_) { return fallbackStore.get(key) ?? null; } },
+ setItem(key,value) { const next=String(value); try { window.localStorage.setItem(key,next); fallbackStore.set(key,next); volatileStorageKeys.delete(key); return true; } catch (_) { fallbackStore.set(key,next); volatileStorageKeys.add(key); return false; } },
+ removeItem(key) { fallbackStore.delete(key); try { window.localStorage.removeItem(key); volatileStorageKeys.delete(key); return true; } catch (_) { volatileStorageKeys.add(key); return false; } }
 };
 
 // RD-006: parse and validate browser settings without deleting malformed originals.
@@ -1203,8 +1205,8 @@ function deskCommand(action) {
   case 'snap':window.roomGridSnap=window.roomGridSnap===false;$('deskSnap').setAttribute('aria-pressed',String(window.roomGridSnap));$('deskSnapText').textContent=window.roomGridSnap?'چسبندگی: ۲۰':'چسبندگی: خاموش';break;
   case 'toggleToolbox':$('deskLeft').classList.toggle('collapsed');updateDesktopWidths();break;
   case 'toggleInspector':$('deskRight').classList.toggle('collapsed');updateDesktopWidths();break;
-  case 'help':sheet('راهنمای Room Designer · V84','<p class="muted">ابزار را از کارت‌های جعبه ابزار انتخاب کنید. خط، مستطیل و مربع با کشیدن ماوس رسم می‌شوند. در خط شکسته، هر کلیک یک نقطه اضافه می‌کند؛ با «پایان خط شکسته» یا دوبار کلیک پایان دهید.</p><p class="muted">برای کابل، پورت مبدأ و مقصد را انتخاب کنید. درخت سمت چپ برای انتخاب آبجکت‌هاست؛ قفل برای تجهیزات پشتیبانی می‌شود. با چرخ ماوس زوم کنید و با ابزار دست بوم را حرکت دهید.</p><p class="muted">ویژگی‌های قابل ویرایش با تغییر مقدار ثبت می‌شوند و Undo دارند. واحدها واحد نقشه هستند و مقیاس واقعی کالیبره نشده است. ذخیره پروژه در مرورگر انجام می‌شود؛ از منوی فایل، خروجی نقشه را دریافت کنید.</p>');break;
-  case 'about':sheet('درباره Room Designer','<p class="muted">ROOM DESIGNER · Powered by NSP · V84<br>طراحی اتاق و ارتباطات تجهیزات<br>رابط دسکتاپ: کارت‌های ابزار، لایه‌ها و ویژگی‌ها<br>ذخیره محلی مرورگر؛ همگام‌سازی سرور فعال نیست.</p>');break;
+  case 'help':sheet('راهنمای Room Designer · V229','<p class="muted">ابزار را از کارت‌های جعبه ابزار انتخاب کنید. خط، مستطیل و مربع با کشیدن ماوس رسم می‌شوند. در خط شکسته، هر کلیک یک نقطه اضافه می‌کند؛ با «پایان خط شکسته» یا دوبار کلیک پایان دهید.</p><p class="muted">برای کابل، پورت مبدأ و مقصد را انتخاب کنید. درخت سمت چپ برای انتخاب آبجکت‌هاست؛ قفل برای تجهیزات پشتیبانی می‌شود. با چرخ ماوس زوم کنید و با ابزار دست بوم را حرکت دهید.</p><p class="muted">ویژگی‌های قابل ویرایش با تغییر مقدار ثبت می‌شوند و Undo دارند. واحدها واحد نقشه هستند و مقیاس واقعی کالیبره نشده است. ذخیره پروژه در مرورگر انجام می‌شود؛ از منوی فایل، خروجی نقشه را دریافت کنید.</p>');break;
+  case 'about':sheet('درباره Room Designer','<p class="muted">ROOM DESIGNER · Powered by NSP · V229<br>طراحی اتاق و ارتباطات تجهیزات<br>رابط دسکتاپ: کارت‌های ابزار، لایه‌ها و ویژگی‌ها<br>ذخیره محلی مرورگر؛ همگام‌سازی سرور فعال نیست.</p>');break;
   default:deskInvoke(action);
  }
  updateDesktopPanels();
