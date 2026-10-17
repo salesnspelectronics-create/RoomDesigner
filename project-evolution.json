@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V234",
-    "project_evolution_version": "V234",
+    "software_version": "V235",
+    "project_evolution_version": "V235",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V234",
+  "current_source_release": "V235",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -905,6 +905,12 @@
       "release": "V234",
       "date": "2026-10-17",
       "summary": "RD-CANDIDATE-002: remove page-level viewport zoom restrictions while preserving internal Canvas touch-action:none and application zoom behavior; user performs iPhone runtime acceptance.",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V235",
+      "date": "2026-10-17",
+      "summary": "RD-CANDIDATE-003: Undo/Redo now explicitly says persistent saving is in progress rather than implying it is already complete; existing async failure notifications remain intact. Browser runtime acceptance remains pending.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -4551,10 +4557,16 @@
       "date": "2026-10-17",
       "change": "RD-CANDIDATE-002: allow browser page zoom by removing user-scalable=no and maximum-scale=1 (and redundant minimum-scale=1); preserve canvas touch gesture semantics.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V235",
+      "date": "2026-10-17",
+      "change": "RD-CANDIDATE-003: clarify Undo/Redo completion toast versus asynchronous autosave state without modifying history semantics.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V234",
+    "release": "V235",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
     "runtime_status": "pending_user_verification"
   },
