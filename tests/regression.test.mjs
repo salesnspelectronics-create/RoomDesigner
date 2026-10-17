@@ -203,3 +203,15 @@ test('backup status does not treat stale IndexedDB success as current while a ne
  c.persistenceStatus(false);
  assert.notEqual(backup.style.display,'none','both failed writes must expose backup action');
 });
+
+
+test('rejected mirror recovery is handled without overwriting current drawing',async()=>{
+ const c=context(
+  "let doc={id:'current',devices:[],cables:[]},documentEpoch=0,drawingChangedSinceStartup=false,mirrorQueue=Promise.resolve();"+
+  extractFunction('recoverMirrorOnStartup')+
+  "function state(){return doc.id}",
+  {mirrorOperation:async()=>{throw Error('IndexedDB failed')},validateRoomDocument:x=>x,readLocalJSON:()=>null,render:()=>{},updateHistoryControls:()=>{},notify:()=>{}}
+ );
+ await assert.doesNotReject(c.recoverMirrorOnStartup());
+ assert.equal(c.state(),'current');
+});
