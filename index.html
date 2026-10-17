@@ -1045,7 +1045,7 @@ function editToolboxOrder(){
  const currentOrder=()=>({sections:sections.map(x=>x.id),items:Object.fromEntries(sections.map(x=>[x.id,x.items.map(y=>y.id)]))});
  const dirty=()=>resetPending||JSON.stringify(currentOrder())!==initialOrder;
  const closeOrder=()=>{document.removeEventListener('keydown',onEscape,true);modal.remove()};
- const saveOrder=()=>{toolboxOrder=resetPending?structuredClone(toolboxDefaults):currentOrder();safeStorage.setItem(toolboxOrderKey,JSON.stringify(toolboxOrder));closeOrder();populateDesktopToolbox();notify('چیدمان ابزارها ذخیره شد')};
+ const saveOrder=()=>{toolboxOrder=resetPending?structuredClone(toolboxDefaults):currentOrder();const saved=safeStorage.setItem(toolboxOrderKey,JSON.stringify(toolboxOrder));closeOrder();populateDesktopToolbox();notify(saved?'چیدمان ابزارها ذخیره شد':'ذخیره پایدار چیدمان ناموفق بود؛ تغییرات فقط در این نشست قابل استفاده‌اند')};
  const requestClose=()=>{if(!dirty()){closeOrder();return}if(modal.querySelector('[data-order-confirm]'))return;
  const prompt=document.createElement('div');prompt.dataset.orderConfirm='true';prompt.style.cssText='position:absolute;inset:0;display:grid;place-items:center;background:#000b;z-index:2;padding:16px';
  prompt.innerHTML='<div dir="rtl" style="background:#20354c;border:1px solid #64839b;border-radius:12px;padding:20px;max-width:390px;width:100%;box-shadow:0 15px 40px #0008"><strong>تغییرات چیدمان ذخیره نشده‌اند.</strong><p>آیا می‌خواهید تغییرات ذخیره شوند؟</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button data-confirm="save" class="primary">ذخیره</button><button data-confirm="discard">بدون ذخیره</button><button data-confirm="cancel">انصراف</button></div></div>';
