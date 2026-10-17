@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V154",
-    "project_evolution_version": "V154",
+    "software_version": "V228",
+    "project_evolution_version": "V228",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,7 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V140"
+    "next_due_boundary": "V230 (V155–V225 historical audit records remain unreconciled)"
   },
   "_file_documentation": {
     "title": "RoomDesigner Project Evolution",
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V154",
+  "current_source_release": "V228",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -881,6 +881,12 @@
       "release": "V154",
       "date": "2026-10-15",
       "summary": "RTL header ordering and top menu cleanup",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V228",
+      "date": "2026-10-17",
+      "summary": "RD-074: tolerate denied sessionStorage during mobile/desktop layout initialization. Ledger entries V155–V227 remain unbackfilled; Git history is authoritative for those versions.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3342,6 +3348,22 @@
         "browser": "not run",
         "user_acceptance": "pending"
       }
+    },
+    {
+      "id": "RD-074-MOBILE-SESSION-STORAGE",
+      "record_type": "bug_fix",
+      "module": "mobile_startup",
+      "source": "scheduled GitHub regression on main, 2026-10-17; prior user report of frozen mobile UI",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-17",
+      "target_version": "V228",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "رابط موبایل گاهی ظاهراً فریز می‌شود؛ علت باید با شواهد و آزمون مستقل بررسی شود.",
+      "assistant_interpretation": "When sessionStorage access throws SecurityError, setDesktopLayout aborts before startup-ready is set. Guard only the read and preserve preference behavior where storage is available.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "pending_user_verification",
+      "verification_evidence": "Isolated source-function regression: 6/6 cases pass after fix; blocked read/getter fail on V227; main inline JS syntax passes; browser/device runtime not executed."
     }
   ],
   "analyses": [
@@ -3754,6 +3776,23 @@
         "Retain removal of embedded font and @font-face rules."
       ],
       "runtime_status": "pending_user_verification"
+    },
+    {
+      "id": "AN-RD-074-SESSION-STORAGE",
+      "created_at": "2026-10-17",
+      "title": "Blocked sessionStorage aborts startup layout setup",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "setDesktopLayout() read sessionStorage.getItem('rd_layout') without a guard. Storage denial throws and prevents setupDesktopWorkspace() from returning to the startup-ready assignment.",
+      "decisions": [
+        "Wrap sessionStorage access in try/catch; absent preference is the fallback.",
+        "Keep desktop eligibility and existing mobile preference semantics unchanged.",
+        "Preserve V155–V227 historical ledger gap explicitly rather than fabricate entries."
+      ],
+      "remaining_risks": [
+        "Mobile Safari/Quick Look may block scripts entirely, which this fix cannot address.",
+        "Device-level Runtime Review remains pending.",
+        "The Project Evolution ledger has a pre-existing V155–V227 historical gap."
+      ]
     }
   ],
   "deferred_scope": [
@@ -3794,6 +3833,17 @@
         "baseline_run": "https://agent.tinyfish.ai/runs/f156153b-0b64-4cc8-b4f4-bb45f8ecab1c"
       },
       "limits": "Adapter assertions and source comparisons do not establish browser or mobile runtime acceptance."
+    },
+    {
+      "type": "isolated_js_regression",
+      "version": "V228",
+      "result": {
+        "pre_fix": "FAIL: SecurityError thrown for blocked sessionStorage getter/read; startup cannot reach ready flag",
+        "post_fix": "PASS: 6/6 normal/mobile/desktop/storage-denied cases",
+        "javascript_syntax": "PASS: complete inline application script parsed by JavaScript Function constructor",
+        "repository_suite": "NOT_RUN: repository Node.js tests unavailable in connector-only environment",
+        "device_runtime": "NOT_RUN: user to review iPhone/Safari"
+      }
     }
   ],
   "change_log": [
@@ -4415,16 +4465,23 @@
       "date": "2026-10-15",
       "change": "RTL header, Select button, file/settings menu actions",
       "status": "pending_runtime_review"
+    },
+    {
+      "version": "V228",
+      "date": "2026-10-17",
+      "change": "RD-074: Guard blocked sessionStorage access in layout initialization; ledger V155–V227 historical gap remains unbackfilled.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V154",
+    "release": "V228",
     "source_status": "implemented",
     "runtime_status": "pending_user_verification"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
     "known_next_items": [
+      "Verify RD-074 mobile startup on iPhone Safari and storage-restricted previews; runtime acceptance pending.",
       "User acceptance: crop drag, Auto Trim, port rotation/flip/resize, save/reopen, mobile Safari and SVG/DXF/PDF exports.",
       "V140 source audit boundary.",
       "Shared writable backend remains deferred."
