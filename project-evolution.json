@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V229",
-    "project_evolution_version": "V229",
+    "software_version": "V233",
+    "project_evolution_version": "V233",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V229",
+  "current_source_release": "V233",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -893,6 +893,12 @@
       "release": "V229",
       "date": "2026-10-17",
       "summary": "RD-154: avoid stale localStorage reads after quota-denied writes and failed removals; maintain cross-tab reads for normal keys.",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V233",
+      "date": "2026-10-17",
+      "summary": "RD-CANDIDATE-001: align visible RoomDesigner release markers and Project Evolution to next sequential release V233 after v232; preserve historical versions and mark runtime acceptance pending. Existing gaps in historical Project Evolution records are not represented as backfilled.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -4527,11 +4533,17 @@
       "date": "2026-10-17",
       "change": "RD-154: Shadow stale persistent storage after failed writes/removals; clear shadow on success.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V233",
+      "date": "2026-10-17",
+      "change": "RD-CANDIDATE-001: synchronize current displayed version markers and current Project Evolution release identity with new V233 source revision (following v232).",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V229",
-    "source_status": "implemented",
+    "release": "V233",
+    "source_status": "source_implemented_pending_validation",
     "runtime_status": "pending_user_verification"
   },
   "handoff": {
