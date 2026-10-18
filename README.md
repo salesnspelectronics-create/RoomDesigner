@@ -38,6 +38,20 @@ node tests/import-validation.test.cjs
 
 These tests cover import state/storage preservation and compatibility; they do not replace real browser or iPhone acceptance testing.
 
+## Layers and group selection (v239)
+
+Selecting a grouped object from Layers selects the whole group, including after object or layer Hide/Show. Ctrl/Shift/Command selection expands the current group into its actual members before toggling an individual member.
+
+```sh
+node tests/regression.test.mjs
+node tests/import-validation.test.cjs
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+node tests/layers-group.browser.test.cjs
+```
+
+The browser regression covers mixed device/wall/cable groups across layers, visibility, copy selection, group dragging, Undo/Redo and Ungroup. Set `TEST_BROWSER_PATH` to use an existing Chromium-based browser executable. Manual mobile acceptance remains pending.
+
 ## Component SVG display (v134)
 
 CorelDRAW SVG class styles are retained while embedded font definitions are discarded; text uses the available system font. Uploaded artwork remains on the component after saving and export/import. Component background color can be edited in Properties on mobile and desktop; SVG components use white by default.

@@ -23,6 +23,40 @@ function context(code,globals={}){const sandbox={...globals};vm.createContext(sa
 test('source includes stable project export/import and undo APIs',()=>{
  for(const name of ['snapshot','validateRoomDocument','prepareRoomImport','applyRoomImport','performUndo','performRedo','groupAllSelected','ungroupSelected'])assert.ok(source.includes('function '+name+'('),name);
 });
+
+function layerSelectionHarness(){
+ const doc={devices:[{id:'a',groupId:'g',layerId:'main'},{id:'b',groupId:'g',layerId:'main'},{id:'solo',layerId:'main'}],walls:[{id:'w1',shapeId:'shape',groupId:'g',layerId:'other'},{id:'w2',shapeId:'shape',groupId:'g',layerId:'other'}],cables:[{id:'c',groupId:'g',layerId:'main'}],layers:[{id:'main',visible:true},{id:'other',visible:true}],activeLayer:'main'};
+ const functions=['ensureLayers','objectLayer','layerObject','layerVisible','layerLocked','allGroupElements','groupOfTarget','selectLayerObject','layerEdit'].map(extractFunction).join('\n');
+ return context('let selection=null,multiSelection=null;'+functions+'\nfunction state(){return {selection,multiSelection}}',{
+  doc,device:id=>doc.devices.find(d=>d.id===id),setTool:()=>{},render:()=>{},checkpoint:()=>{},scheduleSave:()=>{}
+ });
+}
+test('Layers selects the persistent group after object and layer Hide/Show',()=>{
+ const h=layerSelectionHarness();
+ for(const [kind,id] of [['device','a'],['wall','shape'],['cable','c']]){
+  h.layerEdit('objToggle',id,kind);
+  assert.equal(h.layerVisible(h.layerObject(kind,id)),false);
+  h.layerEdit('objToggle',id,kind);
+  assert.equal(h.layerVisible(h.layerObject(kind,id)),true);
+  h.selectLayerObject(kind,id);
+  assert.equal(h.state().selection.kind,'group');assert.equal(h.state().selection.id,'g');
+ }
+ h.layerEdit('toggle','other');h.layerEdit('toggle','other');h.selectLayerObject('wall','shape');
+ assert.equal(h.state().selection.id,'g');assert.equal(h.doc.activeLayer,'other');
+ assert.ok([...h.doc.devices.slice(0,2),...h.doc.walls,...h.doc.cables].every(x=>x.groupId==='g'));
+});
+test('Layers modifier selection expands groups into actual unique member IDs',()=>{
+ const h=layerSelectionHarness();h.selectLayerObject('device','a');h.selectLayerObject('device','b',true);
+ assert.equal(h.state().selection,null);
+ assert.deepEqual(JSON.parse(JSON.stringify(h.state().multiSelection)),{devices:['a'],walls:['shape'],cables:['c']});
+ h.selectLayerObject('device','b',true);
+ assert.deepEqual(Array.from(h.state().multiSelection.devices),['a','b']);
+});
+test('Layers preserves ordinary selection for ungrouped objects and ignores missing IDs',()=>{
+ const h=layerSelectionHarness();h.selectLayerObject('device','solo');
+ assert.equal(h.state().selection.kind,'device');assert.equal(h.state().selection.id,'solo');
+ h.selectLayerObject('device','missing');assert.equal(h.state().selection.id,'solo');
+});
 test('revision snapshot includes layers, active layer, without nested revisions',()=>{
  const scope=context(extractFunction('snapshot'));const d={name:'demo',date:'2026-10-15',devices:[{id:'a'}],cables:[],walls:[],layers:[{id:'main',name:'original',locked:true}],activeLayer:'main',revisions:[{snapshot:{revisions:[]}}]};
  const snap=scope.snapshot(d);assert.equal(snap.schemaVersion,3);assert.equal(snap.activeLayer,'main');assert.equal(snap.layers[0].locked,true);
@@ -31,7 +65,7 @@ test('revision snapshot includes layers, active layer, without nested revisions'
  assert.equal(snap.layers[0].name,'original');assert.equal(snap.devices[0].id,'a');
 });
 test('UIDs are unique across a large batch',()=>{
- const uidSource=source.slice(source.indexOf('const issuedIds=new Set()'),source.indexOf('function uid()'))+extractFunction('uid');
+ const uidSource='const issuedIds=new Set();let fallbackIdSequence=0;'+extractFunction('uid');
  const scope=context(uidSource,{crypto:{randomUUID}});
  const ids=new Set(Array.from({length:2000},()=>scope.uid()));
  assert.equal(ids.size,2000);assert.ok([...ids].every(id=>id.startsWith('x')));

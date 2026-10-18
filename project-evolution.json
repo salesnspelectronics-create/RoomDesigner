@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V238",
-    "project_evolution_version": "V238",
+    "software_version": "V239",
+    "project_evolution_version": "V239",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V238",
+  "current_source_release": "V239",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -929,6 +929,12 @@
       "release": "V238",
       "date": "2026-10-17",
       "summary": "RD-CANDIDATE-005: handle rejected IndexedDB startup mirror read within recovery try/catch and add async rejection regression coverage; runtime acceptance pending.",
+      "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V239",
+      "date": "2026-10-18",
+      "summary": "Preserve whole-group selection from Layers after object/layer Hide/Show; add browser and dependency-free regressions; repair stale UID/import test harnesses.",
       "runtime_status": "pending_user_verification"
     }
   ],
@@ -3422,6 +3428,28 @@
       "implementation_status": "source_implemented",
       "runtime_status": "pending_user_verification",
       "verification_evidence": "Source-function reproduction: stale reads after quota-denied write and failed removal; 10 post-fix assertions passed; full inline JavaScript syntax passed; Node suite and iPhone runtime not executed."
+    },
+    {
+      "id": "RD-155-LAYERS-GROUP-SELECTION",
+      "record_type": "bug_fix",
+      "module": "layers_and_group_selection",
+      "source": "Direct user request in Codex chat, 2026-10-18",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-18",
+      "target_version": "V239",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "پروژه RoomDesigner را از GitHub بررسی کن. مشکل از بین رفتن عملکرد Group پس از Hide/Show آبجکت‌ها از پنل Layers را شناسایی و اصلاح کن. تست رگرسیون اضافه کن و پس از تأیید تست‌ها، تغییرات را روی شاخه main کامیت و پوش کن. ابتدا HEAD واقعی و وضعیت ریپازیتوری را بررسی کن و در پایان گزارش تغییرات و Commit SHA را بده.",
+      "assistant_interpretation": "Verify real main HEAD and clean state first; reproduce Hide/Show followed by Layers member selection; preserve group selection across object kinds and layers, add regressions, validate, then commit/push main.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "automated_desktop_browser_passed_pending_user_verification",
+      "verification_evidence": {
+        "initial_head": "6646e7f56fbfde7229f601921db6847ecff7b16a",
+        "initial_status": "clean main tracking origin/main; remote main verified with git ls-remote",
+        "pre_fix": "Real Edge regression failed: Layers selected {kind:device,id:a} after Hide/Show instead of the persistent group.",
+        "post_fix": "18 Node regression tests and 17 import tests pass; automated Edge scenario passes object/layer visibility, mixed cross-layer group selection/copy/drag, Undo/Redo, modifier selection, Ungroup and save/reload.",
+        "limitations": "Three legacy optional SVG suites fail on the original HEAD too: two DOM harnesses select the startup error script; browser SVG suite expects all asset versions to equal 1. These unrelated suites are unchanged; full suite is not green. User/iPhone acceptance pending."
+      }
     }
   ],
   "analyses": [
@@ -3868,6 +3896,24 @@
         "Browser/iPhone Safari Runtime Review is pending.",
         "Historical Project Evolution V155–V227 release gap remains."
       ]
+    },
+    {
+      "id": "AN-RD-155-LAYERS-GROUP-SELECTION",
+      "created_at": "2026-10-18",
+      "title": "Layers member selection bypasses persistent group selection after Hide/Show",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "root_cause": "Visibility toggles retain groupId, but the Layers name click handler always selected an individual object. Group-aware canvas/context-menu selection and Layers selection diverged; clipboard/delete/properties then acted on one member. Extending an existing group selection also incorrectly inserted its ID into the cable selection array.",
+      "decisions": [
+        "Resolve normal Layers selection using groupOfTarget, matching canvas/context menu behavior.",
+        "Expand an existing group into real device/cable IDs and unique wall shape IDs before modifier toggles.",
+        "Preserve all groupId values during visibility changes, including members on hidden layers.",
+        "Use actual UI clicks and canvas drag in browser regression; cover mixed cross-layer members and history.",
+        "Repair stale UID extraction and import harness boundaries/persistence expectations so existing dependency-free suites execute against current source."
+      ],
+      "remaining_risks": [
+        "Manual user and mobile Safari acceptance pending.",
+        "Legacy optional SVG suite failures reproduced on original main; unrelated SVG functionality was not changed."
+      ]
     }
   ],
   "deferred_scope": [
@@ -3929,6 +3975,16 @@
         "javascript_syntax": "PASS: complete inline application script parses",
         "repository_suite": "NOT_RUN: connector-only execution",
         "device_runtime": "NOT_RUN: user review"
+      }
+    },
+    {
+      "type": "node_and_real_browser_regression",
+      "version": "V239",
+      "result": {
+        "pre_fix": "FAIL: whole-group selection assertion after Hide/Show reproduced in Edge",
+        "post_fix": "PASS: 18 regression + 17 import tests and full Layers/group browser scenario",
+        "legacy_optional_svg": "FAIL on original main as well; two obsolete DOM script selectors and one obsolete SVG version assertion",
+        "device_runtime": "User/iPhone acceptance pending"
       }
     }
   ],
@@ -4599,12 +4655,18 @@
       "date": "2026-10-17",
       "change": "RD-CANDIDATE-005: move awaited startup mirror read inside existing exception handler, preserving current-document and local-storage guards.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V239",
+      "date": "2026-10-18",
+      "change": "RD-155: select persistent groups from Layers after Hide/Show, expand group IDs correctly for modifier selection; add browser/unit regressions and repair stale dependency-free test harnesses.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V238",
+    "release": "V239",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "pending_user_verification"
+    "runtime_status": "automated_desktop_browser_passed_pending_user_verification"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
