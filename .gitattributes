@@ -1,0 +1,6 @@
+# Archival copies retain the exact uploaded bytes and source SHA-256.
+assets/svg-source/* -text -diff
+# The existing HTML has mixed line endings; preserve unrelated lines verbatim.
+index.html -text whitespace=cr-at-eol
+# XML serialization preserves indentation around stripped style elements.
+assets/svg/equipment/nsp-*.svg whitespace=-blank-at-eol

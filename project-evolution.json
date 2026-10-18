@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V239",
-    "project_evolution_version": "V239",
+    "software_version": "V260",
+    "project_evolution_version": "V260",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V239",
+  "current_source_release": "V260",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -936,6 +936,13 @@
       "date": "2026-10-18",
       "summary": "Preserve whole-group selection from Layers after object/layer Hide/Show; add browser and dependency-free regressions; repair stale UID/import test harnesses.",
       "runtime_status": "pending_user_verification"
+    },
+    {
+      "release": "V260",
+      "date": "2026-10-18",
+      "phase": "equipment catalog replacement",
+      "summary": "Approved 26 SVG models, list UI, editable identities and backup-first legacy-equipment migration.",
+      "runtime_status": "automated_browser_passed_pending_user_acceptance"
     }
   ],
   "records": [
@@ -3450,6 +3457,28 @@
         "post_fix": "18 Node regression tests and 17 import tests pass; automated Edge scenario passes object/layer visibility, mixed cross-layer group selection/copy/drag, Undo/Redo, modifier selection, Ungroup and save/reload.",
         "limitations": "Three legacy optional SVG suites fail on the original HEAD too: two DOM harnesses select the startup error script; browser SVG suite expects all asset versions to equal 1. These unrelated suites are unchanged; full suite is not green. User/iPhone acceptance pending."
       }
+    },
+    {
+      "id": "RD-156-EQUIPMENT-REPLACEMENT",
+      "record_type": "user_requirement",
+      "module": "equipment_catalog_and_saved_drawing_migration",
+      "source": "Referenced ChatGPT conversation 6ad48a53-d098-83ed-9bd4-c7d98f4cdfd2 and current Codex confirmations",
+      "source_actor": "user",
+      "recorded_by": "assistant",
+      "created_at": "2026-10-18",
+      "target_version": "V260",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "فهرست تجهیزات قدیمی و تجهیزات نقشه‌های ذخیره‌شده حذف شوند؛ ۲۶ SVG با پارت‌نامبر، سری، نام فارسی و انگلیسی قابل ویرایش، مشکی، Stretch و نمایش نام زیر تجهیز جایگزین شوند. منوی کشیده با تصویر سمت راست و افزودن سمت چپ تأیید شد. کد را بررسی، تست، commit و push کن.",
+      "assistant_interpretation": "Replace all legacy equipment while preserving architecture. Back up local originals before removing equipment and dependent cables in current drawing, saved profiles, revision snapshots, shortcuts, imported projects and IndexedDB recovery. Block migration on failed durable backup. Preserve original monochrome artwork, including white cutouts and local gradients.",
+      "implementation_status": "source_implemented",
+      "runtime_status": "automated_browser_passed_pending_user_acceptance",
+      "verification_evidence": {
+        "initial_head": "dd926a15e5c857666f05931d9b0826f0bfb92e3d",
+        "assets": "All 26 user-supplied SVGs parsed and sanitized; 48 library assets and 51 mappings match bundled fallback.",
+        "unit": "18 regression + 17 import-validation + 2 catalog-display + 6 migration tests pass.",
+        "browser": "Headless Edge: desktop and mobile 320/390 px, 26 source previews, persisted identity and catalog editing, profile/revision/shortcut cleanup, durable backup denial, imported-file backup, IndexedDB recovery backup and downloadable backup verified. Existing layers/group browser regression passes.",
+        "limitations": "User/iPhone/Safari acceptance pending. No backend or remote user drawing storage exists; migration runs in each browser at first v260 startup. Ledger at HEAD stopped at V239; V240–V259 history was not fabricated."
+      }
     }
   ],
   "analyses": [
@@ -3914,6 +3943,14 @@
         "Manual user and mobile Safari acceptance pending.",
         "Legacy optional SVG suite failures reproduced on original main; unrelated SVG functionality was not changed."
       ]
+    },
+    {
+      "id": "AN-RD-156",
+      "title": "V260 equipment catalog replacement and destructive migration audit",
+      "date": "2026-10-18",
+      "decision": "26 independently identified catalog models, no invented communication ports; shared published SVG map and offline bundle; editable instance and catalog identity fields; one-time original localStorage backup, transactional rollback, import backups and separately retained IndexedDB pre-migration snapshot.",
+      "constraints": "Browser-local migration; old offline exports remain untouched until imported. Old equipment is removed again when an old backup is opened in v260. Use v259 to view archived legacy equipment.",
+      "audit_boundary": "V260 source audit reviewed startup ordering, SVG ingestion, persistent-storage failure, async mirror recovery race, profile/revision/shortcut references, imported-catalog bypass, mobile wrapping, and four-field editing. Historical ledger gaps V240–V259 remain unreconciled; user mobile acceptance pending."
     }
   ],
   "deferred_scope": [
@@ -4661,12 +4698,19 @@
       "date": "2026-10-18",
       "change": "RD-155: select persistent groups from Layers after Hide/Show, expand group IDs correctly for modifier selection; add browser/unit regressions and repair stale dependency-free test harnesses.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V260",
+      "date": "2026-10-18",
+      "change": "RD-156: replace old equipment with 26 supplied SVGs; right-hand previews, wrapping Persian list rows and left-hand add buttons; metadata editing; Stretch and visible labels; backup-first drawing/profile/revision/shortcut/import/IndexedDB cleanup; grouped CSS and internal SVG gradient preservation.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V239",
+    "release": "V260",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "automated_desktop_browser_passed_pending_user_verification"
+    "runtime_status": "automated_browser_passed_pending_user_acceptance",
+    "audit": "V260 scoped source audit completed; historical ledger gaps retained transparently"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

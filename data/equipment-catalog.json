@@ -1,0 +1,270 @@
+{
+  "entries": [
+    {
+      "code": "1L",
+      "name": "کلید تک‌پل روشنایی",
+      "model": "نگین",
+      "sourceFile": "1l.svg",
+      "nameEn": "Single-Gang Lighting Switch",
+      "assetId": "nsp-1l",
+      "sourceSha256": "4612bb8266ebb6db2c6a0c1237b5fc4869b64c5bb9414fbe0189765477a2decd",
+      "originalFilePath": "assets/svg-source/1l.svg"
+    },
+    {
+      "code": "2L",
+      "name": "کلید دوپل روشنایی",
+      "model": "نگین",
+      "sourceFile": "2l.svg",
+      "nameEn": "Two-Gang Lighting Switch",
+      "assetId": "nsp-2l",
+      "sourceSha256": "7c128e99b6dfae90b9ba8817b13c90b19085383e72c35a1ebf8540084abf942c",
+      "originalFilePath": "assets/svg-source/2l.svg"
+    },
+    {
+      "code": "2R",
+      "name": "کلید درخواست هتلی دو فرمان",
+      "model": "نگین",
+      "sourceFile": "2r.svg",
+      "nameEn": "Hotel Two-Command Request Switch",
+      "assetId": "nsp-2r",
+      "sourceSha256": "80028aa2965d2e296929ae4c75de6e4399b5406d63cb10333c809a5e8b3606ff",
+      "originalFilePath": "assets/svg-source/2r.svg"
+    },
+    {
+      "code": "3L",
+      "name": "کلید سه‌پل روشنایی",
+      "model": "نگین",
+      "sourceFile": "3l.svg",
+      "nameEn": "Three-Gang Lighting Switch",
+      "assetId": "nsp-3l",
+      "sourceSha256": "32e21a01f40fd69d8d1b7704c93e614b2b9841612c43bce4741494fbf3553436",
+      "originalFilePath": "assets/svg-source/3l.svg"
+    },
+    {
+      "code": "3R",
+      "name": "کلید درخواست هتلی سه فرمان",
+      "model": "نگین",
+      "sourceFile": "3r.svg",
+      "nameEn": "Hotel Three-Command Request Switch",
+      "assetId": "nsp-3r",
+      "sourceSha256": "c8a7eaa511034ef770f7dd98639bb588dc55bdf124093c80e9f11bf668a80619",
+      "originalFilePath": "assets/svg-source/3r.svg"
+    },
+    {
+      "code": "4L",
+      "name": "کلید چهارپل روشنایی",
+      "model": "نگین",
+      "sourceFile": "4l.svg",
+      "nameEn": "Four-Gang Lighting Switch",
+      "assetId": "nsp-4l",
+      "sourceSha256": "957c434fabc5e84572de0363992f686d28aaf248e50e3eb9f01ea106c2925187",
+      "originalFilePath": "assets/svg-source/4l.svg"
+    },
+    {
+      "code": "4R",
+      "name": "کلید درخواست هتلی چهار فرمان",
+      "model": "نگین",
+      "sourceFile": "4r.svg",
+      "nameEn": "Hotel Four-Command Request Switch",
+      "assetId": "nsp-4r",
+      "sourceSha256": "7a69a4df2aed6430f950263b63e9574254663b0f41f91cf4de71811a70981091",
+      "originalFilePath": "assets/svg-source/4r.svg"
+    },
+    {
+      "code": "6L",
+      "name": "کلید شش‌پل روشنایی",
+      "model": "نگین",
+      "sourceFile": "6l.svg",
+      "nameEn": "Six-Gang Lighting Switch",
+      "assetId": "nsp-6l",
+      "sourceSha256": "762174a85df96f68583249c66cd26d554353435a02e361c3cca8f3c239b388d4",
+      "originalFilePath": "assets/svg-source/6l.svg"
+    },
+    {
+      "code": "6L-Soket-Almas",
+      "name": "کلید شش‌پل روشنایی با سوکت برق‌پریز",
+      "model": "الماس",
+      "sourceFile": "6l-soket-almas.svg",
+      "nameEn": "Six-Gang Lighting Switch with Power Socket",
+      "assetId": "nsp-6l-soket-almas",
+      "sourceSha256": "0d2f4451d620deb53c651ba6456106029bfebe3c62e32443a2d9f185aed8b47a",
+      "originalFilePath": "assets/svg-source/6l-soket-almas.svg"
+    },
+    {
+      "code": "6R-01",
+      "name": "کلید شش‌فرمان هتلی",
+      "model": "نگین",
+      "sourceFile": "6r-0۱.svg",
+      "nameEn": "Hotel Six-Command Switch",
+      "assetId": "nsp-6r-01",
+      "sourceSha256": "06da18c4cf3b0297347e341b7ff510d89a11d6068a85f54c6920474e62d07b48",
+      "originalFilePath": "assets/svg-source/6r-0۱.svg"
+    },
+    {
+      "code": "8R-Almas",
+      "name": "کلید فرمان هتلی هشت فرمان",
+      "model": "الماس",
+      "sourceFile": "8r-almas.svg",
+      "nameEn": "Hotel Eight-Command Switch",
+      "assetId": "nsp-8r-almas",
+      "sourceSha256": "9aa61fcdd1dd6f6b12ae5ed21c9ed16e35e2d5c0fde6c37d4f04bd5e80cdcd4d",
+      "originalFilePath": "assets/svg-source/8r-almas.svg"
+    },
+    {
+      "code": "9R-Almas",
+      "name": "کلید روشنایی ۹ پل ترموستاتیک",
+      "model": "الماس",
+      "sourceFile": "9r-alma.svg",
+      "nameEn": "Nine-Gang Thermostatic Lighting Switch",
+      "assetId": "nsp-9r-almas",
+      "sourceSha256": "415202925d2cda4564779e2bc889d1cb221c6164d08875f573469c1b848e28cc",
+      "originalFilePath": "assets/svg-source/9r-alma.svg"
+    },
+    {
+      "code": "12R-Almas",
+      "name": "کلید روشنایی ۱۲ پل ترموستاتیک",
+      "model": "الماس",
+      "sourceFile": "12r-almas.svg",
+      "nameEn": "Twelve-Gang Thermostatic Lighting Switch",
+      "assetId": "nsp-12r-almas",
+      "sourceSha256": "749a09b5206ff53586bd0432785c4a4331b5b568008cc60b64609d65febdbf44",
+      "originalFilePath": "assets/svg-source/12r-almas.svg"
+    },
+    {
+      "code": "CR-01",
+      "name": "پاور سوییچ",
+      "model": "نگین",
+      "sourceFile": "cr-0۱.svg",
+      "nameEn": "Power Switch",
+      "assetId": "nsp-cr-01",
+      "sourceSha256": "11fcf1c9949dedc4ef7eacb6b1370610079d6e73ec021af484e0fecc61e5f9d6",
+      "originalFilePath": "assets/svg-source/cr-0۱.svg"
+    },
+    {
+      "code": "CR3R-Almas-L",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان لندسکیپ",
+      "model": "الماس",
+      "sourceFile": "cr3r-almas-L.svg",
+      "nameEn": "Hotel Three-Command Power Switch Panel – Landscape",
+      "assetId": "nsp-cr3r-almas-l",
+      "sourceSha256": "8ecc4c2c0d4c92a9ecd6a66ef11b9f48f463d8b76df46e1de008920d3ce62f69",
+      "originalFilePath": "assets/svg-source/cr3r-almas-L.svg"
+    },
+    {
+      "code": "CR3R-Negin-L",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان لندسکیپ",
+      "model": "نگین",
+      "sourceFile": "cr3r-negin-L.svg",
+      "nameEn": "Hotel Three-Command Power Switch Panel – Landscape",
+      "assetId": "nsp-cr3r-negin-l",
+      "sourceSha256": "ae4568e20e8b63d0859b980e8ec3577548a524ef3affcba86ff5f72ccb36ab05",
+      "originalFilePath": "assets/svg-source/cr3r-negin-L.svg"
+    },
+    {
+      "code": "CR3R-Negin-P",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان پرتره",
+      "model": "نگین",
+      "sourceFile": "cr3r-negin-P.svg",
+      "nameEn": "Hotel Three-Command Power Switch Panel – Portrait",
+      "assetId": "nsp-cr3r-negin-p",
+      "sourceSha256": "312285d752b5a746fb25674d8fa9d597a9570102f5245fe8846505867449b787",
+      "originalFilePath": "assets/svg-source/cr3r-negin-P.svg"
+    },
+    {
+      "code": "CR4R-Almas-L",
+      "name": "پنل پاور سوییچ فرمانی هتلی چهارفرمان لندسکیپ",
+      "model": "الماس",
+      "sourceFile": "cr4r-almas-L.svg",
+      "nameEn": "Hotel Four-Command Power Switch Panel – Landscape",
+      "assetId": "nsp-cr4r-almas-l",
+      "sourceSha256": "23d803f9ebc636167318406cd2d3c254fabf3953befa09fa3773b05713f03de4",
+      "originalFilePath": "assets/svg-source/cr4r-almas-L.svg"
+    },
+    {
+      "sourceFile": "cr4r-almas-P.svg",
+      "code": "CR4R-Almas-P",
+      "name": "پنل پاور سوییچ فرمانی هتلی چهارفرمان پرتره",
+      "model": "الماس",
+      "nameEn": "Hotel Four-Command Power Switch Panel – Portrait",
+      "assetId": "nsp-cr4r-almas-p",
+      "sourceSha256": "a563634034e1c1731586a36f4b97622109f1b603c73b8328d11b7aeff7a93ed8",
+      "originalFilePath": "assets/svg-source/cr4r-almas-P.svg"
+    },
+    {
+      "sourceFile": "dorbel almas-L.svg",
+      "code": "DB-Almas-L",
+      "name": "دوربل الماس لندسکیپ",
+      "model": "الماس",
+      "nameEn": "Doorbell – Almas – Landscape",
+      "assetId": "nsp-db-almas-l",
+      "sourceSha256": "f8dbf70bd63dc91fccc330659c459bd60b663188adf8beb53857193c01b850d8",
+      "originalFilePath": "assets/svg-source/dorbel almas-L.svg"
+    },
+    {
+      "sourceFile": "dorbel almas-P.svg",
+      "code": "DB-Almas-P",
+      "name": "دوربل الماس پرتره",
+      "model": "الماس",
+      "nameEn": "Doorbell – Almas – Portrait",
+      "assetId": "nsp-db-almas-p",
+      "sourceSha256": "153eeece4d1e5df5fd567dca5d66464c04657badee25c4a66d48b61e92383c38",
+      "originalFilePath": "assets/svg-source/dorbel almas-P.svg"
+    },
+    {
+      "sourceFile": "dorbel negin-LL.svg",
+      "code": "DB-Negin-LL",
+      "name": "دوربل نگین لارج لندسکیپ",
+      "model": "نگین",
+      "nameEn": "Doorbell – Negin – Large – Landscape",
+      "assetId": "nsp-db-negin-ll",
+      "sourceSha256": "265f06d825e5d24fc920a44bc7b68ad51739498f50a25638121b86789bf7f6ff",
+      "originalFilePath": "assets/svg-source/dorbel negin-LL.svg"
+    },
+    {
+      "sourceFile": "dorbel negin-LP.svg",
+      "code": "DB-Negin-LP",
+      "name": "دوربل نگین لارج پرتره",
+      "model": "نگین",
+      "nameEn": "Doorbell – Negin – Large – Portrait",
+      "assetId": "nsp-db-negin-lp",
+      "sourceSha256": "8b0286b44a8a950867877dac4f33b67dd285178bcb6c57c9e435267b173f7dda",
+      "originalFilePath": "assets/svg-source/dorbel negin-LP.svg"
+    },
+    {
+      "sourceFile": "dorbel negin-ML.svg",
+      "code": "DB-Negin-ML",
+      "name": "دوربل نگین مدیوم لندسکیپ",
+      "model": "نگین",
+      "nameEn": "Doorbell – Negin – Medium – Landscape",
+      "assetId": "nsp-db-negin-ml",
+      "sourceSha256": "696321d81892bed675106f32b2aecf99b76dec6b1bc63a392d4cfd8c30b6c309",
+      "originalFilePath": "assets/svg-source/dorbel negin-ML.svg"
+    },
+    {
+      "sourceFile": "dorbel negin-MP.svg",
+      "code": "DB-Negin-MP",
+      "name": "دوربل نگین مدیوم پرتره",
+      "model": "نگین",
+      "nameEn": "Doorbell – Negin – Medium – Portrait",
+      "assetId": "nsp-db-negin-mp",
+      "sourceSha256": "9d286554067fa8ff20475f24ac38724a8a864d23828ee146d34b2a9f883599b9",
+      "originalFilePath": "assets/svg-source/dorbel negin-MP.svg"
+    },
+    {
+      "sourceFile": "tmp 7sec-0۱.svg",
+      "code": "TMP-7SEG",
+      "name": "ترموستات هفت‌سگمنت نگین",
+      "model": "نگین",
+      "nameEn": "Seven Segment Thermostat",
+      "assetId": "nsp-tmp-7seg",
+      "sourceSha256": "d6cdfa8d60fa3b1e65db77e8b706adaac7aff5336cfddfce0ff9c93ffbc35bb2",
+      "originalFilePath": "assets/svg-source/tmp 7sec-0۱.svg"
+    }
+  ],
+  "defaults": {
+    "svgMode": "stretch",
+    "stretchSvg": true,
+    "showLabel": true
+  },
+  "release": "nsp-equipment-260"
+}

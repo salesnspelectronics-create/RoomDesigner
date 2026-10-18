@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 1,
+  "version": 2,
   "symbols": [
     {
       "id": "single_bed",
@@ -300,79 +300,6 @@
       ]
     },
     {
-      "id": "doorbell",
-      "name": "Doorbell",
-      "category": "equipment",
-      "filePath": "assets/svg/equipment/doorbell.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "doorbell"
-      ]
-    },
-    {
-      "id": "controller",
-      "name": "Actuator",
-      "category": "electrical",
-      "filePath": "assets/svg/electrical/controller.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "controller",
-        "actuator"
-      ]
-    },
-    {
-      "id": "switch",
-      "name": "Network Switch",
-      "category": "equipment",
-      "filePath": "assets/svg/equipment/switch.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "switch",
-        "network_switch"
-      ]
-    },
-    {
-      "id": "supply",
-      "name": "Power Supply",
-      "category": "electrical",
-      "filePath": "assets/svg/electrical/supply.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "supply",
-        "power_supply"
-      ]
-    },
-    {
-      "id": "reserve",
-      "name": "Spare Device",
-      "category": "equipment",
-      "filePath": "assets/svg/equipment/reserve.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "reserve"
-      ]
-    },
-    {
       "id": "door",
       "name": "Door",
       "category": "architecture",
@@ -387,88 +314,367 @@
       ]
     },
     {
-      "id": "lighting",
-      "name": "Lighting",
-      "category": "electrical",
-      "filePath": "assets/svg/electrical/lighting.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "lighting"
-      ]
-    },
-    {
-      "id": "outlet",
-      "name": "Electrical Outlet",
-      "category": "electrical",
-      "filePath": "assets/svg/electrical/outlet.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "outlet",
-        "electrical_outlet"
-      ]
-    },
-    {
-      "id": "data_port",
-      "name": "Data Port",
-      "category": "electrical",
-      "filePath": "assets/svg/electrical/data_port.svg",
-      "viewBox": "0 0 120 80",
-      "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
-      "version": 1,
-      "assignedEquipmentTypes": [
-        "data_port"
-      ]
-    },
-    {
-      "id": "access_point",
-      "name": "Access Point",
+      "id": "nsp-1l",
+      "name": "کلید تک‌پل روشنایی",
       "category": "equipment",
-      "filePath": "assets/svg/equipment/access_point.svg",
-      "viewBox": "0 0 120 80",
+      "filePath": "assets/svg/equipment/nsp-1l.svg",
+      "viewBox": "0 0 1062 1018",
       "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
       "version": 1,
       "assignedEquipmentTypes": [
-        "access_point"
+        "nsp-1l"
       ]
     },
     {
-      "id": "camera",
-      "name": "Camera",
+      "id": "nsp-2l",
+      "name": "کلید دوپل روشنایی",
       "category": "equipment",
-      "filePath": "assets/svg/equipment/camera.svg",
-      "viewBox": "0 0 120 80",
+      "filePath": "assets/svg/equipment/nsp-2l.svg",
+      "viewBox": "0 0 1062 1018",
       "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
       "version": 1,
       "assignedEquipmentTypes": [
-        "camera"
+        "nsp-2l"
       ]
     },
     {
-      "id": "custom",
-      "name": "Custom Device",
-      "category": "custom",
-      "filePath": "assets/svg/custom/custom.svg",
-      "viewBox": "0 0 120 80",
+      "id": "nsp-2r",
+      "name": "کلید درخواست هتلی دو فرمان",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-2r.svg",
+      "viewBox": "0 0 1062 1018",
       "defaultWidth": 120,
-      "defaultHeight": 80,
-      "preserveAspectRatio": "xMidYMid meet",
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
       "version": 1,
       "assignedEquipmentTypes": [
-        "custom"
+        "nsp-2r"
+      ]
+    },
+    {
+      "id": "nsp-3l",
+      "name": "کلید سه‌پل روشنایی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-3l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-3l"
+      ]
+    },
+    {
+      "id": "nsp-3r",
+      "name": "کلید درخواست هتلی سه فرمان",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-3r.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-3r"
+      ]
+    },
+    {
+      "id": "nsp-4l",
+      "name": "کلید چهارپل روشنایی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-4l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-4l"
+      ]
+    },
+    {
+      "id": "nsp-4r",
+      "name": "کلید درخواست هتلی چهار فرمان",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-4r.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-4r"
+      ]
+    },
+    {
+      "id": "nsp-6l",
+      "name": "کلید شش‌پل روشنایی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-6l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-6l"
+      ]
+    },
+    {
+      "id": "nsp-6l-soket-almas",
+      "name": "کلید شش‌پل روشنایی با سوکت برق‌پریز",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-6l-soket-almas.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-6l-soket-almas"
+      ]
+    },
+    {
+      "id": "nsp-6r-01",
+      "name": "کلید شش‌فرمان هتلی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-6r-01.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-6r-01"
+      ]
+    },
+    {
+      "id": "nsp-8r-almas",
+      "name": "کلید فرمان هتلی هشت فرمان",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8r-almas.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-8r-almas"
+      ]
+    },
+    {
+      "id": "nsp-9r-almas",
+      "name": "کلید روشنایی ۹ پل ترموستاتیک",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-9r-almas.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-9r-almas"
+      ]
+    },
+    {
+      "id": "nsp-12r-almas",
+      "name": "کلید روشنایی ۱۲ پل ترموستاتیک",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-12r-almas.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-12r-almas"
+      ]
+    },
+    {
+      "id": "nsp-cr-01",
+      "name": "پاور سوییچ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-01.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr-01"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-almas-l",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-almas-l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr3r-almas-l"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-l",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr3r-negin-l"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-p",
+      "name": "پنل پاور سوییچ فرمانی هتلی سه‌فرمان پرتره",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-p.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr3r-negin-p"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-l",
+      "name": "پنل پاور سوییچ فرمانی هتلی چهارفرمان لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr4r-almas-l"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-p",
+      "name": "پنل پاور سوییچ فرمانی هتلی چهارفرمان پرتره",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-p.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-cr4r-almas-p"
+      ]
+    },
+    {
+      "id": "nsp-db-almas-l",
+      "name": "دوربل الماس لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-almas-l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-almas-l"
+      ]
+    },
+    {
+      "id": "nsp-db-almas-p",
+      "name": "دوربل الماس پرتره",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-almas-p.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-almas-p"
+      ]
+    },
+    {
+      "id": "nsp-db-negin-ll",
+      "name": "دوربل نگین لارج لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-negin-ll.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-negin-ll"
+      ]
+    },
+    {
+      "id": "nsp-db-negin-lp",
+      "name": "دوربل نگین لارج پرتره",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-negin-lp.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-negin-lp"
+      ]
+    },
+    {
+      "id": "nsp-db-negin-ml",
+      "name": "دوربل نگین مدیوم لندسکیپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-negin-ml.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-negin-ml"
+      ]
+    },
+    {
+      "id": "nsp-db-negin-mp",
+      "name": "دوربل نگین مدیوم پرتره",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-negin-mp.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-db-negin-mp"
+      ]
+    },
+    {
+      "id": "nsp-tmp-7seg",
+      "name": "ترموستات هفت‌سگمنت نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-7seg.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-tmp-7seg"
       ]
     }
   ]

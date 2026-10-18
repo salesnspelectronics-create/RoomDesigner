@@ -68,3 +68,9 @@ This test uses a small synthetic Corel-style fixture; user-provided SVG artwork 
 ## Shared SVG library (v139)
 
 33 published symbols and 40 type mappings; local library manager, graphical crop/ViewBox editor, reusable SVG engine and port-bearing transforms. See [SVG-ENGINE.md](./SVG-ENGINE.md) for workflows, compatibility, publication and test commands. Final device/browser acceptance is pending the user’s tests.
+
+## Equipment replacement (v260)
+
+The equipment menu now contains the 26 supplied NSP models with full-width rows, right-hand artwork and editable part number, series, Persian name and English name. New equipment defaults to Stretch and visible labels. Original source SVGs and their SHA-256 hashes are retained.
+
+Legacy equipment and dependent cables are removed from browser-local saved drawings, profiles, revisions and shortcuts after a durable backup. Imported legacy files and IndexedDB recovery have separate backups. See [Equipment migration and recovery](./EQUIPMENT-MIGRATION.md) for the exact scope, downloads, recovery procedure and tests. Migration happens when each browser opens v260; user iPhone/Safari acceptance remains pending.

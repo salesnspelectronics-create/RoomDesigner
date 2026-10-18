@@ -15,8 +15,12 @@
   const rules=new Map();
   for(const style of [...r.querySelectorAll('style')]){
    const css=(style.textContent||'').replace(/@font-face\s*\{[^{}]*\}/gi,'');
-   if(/@import|url\s*\(|expression\s*\(|\\/i.test(css))return null;
-   for(const match of css.matchAll(/\.([\w-]+)\s*\{([^{}]*)\}/g))rules.set(match[1],match[2].split(';').map(x=>x.trim()).filter(x=>/^(fill|stroke|stroke-width|stroke-linejoin|stroke-linecap|stroke-miterlimit|fill-rule|opacity|fill-opacity|stroke-opacity|font-size|font-family|font-weight)\s*:/i.test(x)).join(';'));
+   if(/@import|url\s*\(|expression\s*\(|\\/i.test(css.replace(/url\(\s*#[\w.-]+\s*\)/gi,'')))return null;
+   for(const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)){
+    const selectors=match[1].trim().split(/\s*,\s*/);if(!selectors.every(x=>/^\.[\w-]+$/.test(x)))continue;
+    const declarations=match[2].split(';').map(x=>x.trim()).filter(x=>/^(fill|stroke|stroke-width|stroke-linejoin|stroke-linecap|stroke-miterlimit|fill-rule|opacity|fill-opacity|stroke-opacity|font-size|font-family|font-weight)\s*:/i.test(x)).join(';');
+    for(const selector of selectors){const key=selector.slice(1);rules.set(key,[rules.get(key),declarations].filter(Boolean).join(';'))}
+   }
    style.remove();
   }
   // Embedded CorelDRAW font glyphs are nonessential and can contain unsupported nodes.
@@ -30,8 +34,8 @@
     if(a.namespaceURI==='http://www.w3.org/XML/1998/namespace'&&a.localName!=='space')return null;
     if(/^on/i.test(a.name)||/javascript:|expression\s*\(|@import|\\/i.test(a.value))return null;
     if(/href/i.test(a.name)&&!/^#[\w.-]+$/.test(a.value))return null;
-    if(/url\s*\(/i.test(a.value)&&!/^url\(\s*#[\w.-]+\s*\)$/.test(a.value))return null;
-    if(a.name==='style'&&/url\s*\(|@|[<>]/i.test(a.value))return null;
+    if(/url\s*\(/i.test(a.value.replace(/url\(\s*#[\w.-]+\s*\)/gi,'')))return null;
+    if(a.name==='style'&&/@|[<>]/i.test(a.value))return null;
    }
    const css=(n.getAttribute('class')||'').split(/\s+/).map(c=>rules.get(c)).filter(Boolean).join(';');if(css)n.setAttribute('style',(n.getAttribute('style')||'')+';'+css);n.removeAttribute('class');
   }
