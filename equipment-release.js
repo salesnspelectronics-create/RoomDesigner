@@ -4,7 +4,7 @@
  const release='nsp-equipment-260',backupKey='rd_equipment_backup_v260';
  const architecture=new Set(['door','window','custom-architecture','bed','single_bed','double_bed','sliding_door','circle','toilet','television','sofa','armchair','table','desk','wardrobe','washbasin','shower','bathtub','kitchen_sink','cooktop','refrigerator','dining_chair','column','stairs']);
  const isArchitecture=d=>d.category==='architecture'||architecture.has(d.kind);
- function defaults(){return global.EquipmentCatalogBuiltin.entries.map(t=>({...t,ports:[],category:'equipment',kind:'custom',equipmentRelease:release,svgType:t.assetId,svgAssetId:t.assetId,svgAssetVersion:1,svg:global.SvgLibraryBuiltin.assets[t.assetId],svgMode:'stretch',stretchSvg:true,showLabel:true,backgroundColor:'#ffffff',w:120,h:85}))}
+ function defaults(){return global.EquipmentCatalogBuiltin.entries.map(t=>({...t,ports:[{id:'network',name:'Ethernet',side:'left',type:'ethernet'},{id:'power',name:'Power',side:'right',type:'power'}],category:'equipment',kind:'custom',equipmentRelease:release,svgType:t.assetId,svgAssetId:t.assetId,svgAssetVersion:1,svg:global.SvgLibraryBuiltin.assets[t.assetId],svgMode:'stretch',stretchSvg:true,showLabel:true,backgroundColor:'#ffffff',w:120,h:85}))}
  function cleanCatalog(items){return [...defaults(),...(items||[]).filter(isArchitecture)]}
  function cleanDocument(input,oldCatalog=[]){
   const d=JSON.parse(JSON.stringify(input));
