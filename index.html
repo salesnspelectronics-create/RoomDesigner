@@ -355,6 +355,7 @@ function svgEditorPanel(){
  canvas.addEventListener('pointermove',ev=>{if(!anchor||pointerId!==ev.pointerId)return;const p=at(ev),b=[Math.min(anchor.x,p.x),Math.min(anchor.y,p.y),Math.abs(p.x-anchor.x),Math.abs(p.y-anchor.y)];if(b[2]>0&&b[3]>0){e.box=b;syncSvgCrop()}});
  canvas.addEventListener('pointerup',ev=>{if(ev.pointerId===pointerId){anchor=null;pointerId=null}});
  canvas.addEventListener('pointercancel',ev=>{if(ev.pointerId===pointerId){anchor=null;pointerId=null}});
+ canvas.addEventListener('lostpointercapture',ev=>{if(ev.pointerId===pointerId){anchor=null;pointerId=null}});
 }
 function syncSvgCrop(){const e=svgEditor;if(!e)return;for(let i=0;i<4;i++)$('svgCrop'+i).value=e.box[i];const r=$('svgCropBox');['x','y','width','height'].forEach((key,i)=>r.setAttribute(key,e.box[i]));$('svgCropAfter').src=svgImageData(SvgEngine.crop(e.raw,e.box))}
 document.addEventListener('input',ev=>{if(ev.target.id==='svgLibrarySearch'){const q=ev.target.value.toLowerCase();$('svgLibraryGrid').querySelectorAll('[data-search]').forEach(b=>b.hidden=!b.dataset.search.includes(q))}});
