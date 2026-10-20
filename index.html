@@ -1381,10 +1381,10 @@ function setupDesktopWorkspace() {
  document.body.append(status);
  for(const side of ['left','right']){const pane=$(side==='left'?'deskLeft':'deskRight');pane.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch'&&pane.classList.contains('auto-hide'))pane.classList.add('peek')});pane.addEventListener('pointerleave',()=>pane.classList.remove('peek'))}
  for(const grip of document.querySelectorAll('[data-resize]')){
-  const pane=$(grip.dataset.resize==='left'?'deskLeft':'deskRight');
-  grip.addEventListener('pointerdown',e=>{e.preventDefault();grip.setPointerCapture(e.pointerId);grip.classList.add('moving');pane.classList.remove('collapsed','auto-hide','peek');pane.querySelector('[data-desk-pin]').setAttribute('aria-pressed','true')});
-  grip.addEventListener('pointermove',e=>{if(!grip.classList.contains('moving'))return;pane.dataset.width=Math.max(220,Math.min(innerWidth*.31,grip.dataset.resize==='left'?innerWidth-e.clientX:e.clientX));updateDesktopWidths()});
-  for(const event of ['pointerup','pointercancel','lostpointercapture'])grip.addEventListener(event,()=>grip.classList.remove('moving'));
+  const pane=$(grip.dataset.resize==='left'?'deskLeft':'deskRight');let activePointerId=null;
+  grip.addEventListener('pointerdown',e=>{if(e.button!==0||activePointerId!==null)return;e.preventDefault();try{grip.setPointerCapture(e.pointerId)}catch{return}activePointerId=e.pointerId;grip.classList.add('moving');pane.classList.remove('collapsed','auto-hide','peek');pane.querySelector('[data-desk-pin]').setAttribute('aria-pressed','true')});
+  grip.addEventListener('pointermove',e=>{if(e.pointerId!==activePointerId||!grip.classList.contains('moving'))return;pane.dataset.width=Math.max(220,Math.min(innerWidth*.31,grip.dataset.resize==='left'?innerWidth-e.clientX:e.clientX));updateDesktopWidths()});
+  for(const event of ['pointerup','pointercancel','lostpointercapture'])grip.addEventListener(event,e=>{if(e.pointerId!==activePointerId)return;activePointerId=null;grip.classList.remove('moving')});
   grip.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const direction=(e.key==='ArrowRight'?1:-1)*(grip.dataset.resize==='left'?-1:1);pane.dataset.width=Math.max(220,Math.min(innerWidth*.31,(Number(pane.dataset.width)||(grip.dataset.resize==='left'?270:260))+direction*10));pane.classList.remove('collapsed','auto-hide');updateDesktopWidths()});
  }
  svg.addEventListener('pointermove',e=>{if(!document.body.classList.contains('desktop-layout'))return;const p=point(e);$('deskCursor').textContent=`X: ${Math.round(p.x)}   Y: ${Math.round(p.y)}`});
