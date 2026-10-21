@@ -178,7 +178,7 @@ if(typeof window.SvgLibraryBuiltin==='undefined')window.SvgLibraryBuiltin={manif
 
 (()=>{'use strict';
 let equipmentMigrated=false;
-try{equipmentMigrated=RoomEquipment.migrateStorage(window.localStorage)}catch(error){
+try{let migrationStorage;try{migrationStorage=window.localStorage;migrationStorage.getItem('rd_equipment_release')}catch(error){if(error?.name!=='SecurityError')throw error;migrationStorage=null}if(migrationStorage)equipmentMigrated=RoomEquipment.migrateStorage(migrationStorage)}catch(error){
  const panel=document.createElement('section');panel.setAttribute('role','alert');panel.className='equipment-migration-block';
  const message=document.createElement('p');message.textContent='جایگزینی تجهیزات متوقف شد؛ داده‌های قبلی حفظ شده‌اند. '+error.message+' — ابتدا پشتیبان را دریافت و فضای ذخیره‌سازی مرورگر را بررسی کنید، سپس صفحه را باز کنید.';
  const download=document.createElement('button');download.textContent='دریافت پشتیبان قبل از مهاجرت';download.onclick=()=>{let data;try{data=localStorage.getItem(RoomEquipment.backupKey)||JSON.stringify({original:RoomEquipment.capture(localStorage)})}catch{return}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='roomdesigner-before-equipment-v271.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
