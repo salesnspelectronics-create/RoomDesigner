@@ -765,6 +765,7 @@ function pasteDrawing(){if(!drawingClipboard)return notify('کلیپ‌بورد 
  for(const c of copiedCables)if(c.groupId){if(!groupMembers.has(c.groupId))groupMembers.set(c.groupId,new Set());groupMembers.get(c.groupId).add('cable:'+c.id)}
  for(const obj of [...copiedDevices,...copiedWalls,...copiedCables])if(obj.groupId&&(groupMembers.get(obj.groupId)?.size||0)<2)delete obj.groupId;
  if(!copiedDevices.length&&!copiedWalls.length&&!copiedCables.length)return notify('این انتخاب قابل Paste نیست؛ کابل باید همراه تجهیزات دو سر کپی شود');
+  if(doc.devices.length+copiedDevices.length>10000||doc.cables.length+copiedCables.length>40000||(doc.walls||[]).length+copiedWalls.length>50000)return notify('تعداد آبجکت‌ها پس از Paste از سقف مجاز سند بیشتر می‌شود');
  checkpoint();doc.devices.push(...copiedDevices);doc.walls.push(...copiedWalls);doc.cables.push(...copiedCables);const pastedIds={devices:copiedDevices.map(d=>d.id),walls:[...new Set(copiedWalls.map(w=>w.shapeId||w.id))],cables:copiedCables.map(c=>c.id)};const pastedCount=pastedIds.devices.length+pastedIds.walls.length+pastedIds.cables.length;multiSelection=pastedCount>1?pastedIds:null;selection=pastedCount===1?(pastedIds.devices.length?{kind:'device',id:pastedIds.devices[0]}:pastedIds.walls.length?{kind:'wall',id:pastedIds.walls[0]}:{kind:'cable',id:pastedIds.cables[0]}):null;resizeMode=false;scheduleSave();render();notify('کپی با شناسه‌های مستقل روی نقشه درج شد')
 }
 function rotateSelectedDevice(degrees){
