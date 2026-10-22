@@ -857,7 +857,8 @@ async function saveLocal(copy=false){
  doc.revision=revision.number;doc.lastEditedBy=activeUser;profiles[doc.id]=JSON.parse(JSON.stringify(doc));
  const profilesSaved=safeStorage.setItem('rd_profiles',JSON.stringify(profiles));manualSaveFailed=!profilesSaved;
  if(!profilesSaved){
-  if(previousProfile===undefined)delete profiles[beforeRevisionSave.id];else profiles[beforeRevisionSave.id]=previousProfile;
+  delete profiles[doc.id];
+  if(previousProfile!==undefined)profiles[beforeRevisionSave.id]=previousProfile;
   doc=beforeRevisionSave;
   persistenceStatus(false);notify('⚠ ذخیره Revision ناموفق بود؛ تاریخچه قبلی حفظ شد');return
  }
