@@ -243,13 +243,12 @@ function mirrorChecksum(payload){
  for(let i=0;i<payload.length;i++){hash^=payload.charCodeAt(i);hash=Math.imul(hash,16777619)}
  return (hash>>>0).toString(16).padStart(8,'0')
 }
-async function mirrorOperation(mode,value,key='last'){const db=await mirrorDb;if(!db)return null;return new Promise(resolve=>{
+async function mirrorOperation(mode,value,key='last',snapshotGeneration=null){const db=await mirrorDb;if(!db)return null;return new Promise(resolve=>{
  try{
   const tx=db.transaction('backups',mode),store=tx.objectStore('backups'),req=mode==='readonly'?store.get(key):store.put(value,key);
   // Keep the legacy raw JSON at "last"; the sidecar shares the same IDB transaction.
   if(mode==='readwrite'&&key==='last'&&typeof value==='string'){
-   const sequence=Number(safeStorage.getItem('rd_save_generation'))||0;
-   store.put({format:2,checksum:mirrorChecksum(value),length:value.length,savedAt:Date.now(),generation:sequence},'last-meta')
+   store.put({format:2,checksum:mirrorChecksum(value),length:value.length,savedAt:Date.now(),generation:snapshotGeneration},'last-meta')
   }
   let result=null;req.onsuccess=()=>{result=req.result};tx.oncomplete=()=>resolve(mode==='readonly'?result:true);
   tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)
@@ -263,10 +262,11 @@ function saveAuto(){
  documentEpoch++;
  const generation=++mirrorGeneration;
  const payload=JSON.stringify(doc);primarySaveOk=safeStorage.setItem('rd_last',payload);
- if(primarySaveOk){const prev=Number(safeStorage.getItem('rd_save_generation'))||0;safeStorage.setItem('rd_save_generation',String(prev+1))}
+ const previousGeneration=Number(safeStorage.getItem('rd_save_generation'))||0;
+ const snapshotGeneration=primarySaveOk&&safeStorage.setItem('rd_save_generation',String(previousGeneration+1))?previousGeneration+1:null;
  // Do not report an older IndexedDB result as the current document's mirror.
  mirrorSaveOk=false;
- mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload)).then(saved=>{
+ mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload,'last',snapshotGeneration)).then(saved=>{
  if(generation!==mirrorGeneration)return;
  mirrorSaveOk=!!saved;mirrorPending=false;persistenceStatus(primarySaveOk);
  if(!primarySaveOk&&!saved)notify('هشدار: ذخیره پایدار ممکن نیست؛ فوراً از نقشه خروجی بگیرید')
