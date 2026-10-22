@@ -288,8 +288,17 @@ async function recoverMirrorOnStartup(){
  if(meta&&(!Number.isInteger(meta.length)||meta.length!==stored.length||meta.checksum!==mirrorChecksum(stored)))throw Error('mirror checksum mismatch');
  if(drawingChangedSinceStartup||documentEpoch!==startupEpoch)return;
  const recovered=validateRoomDocument(JSON.parse(stored));if(!recovered)return;
- // Never overwrite an existing local document; recovery applies only if localStorage is empty.
- if(readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}}))return;
+ // A valid legacy LocalStorage document always wins over the asynchronous mirror.
+ // Never infer authority from non-atomic generation sidecars alone.
+ const localRaw=safeStorage.getItem('rd_last');
+ if(localRaw!==null){
+  try{if(validateRoomDocument(JSON.parse(localRaw)))return}catch(_){}
+  // Malformed but present local data may be the only copy of newer edits.
+  // Retain it untouched and avoid silently replacing its editor state.
+  manualSaveFailed=true;persistenceStatus(false);
+  notify('⚠ نقشه محلی نامعتبر است؛ بازیابی خودکار آینه متوقف شد. ابتدا از داده‌های مرورگر پشتیبان بگیرید');
+  return
+ }
  if(documentEpoch!==startupEpoch)return;
  if(recovered.equipmentRelease!==RoomEquipment.release){if(!await mirrorOperation('readonly',undefined,'pre-equipment-v271')&&!await mirrorOperation('readwrite',stored,'pre-equipment-v271'))throw Error('migration backup failed');const clean=RoomEquipment.cleanDocument(recovered,catalog);if(documentEpoch!==startupEpoch||drawingChangedSinceStartup)return;doc=clean}else doc=recovered;try{render();updateHistoryControls()}catch(error){doc=previousDocument;throw error}notify('نقشه از نسخه پشتیبان مرورگر بازیابی شد');
  }catch(_){notify('نسخه پشتیبان قابل بازیابی نیست؛ فایل نقشه را وارد کنید')}
