@@ -1074,7 +1074,7 @@ function prepareRoomImport(input){
 }
 // RD-024: stage persistence before replacing the live editor state.
 function applyRoomImport(candidate){
- if(candidate.migrationBackup){const key='rd_equipment_import_backup_'+Date.now();if(!safeStorage.setItem(key,candidate.migrationBackup))throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود و حذف تجهیزات انجام نشد');if(!safeStorage.setItem('rd_equipment_last_import_backup',key))throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد');lastEquipmentImportBackup=key}
+ if(candidate.migrationBackup){const key='rd_equipment_import_backup_'+Date.now();if(!safeStorage.setItem(key,candidate.migrationBackup))throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود و حذف تجهیزات انجام نشد');if(!safeStorage.setItem('rd_equipment_last_import_backup',key)){safeStorage.removeItem(key);throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد')}lastEquipmentImportBackup=key}
 
  const previous={doc,types,catalog,selection,multiSelection,history,redoHistory,drag,wallGesture,wallStart,polyPreview,start,routePoints,previewPoint,cableGesture,tool,resizeMode};
  const writes=[['rd_last',JSON.stringify(candidate.doc)]];
