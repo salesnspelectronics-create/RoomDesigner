@@ -94,3 +94,10 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - OPEN P1: If additional edits advance `mirrorGeneration` before the import mirror settles, journal cleanup is intentionally skipped. The next startup may roll back those later edits. A proper transaction ownership/commit marker and post-import lifecycle are still required.
 - OPEN P1: No proven atomic commit or deterministic latest-valid snapshot selection across legacy LocalStorage and IndexedDB. Retain compatibility-first selection.
 - OPEN P1: Revision and recovery workflows remain runtime-unverified; this change was pushed without tests at user direction. Do not close Phase 1.
+
+## 2026-10-22 superseded import journal guard (NO TESTS)
+- `106847c907fa7bcedc7815dbf42afb8858d3ee8f`: an import journal is no longer left indefinitely solely because the asynchronous mirror completion callback sees a newer save generation.
+- `6ef50c704574e6a0b2fc834c7c5be8dd944c8dd2`: the superseded journal is cleared only if the newer LocalStorage save succeeded; otherwise preserve recovery data and warn.
+- **OPEN**: a browser crash before the asynchronous callback still leaves the old import journal; startup currently rolls it back without checking a durable committed import/newer-edit marker. Thus the original crash window is reduced, not eliminated.
+- **OPEN**: deterministic safe choice between legacy LocalStorage and IndexedDB needs an atomic authority protocol, not sidecar generations alone. Revision journal crash/rollback handling and cross-store mirror durability still need work.
+- Source publication was direct with no tests; runtime validity remains unverified. V8.2 stays paused.
