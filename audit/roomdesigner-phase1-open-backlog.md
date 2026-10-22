@@ -54,6 +54,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - **OPEN**: durable import intent/rollback on restart and cross-store Revision recovery are not implemented. Last session's in-memory rollback is insufficient after a crash.
 - All changes are untested per explicit user instruction; do not mark Phase 1 complete or count these as runtime verified.
 
+## Interrupted-import journal increment — 2026-10-22
+- `16086a0148935d7ce6552bd344ff16e304ed72c7`: a durable `rd_pending_import` journal stores old values for `rd_last`, `rd_types`, and `rd_catalog` before synchronous import writes. Startup attempts rollback when a journal remains. Import aborts if journal cannot be written.
+- Limitations OPEN: migration backup pointer is written prior to the new journal; its startup rollback is not included. IndexedDB mirror is asynchronous and is not committed with the journal. Successful journal cleanup is only a synchronous-local commit boundary. Runtime behavior is UNTESTED.
+- Revision crash-recovery journal: NOT implemented. The existing best-effort compensation remains insufficient for a browser crash between profile/current-document writes.
+- Cross-store authoritative selection: NOT implemented; keep legacy valid LocalStorage precedence and never silently promote an IDB mirror just because generation metadata exists.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
