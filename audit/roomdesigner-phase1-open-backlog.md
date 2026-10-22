@@ -33,6 +33,13 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Revisions: `saveLocal` writes `rd_profiles` and subsequently `rd_last`; a failed second write leaves a persisted profile revision with an older current snapshot. A safe solution must establish a transaction/recovery marker or recoverable staged commit, particularly when trimming old revisions.
 - Existing direct commits are incremental mitigations only. For this no-test pass, no speculative modification to storage formats or commit ordering was deployed. Keep these three P1/P2 issues OPEN.
 
+## Latest no-test implementation and unresolved compatibility contract
+- Commit `511a8a2a6fc2438378d553703021aec7590a7e2b`: when the current-document write fails during Revision save, restore previously persisted `rd_profiles`, in-memory profile and document; report explicit failure if rollback also fails. This is best-effort compensation, not an atomic cross-store transaction.
+- Generation/checksum design requirement: preserve existing raw JSON in `rd_last` and IndexedDB `backups/last` for legacy clients, introduce a separately versioned durable authority record only after both payloads can be validated, and define legacy/missing/partial-marker fallbacks. Pending; NOT implemented.
+- Import/Mirror requirement: store a recoverable import intent and pre-import snapshot durably, treat IndexedDB mirror completion as asynchronous and recover incomplete intents on next startup. Pending; NOT implemented.
+- Revision requirement: recoverable pending revision intent or authoritative snapshot with monotonic identifier; protect history before pruning and guard failure of compensation. Pending; NOT fully implemented.
+- No test was run, so even implemented mitigations require runtime confirmation. Do not promote any of these to Done.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
