@@ -1211,7 +1211,13 @@ let recoveryIncomplete=false;
 const pendingRevision=readLocalJSON('rd_pending_revision',null,v=>[1,2].includes(v?.format)&&Array.isArray(v.previous)&&v.previous.length===2&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])));
 if(pendingRevision){
  const revisionCommitted=pendingRevision.format===2&&Array.isArray(pendingRevision.expected)&&pendingRevision.expected.length===2&&pendingRevision.expected.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])&&typeof p[1]==='string'&&typeof safeStorage.getItem(p[0])==='string'&&mirrorChecksum(safeStorage.getItem(p[0]))===p[1]);
- if(revisionCommitted){
+ const profileExpected=pendingRevision.format===2&&Array.isArray(pendingRevision.expected)&&pendingRevision.expected.some(([key,checksum])=>key==='rd_profiles'&&typeof safeStorage.getItem(key)==='string'&&mirrorChecksum(safeStorage.getItem(key))===checksum);
+ const currentRaw=safeStorage.getItem('rd_last');
+ let currentValid=false;
+ try{if(currentRaw){validateRoomDocument(JSON.parse(currentRaw));currentValid=true}}catch(_){}
+ // The profile revision committed and the current document is still valid:
+ // a later autosave may have superseded the revision snapshot. Never roll it back.
+ if(revisionCommitted||(profileExpected&&currentValid)){
   if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true;
  }else{
  let revisionRecovered=true;
