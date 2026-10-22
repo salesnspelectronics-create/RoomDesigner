@@ -47,6 +47,13 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Open: durable Import intent and interruption recovery for asynchronous mirror and cross-store Revision transactions are not implemented. Do not declare phase 1 complete.
 - Important: the mirror checksum is a corruption-detection hash, not a cryptographic authenticity guarantee.
 
+## 2026-10-22 generation metadata incremental changes (untested)
+- `72b6419c9aa1a1e9b937ba3235804fdb187c8cc4`: localStorage `rd_save_generation` sidecar and IndexedDB `last-meta` generation field, without changing legacy document JSON.
+- `de51948c72ca297f1701e7741bb804e25797182d`: capture the generation when the payload is produced, rather than when the asynchronous IndexedDB queue eventually runs; `null` means a durable primary generation could not be assigned.
+- **OPEN / not authoritative yet**: localStorage payload and generation are two separate writes, and `mirrorOperation` has its own IndexedDB transaction; a crash between writes still leaves ambiguous versions. Existing startup recovery still gives precedence to a valid `rd_last`. No automatic generation-based conflict resolution has been deployed.
+- **OPEN**: durable import intent/rollback on restart and cross-store Revision recovery are not implemented. Last session's in-memory rollback is insufficient after a crash.
+- All changes are untested per explicit user instruction; do not mark Phase 1 complete or count these as runtime verified.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
