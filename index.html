@@ -1125,6 +1125,9 @@ function applyRoomImport(candidate){
  if(candidate.typesJSON!==null)writes.push(['rd_types',candidate.typesJSON]);
  if(candidate.catalogJSON!==null)writes.push(['rd_catalog',candidate.catalogJSON]);
  const originals=new Map(writes.map(([key])=>[key,safeStorage.getItem(key)]));
+ // Retain a durable undo journal until all synchronous import writes commit.
+ const importIntent={format:1,previous:[...originals]};
+ if(!safeStorage.setItem('rd_pending_import',JSON.stringify(importIntent)))throw Error('ثبت نسخه بازیابی ورود فایل ناموفق بود؛ نقشه جایگزین نشد');
  const applied=[];
  const rollbackStorage=()=>{const failures=[];for(const key of [...applied].reverse()){const old=originals.get(key);try{const ok=old===null?safeStorage.removeItem(key):safeStorage.setItem(key,old);if(!ok)failures.push(key)}catch(_){failures.push(key)}}return failures};
  try{
@@ -1133,8 +1136,10 @@ function applyRoomImport(candidate){
   selection=null;multiSelection=null;history=[];redoHistory=[];
   drag=null;wallGesture=null;wallStart=null;polyPreview=null;start=null;routePoints=[];previewPoint=null;cableGesture=null;resizeMode=false;tool='select';
   populateDesktopToolbox();setTool('select');updateHistoryControls();
+  if(!safeStorage.removeItem('rd_pending_import'))throw Error('پاک‌سازی وضعیت ورود فایل ناموفق بود');
  }catch(error){
   const failedKeys=rollbackStorage();
+  if(!failedKeys.length&&!safeStorage.removeItem('rd_pending_import'))failedKeys.push('rd_pending_import');
   if(newBackupKey){
    const pointerRestored=oldBackupPointer===null?safeStorage.removeItem('rd_equipment_last_import_backup'):safeStorage.setItem('rd_equipment_last_import_backup',oldBackupPointer);
    if(!pointerRestored)failedKeys.push('rd_equipment_last_import_backup');
@@ -1163,6 +1168,13 @@ $('fileInput').addEventListener('change',async e=>{
  }catch(err){notify('خطا در بازکردن فایل: '+err.message)}
  finally{e.target.value=''}
 });
+const pendingImport=readLocalJSON('rd_pending_import',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_last','rd_types','rd_catalog'].includes(p[0])));
+if(pendingImport){
+ let recoveredImport=true;
+ for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
+ if(recoveredImport)safeStorage.removeItem('rd_pending_import');
+ else{manualSaveFailed=true;notify('⚠ بازیابی ورود ناقص کامل نشد؛ فوراً از فایل‌های پروژه خروجی بگیرید')}
+}
 const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();recoverMirrorOnStartup();showLocalDataWarnings();if(!activeUser)setTimeout(()=>userPicker(),100);
 
 // V84: UI adapters use the existing document, checkpoint, tools and render operations.
