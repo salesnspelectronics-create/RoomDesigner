@@ -1172,6 +1172,7 @@ function applyRoomImport(candidate){
    // A newer save supersedes this import mirror, but a stale import rollback
    // must never revert those subsequent edits at the next startup.
    if(importGeneration!==mirrorGeneration){
+    if(!primarySaveOk){manualSaveFailed=true;persistenceStatus(false);notify('⚠ ذخیره جدید پایدار نیست؛ نشانگر بازیابی محفوظ ماند');return}
     if(!safeStorage.removeItem('rd_pending_import')){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر قدیمی ورود فایل پاک نشد؛ از پروژه خروجی بگیرید')}
     return
    }
