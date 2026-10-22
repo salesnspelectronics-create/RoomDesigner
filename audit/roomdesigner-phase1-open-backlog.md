@@ -60,6 +60,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Revision crash-recovery journal: NOT implemented. The existing best-effort compensation remains insufficient for a browser crash between profile/current-document writes.
 - Cross-store authoritative selection: NOT implemented; keep legacy valid LocalStorage precedence and never silently promote an IDB mirror just because generation metadata exists.
 
+## 2026-10-22 crash-recoverable Revision journal — untested
+- `8735effbbff9a35d2efe7a9b2e56646da5323116`: write `rd_pending_revision` with prior durable `rd_profiles` and `rd_last` before starting Revision writes; restore both keys when a pending journal is detected on startup. Journal removal follows the successful synchronous writes. This protects against interrupted local writes but does NOT make IndexedDB mirror atomic.
+- **OPEN**: import migration backup pointer is written before import journal; restore after crash is not complete.
+- **OPEN**: IndexedDB mirror cannot be atomically committed with LocalStorage, and mirror metadata cannot safely override an intact valid legacy `rd_last` on mere generation comparison. Conflict-selection authority remains unchanged.
+- **OPEN**: a failed journal cleanup or failure of storage compensation requires operator recovery; browser/runtime outcomes are not tested. No issue is marked Done.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
