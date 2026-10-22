@@ -1134,7 +1134,7 @@ function applyRoomImport(candidate){
  const originals=new Map(writes.map(([key])=>[key,safeStorage.getItem(key)]));
  if(newBackupKey){originals.set('rd_equipment_last_import_backup',oldBackupPointer);originals.set(newBackupKey,safeStorage.getItem(newBackupKey))}
  // Journal the prior state BEFORE any migration backup or import mutation.
- const importIntent={format:2,previous:[...originals]};
+ const importIntent={format:3,previous:[...originals],expected:writes.map(([key,value])=>[key,mirrorChecksum(value)]),backupKey:newBackupKey};
  if(!safeStorage.setItem('rd_pending_import',JSON.stringify(importIntent)))throw Error('ثبت نسخه بازیابی ورود فایل ناموفق بود؛ نقشه جایگزین نشد');
  if(newBackupKey){
   if(!safeStorage.setItem(newBackupKey,candidate.migrationBackup)){
@@ -1215,11 +1215,12 @@ if(pendingRevision){
  if(revisionRecovered){if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true}
  else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
 }
-const pendingImport=readLocalJSON('rd_pending_import',null,v=>(v?.format===1||v?.format===2)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format===2&&p[0].startsWith('rd_equipment_import_backup_')))));
+const pendingImport=readLocalJSON('rd_pending_import',null,v=>[1,2,3].includes(v?.format)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format===2&&p[0].startsWith('rd_equipment_import_backup_')))));
 if(pendingImport){
  const committed=readLocalJSON('rd_import_committed',null,v=>v?.format===1&&typeof v.checksum==='string');
  const rawImported=safeStorage.getItem('rd_last');
- const committedMatches=committed&&typeof rawImported==='string'&&mirrorChecksum(rawImported)===committed.checksum;
+ const stagedMatches=pendingImport.format===3&&Array.isArray(pendingImport.expected)&&pendingImport.expected.length>0&&pendingImport.expected.every(([key,checksum])=>typeof key==='string'&&typeof checksum==='string'&&typeof safeStorage.getItem(key)==='string'&&mirrorChecksum(safeStorage.getItem(key))===checksum)&&(!pendingImport.backupKey||safeStorage.getItem('rd_equipment_last_import_backup')===pendingImport.backupKey);
+ const committedMatches=(committed&&typeof rawImported==='string'&&mirrorChecksum(rawImported)===committed.checksum)||stagedMatches;
  if(committedMatches){
   if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true;
  }else{
