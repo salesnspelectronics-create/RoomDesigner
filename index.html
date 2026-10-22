@@ -856,6 +856,7 @@ async function saveLocal(copy=false){
  const beforeRevisionSave=JSON.parse(JSON.stringify(doc));
  const previousProfile=profiles[doc.id];
  const previousProfilesStorage=safeStorage.getItem('rd_profiles');
+ const previousCurrentStorage=safeStorage.getItem('rd_last');
  if(!copy&&doc.revisions.length>=MAX_EMBEDDED_REVISIONS){
   if(!confirm('تاریخچه نقشه به '+MAX_EMBEDDED_REVISIONS+' نسخه رسیده است. برای نگهداری نسخه‌های قدیمی، ابتدا آرشیو کامل دانلود می‌شود. ادامه می‌دهید؟'))return;
   const archiveName=(doc.name||'room')+'-history-before-v'+(Number(doc.revision)||doc.revisions.at(-1)?.number||0)+'.roomplan';
@@ -870,12 +871,18 @@ async function saveLocal(copy=false){
  const revision={number:nextNumber,at:doc.updatedAt,by:activeUser,comment:($('saveComment')?.value||'').trim(),summary:diffSummary(previous,snap),snapshot:snap};
  doc.revisions.push(revision);
  if(doc.revisions.length>MAX_EMBEDDED_REVISIONS)doc.revisions.splice(0,doc.revisions.length-MAX_EMBEDDED_REVISIONS);
- doc.revision=revision.number;doc.lastEditedBy=activeUser;profiles[doc.id]=JSON.parse(JSON.stringify(doc));
+ doc.revision=revision.number;doc.lastEditedBy=activeUser;
+ const revisionIntent={format:1,previous:[['rd_profiles',previousProfilesStorage],['rd_last',previousCurrentStorage]]};
+ if(!safeStorage.setItem('rd_pending_revision',JSON.stringify(revisionIntent))){
+  doc=beforeRevisionSave;notify('ثبت نسخه بازیابی Revision ناموفق بود؛ ذخیره انجام نشد');return
+ }
+ profiles[doc.id]=JSON.parse(JSON.stringify(doc));
  const profilesSaved=safeStorage.setItem('rd_profiles',JSON.stringify(profiles));manualSaveFailed=!profilesSaved;
  if(!profilesSaved){
   delete profiles[doc.id];
   if(previousProfile!==undefined)profiles[beforeRevisionSave.id]=previousProfile;
   doc=beforeRevisionSave;
+  safeStorage.removeItem('rd_pending_revision');
   persistenceStatus(false);notify('⚠ ذخیره Revision ناموفق بود؛ تاریخچه قبلی حفظ شد');return
  }
  const lastSaved=saveAuto();
@@ -884,10 +891,12 @@ async function saveLocal(copy=false){
   delete profiles[doc.id];
   if(previousProfile!==undefined)profiles[beforeRevisionSave.id]=previousProfile;
   doc=beforeRevisionSave;
+  if(restored)safeStorage.removeItem('rd_pending_revision');
   manualSaveFailed=true;persistenceStatus(false);
   notify(restored?'⚠ ذخیره Revision ناموفق بود؛ نسخه قبلی حفظ شد':'⚠ ذخیره Revision و بازگردانی Profile ناموفق بود؛ فوراً خروجی بگیرید');
   return
  }
+ if(!safeStorage.removeItem('rd_pending_revision')){manualSaveFailed=true;notify('⚠ نشانگر بازیابی Revision پاک نشد؛ از نقشه خروجی بگیرید');return}
  close();file(JSON.stringify({doc,types,catalog},null,2),(doc.name||'room')+'.roomplan');
  if(profilesSaved&&lastSaved)notify('Revision '+revision.number+' در این دستگاه ذخیره شد');
  else{persistenceStatus(false);notify('⚠ ذخیره پایدار انجام نشد؛ فوراً فایل نقشه را خروجی بگیر')}
@@ -1168,6 +1177,13 @@ $('fileInput').addEventListener('change',async e=>{
  }catch(err){notify('خطا در بازکردن فایل: '+err.message)}
  finally{e.target.value=''}
 });
+const pendingRevision=readLocalJSON('rd_pending_revision',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.length===2&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])));
+if(pendingRevision){
+ let revisionRecovered=true;
+ for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
+ if(revisionRecovered)safeStorage.removeItem('rd_pending_revision');
+ else{manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
+}
 const pendingImport=readLocalJSON('rd_pending_import',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_last','rd_types','rd_catalog'].includes(p[0])));
 if(pendingImport){
  let recoveredImport=true;
