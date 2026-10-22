@@ -1181,21 +1181,22 @@ $('fileInput').addEventListener('change',async e=>{
  }catch(err){notify('خطا در بازکردن فایل: '+err.message)}
  finally{e.target.value=''}
 });
+let recoveryIncomplete=false;
 const pendingRevision=readLocalJSON('rd_pending_revision',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.length===2&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])));
 if(pendingRevision){
  let revisionRecovered=true;
  for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
- if(revisionRecovered)safeStorage.removeItem('rd_pending_revision');
- else{manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
+ if(revisionRecovered){if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true}
+ else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
 }
 const pendingImport=readLocalJSON('rd_pending_import',null,v=>(v?.format===1||v?.format===2)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format===2&&p[0].startsWith('rd_equipment_import_backup_')))));
 if(pendingImport){
  let recoveredImport=true;
  for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
- if(recoveredImport)safeStorage.removeItem('rd_pending_import');
- else{manualSaveFailed=true;notify('⚠ بازیابی ورود ناقص کامل نشد؛ فوراً از فایل‌های پروژه خروجی بگیرید')}
+ if(recoveredImport){if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true}
+ else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی ورود ناقص کامل نشد؛ فوراً از فایل‌های پروژه خروجی بگیرید')}
 }
-const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();recoverMirrorOnStartup();showLocalDataWarnings();if(!activeUser)setTimeout(()=>userPicker(),100);
+const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();if(!recoveryIncomplete)recoverMirrorOnStartup();else{manualSaveFailed=true;persistenceStatus(false)}showLocalDataWarnings();if(!activeUser)setTimeout(()=>userPicker(),100);
 
 // V84: UI adapters use the existing document, checkpoint, tools and render operations.
 function deskIcon(name) {
