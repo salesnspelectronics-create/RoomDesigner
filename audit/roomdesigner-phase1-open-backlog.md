@@ -72,6 +72,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - OPEN: Ensure a truly authoritative cross-store commit protocol if automatic snapshot selection is required. Prefer valid intact legacy LocalStorage state rather than overwrite it with a mirror based on possibly torn generation sidecars.
 - OPEN: Asynchronous IndexedDB mirror completion is not atomically bound to Import or Revision; failures remain separately reportable. No claims of fully atomic recovery or runtime Done.
 
+## 2026-10-22 incomplete rollback guard — no tests
+- `012f819922aedaacf0063cad9cf7e19b1b3b7931`: startup does not proceed to automatic IndexedDB mirror recovery when LocalStorage Import or Revision journal rollback failed, or cleanup of the journal failed. It retains the pending journal for further recovery and flags persistence as unsafe.
+- OPEN: the async mirror write is not atomically committed with Import or Revision. Sidecar generations cannot conclusively rank torn LocalStorage writes against a completed IndexedDB transaction; do not override a valid legacy local snapshot solely on a greater generation.
+- OPEN: no full atomic cross-store transaction or crash-consistent authoritative selector implemented. Current source change is an untested safety guard, not closure of Phase 1.
+- V8.2 scheduled regression remains paused. No tests were run in this pass.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
