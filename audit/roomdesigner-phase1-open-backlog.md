@@ -107,3 +107,9 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `e83dbe6d6384d75afa97309ab49341b9c608a92b`: subsequent successful `saveAuto` calls carry the durable Import commit checksum forward while Import journal remains pending.
 - **OPEN**: marker and document are separate LocalStorage writes; process termination between them can still produce a stale marker and unwarranted rollback. Strong crash consistency requires staged authority/transaction identifier or copy-on-write payload, not this best-effort marker alone.
 - **OPEN**: IndexedDB / LocalStorage authoritative snapshot selection, async Mirror ownership, and Revision cross-store recovery remain unproven. No automated tests were run and Phase 1 MUST remain OPEN.
+
+## 2026-10-22 staged Import snapshot (no tests)
+- `6dae7d1297a02149a539cb1992417653226fa3e5`: prewrite Import journal format 3 now records expected hashes for the synchronous LocalStorage import writes. Startup treats a fully matching staged snapshot as committed even when a crash occurred before writing `rd_import_committed`, avoiding erroneous rollback in that interval. Existing formats 1/2 remain readable.
+- `382c356c5f044619851b875b3ea781406458f16d`: startup validation accepts the migration backup key in format 3 as well as format 2.
+- OPEN: crash between individual Import writes still requires partial rollback; the journal's consistency has not been runtime-tested. The snapshot hash is noncryptographic. Generation sidecars remain non-atomic, and neither latest-valid LocalStorage/IndexedDB arbitration nor Revision cross-store atomicity is complete.
+- V8.2 remains paused. No tests were run, per request. Do not close Phase 1.
