@@ -66,6 +66,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - **OPEN**: IndexedDB mirror cannot be atomically committed with LocalStorage, and mirror metadata cannot safely override an intact valid legacy `rd_last` on mere generation comparison. Conflict-selection authority remains unchanged.
 - **OPEN**: a failed journal cleanup or failure of storage compensation requires operator recovery; browser/runtime outcomes are not tested. No issue is marked Done.
 
+## 2026-10-22 migration journal ordering change — no tests
+- `107a7554f92578d40b7db581d7f7cc0592ea2b55`: the Import journal is now written before modifying migration backup contents or backup pointer. Format 2 journals include previous backup-pointer and newly allocated backup-key values, and startup recovery recognizes both legacy format 1 and format 2.
+- Source push only; crash/recovery behavior is UNTESTED. Journal remains scoped to synchronous LocalStorage state. IndexedDB mirror completion and conflicts are still independent.
+- OPEN: Ensure a truly authoritative cross-store commit protocol if automatic snapshot selection is required. Prefer valid intact legacy LocalStorage state rather than overwrite it with a mirror based on possibly torn generation sidecars.
+- OPEN: Asynchronous IndexedDB mirror completion is not atomically bound to Import or Revision; failures remain separately reportable. No claims of fully atomic recovery or runtime Done.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
