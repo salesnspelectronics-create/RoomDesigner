@@ -1121,22 +1121,26 @@ function prepareRoomImport(input){
 function applyRoomImport(candidate){
  const previous={doc,types,catalog,selection,multiSelection,history,redoHistory,drag,wallGesture,wallStart,polyPreview,start,routePoints,previewPoint,cableGesture,tool,resizeMode,lastEquipmentImportBackup};
  const oldBackupPointer=safeStorage.getItem('rd_equipment_last_import_backup');
- let newBackupKey=null;
- if(candidate.migrationBackup){
-  newBackupKey='rd_equipment_import_backup_'+Date.now();
-  if(!safeStorage.setItem(newBackupKey,candidate.migrationBackup))throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود و حذف تجهیزات انجام نشد');
-  if(!safeStorage.setItem('rd_equipment_last_import_backup',newBackupKey)){
-   safeStorage.removeItem(newBackupKey);throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد')
-  }
-  lastEquipmentImportBackup=newBackupKey
- }
  const writes=[['rd_last',JSON.stringify(candidate.doc)]];
  if(candidate.typesJSON!==null)writes.push(['rd_types',candidate.typesJSON]);
  if(candidate.catalogJSON!==null)writes.push(['rd_catalog',candidate.catalogJSON]);
+ const newBackupKey=candidate.migrationBackup?'rd_equipment_import_backup_'+Date.now():null;
  const originals=new Map(writes.map(([key])=>[key,safeStorage.getItem(key)]));
- // Retain a durable undo journal until all synchronous import writes commit.
- const importIntent={format:1,previous:[...originals]};
+ if(newBackupKey){originals.set('rd_equipment_last_import_backup',oldBackupPointer);originals.set(newBackupKey,safeStorage.getItem(newBackupKey))}
+ // Journal the prior state BEFORE any migration backup or import mutation.
+ const importIntent={format:2,previous:[...originals]};
  if(!safeStorage.setItem('rd_pending_import',JSON.stringify(importIntent)))throw Error('ثبت نسخه بازیابی ورود فایل ناموفق بود؛ نقشه جایگزین نشد');
+ if(newBackupKey){
+  if(!safeStorage.setItem(newBackupKey,candidate.migrationBackup)){
+   safeStorage.removeItem('rd_pending_import');throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود فایل انجام نشد')
+  }
+  if(!safeStorage.setItem('rd_equipment_last_import_backup',newBackupKey)){
+   const cleaned=safeStorage.removeItem(newBackupKey);
+   if(cleaned)safeStorage.removeItem('rd_pending_import');
+   throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد')
+  }
+  lastEquipmentImportBackup=newBackupKey
+ }
  const applied=[];
  const rollbackStorage=()=>{const failures=[];for(const key of [...applied].reverse()){const old=originals.get(key);try{const ok=old===null?safeStorage.removeItem(key):safeStorage.setItem(key,old);if(!ok)failures.push(key)}catch(_){failures.push(key)}}return failures};
  try{
@@ -1148,12 +1152,12 @@ function applyRoomImport(candidate){
   if(!safeStorage.removeItem('rd_pending_import'))throw Error('پاک‌سازی وضعیت ورود فایل ناموفق بود');
  }catch(error){
   const failedKeys=rollbackStorage();
-  if(!failedKeys.length&&!safeStorage.removeItem('rd_pending_import'))failedKeys.push('rd_pending_import');
   if(newBackupKey){
    const pointerRestored=oldBackupPointer===null?safeStorage.removeItem('rd_equipment_last_import_backup'):safeStorage.setItem('rd_equipment_last_import_backup',oldBackupPointer);
    if(!pointerRestored)failedKeys.push('rd_equipment_last_import_backup');
    if(pointerRestored&&!safeStorage.removeItem(newBackupKey))failedKeys.push(newBackupKey);
   }
+  if(!failedKeys.length&&!safeStorage.removeItem('rd_pending_import'))failedKeys.push('rd_pending_import');
   ({doc,types,catalog,selection,multiSelection,history,redoHistory,drag,wallGesture,wallStart,polyPreview,start,routePoints,previewPoint,cableGesture,tool,resizeMode,lastEquipmentImportBackup}=previous);
   try{populateDesktopToolbox();render();updateHistoryControls()}catch(_){}
   if(failedKeys.length){manualSaveFailed=true;persistenceStatus(false);throw Error('بازگردانی اطلاعات مرورگر ناموفق بود ('+failedKeys.join(', ')+'). از پروژه فعلی فوراً فایل خروجی بگیرید. خطای اولیه: '+error.message)}
@@ -1184,7 +1188,7 @@ if(pendingRevision){
  if(revisionRecovered)safeStorage.removeItem('rd_pending_revision');
  else{manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
 }
-const pendingImport=readLocalJSON('rd_pending_import',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_last','rd_types','rd_catalog'].includes(p[0])));
+const pendingImport=readLocalJSON('rd_pending_import',null,v=>(v?.format===1||v?.format===2)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format===2&&p[0].startsWith('rd_equipment_import_backup_')))));
 if(pendingImport){
  let recoveredImport=true;
  for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
