@@ -40,6 +40,13 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Revision requirement: recoverable pending revision intent or authoritative snapshot with monotonic identifier; protect history before pruning and guard failure of compensation. Pending; NOT fully implemented.
 - No test was run, so even implemented mitigations require runtime confirmation. Do not promote any of these to Done.
 
+## 2026-10-22 compatibility increment — no tests
+- `d8a8f2bc25d7bda13e8b999fe4939ef6e66273d7`: IndexedDB writes raw legacy JSON at `backups/last` and sidecar `backups/last-meta` (format, length, FNV-1a checksum, save timestamp) in the *same IndexedDB transaction*.
+- `204dd74105cb101d3f33f9bbd78cc74d3a3ab04e`: Startup mirror recovery verifies checksum when sidecar exists; old mirrors without metadata remain readable. Runtime behavior UNTESTED.
+- Open: neither an authoritative persistent cross-store generation nor a stable LocalStorage sidecar exists; a timestamp in mirror metadata is not proof of latest authoritative state. Do not claim deterministic cross-store reconciliation.
+- Open: durable Import intent and interruption recovery for asynchronous mirror and cross-store Revision transactions are not implemented. Do not declare phase 1 complete.
+- Important: the mirror checksum is a corruption-detection hash, not a cryptographic authenticity guarantee.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
