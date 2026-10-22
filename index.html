@@ -1149,7 +1149,6 @@ function applyRoomImport(candidate){
   selection=null;multiSelection=null;history=[];redoHistory=[];
   drag=null;wallGesture=null;wallStart=null;polyPreview=null;start=null;routePoints=[];previewPoint=null;cableGesture=null;resizeMode=false;tool='select';
   populateDesktopToolbox();setTool('select');updateHistoryControls();
-  if(!safeStorage.removeItem('rd_pending_import'))throw Error('پاک‌سازی وضعیت ورود فایل ناموفق بود');
  }catch(error){
   const failedKeys=rollbackStorage();
   if(newBackupKey){
@@ -1166,7 +1165,10 @@ function applyRoomImport(candidate){
  // Schedule the mirror only after the imported document and local keys commit.
  documentEpoch++;drawingChangedSinceStartup=true;
  clearPointerState();clearTimeout(persistTimer);persistTimer=null;
- const importPrimarySaved=saveAuto();close();if(candidate.migrationBackup)showEquipmentMigrationNotice();if(importPrimarySaved)notify(candidate.migrationBackup?'نقشه باز شد؛ تجهیزات قدیمی حذف و پشتیبان ذخیره شد':'نقشه باز شد');else{persistenceStatus(false);notify('⚠ نقشه وارد شد اما ذخیره جاری ناموفق بود؛ فوراً خروجی پشتیبان بگیرید')}
+ const importPrimarySaved=saveAuto();
+ if(importPrimarySaved){if(!safeStorage.removeItem('rd_pending_import')){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر بازیابی ورود فایل پاک نشد؛ از پروژه خروجی بگیرید');return}}
+ else{manualSaveFailed=true;persistenceStatus(false);notify('⚠ ذخیره ورود فایل ناموفق بود؛ نسخه بازیابی محفوظ است');return}
+ close();if(candidate.migrationBackup)showEquipmentMigrationNotice();if(importPrimarySaved)notify(candidate.migrationBackup?'نقشه باز شد؛ تجهیزات قدیمی حذف و پشتیبان ذخیره شد':'نقشه باز شد');else{persistenceStatus(false);notify('⚠ نقشه وارد شد اما ذخیره جاری ناموفق بود؛ فوراً خروجی پشتیبان بگیرید')}
 }
 // RR-006: ASCII DXF reference geometry, limited to LINE and LWPOLYLINE.
 function parseRoomDXF(source){const pairs=source.replace(/\r/g,'').split('\n');let section='',entity=null,vertices=[],segments=[];const flush=()=>{if(!entity)return;const v=k=>entity[k]!==undefined&&entity[k].trim()!==''?Number(entity[k]):NaN;if(entity.type==='LINE'&&[10,20,11,21].every(k=>entity[k]!==undefined&&Number.isFinite(v(k))))segments.push([{x:v(10),y:-v(20)},{x:v(11),y:-v(21)}]);if(entity.type==='LWPOLYLINE'){for(let j=1;j<vertices.length;j++)segments.push([vertices[j-1],vertices[j]]);if((Number(entity[70])||0)&1&&vertices.length>2)segments.push([vertices.at(-1),vertices[0]])}entity=null;vertices=[]};for(let i=0;i+1<pairs.length;i+=2){const code=pairs[i].trim(),value=pairs[i+1].trim();if(code==='0'){flush();if(value==='ENDSEC')section='';else if(value==='SECTION')section='pending';else if(section==='ENTITIES'&&['LINE','LWPOLYLINE'].includes(value))entity={type:value};continue}if(code==='2'&&section==='pending'){section=value;continue}if(!entity)continue;if(entity.type==='LWPOLYLINE'&&code==='10'){vertices.push({x:value!==''?Number(value):NaN,y:NaN});continue}if(entity.type==='LWPOLYLINE'&&code==='20'&&vertices.length){vertices.at(-1).y=value!==''?-Number(value):NaN;continue}entity[code]=value}flush();return segments.filter(s=>s.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y))&&Math.hypot(s[0].x-s[1].x,s[0].y-s[1].y)>0.00001)}
