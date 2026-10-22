@@ -113,3 +113,8 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `382c356c5f044619851b875b3ea781406458f16d`: startup validation accepts the migration backup key in format 3 as well as format 2.
 - OPEN: crash between individual Import writes still requires partial rollback; the journal's consistency has not been runtime-tested. The snapshot hash is noncryptographic. Generation sidecars remain non-atomic, and neither latest-valid LocalStorage/IndexedDB arbitration nor Revision cross-store atomicity is complete.
 - V8.2 remains paused. No tests were run, per request. Do not close Phase 1.
+
+## 2026-10-22 staged Revision commit detection (NO TESTS)
+- `dd3368d604b2dcfdfea0dd1186b0191fa770b954`: Revision journal format 2 records expected checksums of `rd_profiles` and `rd_last`. During startup a complete matching revision is retained, rather than rolled back merely because journal cleanup was interrupted. Journal format 1 remains readable.
+- OPEN: a subsequent edit before Revision journal cleanup can change the current snapshot, leaving an obsolete pending journal; startup could still roll back later work. Asynchronous IndexedDB persistence and LocalStorage sidecars remain separate transactions.
+- OPEN: no authoritative cross-store selector is justified for two *valid but different* documents; legacy LocalStorage remains preferred. Import format 3 migration-pointer and recovery race require further review. No tests were executed, V8.2 remains paused, Phase 1 remains open.
