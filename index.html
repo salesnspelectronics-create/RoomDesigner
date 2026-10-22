@@ -1076,9 +1076,17 @@ function prepareRoomImport(input){
 }
 // RD-024: stage persistence before replacing the live editor state.
 function applyRoomImport(candidate){
- if(candidate.migrationBackup){const key='rd_equipment_import_backup_'+Date.now();if(!safeStorage.setItem(key,candidate.migrationBackup))throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود و حذف تجهیزات انجام نشد');if(!safeStorage.setItem('rd_equipment_last_import_backup',key)){safeStorage.removeItem(key);throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد')}lastEquipmentImportBackup=key}
-
  const previous={doc,types,catalog,selection,multiSelection,history,redoHistory,drag,wallGesture,wallStart,polyPreview,start,routePoints,previewPoint,cableGesture,tool,resizeMode,lastEquipmentImportBackup};
+ const oldBackupPointer=safeStorage.getItem('rd_equipment_last_import_backup');
+ let newBackupKey=null;
+ if(candidate.migrationBackup){
+  newBackupKey='rd_equipment_import_backup_'+Date.now();
+  if(!safeStorage.setItem(newBackupKey,candidate.migrationBackup))throw Error('پشتیبان فایل قدیمی ذخیره نشد؛ ورود و حذف تجهیزات انجام نشد');
+  if(!safeStorage.setItem('rd_equipment_last_import_backup',newBackupKey)){
+   safeStorage.removeItem(newBackupKey);throw Error('ارجاع پشتیبان مهاجرت ذخیره نشد؛ ورود فایل انجام نشد')
+  }
+  lastEquipmentImportBackup=newBackupKey
+ }
  const writes=[['rd_last',JSON.stringify(candidate.doc)]];
  if(candidate.typesJSON!==null)writes.push(['rd_types',candidate.typesJSON]);
  if(candidate.catalogJSON!==null)writes.push(['rd_catalog',candidate.catalogJSON]);
@@ -1093,6 +1101,11 @@ function applyRoomImport(candidate){
   populateDesktopToolbox();setTool('select');updateHistoryControls();
  }catch(error){
   const failedKeys=rollbackStorage();
+  if(newBackupKey){
+   const pointerRestored=oldBackupPointer===null?safeStorage.removeItem('rd_equipment_last_import_backup'):safeStorage.setItem('rd_equipment_last_import_backup',oldBackupPointer);
+   if(!pointerRestored)failedKeys.push('rd_equipment_last_import_backup');
+   if(pointerRestored&&!safeStorage.removeItem(newBackupKey))failedKeys.push(newBackupKey);
+  }
   ({doc,types,catalog,selection,multiSelection,history,redoHistory,drag,wallGesture,wallStart,polyPreview,start,routePoints,previewPoint,cableGesture,tool,resizeMode,lastEquipmentImportBackup}=previous);
   try{populateDesktopToolbox();render();updateHistoryControls()}catch(_){}
   if(failedKeys.length){manualSaveFailed=true;persistenceStatus(false);throw Error('بازگردانی اطلاعات مرورگر ناموفق بود ('+failedKeys.join(', ')+'). از پروژه فعلی فوراً فایل خروجی بگیرید. خطای اولیه: '+error.message)}
