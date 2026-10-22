@@ -78,6 +78,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - OPEN: no full atomic cross-store transaction or crash-consistent authoritative selector implemented. Current source change is an untested safety guard, not closure of Phase 1.
 - V8.2 scheduled regression remains paused. No tests were run in this pass.
 
+## 2026-10-22 import journal lifetime adjustment (untested)
+- `8e01e16a0f171f0c5e847ff62074862eab974de8`: Import's `rd_pending_import` is now retained until the primary `saveAuto()` reports successful synchronous storage, rather than cleared before that save. A primary failure leaves the journal available for startup recovery; failed journal cleanup is surfaced as unsafe persistence.
+- Remaining P1: IndexedDB mirror completion is asynchronous and may occur after the local commit; no true cross-store atomic commit or proven authoritative conflict resolution. A valid legacy LocalStorage document retains precedence. Sidecar generations may be torn by crashes and are not sufficient to override it.
+- Remaining P1: Revision journal still covers synchronous stores only, not an atomic commit with IndexedDB. Unverified runtime behavior remains open.
+- No tests were executed per explicit user request; no runtime issue marked Done. V8.2 remains paused.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
