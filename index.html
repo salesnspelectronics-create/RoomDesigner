@@ -878,7 +878,7 @@ async function saveLocal(copy=false){
  doc.revisions.push(revision);
  if(doc.revisions.length>MAX_EMBEDDED_REVISIONS)doc.revisions.splice(0,doc.revisions.length-MAX_EMBEDDED_REVISIONS);
  doc.revision=revision.number;doc.lastEditedBy=activeUser;
- const revisionIntent={format:1,previous:[['rd_profiles',previousProfilesStorage],['rd_last',previousCurrentStorage]]};
+ const revisionIntent={format:2,previous:[['rd_profiles',previousProfilesStorage],['rd_last',previousCurrentStorage]],expected:[['rd_profiles',mirrorChecksum(JSON.stringify(profiles))],['rd_last',mirrorChecksum(JSON.stringify(doc))]]};
  if(!safeStorage.setItem('rd_pending_revision',JSON.stringify(revisionIntent))){
   doc=beforeRevisionSave;notify('ثبت نسخه بازیابی Revision ناموفق بود؛ ذخیره انجام نشد');return
  }
@@ -1208,12 +1208,17 @@ $('fileInput').addEventListener('change',async e=>{
  finally{e.target.value=''}
 });
 let recoveryIncomplete=false;
-const pendingRevision=readLocalJSON('rd_pending_revision',null,v=>v?.format===1&&Array.isArray(v.previous)&&v.previous.length===2&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])));
+const pendingRevision=readLocalJSON('rd_pending_revision',null,v=>[1,2].includes(v?.format)&&Array.isArray(v.previous)&&v.previous.length===2&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])));
 if(pendingRevision){
+ const revisionCommitted=pendingRevision.format===2&&Array.isArray(pendingRevision.expected)&&pendingRevision.expected.length===2&&pendingRevision.expected.every(p=>Array.isArray(p)&&p.length===2&&['rd_profiles','rd_last'].includes(p[0])&&typeof p[1]==='string'&&typeof safeStorage.getItem(p[0])==='string'&&mirrorChecksum(safeStorage.getItem(p[0]))===p[1]);
+ if(revisionCommitted){
+  if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true;
+ }else{
  let revisionRecovered=true;
  for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
  if(revisionRecovered){if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true}
  else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
+ }
 }
 const pendingImport=readLocalJSON('rd_pending_import',null,v=>[1,2,3].includes(v?.format)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format>=2&&p[0].startsWith('rd_equipment_import_backup_')))));
 if(pendingImport){
