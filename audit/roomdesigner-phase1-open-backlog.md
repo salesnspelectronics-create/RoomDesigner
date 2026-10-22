@@ -88,3 +88,9 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
 - Runtime status: UNVERIFIED; no item may be marked Done solely from GitHub commits.
+
+## 2026-10-22 queued Import mirror journal change — untested
+- `a025cda3a3abf86347d748b5061262e7647d7e14`: Import recovery journal cleanup waits for the queued IndexedDB mirror completion rather than clearing immediately after LocalStorage save. A failed mirror leaves a recoverable journal and signals a warning.
+- OPEN P1: If additional edits advance `mirrorGeneration` before the import mirror settles, journal cleanup is intentionally skipped. The next startup may roll back those later edits. A proper transaction ownership/commit marker and post-import lifecycle are still required.
+- OPEN P1: No proven atomic commit or deterministic latest-valid snapshot selection across legacy LocalStorage and IndexedDB. Retain compatibility-first selection.
+- OPEN P1: Revision and recovery workflows remain runtime-unverified; this change was pushed without tests at user direction. Do not close Phase 1.
