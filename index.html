@@ -264,6 +264,12 @@ function saveAuto(){
  const payload=JSON.stringify(doc);primarySaveOk=safeStorage.setItem('rd_last',payload);
  const previousGeneration=Number(safeStorage.getItem('rd_save_generation'))||0;
  const snapshotGeneration=primarySaveOk&&safeStorage.setItem('rd_save_generation',String(previousGeneration+1))?previousGeneration+1:null;
+ // Preserve a committed import across subsequent durable edits until journal cleanup.
+ if(primarySaveOk&&safeStorage.getItem('rd_pending_import')&&safeStorage.getItem('rd_import_committed')){
+  if(!safeStorage.setItem('rd_import_committed',JSON.stringify({format:1,checksum:mirrorChecksum(payload)}))){
+   manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر تأیید ورود فایل به‌روز نشد؛ خروجی پشتیبان بگیرید')
+  }
+ }
  // Do not report an older IndexedDB result as the current document's mirror.
  mirrorSaveOk=false;
  mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload,'last',snapshotGeneration)).then(saved=>{
