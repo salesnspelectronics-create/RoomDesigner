@@ -248,7 +248,8 @@ async function mirrorOperation(mode,value,key='last'){const db=await mirrorDb;if
   const tx=db.transaction('backups',mode),store=tx.objectStore('backups'),req=mode==='readonly'?store.get(key):store.put(value,key);
   // Keep the legacy raw JSON at "last"; the sidecar shares the same IDB transaction.
   if(mode==='readwrite'&&key==='last'&&typeof value==='string'){
-   store.put({format:1,checksum:mirrorChecksum(value),length:value.length,savedAt:Date.now()},'last-meta')
+   const sequence=Number(safeStorage.getItem('rd_save_generation'))||0;
+   store.put({format:2,checksum:mirrorChecksum(value),length:value.length,savedAt:Date.now(),generation:sequence},'last-meta')
   }
   let result=null;req.onsuccess=()=>{result=req.result};tx.oncomplete=()=>resolve(mode==='readonly'?result:true);
   tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)
@@ -262,6 +263,7 @@ function saveAuto(){
  documentEpoch++;
  const generation=++mirrorGeneration;
  const payload=JSON.stringify(doc);primarySaveOk=safeStorage.setItem('rd_last',payload);
+ if(primarySaveOk){const prev=Number(safeStorage.getItem('rd_save_generation'))||0;safeStorage.setItem('rd_save_generation',String(prev+1))}
  // Do not report an older IndexedDB result as the current document's mirror.
  mirrorSaveOk=false;
  mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload)).then(saved=>{
