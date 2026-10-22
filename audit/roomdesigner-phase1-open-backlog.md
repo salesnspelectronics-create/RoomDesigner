@@ -12,10 +12,16 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - Restore in-memory migration pointer during import rollback: 1559c2f10b88c5b1608d2011aa2fdaa6d7bc18b6.
 - Restore persisted backup pointer and discard newly written backup when import fails: 238e26103c1e94fa3aa279e59a91f8b862e53ed1.
 
+## Additional untested phase-1 direct commits (2026-10-22)
+- Revision save restores the previous document and embedded history if profile persistence fails: 0199e3c35089c907bae4f243cb58530b52c88423.
+- Fix failure rollback for Save As profile ownership: a9ed548ebfffdd9a2c75bbe01b0481e6486fd1c1.
+- Import no longer reports current primary save as successful when it fails: ea50e6fe63fb43d0da57382a3a2a1c8b2abbd450.
+- All above changes are SOURCE-COMMITTED but UNTESTED and NOT runtime Done.
+
 ## Still open, not claimed fixed
 - P1: Page-exit IndexedDB transaction completion cannot be guaranteed; localStorage failure plus abrupt termination can lose the newest edit.
-- P1: Full atomicity of import including secondary async IndexedDB mirror and post-commit side effects is not established.
-- P1: Revision save mutates document and may trim old embedded revisions before durability of profile and current snapshot is known; archive download fallback cannot verify an actual saved file.
+- P1: Full atomicity of import including secondary async IndexedDB mirror and post-commit side effects is not established; a current primary save failure is now reported rather than silently announced as success.
+- P1: Profile persistence failure now restores in-memory revision history, but a successful profile write with a failed current-snapshot save may still leave stores inconsistent; archive download fallback cannot verify an actual saved file.
 - P2: No unified persisted generation/checksum authority for LocalStorage and IndexedDB mirror.
 - P2: Migration persistence and recovery paths have not been runtime-validated under storage failures.
 - P2: Existing historical N03–N14 audit risks remain pending unless covered explicitly by a verified fix.
