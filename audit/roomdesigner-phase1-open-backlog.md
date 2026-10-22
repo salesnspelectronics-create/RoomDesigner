@@ -101,3 +101,9 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - **OPEN**: a browser crash before the asynchronous callback still leaves the old import journal; startup currently rolls it back without checking a durable committed import/newer-edit marker. Thus the original crash window is reduced, not eliminated.
 - **OPEN**: deterministic safe choice between legacy LocalStorage and IndexedDB needs an atomic authority protocol, not sidecar generations alone. Revision journal crash/rollback handling and cross-store mirror durability still need work.
 - Source publication was direct with no tests; runtime validity remains unverified. V8.2 stays paused.
+
+## 2026-10-22 durable Import commit marker (no runtime tests)
+- `1daaaafa5d3d61d46d9d3cbc97c39b8a9a7d3072`: after successful primary Import save, persist `rd_import_committed` checksum; on startup, a matching current `rd_last` prevents the older pending Import journal from rolling it back. Legacy pending journals without a matching marker continue through existing rollback.
+- `e83dbe6d6384d75afa97309ab49341b9c608a92b`: subsequent successful `saveAuto` calls carry the durable Import commit checksum forward while Import journal remains pending.
+- **OPEN**: marker and document are separate LocalStorage writes; process termination between them can still produce a stale marker and unwarranted rollback. Strong crash consistency requires staged authority/transaction identifier or copy-on-write payload, not this best-effort marker alone.
+- **OPEN**: IndexedDB / LocalStorage authoritative snapshot selection, async Mirror ownership, and Revision cross-store recovery remain unproven. No automated tests were run and Phase 1 MUST remain OPEN.
