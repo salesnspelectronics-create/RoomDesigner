@@ -252,6 +252,8 @@ function saveAuto(){
  documentEpoch++;
  const generation=++mirrorGeneration;
  const payload=JSON.stringify(doc);primarySaveOk=safeStorage.setItem('rd_last',payload);
+ // Do not report an older IndexedDB result as the current document's mirror.
+ mirrorSaveOk=false;
  mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload)).then(saved=>{
  if(generation!==mirrorGeneration)return;
  mirrorSaveOk=!!saved;mirrorPending=false;persistenceStatus(primarySaveOk);
