@@ -27,6 +27,12 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - P2: Existing historical N03–N14 audit risks remain pending unless covered explicitly by a verified fix.
 - Governance: project-evolution.json V260 vs UI v271 requires authoritative release-history reconciliation, not automatic bump.
 
+## 2026-10-22 focused review — unresolved cross-store atomicity
+- Storage authority: `rd_last` and IndexedDB `backups/last` currently store raw document JSON, not a shared persisted generation/checksum envelope. Adding metadata only to one store would break comparison or older recovery. Design a backward-compatible envelope, document selection rule, and migration path before code change.
+- Import: `applyRoomImport` writes several LocalStorage keys, then invokes `saveAuto()` which queues IndexedDB asynchronously. A late mirror failure cannot be rolled back together with already committed LocalStorage and in-memory state. Do not claim full atomicity from the current synchronous rollback implementation.
+- Revisions: `saveLocal` writes `rd_profiles` and subsequently `rd_last`; a failed second write leaves a persisted profile revision with an older current snapshot. A safe solution must establish a transaction/recovery marker or recoverable staged commit, particularly when trimming old revisions.
+- Existing direct commits are incremental mitigations only. For this no-test pass, no speculative modification to storage formats or commit ordering was deployed. Keep these three P1/P2 issues OPEN.
+
 ## Execution discipline
 - Scheduled V8.2 regression remains paused; do not reactivate.
 - No automated or browser tests have been run during these user-authorized direct-push phase-1 changes.
