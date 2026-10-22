@@ -279,9 +279,19 @@ function applyHistoryStep(from,to,label){
  let candidate;
  try{candidate=validateRoomDocument(JSON.parse(from[from.length-1]))}
  catch(_){notify('نسخه تاریخچه نامعتبر است؛ نقشه فعلی حفظ شد');return}
- const current=JSON.stringify(doc);
- from.pop();to.push(current);if(to.length>60)to.shift();
- doc=candidate;selection=null;multiSelection=null;clearPointerState();scheduleSave();render();updateHistoryControls();notify(label+' · ذخیره در حال انجام')
+ const previous={doc,selection,multiSelection,from:from.slice(),to:to.slice()};
+ try{
+  doc=candidate;selection=null;multiSelection=null;
+  render();
+  from.pop();to.push(JSON.stringify(previous.doc));if(to.length>60)to.shift();
+  clearPointerState();scheduleSave();updateHistoryControls();
+  notify(label+' · ذخیره در حال انجام')
+ }catch(error){
+  doc=previous.doc;selection=previous.selection;multiSelection=previous.multiSelection;
+  from.splice(0,from.length,...previous.from);to.splice(0,to.length,...previous.to);
+  try{render();updateHistoryControls()}catch(_){}
+  notify('بازگشت تاریخچه ناموفق بود؛ نقشه و تاریخچه قبلی حفظ شد');
+ }
 }
 function performUndo(){applyHistoryStep(history,redoHistory,'Undo انجام شد')}
 function performRedo(){applyHistoryStep(redoHistory,history,'Redo انجام شد')}
