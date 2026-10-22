@@ -276,6 +276,9 @@ async function recoverMirrorOnStartup(){
  try{
  const stored=await mirrorQueue.then(()=>mirrorOperation('readonly'));
  if(!stored||drawingChangedSinceStartup||documentEpoch!==startupEpoch)return;
+ const meta=await mirrorOperation('readonly',undefined,'last-meta');
+ if(meta&&(!Number.isInteger(meta.length)||meta.length!==stored.length||meta.checksum!==mirrorChecksum(stored)))throw Error('mirror checksum mismatch');
+ if(drawingChangedSinceStartup||documentEpoch!==startupEpoch)return;
  const recovered=validateRoomDocument(JSON.parse(stored));if(!recovered)return;
  // Never overwrite an existing local document; recovery applies only if localStorage is empty.
  if(readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}}))return;
