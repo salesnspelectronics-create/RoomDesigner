@@ -238,10 +238,20 @@ const mirrorDb=typeof indexedDB==='undefined'?Promise.resolve(null):new Promise(
  req.onsuccess=()=>resolve(req.result);req.onerror=()=>resolve(null);req.onblocked=()=>resolve(null)
  }catch(_){resolve(null)}
 });
+function mirrorChecksum(payload){
+ let hash=2166136261;
+ for(let i=0;i<payload.length;i++){hash^=payload.charCodeAt(i);hash=Math.imul(hash,16777619)}
+ return (hash>>>0).toString(16).padStart(8,'0')
+}
 async function mirrorOperation(mode,value,key='last'){const db=await mirrorDb;if(!db)return null;return new Promise(resolve=>{
- try{const tx=db.transaction('backups',mode),store=tx.objectStore('backups'),req=mode==='readonly'?store.get(key):store.put(value,key);
- let result=null;req.onsuccess=()=>{result=req.result};tx.oncomplete=()=>resolve(mode==='readonly'?result:true);
- tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)
+ try{
+  const tx=db.transaction('backups',mode),store=tx.objectStore('backups'),req=mode==='readonly'?store.get(key):store.put(value,key);
+  // Keep the legacy raw JSON at "last"; the sidecar shares the same IDB transaction.
+  if(mode==='readwrite'&&key==='last'&&typeof value==='string'){
+   store.put({format:1,checksum:mirrorChecksum(value),length:value.length,savedAt:Date.now()},'last-meta')
+  }
+  let result=null;req.onsuccess=()=>{result=req.result};tx.oncomplete=()=>resolve(mode==='readonly'?result:true);
+  tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)
  }catch(_){resolve(null)}
 })}
 function persistenceStatus(ok){const backup=$('backupNow');if(!backup)return;const durable=ok||(!mirrorPending&&mirrorSaveOk);
