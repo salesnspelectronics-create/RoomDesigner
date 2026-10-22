@@ -840,6 +840,7 @@ async function saveLocal(copy=false){
  ensureMeta(doc);
  const beforeRevisionSave=JSON.parse(JSON.stringify(doc));
  const previousProfile=profiles[doc.id];
+ const previousProfilesStorage=safeStorage.getItem('rd_profiles');
  if(!copy&&doc.revisions.length>=MAX_EMBEDDED_REVISIONS){
   if(!confirm('تاریخچه نقشه به '+MAX_EMBEDDED_REVISIONS+' نسخه رسیده است. برای نگهداری نسخه‌های قدیمی، ابتدا آرشیو کامل دانلود می‌شود. ادامه می‌دهید؟'))return;
   const archiveName=(doc.name||'room')+'-history-before-v'+(Number(doc.revision)||doc.revisions.at(-1)?.number||0)+'.roomplan';
@@ -862,7 +863,17 @@ async function saveLocal(copy=false){
   doc=beforeRevisionSave;
   persistenceStatus(false);notify('⚠ ذخیره Revision ناموفق بود؛ تاریخچه قبلی حفظ شد');return
  }
- const lastSaved=saveAuto();close();file(JSON.stringify({doc,types,catalog},null,2),(doc.name||'room')+'.roomplan');
+ const lastSaved=saveAuto();
+ if(!lastSaved){
+  const restored=previousProfilesStorage===null?safeStorage.removeItem('rd_profiles'):safeStorage.setItem('rd_profiles',previousProfilesStorage);
+  delete profiles[doc.id];
+  if(previousProfile!==undefined)profiles[beforeRevisionSave.id]=previousProfile;
+  doc=beforeRevisionSave;
+  manualSaveFailed=true;persistenceStatus(false);
+  notify(restored?'⚠ ذخیره Revision ناموفق بود؛ نسخه قبلی حفظ شد':'⚠ ذخیره Revision و بازگردانی Profile ناموفق بود؛ فوراً خروجی بگیرید');
+  return
+ }
+ close();file(JSON.stringify({doc,types,catalog},null,2),(doc.name||'room')+'.roomplan');
  if(profilesSaved&&lastSaved)notify('Revision '+revision.number+' در این دستگاه ذخیره شد');
  else{persistenceStatus(false);notify('⚠ ذخیره پایدار انجام نشد؛ فوراً فایل نقشه را خروجی بگیر')}
 }
