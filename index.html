@@ -1167,6 +1167,11 @@ function applyRoomImport(candidate){
  clearPointerState();clearTimeout(persistTimer);persistTimer=null;
  const importPrimarySaved=saveAuto();
  if(importPrimarySaved){
+  // Commit the durable local import before its asynchronous mirror callback.
+  // A crash after this marker must not undo the imported document.
+  if(!safeStorage.setItem('rd_import_committed',JSON.stringify({format:1,checksum:mirrorChecksum(JSON.stringify(doc))}))){
+   manualSaveFailed=true;persistenceStatus(false);notify('⚠ ثبت تأیید ورود فایل ناموفق بود؛ پشتیبان ورود محفوظ است');return
+  }
   const importGeneration=mirrorGeneration;
   mirrorQueue.then(()=>{
    // A newer save supersedes this import mirror, but a stale import rollback
@@ -1206,10 +1211,17 @@ if(pendingRevision){
 }
 const pendingImport=readLocalJSON('rd_pending_import',null,v=>(v?.format===1||v?.format===2)&&Array.isArray(v.previous)&&v.previous.every(p=>Array.isArray(p)&&p.length===2&&typeof p[0]==='string'&&(['rd_last','rd_types','rd_catalog','rd_equipment_last_import_backup'].includes(p[0])||(v.format===2&&p[0].startsWith('rd_equipment_import_backup_')))));
 if(pendingImport){
+ const committed=readLocalJSON('rd_import_committed',null,v=>v?.format===1&&typeof v.checksum==='string');
+ const rawImported=safeStorage.getItem('rd_last');
+ const committedMatches=committed&&typeof rawImported==='string'&&mirrorChecksum(rawImported)===committed.checksum;
+ if(committedMatches){
+  if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true;
+ }else{
  let recoveredImport=true;
  for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
  if(recoveredImport){if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true}
  else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی ورود ناقص کامل نشد؛ فوراً از فایل‌های پروژه خروجی بگیرید')}
+ }
 }
 const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();if(!recoveryIncomplete)recoverMirrorOnStartup();else{manualSaveFailed=true;persistenceStatus(false)}showLocalDataWarnings();if(!activeUser)setTimeout(()=>userPicker(),100);
 
