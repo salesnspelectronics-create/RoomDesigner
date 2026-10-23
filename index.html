@@ -917,11 +917,18 @@ async function saveLocal(copy=false){
   doc=beforeRevisionSave;
   // A mirror operation already started for the failed revision cannot be canceled.
   // Queue a compensating write of the restored document after it completes.
-  ++mirrorGeneration;
+  const repairGeneration=++mirrorGeneration;
   mirrorSaveOk=false;mirrorPending=true;
   const restoredPayload=previousCurrentStorage;
-  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>typeof restoredPayload==='string'?mirrorOperation('readwrite',restoredPayload,'last'):false).then(ok=>{mirrorSaveOk=!!ok;mirrorPending=false;persistenceStatus(false)});
-  if(restored)safeStorage.removeItem('rd_pending_revision');
+  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>repairGeneration===mirrorGeneration&&typeof restoredPayload==='string'?mirrorOperation('readwrite',restoredPayload,'last'):false).then(ok=>{
+   if(repairGeneration!==mirrorGeneration)return;
+   mirrorSaveOk=!!ok;mirrorPending=false;
+   if(!ok){manualSaveFailed=true;notify('⚠ نسخه آینه Revision قابل ترمیم نیست؛ Journal بازیابی محفوظ ماند')}
+   else if(restored&&!safeStorage.removeItem('rd_pending_revision'))notify('⚠ پاک‌سازی Journal Revision ناموفق بود');
+   persistenceStatus(false)
+  });
+  // Keep the undo journal until the compensation mirror has committed.
+
   manualSaveFailed=true;persistenceStatus(false);
   notify(restored?'⚠ ذخیره Revision ناموفق بود؛ نسخه قبلی حفظ شد':'⚠ ذخیره Revision و بازگردانی Profile ناموفق بود؛ فوراً خروجی بگیرید');
   return
