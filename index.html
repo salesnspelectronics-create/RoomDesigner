@@ -1228,6 +1228,11 @@ if(pendingRevision){
  // a later autosave may have superseded the revision snapshot. Never roll it back.
  if(revisionCommitted||(profileExpected&&currentValid)){
   if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true;
+ }else if(pendingRevision.format===2&&currentValid){
+  // A valid current document with an incomplete profile write is ambiguous:
+  // rolling back both keys could erase subsequent edits.
+  recoveryIncomplete=true;manualSaveFailed=true;
+  notify('⚠ اختلاف Revision و نقشه جاری؛ بازیابی خودکار برای حفظ تغییرات متوقف شد')
  }else{
  let revisionRecovered=true;
  for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
