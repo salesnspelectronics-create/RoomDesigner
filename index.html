@@ -1278,13 +1278,23 @@ function offerPendingJournalReview(){
  btn.style.cssText='position:fixed;bottom:130px;right:12px;z-index:10001;padding:12px;background:#723b38;color:white;border:1px solid white;border-radius:8px';
  document.body.append(btn);
  btn.addEventListener('click',async()=>{
-  const current=safeStorage.getItem('rd_last');
-  const bundle={format:1,exportedAt:new Date().toISOString(),current:current,profiles:safeStorage.getItem('rd_profiles'),journals:Object.fromEntries(keys.map(key=>[key,safeStorage.getItem(key)]))};
-  const exported=await file(JSON.stringify(bundle,null,2),'roomdesigner-pending-recovery.json');
-  if(!exported)return;
-  if(!confirm('فایل بازیابی را ذخیره کرده‌اید؟ تأیید فقط نشانگرهای معلق را پاک می‌کند؛ نقشه فعلی تغییر نمی‌کند. ادامه؟'))return;
+  const captured=Object.fromEntries(keys.map(key=>[key,safeStorage.getItem(key)]));
+  const local=safeStorage.getItem('rd_last'),profilesRaw=safeStorage.getItem('rd_profiles');
+  const mirror=await mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readonly'));
+  const mirrorMeta=await mirrorOperation('readonly',undefined,'last-meta');
+  const inspect=raw=>{if(typeof raw!=='string')return {present:false};try{const parsed=validateRoomDocument(JSON.parse(raw));return {present:true,valid:!!parsed,id:parsed?.id??null,revision:parsed?.revision??null,checksum:mirrorChecksum(raw)}}catch(_){return {present:true,valid:false,checksum:mirrorChecksum(raw)}}};
+  const localInfo=inspect(local),mirrorInfo=inspect(mirror);
+  const metaMatches=mirrorMeta==null||(mirrorInfo.present&&mirrorMeta.length===mirror.length&&mirrorMeta.checksum===mirrorInfo.checksum);
+  const same=localInfo.present&&mirrorInfo.present&&localInfo.checksum===mirrorInfo.checksum;
+  const summary='LocalStorage: '+JSON.stringify(localInfo)+'\nIndexedDB: '+JSON.stringify({...mirrorInfo,metadataValid:metaMatches})+'\nیکسان: '+same+'\nهیچ نسخه‌ای خودکار انتخاب یا جایگزین نمی‌شود.';
+  if(!confirm(summary+'\n\nبسته کامل بازیابی را صادر می‌کنید؟'))return;
+  const bundle={format:2,exportedAt:new Date().toISOString(),local,profiles:profilesRaw,mirror,mirrorMeta,journals:captured};
+  if(!await file(JSON.stringify(bundle,null,2),'roomdesigner-pending-recovery.json'))return;
+  if(!confirm('آیا فایل بازیابی شامل هر دو Snapshot و Journalها را در محل امن بررسی و ذخیره کرده‌اید؟ بدون تأیید، هیچ نشانگری پاک نخواهد شد.'))return;
   for(const key of keys){
-   if(!confirm('تأیید پاک‌سازی '+key+'؟ اطلاعات قبلی در فایل بازیابی صادرشده موجود است.'))continue;
+   if(safeStorage.getItem(key)!==captured[key]){notify('وضعیت '+key+' تغییر کرده است؛ دوباره بررسی کنید');continue}
+   if(safeStorage.getItem('rd_last')!==local||safeStorage.getItem('rd_profiles')!==profilesRaw){notify('اطلاعات جاری تغییر کرده‌اند؛ بررسی جدید لازم است');break}
+   if(!confirm('فقط نشانگر '+key+' پاک شود؟ داده‌های فعلی و نسخه آینه تغییر نمی‌کنند؛ بازیابی خودکار این Journal متوقف می‌شود.'))continue;
    if(!safeStorage.removeItem(key)){notify('پاک‌سازی '+key+' ناموفق بود');continue}
   }
   if(!keys.some(key=>safeStorage.getItem(key)!==null)){btn.remove();notify('نشانگرهای بازیابی تعیین‌تکلیف شدند؛ نقشه فعلی حفظ شد')}
