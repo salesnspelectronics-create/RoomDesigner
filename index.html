@@ -254,6 +254,7 @@ async function mirrorOperation(mode,value,key='last',snapshotGeneration=null){co
   tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)
  }catch(_){resolve(null)}
 })}
+async function readMirrorSnapshot(){const db=await mirrorDb;if(!db)return null;return new Promise(resolve=>{try{const tx=db.transaction('backups','readonly'),store=tx.objectStore('backups');const data=store.get('last'),meta=store.get('last-meta');let value=null,metadata=null;data.onsuccess=()=>{value=data.result};meta.onsuccess=()=>{metadata=meta.result};tx.oncomplete=()=>resolve({mirror:value,mirrorMeta:metadata});tx.onerror=()=>resolve(null);tx.onabort=()=>resolve(null)}catch(_){resolve(null)}})}
 function persistenceStatus(ok){const backup=$('backupNow');if(!backup)return;const durable=ok||(!mirrorPending&&mirrorSaveOk);
  backup.style.display=durable&&!manualSaveFailed?'none':'';
  backup.title=durable?'ذخیره پشتیبان پروژه':'ذخیره پایدار ناموفق است؛ فوراً فایل نقشه را صادر کنید';
@@ -282,9 +283,9 @@ function saveAuto(){
 async function recoverMirrorOnStartup(){
  const startupEpoch=documentEpoch,previousDocument=doc;
  try{
- const stored=await mirrorQueue.then(()=>mirrorOperation('readonly'));
+ const snapshot=await mirrorQueue.catch(()=>{}).then(()=>readMirrorSnapshot());
+ const stored=snapshot?.mirror,meta=snapshot?.mirrorMeta;
  if(!stored||drawingChangedSinceStartup||documentEpoch!==startupEpoch)return;
- const meta=await mirrorOperation('readonly',undefined,'last-meta');
  if(meta&&(!Number.isInteger(meta.length)||meta.length!==stored.length||meta.checksum!==mirrorChecksum(stored)))throw Error('mirror checksum mismatch');
  if(drawingChangedSinceStartup||documentEpoch!==startupEpoch)return;
  const recovered=validateRoomDocument(JSON.parse(stored));if(!recovered)return;
@@ -1280,10 +1281,8 @@ function offerPendingJournalReview(){
  btn.addEventListener('click',async()=>{
   const captured=Object.fromEntries(keys.map(key=>[key,safeStorage.getItem(key)]));
   const local=safeStorage.getItem('rd_last'),profilesRaw=safeStorage.getItem('rd_profiles');
-  const mirrorSnapshot=await mirrorQueue.catch(()=>{}).then(async()=>({
-   mirror:await mirrorOperation('readonly'),
-   mirrorMeta:await mirrorOperation('readonly',undefined,'last-meta')
-  }));
+  const mirrorSnapshot=await mirrorQueue.catch(()=>{}).then(()=>readMirrorSnapshot());
+  if(!mirrorSnapshot){notify('خواندن هم‌زمان نسخه آینه و اطلاعات اعتبارسنجی ناموفق بود');return}
   const {mirror,mirrorMeta}=mirrorSnapshot;
   // Abort stale reviews before presenting a bundle or clearing any journal.
   const unchanged=()=>keys.every(key=>safeStorage.getItem(key)===captured[key])&&safeStorage.getItem('rd_last')===local&&safeStorage.getItem('rd_profiles')===profilesRaw;
