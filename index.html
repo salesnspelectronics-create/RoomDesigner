@@ -1303,6 +1303,7 @@ function offerPendingJournalReview(){
    if(safeStorage.getItem(key)!==captured[key]){notify('وضعیت '+key+' تغییر کرده است؛ دوباره بررسی کنید');continue}
    if(safeStorage.getItem('rd_last')!==local||safeStorage.getItem('rd_profiles')!==profilesRaw){notify('اطلاعات جاری تغییر کرده‌اند؛ بررسی جدید لازم است');break}
    if(!confirm('فقط نشانگر '+key+' پاک شود؟ داده‌های فعلی و نسخه آینه تغییر نمی‌کنند؛ بازیابی خودکار این Journal متوقف می‌شود.'))continue;
+   if(safeStorage.getItem(key)!==captured[key]||safeStorage.getItem('rd_last')!==local||safeStorage.getItem('rd_profiles')!==profilesRaw){notify('اطلاعات پس از تأیید تغییر کردند؛ عملیات متوقف شد');break}
    if(!safeStorage.removeItem(key)){notify('پاک‌سازی '+key+' ناموفق بود');continue}
   }
   if(!keys.some(key=>safeStorage.getItem(key)!==null)){btn.remove();notify('نشانگرهای بازیابی تعیین‌تکلیف شدند؛ نقشه فعلی حفظ شد')}
