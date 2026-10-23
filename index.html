@@ -1232,7 +1232,7 @@ if(pendingRevision){
   // A valid current document with an incomplete profile write is ambiguous:
   // rolling back both keys could erase subsequent edits.
   recoveryIncomplete=true;manualSaveFailed=true;
-  notify('⚠ اختلاف Revision و نقشه جاری؛ بازیابی خودکار برای حفظ تغییرات متوقف شد')
+  notify('⚠ اختلاف Revision و نقشه جاری؛ نقشه فعلی حفظ شد. ابتدا فایل فعلی را خروجی بگیرید و سپس بازیابی دستی انجام دهید')
  }else{
  let revisionRecovered=true;
  for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
@@ -1260,7 +1260,8 @@ if(pendingImport){
   if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true;
  }else if(ambiguousImport){
   recoveryIncomplete=true;manualSaveFailed=true;
-  notify('⚠ اختلاف اسناد هنگام بازیابی ورود؛ برای جلوگیری از حذف تغییرات، بازگردانی خودکار متوقف شد')
+  // Preserve the two alternatives as a copyable recovery package; do not clear the journal.
+  notify('⚠ اختلاف اسناد هنگام بازیابی ورود؛ نقشه جاری حفظ شد. ابتدا فایل فعلی را خروجی بگیرید، سپس بازیابی دستی انجام دهید')
  }else{
  let recoveredImport=true;
  for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
