@@ -145,3 +145,8 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - WARNING: browser download initiation is not proof the exported file was actually retained. Explicit user confirmation is still required; journal clearance discards automatic rollback capability from that marker. Runtime behavior has not been tested.
 - OPEN: No interactive per-Snapshot comparison/restore UI yet. Cross-store authority, IndexDB mirror ownership and completion races remain unsolved; do not close Phase 1.
 - V8.2 remains paused, no tests/build/deployment.
+
+## 2026-10-23 snapshot comparison and journal acknowledgement guard (NO TESTS)
+- `191e0d26c4f8c6a4bd41517481b71884747f1c71`: pending journal UI now reads LocalStorage and IndexedDB snapshot content, checks document schema, displays IDs/revisions/checksums and mirror-metadata validity; exports both raw snapshots, profiles, and captured journals in one recovery bundle.
+- Before clearing each journal marker, compare current journal, `rd_last` and `rd_profiles` to the captured values. Abort clearance if they changed; explicit confirmation and user-reported export retention are mandatory. This does not automatically discard either snapshot.
+- OPEN: no true atomicity across LocalStorage/IndexedDB and no authoritative selection between two distinct valid documents. Mirror async ownership and its interactions with Import remain unresolved. UI and export need runtime review; user prohibited all tests. Phase 1 stays OPEN; V8.2 paused.
