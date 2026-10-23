@@ -273,7 +273,7 @@ function saveAuto(){
  }
  // Do not report an older IndexedDB result as the current document's mirror.
  mirrorSaveOk=false;
- mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readwrite',payload,'last',snapshotGeneration)).then(saved=>{
+ mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>generation===mirrorGeneration?mirrorOperation('readwrite',payload,'last',snapshotGeneration):false).then(saved=>{
  if(generation!==mirrorGeneration)return;
  mirrorSaveOk=!!saved;mirrorPending=false;persistenceStatus(primarySaveOk);
  if(!primarySaveOk&&!saved)notify('هشدار: ذخیره پایدار ممکن نیست؛ فوراً از نقشه خروجی بگیرید')
