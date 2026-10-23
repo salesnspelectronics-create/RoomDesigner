@@ -1280,17 +1280,25 @@ function offerPendingJournalReview(){
  btn.addEventListener('click',async()=>{
   const captured=Object.fromEntries(keys.map(key=>[key,safeStorage.getItem(key)]));
   const local=safeStorage.getItem('rd_last'),profilesRaw=safeStorage.getItem('rd_profiles');
-  const mirror=await mirrorQueue.catch(()=>{}).then(()=>mirrorOperation('readonly'));
-  const mirrorMeta=await mirrorOperation('readonly',undefined,'last-meta');
+  const mirrorSnapshot=await mirrorQueue.catch(()=>{}).then(async()=>({
+   mirror:await mirrorOperation('readonly'),
+   mirrorMeta:await mirrorOperation('readonly',undefined,'last-meta')
+  }));
+  const {mirror,mirrorMeta}=mirrorSnapshot;
+  // Abort stale reviews before presenting a bundle or clearing any journal.
+  const unchanged=()=>keys.every(key=>safeStorage.getItem(key)===captured[key])&&safeStorage.getItem('rd_last')===local&&safeStorage.getItem('rd_profiles')===profilesRaw;
+  if(!unchanged()){notify('اطلاعات در حین بررسی تغییر کردند؛ دوباره بررسی کنید');return}
   const inspect=raw=>{if(typeof raw!=='string')return {present:false};try{const parsed=validateRoomDocument(JSON.parse(raw));return {present:true,valid:!!parsed,id:parsed?.id??null,revision:parsed?.revision??null,checksum:mirrorChecksum(raw)}}catch(_){return {present:true,valid:false,checksum:mirrorChecksum(raw)}}};
   const localInfo=inspect(local),mirrorInfo=inspect(mirror);
   const metaMatches=mirrorMeta==null||(mirrorInfo.present&&mirrorMeta.length===mirror.length&&mirrorMeta.checksum===mirrorInfo.checksum);
   const same=localInfo.present&&mirrorInfo.present&&localInfo.checksum===mirrorInfo.checksum;
   const summary='LocalStorage: '+JSON.stringify(localInfo)+'\nIndexedDB: '+JSON.stringify({...mirrorInfo,metadataValid:metaMatches})+'\nیکسان: '+same+'\nهیچ نسخه‌ای خودکار انتخاب یا جایگزین نمی‌شود.';
   if(!confirm(summary+'\n\nبسته کامل بازیابی را صادر می‌کنید؟'))return;
+  if(!unchanged()){notify('اطلاعات تغییر کردند؛ دوباره بررسی کنید');return}
   const bundle={format:2,exportedAt:new Date().toISOString(),local,profiles:profilesRaw,mirror,mirrorMeta,journals:captured};
   if(!await file(JSON.stringify(bundle,null,2),'roomdesigner-pending-recovery.json'))return;
   if(!confirm('آیا فایل بازیابی شامل هر دو Snapshot و Journalها را در محل امن بررسی و ذخیره کرده‌اید؟ بدون تأیید، هیچ نشانگری پاک نخواهد شد.'))return;
+  if(!unchanged()){notify('وضعیت ذخیره‌سازی تغییر کرده؛ دوباره خروجی بگیرید');return}
   for(const key of keys){
    if(safeStorage.getItem(key)!==captured[key]){notify('وضعیت '+key+' تغییر کرده است؛ دوباره بررسی کنید');continue}
    if(safeStorage.getItem('rd_last')!==local||safeStorage.getItem('rd_profiles')!==profilesRaw){notify('اطلاعات جاری تغییر کرده‌اند؛ بررسی جدید لازم است');break}
