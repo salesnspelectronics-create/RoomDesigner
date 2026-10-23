@@ -163,3 +163,8 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `35e926330d99214c9233c7a95b28e263e5367a3c`: a successful current-generation mirrored autosave can clear the Import journal only if its payload matches both the current persisted `rd_last` and durable commit checksum. Older Import callbacks no longer clear journals after being superseded.
 - OPEN: IndexedDB writes already in progress cannot be canceled by the generation check; LocalStorage/IndexedDB still lack cross-store atomicity. The non-atomic commit-marker update and possible mirror failure/crash require recovery review. Journal-clear failures and revision recovery remain open.
 - No tests or Build; V8.2 remains paused; Phase 1 remains open.
+
+## 2026-10-23 revision mirror compensation (NO TESTS)
+- `bc6171feaeef26279032089a0b57d8590052d49d`: when a Revision's local `rd_last` save fails, invalidate the pending mirror generation and queue a compensating mirror of the previous raw snapshot behind any already-started IndexedDB write.
+- `dee8d6fe6694b69d5e81d8c421e799a0f6c5100f`: ensure the compensating write owns the current generation and retain `rd_pending_revision` until the compensating write completes successfully. If no preceding snapshot exists or the mirror repair fails, preserve the journal and warn.
+- OPEN: the compensation does not cancel already-running transactions; it repairs after queue completion when previous local raw snapshot is available. No cross-store ACID atomicity; malformed/missing prior snapshot still requires manual intervention, and other early failure paths need review. No tests or Build, V8.2 paused. Phase 1 OPEN.
