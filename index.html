@@ -276,6 +276,14 @@ function saveAuto(){
  mirrorPending=true;mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>generation===mirrorGeneration?mirrorOperation('readwrite',payload,'last',snapshotGeneration):false).then(saved=>{
  if(generation!==mirrorGeneration)return;
  mirrorSaveOk=!!saved;mirrorPending=false;persistenceStatus(primarySaveOk);
+ // Clear a committed import journal only after this exact generation reaches the mirror.
+ if(saved&&primarySaveOk){
+  const pending=safeStorage.getItem('rd_pending_import');
+  const marker=readLocalJSON('rd_import_committed',null,v=>v?.format===1&&typeof v.checksum==='string');
+  if(pending&&marker?.checksum===mirrorChecksum(payload)&&safeStorage.getItem('rd_last')===payload){
+   if(!safeStorage.removeItem('rd_pending_import')){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر ورود پس از ذخیره آینه پاک نشد')}
+  }
+ }
  if(!primarySaveOk&&!saved)notify('هشدار: ذخیره پایدار ممکن نیست؛ فوراً از نقشه خروجی بگیرید')
  }).catch(()=>{if(generation!==mirrorGeneration)return;mirrorSaveOk=false;mirrorPending=false;persistenceStatus(primarySaveOk);if(!primarySaveOk)notify('هشدار: ذخیره پایدار ممکن نیست؛ فوراً از نقشه خروجی بگیرید')});
  persistenceStatus(primarySaveOk);$('title').textContent=doc.name+' · '+doc.date;return primarySaveOk
@@ -1193,8 +1201,7 @@ function applyRoomImport(candidate){
    // A newer save supersedes this import mirror, but a stale import rollback
    // must never revert those subsequent edits at the next startup.
    if(importGeneration!==mirrorGeneration){
-    if(!primarySaveOk){manualSaveFailed=true;persistenceStatus(false);notify('⚠ ذخیره جدید پایدار نیست؛ نشانگر بازیابی محفوظ ماند');return}
-    if(!safeStorage.removeItem('rd_pending_import')){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر قدیمی ورود فایل پاک نشد؛ از پروژه خروجی بگیرید')}
+    // The newest generation owns journal completion; never clear it on an older callback.
     return
    }
    if(!mirrorSaveOk){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نسخه آینه ورود ذخیره نشد؛ نسخه بازیابی ورود محفوظ است');return}
