@@ -1269,7 +1269,20 @@ if(pendingRevision){
  }else{
  let revisionRecovered=true;
  for(const [key,value] of pendingRevision.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))revisionRecovered=false}
- if(revisionRecovered){if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true}
+ if(revisionRecovered){
+  // A crash can leave an already-started mirror write containing the failed
+  // Revision. Do not promote that mirror during this startup after rollback.
+  // If no earlier local snapshot existed, retain the journal for user review.
+  const priorLast=pendingRevision.previous.find(([key])=>key==='rd_last')?.[1];
+  if(priorLast===null){
+   recoveryIncomplete=true;manualSaveFailed=true;
+   notify('⚠ نسخه محلی پیشین موجود نیست؛ Journal برای بررسی دستی حفظ شد')
+  }else{
+   if(!safeStorage.removeItem('rd_pending_revision'))recoveryIncomplete=true;
+   // Prevent a stale IndexedDB Revision from being promoted during this load.
+   recoveryIncomplete=true
+  }
+ }
  else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی Revision نیمه‌تمام ناموفق بود؛ نسخه پشتیبان خروجی بگیرید')}
  }
 }
