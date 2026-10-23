@@ -156,3 +156,10 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `173d83526c1683c5ad6056d3d3e741e2899b5d74`: repeat ownership checks immediately after each final per-journal confirmation, just before marker removal.
 - OPEN: IndexedDB mirror payload and metadata are read in separate read transactions and may change between reads; compare/recovery UI does not yet acquire a single transactionally consistent snapshot. Mirror write generation/ownership is not fully synchronized with the Import journal. No user-guided authoritative conflict resolution is implemented for distinct valid documents.
 - Pending export confirmation does not independently prove that a browser-initiated download was durably retained. Do not close phase 1. No tests/Build/V8.2 schedule changes.
+
+## 2026-10-23 atomic mirror reads and generation-owned import completion — NO TESTS
+- `633442569d01af2b50b6ade1b34abc5395f2ddaf`: `readMirrorSnapshot()` reads `last` and `last-meta` in one IndexedDB readonly transaction. Startup recovery and journal review now use the paired snapshot.
+- `5941ec662e5e53ba8e078670f02e87a454892c84`: an obsolete queued `saveAuto` write is skipped if its captured generation no longer equals `mirrorGeneration` when its turn starts.
+- `35e926330d99214c9233c7a95b28e263e5367a3c`: a successful current-generation mirrored autosave can clear the Import journal only if its payload matches both the current persisted `rd_last` and durable commit checksum. Older Import callbacks no longer clear journals after being superseded.
+- OPEN: IndexedDB writes already in progress cannot be canceled by the generation check; LocalStorage/IndexedDB still lack cross-store atomicity. The non-atomic commit-marker update and possible mirror failure/crash require recovery review. Journal-clear failures and revision recovery remain open.
+- No tests or Build; V8.2 remains paused; Phase 1 remains open.
