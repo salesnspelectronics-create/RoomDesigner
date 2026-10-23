@@ -134,3 +134,8 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `826ae2bdc44d5e4205a9c3b908b4c67125c1d3b5`: Format-2 Revision startup recovery similarly refuses a destructive rollback over a valid current document if expected revision metadata is incomplete/ambiguous.
 - OPEN: The safeguards deliberately stop automated resolution in ambiguous cases; they do not establish a transactional authority or user-guided recovery UI. Valid divergent LocalStorage/IndexedDB states remain conservatively LocalStorage-first. Format-3 async mirror ownership and Revision cross-store atomicity remain open.
 - No tests, build, or V8.2 automation changes. Phase 1 remains open pending runtime validation and remaining design work.
+
+## 2026-10-23 ambiguous journal user guidance — NO TESTS
+- `a179fe608c18e0f4e537ed2ab9cea7ceb6ea6bef`: Import Format 3 and Revision Format 2 ambiguity warnings now explicitly request an export of the intact current document before manual recovery. Existing journal remains intact; no destructive auto resolution introduced.
+- OPEN: This is user guidance only, **not** a controlled recovery UI, and does not prevent a journal from remaining pending indefinitely. Safe per-version export, inspect and choose/acknowledge flow remains to implement.
+- OPEN: Mirror async ownership and complete authority over divergent valid LocalStorage/IndexedDB remain unresolved. Phase 1 not complete. No tests, Build or V8.2 changes.
