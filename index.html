@@ -1225,7 +1225,8 @@ function applyRoomImport(candidate){
     return
    }
    if(!mirrorSaveOk){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نسخه آینه ورود ذخیره نشد؛ نسخه بازیابی ورود محفوظ است');return}
-   if(!safeStorage.removeItem('rd_pending_import')){manualSaveFailed=true;persistenceStatus(false);notify('⚠ نشانگر بازیابی ورود فایل پاک نشد؛ از پروژه خروجی بگیرید')}
+   // saveAuto owns journal cleanup after matching its payload and commit marker.
+   // This observer must not remove an unrelated journal created meanwhile.
   }).catch(()=>{manualSaveFailed=true;persistenceStatus(false);notify('⚠ تکمیل ذخیره آینه ورود ناموفق بود')})
  }
  else{manualSaveFailed=true;persistenceStatus(false);notify('⚠ ذخیره ورود فایل ناموفق بود؛ نسخه بازیابی محفوظ است');return}
