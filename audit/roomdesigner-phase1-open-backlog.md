@@ -178,3 +178,8 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `f87bdc0a44dfed8e698c43cb65a98ff0f8490375`: remove journal clearance from the asynchronous Import observer. The matching successful `saveAuto` mirror callback is the only automatic cleanup owner, preventing an older observer from deleting a newer Import journal.
 - `3c4538ca0bb7bb7211eb0589c4d39f1ba7234699`: after failed Revision profile persistence, clear undo intent only if current durable `rd_profiles` still equals the previous raw value; preserve it and warn on divergent/uncertain persistence.
 - OPEN: Crash before a compensating Mirror completes, no prior `rd_last`, asynchronous failure/rollback consistency and atomic cross-store commits remain unsolved. Validation limited to source inspection: no tests or builds. V8.2 unchanged. Phase 1 OPEN.
+
+## 2026-10-23 crash-before-compensation startup guard — NO TESTS
+- `94a7bbfc15e6f59ad009e1dad12a29f1c0ed6204`: after a pending Revision rollback on startup, do not promote a potentially stale IndexedDB mirror in that same startup. When the prior `rd_last` snapshot was absent, retain the pending Revision journal and block automatic mirror recovery for manual review; never delete the existing valid IndexedDB snapshot.
+- OPEN: startup rollback is not full cross-store compensation; a stale mirror can remain durable. On a later startup, if the recovery marker was cleared and no authoritative version exists, cross-store conflict may still require explicit user-controlled resolution. Import failure branches and remaining transactional races need further review.
+- No tests, Build or deployment. V8.2 not activated. Phase 1 remains open.
