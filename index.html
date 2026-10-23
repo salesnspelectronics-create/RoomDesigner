@@ -1241,8 +1241,21 @@ if(pendingImport){
  const rawImported=safeStorage.getItem('rd_last');
  const stagedMatches=pendingImport.format===3&&Array.isArray(pendingImport.expected)&&pendingImport.expected.length>0&&pendingImport.expected.every(([key,checksum])=>typeof key==='string'&&typeof checksum==='string'&&typeof safeStorage.getItem(key)==='string'&&mirrorChecksum(safeStorage.getItem(key))===checksum)&&(!pendingImport.backupKey||safeStorage.getItem('rd_equipment_last_import_backup')===pendingImport.backupKey);
  const committedMatches=(committed&&typeof rawImported==='string'&&mirrorChecksum(rawImported)===committed.checksum)||stagedMatches;
+ // A valid but different current document may represent later work. Do not destroy
+ // it by replaying an old import undo journal without an authoritative transaction ID.
+ let ambiguousImport=false;
+ if(pendingImport.format===3&&rawImported!==null&&!committedMatches){
+  try{
+   const parsed=validateRoomDocument(JSON.parse(rawImported));
+   const prior=pendingImport.previous.find(([key])=>key==='rd_last')?.[1];
+   ambiguousImport=!!parsed&&rawImported!==prior
+  }catch(_){}
+ }
  if(committedMatches){
   if(!safeStorage.removeItem('rd_pending_import'))recoveryIncomplete=true;
+ }else if(ambiguousImport){
+  recoveryIncomplete=true;manualSaveFailed=true;
+  notify('⚠ اختلاف اسناد هنگام بازیابی ورود؛ برای جلوگیری از حذف تغییرات، بازگردانی خودکار متوقف شد')
  }else{
  let recoveredImport=true;
  for(const [key,value] of pendingImport.previous){if(!(value===null?safeStorage.removeItem(key):safeStorage.setItem(key,value)))recoveredImport=false}
