@@ -1269,7 +1269,28 @@ if(pendingImport){
  else{recoveryIncomplete=true;manualSaveFailed=true;notify('⚠ بازیابی ورود ناقص کامل نشد؛ فوراً از فایل‌های پروژه خروجی بگیرید')}
  }
 }
-const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();if(!recoveryIncomplete)recoverMirrorOnStartup();else{manualSaveFailed=true;persistenceStatus(false)}showLocalDataWarnings();if(!activeUser)setTimeout(()=>userPicker(),100);
+// Explicit, non-destructive recovery acknowledgement for ambiguous journals.
+function offerPendingJournalReview(){
+ const keys=['rd_pending_import','rd_pending_revision'].filter(key=>safeStorage.getItem(key)!==null);
+ if(!keys.length)return;
+ const btn=document.createElement('button');
+ btn.type='button';btn.textContent='بررسی بازیابی‌های معلق';
+ btn.style.cssText='position:fixed;bottom:130px;right:12px;z-index:10001;padding:12px;background:#723b38;color:white;border:1px solid white;border-radius:8px';
+ document.body.append(btn);
+ btn.addEventListener('click',async()=>{
+  const current=safeStorage.getItem('rd_last');
+  const bundle={format:1,exportedAt:new Date().toISOString(),current:current,profiles:safeStorage.getItem('rd_profiles'),journals:Object.fromEntries(keys.map(key=>[key,safeStorage.getItem(key)]))};
+  const exported=await file(JSON.stringify(bundle,null,2),'roomdesigner-pending-recovery.json');
+  if(!exported)return;
+  if(!confirm('فایل بازیابی را ذخیره کرده‌اید؟ تأیید فقط نشانگرهای معلق را پاک می‌کند؛ نقشه فعلی تغییر نمی‌کند. ادامه؟'))return;
+  for(const key of keys){
+   if(!confirm('تأیید پاک‌سازی '+key+'؟ اطلاعات قبلی در فایل بازیابی صادرشده موجود است.'))continue;
+   if(!safeStorage.removeItem(key)){notify('پاک‌سازی '+key+' ناموفق بود');continue}
+  }
+  if(!keys.some(key=>safeStorage.getItem(key)!==null)){btn.remove();notify('نشانگرهای بازیابی تعیین‌تکلیف شدند؛ نقشه فعلی حفظ شد')}
+ });
+}
+const localLast=readLocalJSON('rd_last',null,v=>{try{validateRoomDocument(v);return true}catch(_){return false}});if(localLast)doc=localLast;render();updateHistoryControls();if(!recoveryIncomplete)recoverMirrorOnStartup();else{manualSaveFailed=true;persistenceStatus(false)}showLocalDataWarnings();offerPendingJournalReview();if(!activeUser)setTimeout(()=>userPicker(),100);
 
 // V84: UI adapters use the existing document, checkpoint, tools and render operations.
 function deskIcon(name) {
