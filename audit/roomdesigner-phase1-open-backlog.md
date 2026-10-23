@@ -139,3 +139,9 @@ Updated: 2026-10-22. Audit/implementation ledger only; this is NOT runtime accep
 - `a179fe608c18e0f4e537ed2ab9cea7ceb6ea6bef`: Import Format 3 and Revision Format 2 ambiguity warnings now explicitly request an export of the intact current document before manual recovery. Existing journal remains intact; no destructive auto resolution introduced.
 - OPEN: This is user guidance only, **not** a controlled recovery UI, and does not prevent a journal from remaining pending indefinitely. Safe per-version export, inspect and choose/acknowledge flow remains to implement.
 - OPEN: Mirror async ownership and complete authority over divergent valid LocalStorage/IndexedDB remain unresolved. Phase 1 not complete. No tests, Build or V8.2 changes.
+
+## 2026-10-23 export-first pending journal acknowledgement (NO TESTS)
+- `f2b5c3d6609dc730b86d291bd24b971103e8d80d`: introduces an explicit on-screen review button for pending Import/Revision journals. It offers an export containing current document, saved profiles, and raw journal contents; after export and separate user confirmation it allows clearing individual journal markers without replacing or deleting the current snapshot.
+- WARNING: browser download initiation is not proof the exported file was actually retained. Explicit user confirmation is still required; journal clearance discards automatic rollback capability from that marker. Runtime behavior has not been tested.
+- OPEN: No interactive per-Snapshot comparison/restore UI yet. Cross-store authority, IndexDB mirror ownership and completion races remain unsolved; do not close Phase 1.
+- V8.2 remains paused, no tests/build/deployment.
