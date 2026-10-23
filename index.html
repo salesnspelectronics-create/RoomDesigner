@@ -906,7 +906,11 @@ async function saveLocal(copy=false){
   delete profiles[doc.id];
   if(previousProfile!==undefined)profiles[beforeRevisionSave.id]=previousProfile;
   doc=beforeRevisionSave;
-  safeStorage.removeItem('rd_pending_revision');
+  // Only dismiss recovery intent if the original profiles remain durable.
+  // A failed write can leave an ambiguous state; keep its journal for recovery.
+  if(safeStorage.getItem('rd_profiles')===previousProfilesStorage){
+   if(!safeStorage.removeItem('rd_pending_revision'))notify('⚠ پاک‌سازی نشانگر Revision ناموفق بود')
+  }else{manualSaveFailed=true;notify('⚠ وضعیت ذخیره Profile نامشخص است؛ Journal بازیابی محفوظ ماند')}
   persistenceStatus(false);notify('⚠ ذخیره Revision ناموفق بود؛ تاریخچه قبلی حفظ شد');return
  }
  const lastSaved=saveAuto();
