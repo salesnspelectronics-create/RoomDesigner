@@ -920,11 +920,18 @@ async function saveLocal(copy=false){
   const repairGeneration=++mirrorGeneration;
   mirrorSaveOk=false;mirrorPending=true;
   const restoredPayload=previousCurrentStorage;
-  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>repairGeneration===mirrorGeneration&&typeof restoredPayload==='string'?mirrorOperation('readwrite',restoredPayload,'last'):false).then(ok=>{
+  const revisionJournal=safeStorage.getItem('rd_pending_revision');
+  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>{
+   // A newer document or a changed recovery journal owns the mirror now.
+   if(repairGeneration!==mirrorGeneration||safeStorage.getItem('rd_pending_revision')!==revisionJournal)return false;
+   if(safeStorage.getItem('rd_last')!==restoredPayload)return false;
+   // When no previous snapshot exists, never fabricate an IndexedDB deletion.
+   return typeof restoredPayload==='string'?mirrorOperation('readwrite',restoredPayload,'last'):false
+  }).then(ok=>{
    if(repairGeneration!==mirrorGeneration)return;
    mirrorSaveOk=!!ok;mirrorPending=false;
    if(!ok){manualSaveFailed=true;notify('⚠ نسخه آینه Revision قابل ترمیم نیست؛ Journal بازیابی محفوظ ماند')}
-   else if(restored&&!safeStorage.removeItem('rd_pending_revision'))notify('⚠ پاک‌سازی Journal Revision ناموفق بود');
+   else if(restored&&safeStorage.getItem('rd_pending_revision')===revisionJournal&&safeStorage.getItem('rd_last')===restoredPayload&&!safeStorage.removeItem('rd_pending_revision'))notify('⚠ پاک‌سازی Journal Revision ناموفق بود');
    persistenceStatus(false)
   });
   // Keep the undo journal until the compensation mirror has committed.
