@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="915" height="885" viewBox="0 0 915 885">
+<rect width="915" height="885" fill="#a5a5a7"/>
+<g fill="#fff58b"><circle cx="650" cy="42" r="20"/><circle cx="713" cy="42" r="20"/><circle cx="775" cy="42" r="20"/></g>
+<g stroke="#747476" stroke-width="9"><path d="M0 89H915M0 261H915M0 632H915M0 796H915"/></g>
+<g fill="none" stroke="#202022" stroke-width="3">
+<circle cx="135" cy="135" r="25"/><circle cx="197" cy="135" r="25"/><circle cx="260" cy="135" r="25"/><circle cx="322" cy="135" r="25"/>
+<circle cx="650" cy="135" r="25"/><circle cx="713" cy="135" r="25"/><circle cx="775" cy="135" r="25"/>
+</g>
+<g font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="29" fill="#202022" text-anchor="middle"><text x="135" y="145">−</text><text x="197" y="145">B</text><text x="260" y="145">A</text><text x="322" y="145">+</text><text x="650" y="145" font-size="25">S1</text><text x="713" y="145" font-size="25">S2</text><text x="775" y="145">C</text></g>
+<g font-family="Arial,Helvetica,sans-serif" fill="#202022" font-weight="bold"><text x="90" y="441" font-size="21">2 × Digital input Sensor</text><text x="90" y="478" font-size="21">12 × 230V/10A Output</text><text x="539" y="437" font-size="21">Green LED (Change Config)</text><text x="539" y="470" font-size="21">Red LED (Receive Data )</text></g>
+<g fill="#202022" font-family="Arial,Helvetica,sans-serif" font-weight="bold" text-anchor="middle"><text x="425" y="454" font-size="59" letter-spacing="-5">NSP</text><text x="425" y="513" font-size="21">AC12CH-2CHI</text></g>
+<g fill="none" stroke="#202022" stroke-width="2.4"><path d="M342 480h113l47-46m-160 39h110l43-40m-105 49h74l52-49m-112 49h66l57-49"/><circle cx="502" cy="434" r="1.6"/><circle cx="495" cy="433" r="1.6"/><circle cx="516" cy="433" r="1.6"/><circle cx="527" cy="433" r="1.6"/></g>
+<g fill="none" stroke="#202022" stroke-width="3"><path d="M145 617v-31h15l29-16M190 586h15v31M334 617v-31h15l29-16M379 586h15v31M523 617v-31h15l29-16M568 586h15v31M712 617v-31h15l28-16M757 586h15v31"/></g>
+<g font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="bold" text-anchor="middle" fill="#202022"><text x="175" y="611">1</text><text x="364" y="611">2</text><text x="553" y="611">3</text><text x="742" y="611">4</text></g>
+<g fill="#fff58b"><circle cx="147" cy="843" r="20"/><circle cx="207" cy="843" r="20"/><circle cx="334" cy="843" r="20"/><circle cx="394" cy="843" r="20"/><circle cx="523" cy="843" r="20"/><circle cx="582" cy="843" r="20"/><circle cx="713" cy="843" r="20"/><circle cx="772" cy="843" r="20"/></g>
+</svg>

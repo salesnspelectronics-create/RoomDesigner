@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 2,
+  "version": 3,
   "symbols": [
     {
       "id": "single_bed",
@@ -444,11 +444,11 @@
       "name": "کلید شش‌فرمان هتلی",
       "category": "equipment",
       "filePath": "assets/svg/equipment/nsp-6r-01.svg",
-      "viewBox": "0 0 1062 1018",
+      "viewBox": "311.31 254.14 446.69 410.47",
       "defaultWidth": 120,
       "defaultHeight": 85,
       "preserveAspectRatio": "none",
-      "version": 1,
+      "version": 2,
       "assignedEquipmentTypes": [
         "nsp-6r-01"
       ]
@@ -668,13 +668,69 @@
       "name": "ترموستات هفت‌سگمنت نگین",
       "category": "equipment",
       "filePath": "assets/svg/equipment/nsp-tmp-7seg.svg",
-      "viewBox": "0 0 1062 1018",
+      "viewBox": "306.9 257.6 452.6 416.5",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 2,
+      "assignedEquipmentTypes": [
+        "nsp-tmp-7seg"
+      ]
+    },
+    {
+      "id": "nsp-ac12ch",
+      "name": "مین 12 کانال",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-ac12ch.svg",
+      "viewBox": "0 0 1478 885",
       "defaultWidth": 120,
       "defaultHeight": 85,
       "preserveAspectRatio": "none",
       "version": 1,
       "assignedEquipmentTypes": [
-        "nsp-tmp-7seg"
+        "nsp-ac12ch"
+      ]
+    },
+    {
+      "id": "nsp-ac4ch",
+      "name": "مین 4 کانال",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-ac4ch.svg",
+      "viewBox": "0 0 915 885",
+      "defaultWidth": 120,
+      "defaultHeight": 85,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-ac4ch"
+      ]
+    },
+    {
+      "id": "nsp-power-terminal",
+      "name": "پاور ترمینال",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-power-terminal.svg",
+      "viewBox": "0 0 300 510",
+      "defaultWidth": 84,
+      "defaultHeight": 148,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-power-terminal"
+      ]
+    },
+    {
+      "id": "nsp-power-supply",
+      "name": "منبع تغذیه",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-power-supply.svg",
+      "viewBox": "0 0 300 400",
+      "defaultWidth": 96,
+      "defaultHeight": 128,
+      "preserveAspectRatio": "none",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "nsp-power-supply"
       ]
     }
   ]

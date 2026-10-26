@@ -49,5 +49,9 @@
   "nsp-db-negin-lp": "nsp-db-negin-lp",
   "nsp-db-negin-ml": "nsp-db-negin-ml",
   "nsp-db-negin-mp": "nsp-db-negin-mp",
-  "nsp-tmp-7seg": "nsp-tmp-7seg"
+  "nsp-tmp-7seg": "nsp-tmp-7seg",
+  "nsp-ac12ch": "nsp-ac12ch",
+  "nsp-ac4ch": "nsp-ac4ch",
+  "nsp-power-terminal": "nsp-power-terminal",
+  "nsp-power-supply": "nsp-power-supply"
 }

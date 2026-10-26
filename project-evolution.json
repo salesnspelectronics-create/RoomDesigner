@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V260",
-    "project_evolution_version": "V260",
+    "software_version": "V272",
+    "project_evolution_version": "V272",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V260",
+  "current_source_release": "V272",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -943,6 +943,13 @@
       "phase": "equipment catalog replacement",
       "summary": "Approved 26 SVG models, list UI, editable identities and backup-first legacy-equipment migration.",
       "runtime_status": "automated_browser_passed_pending_user_acceptance"
+    },
+    {
+      "release": "V272",
+      "date": "2026-10-26",
+      "phase": "equipment, physical connections and canvas editing",
+      "summary": "Release accumulated authorized local changes; increment displayed V271. Intervening ledger history remains unreconciled.",
+      "runtime_status": "automated_verification_pending_user_acceptance"
     }
   ],
   "records": [
@@ -3479,6 +3486,603 @@
         "browser": "Headless Edge: desktop and mobile 320/390 px, 26 source previews, persisted identity and catalog editing, profile/revision/shortcut cleanup, durable backup denial, imported-file backup, IndexedDB recovery backup and downloadable backup verified. Existing layers/group browser regression passes.",
         "limitations": "User/iPhone/Safari acceptance pending. No backend or remote user drawing storage exists; migration runs in each browser at first v260 startup. Ledger at HEAD stopped at V239; V240–V259 history was not fabricated."
       }
+    },
+    {
+      "id": "RD-157",
+      "record_type": "user_requirement",
+      "module": "equipment_catalog",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "دو تجهیز پیش‌فرض اضافه شود: مین 12 کانال / AC12CH / Actuator 12 CH و مین 4 کانال / AC4CH / Actuator 4 CH؛ فایل‌های AC12CH.svg و Main4C.svg ارسال شده‌اند. تا درخواست صریح کاربر پوش نشود.",
+      "assistant_interpretation": "Append both built-in models with exact supplied SVGs, complete provenance and local catalog upgrade preserving existing entries. Use code as model because no separate series was supplied; retain existing Ethernet/Power defaults.",
+      "implementation_status": "local changes; uncommitted and unpushed; visible version remains V271 until release",
+      "runtime_status": "automated Edge desktop/mobile viewport checks passed; real device user acceptance pending",
+      "verification_evidence": [
+        "tests/actuator-catalog.test.cjs: 2 tests passed (identity, provenance, offline assets, non-destructive catalog upgrade and idempotence)",
+        "tests/actuator-catalog.browser.test.cjs: Edge desktop and 390px mobile previews, placement, persistence, no duplicate entries or page errors",
+        "Desktop screenshot visually inspected; git diff --check passed"
+      ]
+    },
+    {
+      "id": "RD-158",
+      "record_type": "user_requirement",
+      "module": "equipment_catalog_ports",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "پورت‌ها از فیلد ports در کاتالوگ خوانده شوند؛ در نبود آن پیش‌فرض قبلی اعمال شود. AC12CH یک Power و ۱۲ RS485، AC4CH یک Power و ۴ RS485 داشته باشد.",
+      "assistant_interpretation": "Explicit ports are authoritative for built-in catalog templates, including saved templates; absent ports keeps Ethernet/Power. Power left, numbered RS485 right. Existing placed devices retain nonempty port arrays.",
+      "implementation_status": "local only; uncommitted and unpushed",
+      "runtime_status": "automated Edge desktop/mobile viewport checks passed; real device user acceptance pending",
+      "verification_evidence": [
+        "tests/actuator-catalog.test.cjs: 4 passed, including missing/empty fields, independent arrays, explicit ports and saved template updates",
+        "tests/actuator-catalog.browser.test.cjs: correct 13/5 port placement, Power/RS485 types, unique IDs, saved catalog update and reload, desktop/mobile previews; no page errors. git diff --check passed."
+      ]
+    },
+    {
+      "id": "RD-159",
+      "record_type": "user_requirement",
+      "module": "equipment_catalog_ports",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "شناسه و نوع پورت‌ها ثابت بمانند؛ نام رله‌ها R1 تا R12 یا R4 شود. در مین ۱۲ کانال Power و R1 و R2 بالا و بقیه پایین؛ در مین ۴ کانال Power بالا و همه رله‌ها پایین باشند.",
+      "assistant_interpretation": "Use R1..R12/R4 for relay display names and top/bottom sides per user; preserve power/rs485 type identifiers and port IDs.",
+      "implementation_status": "local only; uncommitted and unpushed",
+      "runtime_status": "automated Edge desktop/mobile checks passed; user acceptance pending",
+      "verification_evidence": [
+        "4 unit tests passed, including exact IDs, relay names, types and top/bottom sides.",
+        "Browser checks passed for exact port names/types/sides after placement and saved catalog upgrade; desktop/mobile previews and reload passed with no page errors."
+      ]
+    },
+    {
+      "id": "RD-160",
+      "record_type": "user_requirement",
+      "module": "canvas_ports",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "با هاور روی هر پورت، نام تعریف‌شده آن در تولتیپ نمایش داده شود تا پورت‌ها قابل تشخیص باشند.",
+      "assistant_interpretation": "Attach a native SVG title and accessible label using the exact port name to every rendered canvas port, including existing and custom devices.",
+      "implementation_status": "local only; uncommitted and unpushed",
+      "runtime_status": "automated Edge hover-target verification passed; user visual acceptance pending",
+      "verification_evidence": [
+        "Edge browser: all 18 actuator ports have exact Power/R1..R12/R1..R4 native SVG titles and matching accessible labels; mouse hover target verified.",
+        "Existing placement, saved-catalog upgrade, desktop/mobile preview and reload browser checks passed without page errors."
+      ]
+    },
+    {
+      "id": "RD-161",
+      "record_type": "user_requirement",
+      "module": "desktop_toolbox_and_canvas_navigation",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "بخش‌های معماری، کابل‌کشی، تجهیزات و شورتکات‌ها در شروع بسته باشند. در فهرست تجهیزات سمت راست عکس و پلاس ردیف حذف و ارتفاع کمتر شود، اطلاعات متنی بماند. شطرنجی در زوم‌اوت تمام فضای قابل‌دیدن را بپوشاند. با کلیدی مثل Space و کشیدن بتوان بوم را در حالت زوم جابه‌جا کرد.",
+      "assistant_interpretation": "Start desktop toolbox sections collapsed; retain user-opened state during in-session rebuild/search. Compact only desktop equipment rows, preserving title/code/series and placement. Size grid to the actual SVG screen viewport including letterboxing, zoom and pan. Space+left-drag temporarily pans before object/port/resize hit-testing, retaining zoom, tool and document content.",
+      "implementation_status": "local only; uncommitted and unpushed; visible version remains V271 pending release",
+      "runtime_status": "automated Edge desktop/mobile checks passed; screenshots visually reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/workspace-navigation.browser.test.cjs passed: four collapsed startup sections, compact rows without image/plus, successful placement, grid extent matching canvas at zoom/pan and mobile resize.",
+        "Space panning over ports preserves document/history/zoom and selection tool; pending cable start and active cable tool preserved; text fields accept spaces and blur clears hand mode.",
+        "Screenshots of compact list and 20 percent zoom grid visually inspected; local preview returned HTTP 200 with new code; git diff --check passed."
+      ]
+    },
+    {
+      "id": "RD-162",
+      "record_type": "user_requirement",
+      "module": "canvas_navigation",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "علاوه بر Space، با نگه‌داشتن Ctrl و دو ضربه و کشیدن روی تاچ‌پد، فقط در فضای خالی بوم بتوان صفحه را جابه‌جا کرد؛ روی آیتم‌ها این حالت فعال نشود.",
+      "assistant_interpretation": "Ctrl+primary-pointer drag begins temporary panning only on blank canvas, excluding object/port/cable/wall hits and resize corners. Laptop tap-and-drag uses the same mouse pointer events; do not introduce a second tap delay. Preserve Space and middle-button modes.",
+      "implementation_status": "local only; uncommitted and unpushed",
+      "runtime_status": "automated Edge pointer/keyboard checks passed; physical laptop trackpad user acceptance pending",
+      "verification_evidence": [
+        "tests/workspace-navigation.browser.test.cjs passed: Ctrl click then second press and drag pans blank canvas, preserves document/history/zoom, Ctrl on devices keeps selection behavior.",
+        "Existing Space pan, pending cable draft, full-grid coverage, collapsed startup, compact rows and input/blur checks remain passing."
+      ]
+    },
+    {
+      "id": "RD-163",
+      "record_type": "user_requirement",
+      "module": "physical_connections_and_consumers",
+      "source": "user chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "ارتباطات و پورت‌های قبلی همه‌جا حذف شوند. شش نوع توافق‌شده Power قرمز، RS-485 بنفش، RS-485 + Power سبز، DO نارنجی، DI فیروزه‌ای، Ethernet آبی باشند. همه تجهیزات پیش‌فرض فعلاً یک پورت RS-485 + Power در JSON داشته باشند. دسته بسته‌شونده‌ای برای لامپ، شیر برقی، دور فن 1، دور فن 2، دور فن C و بلندگو با آیکون ایجاد شود.",
+      "assistant_interpretation": "Replace built-in physical connection definitions and all 28 equipment JSON port arrays; obsolete main relay-as-RS485 port definitions are superseded. Add a separate consumers category with six inline SVG symbols and DO connection sockets. Defer command codes, device numbers and control bindings. Browser data reset follows the subsequent explicit RD-164 request.",
+      "implementation_status": "local only; uncommitted and unpushed; displayed V271 retained until authorized release",
+      "runtime_status": "focused unit and Edge desktop/mobile checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/connection-model.test.cjs: six exact colors, all 28 JSON/offline port definitions, consumer defaults, legacy normalization and storage failure behavior.",
+        "tests/connection-model.browser.test.cjs: six consumer icons and placement, desktop/mobile menus, green RS-485 + Power and orange DO cables, tooltip labels, new-model export/import/reload and legacy-file normalization.",
+        "tests/actuator-catalog.test.cjs and tests/equipment-release.test.cjs passed after updating superseded port/count expectations."
+      ]
+    },
+    {
+      "id": "RD-164",
+      "record_type": "user_requirement",
+      "module": "browser_storage_reset",
+      "source": "user follow-up chat 2026-10-24",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-24",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "به نظرم داده های قدیمی مرورگر هم پاک بشه تا خطا نخوریم.",
+      "assistant_interpretation": "Explicitly authorized one-time removal of old RoomDesigner browser-local rd_* data, including projects, current drawing, revisions, custom equipment/types, shortcuts, users and previous backups, plus the room-designer-recovery IndexedDB database. Preserve unrelated origin keys and downloaded files. Reinitialize fresh defaults; never repeat the reset once completed.",
+      "implementation_status": "local implementation; reset takes effect on first reload of this preview; no push",
+      "runtime_status": "automated full reset, IndexedDB deletion and post-reset save/reload checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/connection-model.test.cjs: reset deletes only rd_* keys, clears recovery database once, preserves unrelated data and later drawings.",
+        "tests/connection-model.browser.test.cjs: old projects/settings/backups absent, recovery store empty, fresh 34-entry catalog, new user and new drawing survive next reload."
+      ]
+    },
+    {
+      "id": "RD-165",
+      "record_type": "user_requirement",
+      "module": "actuator_relay_ports_and_tooltips",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "مین ۱۲ کانال ۱۲ پورت Digital Output با نام‌های R1 تا R12 در پایین داشته باشد؛ برای مین ۴ کانال نیز ۴ رله R1 تا R4 پایین قرار بگیرد. تولتیپ علاوه بر نوع پورت، نام رله را نشان بدهد.",
+      "assistant_interpretation": "Keep the combined RS-485 + Power port on top; define the requested orange DO relay ports in both canonical/offline catalogs. Compose safe SVG hover titles and accessible labels from the communication type and port name. Add missing relay ports to current placements idempotently while preserving bus IDs and existing wiring. Do not reset browser storage again.",
+      "implementation_status": "local only; uncommitted and unpushed",
+      "runtime_status": "focused unit and Edge desktop/mobile checks passed; screenshot reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/actuator-catalog.test.cjs: exact 13/5 total ports, relay IDs/names/do types/bottom sides and JSON/offline agreement.",
+        "tests/actuator-catalog.browser.test.cjs: orange relay ports and exact Digital Output — DO | R1..R12/R4 titles; hover target, placement, reload and mobile checks passed.",
+        "tests/connection-model.test.cjs: six tests passed including existing-main upgrade without altering bus IDs/wiring or duplicating relays.",
+        "tests/connection-model.browser.test.cjs: real main DO-to-consumer cable, export/import, reload and one-time reset checks passed."
+      ]
+    },
+    {
+      "id": "RD-166",
+      "record_type": "user_bug_report",
+      "module": "cable_geometry_review",
+      "source": "user chat and three attached screenshots 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "diagnosis_confirmed_followed_by_RD-167",
+      "user_statement": "کابل مستقیم می‌شکند؛ کشیدن پایین کابل نقطه اشتباه را تغییر می‌دهد؛ مسیر شکسته آزاد پس از رهاکردن تغییر می‌کند و از داخل مصرف‌کننده عبور می‌کند. سه تصویر از پیش‌نمایش و نتیجه ارائه شد.",
+      "assistant_interpretation": "Review confirmed inserted endpoint stubs in direct display, quick-connect forcing broken mode, implicit automatic routing ignoring saved manual bends, destination/source envelopes excluded from collision scoring, and editing indexes taken from a different point list than the rendered path.",
+      "implementation_status": "diagnosis completed; correction tracked separately in RD-167",
+      "runtime_status": "geometry reproduction confirmed direct four-point path and destination-body crossing before fixes",
+      "verification_evidence": [
+        "Read cableDisplayPoints, finishCable, adaptiveCableRoute and pointer editing branches.",
+        "Deterministic reproduction: source at (300,100), size (400,100), destination at (360,300), size (60,60) produced a route crossing the destination and ignored the two user bends."
+      ]
+    },
+    {
+      "id": "RD-167",
+      "record_type": "user_requirement",
+      "module": "cable_routing_and_editing",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "رفتار کابل‌کشی اصلاح شود. کابل مستقیم مستقیم بماند و ساختارش خودکار تغییر نکند. آرایش شکسته آزاد و شکسته قائم، Smart Ports یا آرایش خودکار، مسیر را از داخل تجهیزات یا سایر آیتم‌ها عبور ندهد.",
+      "assistant_interpretation": "Keep direct geometry as exactly two endpoints and skip direct cables during automatic route changes. Preserve manual free/orthogonal bends on completion. Use one explicit, obstacle-safe router for automatic orthogonal preview/final display, arrangement and Smart Ports. Edit visible corners or entire selected legs with stable endpoint references; keep undo/redo and persistence aligned.",
+      "implementation_status": "local only; uncommitted and unpushed; no new browser reset",
+      "runtime_status": "focused unit and real-pointer Edge tests passed; screenshot visually inspected; manual user acceptance pending",
+      "verification_evidence": [
+        "tests/cable-routing.test.cjs: 7 tests passed; covers wide-source regression, all 16 source/target side combinations, rotated obstacles, walls, blocked endpoints, exact anchors, segment dragging and direct/manual renderer invariants.",
+        "tests/cable-routing.browser.test.cjs: actual pointer drawing of direct/free/orthogonal cables; quick-connect mode retention; manual draft/final agreement; visible-corner and segment dragging; undo/redo; safe arrangement and Smart Ports; cache invalidation on a new obstacle; visible blocked-route state; direct mode and export/import/reload invariance.",
+        "tests/workspace-navigation.browser.test.cjs passed with existing Space/Ctrl pan, grid coverage and compact/collapsed toolbox.",
+        "tests/connection-model.browser.test.cjs passed with existing relay/consumer connections, colors, persistence and one-time reset behavior.",
+        "work/cable-safe-arrangement.png visually reviewed: route passes around the fan and enters the lamp from its top port; git diff --check and inline-script syntax checks passed."
+      ]
+    },
+    {
+      "id": "RD-168",
+      "record_type": "user_bug_report",
+      "module": "cable_routing_and_smart_ports",
+      "source": "user chat and two screenshots 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "After Smart Ports, a broken cable gains an unwanted spike beside the destination port. Remove redundant out-and-back sections from automatically arranged routes.",
+      "assistant_interpretation": "Overlapping endpoint leads and grid-search legs created collinear reversals. Collapse these excursions in generated routes while preserving explicit manual anchors and obstacle safety.",
+      "implementation_status": "local only; no commit, push, version bump or storage reset",
+      "runtime_status": "8 routing unit tests and Edge browser routing suite passed; user acceptance pending",
+      "verification_evidence": [
+        "Top-to-top bus connection matching screenshot: Smart Ports produces exactly four points, no endpoint spike and no device crossing.",
+        "Generated-route collinear reversals and full retraces collapse; manual simplification still preserves backtracking.",
+        "Existing real-pointer direct/free/orthogonal drawing, editing, safe arrangement, Smart Ports, undo/redo and import/reload checks passed."
+      ]
+    },
+    {
+      "id": "RD-169",
+      "record_type": "user_requirement",
+      "module": "canvas_selection_and_resize",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Ctrl+A should select every canvas item and cable for deletion instead of highlighting HTML. Holding Shift while resizing should preserve the original width/height ratio.",
+      "assistant_interpretation": "Handle Ctrl/Meta+A throughout the editor outside editable fields; select all layer-visible devices, wall shapes and cables, including offscreen objects. Preserve normal text selection in form fields. Use the original drag dimensions to constrain corner resizing with Shift, including rotated items.",
+      "implementation_status": "local only; no commit, push or version increment",
+      "runtime_status": "Edge browser tests passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/canvas-shortcuts.browser.test.cjs: real Ctrl+A, Delete, Undo, text field Ctrl+A, all four resize corners at 0 and 35 degrees with Shift, free resize and Undo passed.",
+        "Hidden layers excluded from canvas selection; wall segments deduplicated by shape ID; existing lock/deletion rules retained."
+      ]
+    },
+    {
+      "id": "RD-170",
+      "record_type": "user_bug_report",
+      "module": "canvas_keyboard_shortcuts",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Ctrl+A still highlights the HTML page rather than selecting all canvas items.",
+      "assistant_interpretation": "The prior key-only check misses Persian keyboard layout: physical KeyA reports a Persian letter. Recognize physical KeyA as well as Latin a, and intercept Select All in the window capture phase outside editable controls.",
+      "implementation_status": "local only; no commit, push or release bump",
+      "runtime_status": "Persian-layout regression reproduced before fix and passed after fix; full canvas shortcut browser suite passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/canvas-shortcuts.browser.test.cjs injects cancelable Persian key with code KeyA; before fix defaultPrevented was false; after fix it is true and all expected canvas objects are selected.",
+        "Real English Ctrl+A, Delete/Undo, field text selection and Shift resize regressions still pass.",
+        "Local preview HTTP 200 and served source verified to contain physical-key handling."
+      ]
+    },
+    {
+      "id": "RD-171",
+      "record_type": "user_requirement_and_bug_report",
+      "module": "equipment_placement_and_keyboard_movement",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Equipment placement repeats after sixteen additions and places item seventeen over item one. Continue after the last item or find empty space. Allow selected objects to move with arrow keys.",
+      "assistant_interpretation": "Replace modulo placement with dimension-aware free-space placement; search the view against existing rotated device bounds, then continue below occupied rows and reveal the new item. Arrow keys move selected devices, groups, walls with attached doors and cable bends.",
+      "implementation_status": "local only; no commit, push or version increment",
+      "runtime_status": "Expanded canvas-shortcuts Edge browser suite passed; manual user acceptance pending",
+      "verification_evidence": [
+        "25 actual catalog additions with alternating actuator models: pairwise bounds do not overlap.",
+        "Arrow keys move one document unit; Shift+Arrow moves ten. Single and multiple selection, group members, attached doors and selected manual cable bends verified.",
+        "Locks prevent movement atomically; editable fields keep caret navigation; Undo restores movement.",
+        "Adding equipment clears a prior multi-selection so arrow movement targets only the new device.",
+        "Existing Persian/English Ctrl+A, Delete/Undo and rotated Shift resizing checks pass."
+      ]
+    },
+    {
+      "id": "RD-172",
+      "record_type": "user_bug_report",
+      "module": "equipment_svg_display",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "The six-command hotel switch SVG leaves empty margins unlike the single-gang switch despite matching display settings. Compare and fix the SVG.",
+      "assistant_interpretation": "Both files use a 1062x1018 export artboard. Single-gang has a rect face recognized by deterministic cropping; hotel six-command uses a polygon, falling through to bounds detection. The measuring host inherited visibility:hidden, excluding every graphic. Crop the published hotel SVG to its actual face and correct invisible measurement hosting for legacy embedded drawings.",
+      "implementation_status": "local only; original source SVG and SHA256 unchanged; corrected published asset version 2, manifest and offline fallback synchronized; no application version bump, commit or push",
+      "runtime_status": "Focused Edge browser test passed and screenshot reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/hotel-svg.browser.test.cjs passed: both switch frame bounds, corrected hotel viewBox 311.31 254.14 446.69 410.47, legacy inline artwork cropping, explicit hidden geometry excluded, manifest/offline asset consistency.",
+        "work/hotel-six-command-fixed.png reviewed: black face fills the selected object frame and all six icons remain visible.",
+        "Original source-file SHA256 still matches equipment catalog provenance.",
+        "tests/svg-display.test.cjs could not execute because jsdom is not available; no pass claimed for that suite."
+      ]
+    },
+    {
+      "id": "RD-173",
+      "record_type": "user_bug_report",
+      "module": "equipment_svg_display",
+      "source": "user chat 2026-10-25",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 (pending explicit push request)",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Check the Negin seven-segment thermostat SVG; it also leaves an empty border instead of filling its frame. Correct it if needed.",
+      "assistant_interpretation": "The frame heuristic mistakenly selected a non-rendered 525x483 clipPath rectangle instead of the visible approximately 451.5x415.4 thermostat face. Exclude definition-only rectangles from frame detection and crop the published asset including its outer stroke.",
+      "implementation_status": "local only; published thermostat asset version 2 and offline manifest synchronized; original source SVG preserved; no commit, push or application version bump",
+      "runtime_status": "Focused browser regression and visual screenshot inspection passed; manual user acceptance pending",
+      "verification_evidence": [
+        "tests/hotel-svg.browser.test.cjs passed for single-gang, hotel six-command and thermostat; new thermostat viewBox 306.9 257.6 452.6 416.5, legacy embedded artboard bounds, hidden/definition-only geometry excluded and offline parity verified.",
+        "work/thermostat-seven-segment-fixed.png visually inspected: face fills selected frame with complete display, icons and border.",
+        "Original thermostat source SHA256 still matches the catalog."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes",
+      "runtime_status": "automated tests passed; user acceptance pending",
+      "id": "RD-174",
+      "record_type": "user_requirement",
+      "module": "actuator_ports",
+      "user_statement": "Main twelve-channel relay R1 and R2 should be top-facing by default, with R3 to R12 at bottom.",
+      "assistant_interpretation": "Change canonical and offline catalog defaults; preserve saved per-device edits and existing IDs.",
+      "verification_evidence": [
+        "4 actuator unit tests, 6 connection-model unit tests and actuator browser placement/reload suite passed."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes",
+      "runtime_status": "automated tests passed; user acceptance pending",
+      "id": "RD-175",
+      "record_type": "user_bug_report",
+      "module": "keyboard_movement",
+      "user_statement": "Holding an arrow key is slow and creates delayed jumping after release. Optimize it.",
+      "assistant_interpretation": "One checkpoint per hold, frame-timed movement, OS repeat events do not enqueue moves. Existing device nodes and connected cables update during movement; final editor render on key release.",
+      "verification_evidence": [
+        "Keyboard hold browser: 120 SVG devices, 1000 repeat events, continuous movement, two full renders, one Undo checkpoint, keyup and blur stop immediately, connected cable preview follows.",
+        "Canvas shortcuts browser: taps, Shift, groups, attached doors, locks, fields, Undo, selection and resizing passed."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push or application version bump",
+      "runtime_status": "automated browser tests passed; user acceptance pending",
+      "id": "RD-176",
+      "record_type": "user_requirement",
+      "module": "cable_route_editing_and_rotation",
+      "user_statement": "Allow an existing cable to change between direct, free broken and orthogonal. Add a draggable arbitrary-angle rotation handle for items and independently for movable cable text. Device labels do not need separate rotation.",
+      "assistant_interpretation": "Expose route mode in desktop and modal cable properties. Preserve identity, endpoints and communication type across conversions; add a free midpoint when needed and safely route orthogonal conversions. Device and cable-label rotation handles use one checkpoint per drag, with optional Shift 15-degree snapping. Persist independent labelRotation and retain it in SVG/PDF/DXF output.",
+      "verification_evidence": [
+        "tests/rotation-and-cable-mode.browser.test.cjs: actual pointer rotation to 37 degrees for device and 308 degrees for cable text; Shift snapping, locked-handle exclusion, rotated text dragging, Undo/Redo, desktop and modal conversions, unchanged cable identity/type/endpoints, SVG handle removal, DXF text angle, import and reload persistence passed.",
+        "tests/cable-routing.browser.test.cjs passed existing direct/free/orthogonal geometry, editing, Smart Ports, undo and persistence regressions.",
+        "tests/keyboard-hold.browser.test.cjs passed with 120 SVG devices, a connected wire, live geometry preview, two full renders and immediate keyup/blur stop.",
+        "work/rotation-controls.png visually inspected."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push or application version bump",
+      "runtime_status": "automated browser tests passed; user acceptance pending",
+      "id": "RD-177",
+      "record_type": "user_requirement",
+      "module": "implicit_quick_connection_routing",
+      "user_statement": "Without explicitly choosing a cable tool, connecting two ports must default to a broken route if the straight line crosses the source or destination device body. Crossing intermediate items alone is acceptable.",
+      "assistant_interpretation": "Track implicit Select-to-port quick connections separately. Test the straight segment against rotated endpoint body interiors; touching an edge is allowed. If an endpoint body is crossed and there are no manual bends, preview and commit a safe orthogonal connection. Explicit Direct remains exact, and intermediate-only crossings do not trigger the exception.",
+      "verification_evidence": [
+        "tests/quick-connect-routing.browser.test.cjs passed: endpoint crossing reroutes, preview/final equality, explicit Direct preserved, intermediate-only crossing stays direct.",
+        "9 cable routing unit tests passed, including rotated local-coordinate body tests, outward port exits, boundary grazes and diagonal crossings."
+      ]
+    },
+    {
+      "id": "RD-178",
+      "record_type": "user_requirement",
+      "module": "cable_bend_insertion",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Allow adding a bend at the mouse location along an existing cable using a right-click menu command. Support free and orthogonal cables, and convert a direct cable to free broken when its first point is added.",
+      "assistant_interpretation": "Insert a projected anchor into the nearest rendered leg at the stored context-click coordinate. Materialize automatic routes as manual geometry; retain explicit collinear anchors, endpoints and cable identity. Orthogonal anchor dragging uses local connectors instead of introducing a reverse spike. Direct cables become free broken upon insertion.",
+      "implementation_status": "local only; no commit, push, app version bump or browser reset",
+      "runtime_status": "focused browser and unit tests passed; manual user acceptance pending",
+      "verification_evidence": [
+        "tests/cable-bend-insertion.browser.test.cjs: actual context menu and dragging for all three modes; direct-to-free conversion, auto-route capture, ordered projection on a middle leg, clean orthogonal detours, endpoints, Undo/Redo, reload, duplicate prevention, locks and real double-click insertion passed.",
+        "tests/cable-routing.test.cjs: 10 tests passed, including clean orthogonal dragging of a new collinear anchor.",
+        "Existing routing browser regression suite checked separately."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local only; no commit, push, version increment or browser reset",
+      "runtime_status": "focused browser suites passed; user acceptance pending",
+      "id": "RD-179",
+      "record_type": "user_requirement",
+      "module": "cable_bend_removal",
+      "user_statement": "When right-clicking on a cable bend point, offer removal of that bend point alongside the existing add operation.",
+      "assistant_interpretation": "Offer Remove Bend only near an interior rendered vertex. Capture displayed geometry and remove that vertex without deleting endpoints or changing cable identity. Preserve right angles after orthogonal deletion and collapse redundant/reversing corners. Share semantics with Alt-double-click.",
+      "verification_evidence": [
+        "tests/cable-bend-insertion.browser.test.cjs passed actual right-click removal of a free cable middle bend, unchanged endpoint references/identity, Undo/Redo, collinear orthogonal anchor deletion, essential orthogonal corner removal, retained right angles, reload and locked-cable protection."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local only; no commit, push, version increment or browser reset",
+      "runtime_status": "focused browser suites passed; user acceptance pending",
+      "id": "RD-180",
+      "record_type": "user_requirement",
+      "module": "cable_mode_conversion_cleanup",
+      "user_statement": "When converting free broken to orthogonal, remove surplus bend points. When converting a broken cable to direct, remove all bend points.",
+      "assistant_interpretation": "Confirm and regression-test the existing conversion patch: orthogonal conversion replaces old manual anchors with a simplified safe route; direct conversion clears waypoints, disables automatic routing, resets offset and renders no bend handles.",
+      "verification_evidence": [
+        "tests/rotation-and-cable-mode.browser.test.cjs passed conversion of a deliberately redundant free path to an orthogonal route with no collinear/redundant vertices and waypoints equal to the new necessary corners.",
+        "Direct conversion verified empty waypoints, exactly two rendered endpoints, zero bend handles and autoRouting false. Both desktop and modal conversion flows passed with rotation/import/reload regressions."
+      ]
+    },
+    {
+      "id": "RD-181",
+      "record_type": "user_requirement",
+      "module": "power_terminal_equipment",
+      "source": "user chat and Downloads/power-terminal.png",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Add Power Terminal as default equipment, convert the supplied photograph to SVG and create its catalog JSON. It has seven RS-485 plus Power ports and one separate power input.",
+      "assistant_interpretation": "Add POWER-TERMINAL / پاور ترمینال / Power Terminal with seven numbered green combined-bus ports and a red Power IN. Redraw a portrait vector illustration based on the photo; preserve the original PNG and SHA256. Publish asset, manifest, mapping and offline copies; append to current saved catalogs without destructive migration. Respect explicit model dimensions for this 84x148 item.",
+      "implementation_status": "local only; no commit, push, app release bump or new storage reset",
+      "runtime_status": "focused unit/browser tests and visual review passed; manual user acceptance pending",
+      "verification_evidence": [
+        "tests/power-terminal.test.cjs: two tests passed for exact identities, seven combined buses plus one input, independent IDs, provenance hash, real vector asset, offline map consistency and idempotent catalog addition preserving custom entries.",
+        "tests/power-terminal.browser.test.cjs passed portrait placement, SVG sanitization, seven green and one red ports, custom catalog preservation, persisted eight ports and no duplicate after reload.",
+        "Actuator catalog 4, connection model 6 and equipment release 6 unit tests passed after catalog-size updates.",
+        "Connection-model browser suite passed with 29 equipment and six consumers; existing colors, wiring, import/reload and one-time reset behavior retained.",
+        "work/power-terminal-preview.png visually reviewed."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push, app version increment or new browser reset",
+      "runtime_status": "focused unit and real-browser tests passed; user acceptance pending",
+      "id": "RD-182",
+      "record_type": "user_requirement",
+      "module": "legacy_archive_removal_and_field_devices",
+      "user_statement": "Remove the previous-connections and before-replacement backup buttons and all related functionality; old equipment should be deleted. Rename consumers to include sensors, change fan C to fan 3 with distinct fan SVGs instead of numeric artwork, and add smoke and motion sensors each with one DI port.",
+      "assistant_interpretation": "Remove archive creation/download APIs, controls, import archive payloads/pointers and pre-equipment mirror archive behavior. Discard stored retired archives. Retain legacy equipment cleanup and generic current-project autosave/import transaction recovery. Rename the visible group to actuators and sensors, supply eight field templates, distinct fan graphics without text, and upgrade existing fan C without changing port IDs or cables.",
+      "verification_evidence": [
+        "tests/field-devices.test.cjs: three checks passed for six DO plus two DI items, distinct nonnumeric fan SVGs, old fan C identity/wiring preservation and removed archive APIs/actions.",
+        "tests/equipment-release.test.cjs: six checks passed for old equipment cleanup across profiles/revisions/shortcuts, no archive creation and safe failure rollback.",
+        "tests/field-devices.browser.test.cjs passed desktop/mobile group names and eight items, two sensor placements and DI wiring, local archive removal, old IndexedDB archive removal while preserving current recovery, saved fan upgrade and legacy import without archives.",
+        "tests/connection-model.browser.test.cjs passed current/legacy wiring, palette, import/reload and original one-time reset semantics.",
+        "work/actuators-sensors-preview.png visually reviewed."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push, app version increment or new browser reset",
+      "runtime_status": "focused unit and real-browser tests passed; user acceptance pending",
+      "id": "RD-183",
+      "record_type": "user_requirement",
+      "module": "ac12ch_sensor_inputs",
+      "user_statement": "Add two Digital Input ports to the twelve-channel main named Sensor 1 and Sensor 2.",
+      "assistant_interpretation": "Add sensor-01 and sensor-02, named سنسور 1 and سنسور 2, both DI and top-facing. AC12CH now has one combined bus, twelve relay outputs and two inputs (15 ports). Extend the idempotent missing-port restorer to add these inputs to existing mains without replacing old IDs or links. AC4CH remains unchanged.",
+      "verification_evidence": [
+        "Actuator catalog four unit checks passed for exact port definitions and synchronized offline data; connection-model six unit checks passed including idempotent upgrade and unchanged wiring.",
+        "Actuator browser suite passed new placements with exact 15/5 ports, saved-catalog upgrade, desktop/mobile menus and reload.",
+        "Field-device browser fixture started with an existing twelve-channel main lacking inputs; both were added, existing relay wire survived and smoke/motion sensors connected to the new inputs. Both DI wires persisted after reload."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push, version increment or storage reset",
+      "runtime_status": "focused unit/browser suites and visual review passed; user acceptance pending",
+      "id": "RD-184",
+      "record_type": "user_requirement",
+      "module": "power_supply_and_fan_coil",
+      "user_statement": "Add the supplied power supply photograph as default equipment with an authored SVG and one Power port. Replace the three fan speed items in actuators/sensors with a Fan Coil and five DO ports: fan speed 1, fan speed 2, fan speed C, hot-water pipe and cold-water pipe.",
+      "assistant_interpretation": "Add POWER-SUPPLY / منبع تغذیه / Power Supply with a vector reference illustration, portrait dimensions and one top-facing power port. Preserve the source PNG and SHA256; synchronize catalog, shared library, map and offline data. Replace retired fan-speed catalog entries with one fan coil template with five named DO channels and an original fan/heat-exchanger/hot-cold icon. Preserve already placed fan objects and their connections.",
+      "verification_evidence": [
+        "tests/power-supply-fan-coil.test.cjs: exact supply port, source hash and offline vector mapping; idempotent removal of retired fan catalog entries and one five-channel coil; identity-preserving main input updates passed.",
+        "tests/power-supply-fan-coil.browser.test.cjs: actual desktop additions of supply and coil, red supply-to-terminal wiring, five named orange coil ports and relay wiring, complete uncut pipe icon, unique catalog entries, reload and mobile menus passed.",
+        "work/power-supply-fan-coil-preview.png visually reviewed for supply illustration and fan-coil symbol."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-25",
+      "target_version": "V272 pending push authorization",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "local uncommitted changes; no push, version increment or storage reset",
+      "runtime_status": "focused unit/browser suites and visual review passed; user acceptance pending",
+      "id": "RD-185",
+      "record_type": "user_requirement",
+      "module": "main_actuator_sensor_input_names",
+      "user_statement": "Give AC4CH two DI ports named S1 and S2, and rename the two AC12CH sensor inputs to S1 and S2 as well.",
+      "assistant_interpretation": "Use stable sensor-01/sensor-02 catalog IDs for both mains, type di and top-facing defaults. AC4CH now has seven total ports; AC12CH retains fifteen. Add missing inputs to existing AC4CH placements and rename recognizable old default AC12CH input names while preserving IDs, sides and wires. This supersedes RD-183 default input display names.",
+      "verification_evidence": [
+        "Actuator catalog four and connection-model six unit checks passed for exact port identities, names, counts and repeated-upgrade idempotence.",
+        "Power-supply/fan-coil browser fixture started with an AC4CH lacking inputs and an AC12CH with old named inputs and an existing DI wire; S1/S2 appeared and the old wire/port IDs survived.",
+        "Actuator browser placement suite passed exact 15/7 port definitions in desktop/mobile, saved catalog updates and reload.",
+        "Connection-model and field-device browser regression suites passed existing DI/DO wiring, archive removal, legacy import cleanup and recovery/reset behavior."
+      ]
+    },
+    {
+      "id": "RD-186",
+      "record_type": "user_requirement",
+      "module": "V272_release",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V272",
+      "status": "source_verified_pending_user_acceptance",
+      "user_statement": "Commit my changes using the agreed title format, update the version in the app, and push.",
+      "assistant_interpretation": "Publish the accumulated local equipment, port, routing and canvas changes on main as V272 with title V272-M: Update equipment, connections and canvas editing.",
+      "implementation_status": "V272 source release prepared under explicit commit/push authorization; UI and ledger aligned. Remote publication is verified by the main branch commit; local Git metadata remains read-only.",
+      "runtime_status": "Automated source/browser verification; manual device acceptance remains pending.",
+      "verification_evidence": [
+        "Previous focused unit and real-browser verification is preserved in RD-158 through RD-185.",
+        "Release regression results recorded separately in verification_evidence."
+      ]
     }
   ],
   "analyses": [
@@ -3951,6 +4555,144 @@
       "decision": "26 independently identified catalog models, no invented communication ports; shared published SVG map and offline bundle; editable instance and catalog identity fields; one-time original localStorage backup, transactional rollback, import backups and separately retained IndexedDB pre-migration snapshot.",
       "constraints": "Browser-local migration; old offline exports remain untouched until imported. Old equipment is removed again when an old backup is opened in v260. Use v259 to view archived legacy equipment.",
       "audit_boundary": "V260 source audit reviewed startup ordering, SVG ingestion, persistent-storage failure, async mirror recovery race, profile/revision/shortcut references, imported-catalog bypass, mobile wrapping, and four-field editing. Historical ledger gaps V240–V259 remain unreconciled; user mobile acceptance pending."
+    },
+    {
+      "id": "RD-157-analysis",
+      "date": "2026-10-24",
+      "decision": "Keep nsp-equipment-260 migration marker; append missing defaults on startup rather than reset saved catalogs or drawings. Exact original source files and SHA-256 retained.",
+      "remaining_risks": "Real device acceptance pending; release/version/commit deferred until user requests push."
+    },
+    {
+      "id": "RD-158-analysis",
+      "date": "2026-10-24",
+      "decision": "Clone catalog port definitions; update saved template ports while preserving metadata/custom entries. Empty explicit arrays remain empty. Do not rerun destructive release migration.",
+      "remaining_risks": "Real device user acceptance pending."
+    },
+    {
+      "id": "RD-159-analysis",
+      "date": "2026-10-24",
+      "decision": "Change only catalog port names and sides; existing saved catalog synchronization applies updates for future placements.",
+      "remaining_risks": "Existing nonempty placed-device port snapshots remain independent; user device acceptance pending."
+    },
+    {
+      "id": "RD-160-analysis",
+      "date": "2026-10-24",
+      "decision": "Use native SVG title with textContent via el(), avoiding HTML interpolation, extra overlays or pointer handlers that could affect cabling. Applies to every rendered port.",
+      "remaining_risks": "Browser controls native tooltip appearance and hover delay; user acceptance pending."
+    },
+    {
+      "id": "RD-161-analysis",
+      "date": "2026-10-24",
+      "decision": "Keep the SVG grid anchored to drawing coordinates while matching actual viewport bounds using screen CTM; observe canvas resize. Handle temporary pan before tool-specific pointer handlers and omit document checkpoints for view-only gestures. Keep mobile equipment rows unchanged because the request targets desktop collapsible toolbox.",
+      "remaining_risks": "Manual user testing pending; source version/commit and push remain deferred until explicit user request."
+    },
+    {
+      "id": "RD-162-analysis",
+      "date": "2026-10-24",
+      "decision": "Use findTarget plus selectionCornerAt to restrict Ctrl pan to blank canvas; reuse temporary pan path, preserve tool, avoid document history writes, and suppress Ctrl double-click on blank canvas to prevent cable waypoint edits.",
+      "remaining_risks": "Trackpad gesture translation is OS/driver dependent; automated pointer stream checks passed but physical user test pending."
+    },
+    {
+      "id": "RD-163-164-analysis",
+      "date": "2026-10-24",
+      "decision": "Six explicit physical connection IDs are power/rs485/rs485_power/do/di/ethernet. Equipment catalog has 28 combined bus+power templates; six consumer templates are a separate category. No relay outputs are inferred on equipment yet. The later explicit browser-reset instruction supersedes retaining old browser backups during first startup: reset only application-owned keys and recovery DB, stage completion separately, gate recovery DB initialization on deletion and preserve later saves.",
+      "remaining_risks": "Physical hardware wiring/protocol validation and user runtime acceptance remain outside this iteration. Existing external project files are untouched; importing a legacy file normalizes its old connections. Commit/version/push remain deferred until explicitly requested."
+    },
+    {
+      "id": "RD-165-analysis",
+      "date": "2026-10-25",
+      "decision": "This request extends the previous single combined-port templates only for AC12CH/AC4CH. Relay ports use type do, not rs485. Recognize model identity by asset or part number; retain existing port identities and connections and use catalogPortId to avoid duplicates. Tooltip uses textContent via the existing SVG element helper.",
+      "remaining_risks": "Manual user acceptance pending. No protocol code/control binding or sensor-input behavior is introduced."
+    },
+    {
+      "id": "RD-166-167-analysis",
+      "date": "2026-10-25",
+      "decision": "Explicit routing ownership replaces the former autoRouting-undefined behavior. A pure A* rectilinear router validates obstacles without a collision-scored fallback; visibility bounds include endpoint bodies and wall strokes. Direct lines always retain two endpoints. Manual edits capture rendered geometry and disable automatic routing. Dragging a leg shifts its adjacent corners instead of mixing virtual/stored vertex indexes. Mouse double-click detection no longer intercepts a second press intended for dragging.",
+      "remaining_risks": "Manual direct/free routes follow user choices and can intentionally cross items; collision avoidance applies to generated routes. Conservatively inflated rotated bounds or overlapping devices can produce a blocked-route warning, and a resource cap also fails safely. Physical laptop/mobile acceptance and user review remain pending; version/commit/push remain deferred."
+    },
+    {
+      "id": "RD-168-analysis",
+      "date": "2026-10-25",
+      "decision": "Opt-in backtrack collapse applies only to safeRoute output. The collapsed collinear segment is contained in the previously validated legs, so removing the excursion does not introduce a new obstacle crossing. Handles and manual paths keep existing semantics.",
+      "remaining_risks": "User runtime review pending; conservative obstacle bounds and blocked-route behavior unchanged. Release remains deferred until explicit push authorization."
+    },
+    {
+      "id": "RD-169-analysis",
+      "date": "2026-10-25",
+      "decision": "Select all uses the existing multi-selection and delete/undo flows and clears native text highlighting. Editable controls keep native shortcuts; an open sheet prevents background Select All. Proportional resizing derives a shared scale from drag-start dimensions in local rotated coordinates, with both dimensions at least 16. Releasing Shift restores unrestricted dimensions from the same original frame.",
+      "remaining_risks": "Manual user review pending. Hidden objects are not selected; locked selections retain existing deletion protection. Version and release remain deferred."
+    },
+    {
+      "id": "RD-170-analysis",
+      "date": "2026-10-25",
+      "decision": "Supersedes RD-169 shortcut detection: Latin-only key matching was insufficient. Physical KeyA is layout-independent; editable fields retain native behavior and modal background selection remains suppressed. Capture-phase interception prevents HTML Select All outside text fields.",
+      "remaining_risks": "User keyboard/browser acceptance pending; browser chrome or another focused application cannot be controlled by page shortcuts. No release actions authorized."
+    },
+    {
+      "id": "RD-171-analysis",
+      "date": "2026-10-25",
+      "decision": "Shelf-style free-space placement uses final catalog/artwork dimensions and rotated existing bounds with 24-unit gaps. Once the viewport is occupied, placement continues below all devices and pans to reveal the result. Keyboard nudging uses current object references and existing lock, layer, checkpoint and save semantics; attached doors move once alongside selected walls.",
+      "remaining_risks": "User runtime acceptance pending. New-item placement avoids device bodies, not cables; arrow movement intentionally follows requested displacement and may overlap another item. Hidden objects are included in placement occupancy to avoid collisions when shown later. No release actions authorized."
+    },
+    {
+      "id": "RD-172-analysis",
+      "date": "2026-10-25",
+      "decision": "Change only the published hotel asset viewBox, keeping all geometry. Preserve original imports for provenance. Use an offscreen opacity-zero measuring host rather than inherited hidden visibility, so visible polygon/path bounds are measurable and explicitly hidden graphics still excluded. Existing embedded snapshots are handled by the effective-artwork bounds fallback without replacing their artwork or changing their object dimensions.",
+      "remaining_risks": "Center display intentionally retains its existing behavior; manual user acceptance pending. Other assets that rely on the same previously broken bounds fallback may now correctly lose surrounding artboard whitespace. Release remains deferred."
+    },
+    {
+      "id": "RD-173-analysis",
+      "date": "2026-10-25",
+      "decision": "Use visible face bounds with small stroke-safe clearance for the published thermostat. Filter rectangles inside defs, clipPath, mask, pattern, marker and symbol before deterministic body-frame detection. Legacy embedded thermostat SVGs use the corrected bounds fallback without replacing artwork or changing component dimensions.",
+      "remaining_risks": "Manual user acceptance pending; Center mode and user-defined geometry retain existing semantics; release remains deferred."
+    },
+    {
+      "id": "RD-174-175-analysis",
+      "date": "2026-10-25",
+      "decision": "Relay side changes apply to defaults and preserve existing instances. Held movement starts after 250ms, runs at 80 units per second, Shift x10, with bounded 30Hz updates and capped elapsed time. Device selections use incremental DOM previews; wall or explicit cable selections use bounded full rendering. Keyup, blur and pointer interactions cancel the hold.",
+      "remaining_risks": "User acceptance pending. Complex automatic connected routes can still cost work per frame. No release, push, reset or app version increment."
+    },
+    {
+      "id": "RD-176-177-analysis",
+      "date": "2026-10-25",
+      "decision": "Route mode changes are explicit user edits; blocked orthogonal conversion leaves the cable unchanged. Device rotation updates port positions through the existing transform pipeline. Cable labelRotation transforms only its text around its independently offset anchor. Print bounds include transformed labels and editor rotation controls are removed from SVG/PDF. Implicit quick-connect adds an endpoint-only trigger, while generated routes reuse the established safe router.",
+      "remaining_risks": "Manual user acceptance pending. Arbitrary-angle device ports use the existing nearest-cardinal routing direction; conservative rotated-body bounds may block an automatic route, which fails safely. Explicit Direct may cross bodies by user choice. Release remains deferred."
+    },
+    {
+      "id": "RD-178-analysis",
+      "date": "2026-10-25",
+      "decision": "Right-click insertion targets the clicked cable even when it was grouped or part of a multi-selection, then selects that cable without removing group membership. The pointer coordinate is projected onto its real displayed segment. Existing port/bend points within four screen pixels are not duplicated. Saved autoRouting is disabled on manual insertion. Preserve cable DOM on clicks without motion so native double-click can reach the shared insertion handler; do not intercept a second mouse press intended for dragging.",
+      "remaining_risks": "Manual user acceptance pending. Orthogonal vertex drags may add local corners to maintain right angles while preserving fixed neighboring anchors. Explicit manual edits follow user geometry; automatic collision avoidance retains existing behavior. No release authorization."
+    },
+    {
+      "id": "RD-179-180-analysis",
+      "date": "2026-10-25",
+      "decision": "Context menu identifies the clicked rendered vertex with screen-space tolerance and explicitly excludes endpoints. Removal materializes manual geometry and disables automatic rerouting. An essential orthogonal corner uses the alternate local connector, then collinear/reversing points are simplified so the deleted corner is not regenerated. Mode conversions already use the safe simplified router or an empty direct waypoint list; new regression assertions enforce both cleanup requirements.",
+      "remaining_risks": "User runtime acceptance pending. Orthogonal deletion can relocate a necessary corner and remove newly redundant corners to retain right angles. Manual deletion follows user edits; no automatic obstacle-free claim is added for manually adjusted geometry. Release remains deferred."
+    },
+    {
+      "id": "RD-181-analysis",
+      "date": "2026-10-25",
+      "decision": "Use a native SVG illustration rather than embedding a PNG. The six metallic jacks and four-contact bus terminal reflect the photo; system connection metadata defines seven combined buses plus an independent power input. POWER-TERMINAL is a descriptive catalog code, not an asserted manufacturer part number. Shared default dimensions now honor optional per-entry w/h while preserving previous dimensions for other models. Original release/reset identifiers remain unchanged.",
+      "remaining_risks": "User visual acceptance pending. The vector is a simplified illustration, not a manufacturer drawing; voltage/current ratings and protocol command generation were not inferred. Port sides use the current standard distribution. Release remains deferred."
+    },
+    {
+      "id": "RD-182-183-analysis",
+      "date": "2026-10-25",
+      "decision": "Supersede the previous permanent migration-archive policy while retaining ordinary transactional rollback and current-document recovery. Do not rerun the completed full reset for current users. Keep internal loads category identifiers for saved-library compatibility, but label the group as actuators and sensors. Normalize old fan C to fan 3 and replace only recognizable old default numeric fan artwork on placed devices. Canonical templates update their icons. Explicit DI definitions are mirrored in JSON/offline catalogs and restored to existing mains through the same identity-preserving mechanism as relays.",
+      "remaining_risks": "Manual user acceptance pending. Custom fan names/artwork are retained unless recognized as the old default. Voltage/protocol or additional main-input hardware behavior is not inferred. Release remains deferred."
+    },
+    {
+      "id": "RD-184-185-analysis",
+      "date": "2026-10-25",
+      "decision": "Retire only the fan-speed catalog templates; do not guess how separate existing placements should merge into one coil or destroy their links. Fan-coil output names follow the latest request, including C for the third fan channel. The power-supply catalog code is descriptive; no electrical voltage/current rating is inferred. Draw the coil housing as a path so the frame-crop heuristic cannot select its inner rectangle and clip the pipe marks. Input migration recognizes stable catalog IDs and old default sensor-name aliases; custom input names/sides and all port IDs remain intact.",
+      "remaining_risks": "Manual user acceptance pending. Already placed old fan icons remain usable independently of the replacement default catalog. Source version and publication remain deferred."
+    },
+    {
+      "id": "RD-186-analysis",
+      "date": "2026-10-26",
+      "decision": "Increment displayed V271 to V272. Ledger last release was V260; preserve that historical gap rather than inventing V261-V271 audit history. Use direct GitHub Git-data connection because local .git is read-only, with parent/head verification and non-forced main update. Exclude local screenshots, dependency caches and scratch scripts; include preview server and regression suites.",
+      "remaining_risks": "Manual mobile/device acceptance and historical audit gaps remain open. Local Git metadata cannot be advanced in this permission profile."
     }
   ],
   "deferred_scope": [
@@ -4022,6 +4764,16 @@
         "post_fix": "PASS: 18 regression + 17 import tests and full Layers/group browser scenario",
         "legacy_optional_svg": "FAIL on original main as well; two obsolete DOM script selectors and one obsolete SVG version assertion",
         "device_runtime": "User/iPhone acceptance pending"
+      }
+    },
+    {
+      "type": "V272_release_regression",
+      "version": "V272",
+      "date": "2026-10-26",
+      "result": {
+        "unit_tests": "34 passed across routing, connections, actuator catalog, terminal, supply/fan coil, field devices and equipment migration",
+        "browser_suites": "8 passed: supply/fan coil; cable routing; bend insertion/removal; quick connections; rotation/cable conversion; canvas shortcuts; held-arrow performance; field devices and legacy archive cleanup",
+        "device_runtime": "Manual user acceptance pending"
       }
     }
   ],
@@ -4704,13 +5456,19 @@
       "date": "2026-10-18",
       "change": "RD-156: replace old equipment with 26 supplied SVGs; right-hand previews, wrapping Persian list rows and left-hand add buttons; metadata editing; Stretch and visible labels; backup-first drawing/profile/revision/shortcut/import/IndexedDB cleanup; grouped CSS and internal SVG gradient preservation.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V272",
+      "date": "2026-10-26",
+      "change": "RD-158–RD-186: equipment SVG catalog and power devices; physical port types, relay outputs and S1/S2 inputs; fan coil and sensors; cable routing, bend editing and rotation; canvas shortcuts, placement, panning and responsive keyboard movement; obsolete legacy archive removal.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V260",
+    "release": "V272",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "automated_browser_passed_pending_user_acceptance",
-    "audit": "V260 scoped source audit completed; historical ledger gaps retained transparently"
+    "runtime_status": "34_unit_checks_and_8_browser_suites_passed_pending_user_acceptance",
+    "audit": "No new multiple-of-five boundary at V272; historical ledger and audit gaps remain disclosed, not reconciled by this release."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

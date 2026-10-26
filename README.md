@@ -1,5 +1,9 @@
 # RoomDesigner
 
+V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
+
+Cable drawing and editing: [drawing modes, editing and obstacle-safe automatic routing](./CABLE-ROUTING.md).
+
 Standalone mobile-first technical room and connection diagram prototype.
 
 ## Versioning
@@ -73,4 +77,4 @@ This test uses a small synthetic Corel-style fixture; user-provided SVG artwork 
 
 The equipment menu now contains the 26 supplied NSP models with full-width rows, right-hand artwork and editable part number, series, Persian name and English name. New equipment defaults to Stretch and visible labels. Original source SVGs and their SHA-256 hashes are retained.
 
-Legacy equipment and dependent cables are removed from browser-local saved drawings, profiles, revisions and shortcuts after a durable backup. Imported legacy files and IndexedDB recovery have separate backups. See [Equipment migration and recovery](./EQUIPMENT-MIGRATION.md) for the exact scope, downloads, recovery procedure and tests. Migration happens when each browser opens v260; user iPhone/Safari acceptance remains pending.
+Legacy equipment and dependent cables are removed from browser-local drawings, profiles, revisions, shortcuts and imported files. The retired equipment/connection archive controls and permanent migration backups have been removed; current project autosave and import transaction recovery remain available. See [Equipment migration and recovery](./EQUIPMENT-MIGRATION.md) for the current cleanup scope and tests. Migration happens when each browser opens v260; user iPhone/Safari acceptance remains pending.

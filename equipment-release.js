@@ -1,10 +1,19 @@
-/* Equipment release migration. Original browser data is backed up before writes. */
+/* Remove retired equipment while retaining current equipment and architecture. */
 (function(global){
  'use strict';
- const release='nsp-equipment-260',backupKey='rd_equipment_backup_v260';
+ const release='nsp-equipment-260';
  const architecture=new Set(['door','window','custom-architecture','bed','single_bed','double_bed','sliding_door','circle','toilet','television','sofa','armchair','table','desk','wardrobe','washbasin','shower','bathtub','kitchen_sink','cooktop','refrigerator','dining_chair','column','stairs']);
  const isArchitecture=d=>d.category==='architecture'||architecture.has(d.kind);
- function defaults(){return global.EquipmentCatalogBuiltin.entries.map(t=>({...t,ports:[{id:'network',name:'Ethernet',side:'left',type:'ethernet'},{id:'power',name:'Power',side:'right',type:'power'}],category:'equipment',kind:'custom',equipmentRelease:release,svgType:t.assetId,svgAssetId:t.assetId,svgAssetVersion:1,svg:global.SvgLibraryBuiltin.assets[t.assetId],svgMode:'stretch',stretchSvg:true,showLabel:true,backgroundColor:'#ffffff',w:120,h:85}))}
+ function defaults(){return global.EquipmentCatalogBuiltin.entries.map(t=>({...t,ports:(Array.isArray(t.ports)?t.ports:global.RoomConnections.equipmentPorts()).map(p=>({...p})),connectionModel:global.RoomConnections.version,category:'equipment',kind:'custom',equipmentRelease:release,svgType:t.assetId,svgAssetId:t.assetId,svgAssetVersion:1,svg:global.SvgLibraryBuiltin.assets[t.assetId],svgMode:'stretch',stretchSvg:true,showLabel:true,backgroundColor:'#ffffff',w:t.w||120,h:t.h||85}))}
+ // Extend a browser's saved catalog without rerunning destructive release migration.
+ function appendMissingDefaults(items){
+  const explicit=new Map(global.EquipmentCatalogBuiltin.entries.filter(t=>Array.isArray(t.ports)).map(t=>[t.assetId,t.ports]));
+  let changed=false;
+  const updated=items.map(t=>{const ports=explicit.get(t.assetId||t.svgAssetId);if(!ports||JSON.stringify(t.ports)===JSON.stringify(ports))return t;changed=true;return {...t,ports:ports.map(p=>({...p}))}});
+  const existing=new Set(items.map(t=>t.assetId||t.svgAssetId));
+  const additions=defaults().filter(t=>!existing.has(t.assetId));
+  return global.RoomConnections.resetCatalog(additions.length?[...updated,...additions]:changed?updated:items);
+ }
  function cleanCatalog(items){return [...defaults(),...(items||[]).filter(isArchitecture)]}
  function cleanDocument(input,oldCatalog=[]){
   const d=JSON.parse(JSON.stringify(input));
@@ -18,11 +27,10 @@
   }
   clean(d);return d;
  }
- function capture(storage){const keys=['rd_last','rd_profiles','rd_catalog','rd_shortcuts','rd_svg_drafts','rd_toolbox_order_v133','rd_types','rd_users','rd_active_user'];return Object.fromEntries(keys.map(k=>[k,storage.getItem(k)]))}
- function saveBackup(storage,key,value){const raw=JSON.stringify(value);storage.setItem(key,raw);if(storage.getItem(key)!==raw)throw Error('ثبت پشتیبان تأیید نشد')}
+ function migrationState(storage){const keys=['rd_last','rd_profiles','rd_catalog','rd_shortcuts','rd_svg_drafts','rd_toolbox_order_v133','rd_types','rd_users','rd_active_user'];return Object.fromEntries(keys.map(k=>[k,storage.getItem(k)]))}
  function migrateStorage(storage){
   if(storage.getItem('rd_equipment_release')===release)return false;
-  const original=capture(storage),parse=(key,fallback)=>original[key]===null?fallback:JSON.parse(original[key]);
+  const original=migrationState(storage),parse=(key,fallback)=>original[key]===null?fallback:JSON.parse(original[key]);
   const oldCatalog=parse('rd_catalog',[]);if(!Array.isArray(oldCatalog))throw Error('کتابخانه محلی نامعتبر است');
   const writes=new Map([['rd_catalog',JSON.stringify(cleanCatalog(oldCatalog))]]);
   if(original.rd_last!==null)writes.set('rd_last',JSON.stringify(cleanDocument(parse('rd_last'),oldCatalog)));
@@ -30,13 +38,11 @@
   if(original.rd_shortcuts!==null){const shortcuts=parse('rd_shortcuts');if(!Array.isArray(shortcuts))throw Error('شورتکات‌ها نامعتبرند');const next=shortcuts.map(x=>({...x,data:cleanDocument(x.data,oldCatalog)})).filter(x=>x.data.devices.length||(x.data.walls||[]).length||x.data.cables.length);writes.set('rd_shortcuts',JSON.stringify(next))}
   if(original.rd_svg_drafts!==null){let drafts;try{drafts=parse('rd_svg_drafts')}catch{}if(drafts&&typeof drafts==='object'&&Array.isArray(drafts.symbols)&&drafts.assets&&typeof drafts.assets==='object'&&!Array.isArray(drafts.assets)&&drafts.map&&typeof drafts.map==='object'&&!Array.isArray(drafts.map)){drafts.symbols=drafts.symbols.filter(x=>x&&x.category==='architecture');const ids=new Set(drafts.symbols.map(x=>x.id));drafts.assets=Object.fromEntries(Object.entries(drafts.assets).filter(([id])=>ids.has(id)));drafts.map=Object.fromEntries(Object.entries(drafts.map).filter(([type,id])=>architecture.has(type)&&ids.has(id)));writes.set('rd_svg_drafts',JSON.stringify(drafts))}}
   if(original.rd_toolbox_order_v133!==null){let order;try{order=parse('rd_toolbox_order_v133')}catch{}if(order&&typeof order==='object'&&!Array.isArray(order)&&order.items&&typeof order.items==='object'&&!Array.isArray(order.items)){delete order.items.equipment;writes.set('rd_toolbox_order_v133',JSON.stringify(order))}}
-  // Never replace the first original backup, including after a partial write/retry.
-  if(storage.getItem(backupKey)===null)saveBackup(storage,backupKey,{release,createdAt:new Date().toISOString(),original});
   const applied=[];
   try{for(const [key,value]of writes){applied.push(key);storage.setItem(key,value);if(storage.getItem(key)!==value)throw Error('ذخیره مهاجرت ناموفق بود')}
    storage.setItem('rd_equipment_release',release);if(storage.getItem('rd_equipment_release')!==release)throw Error('ثبت نسخه مهاجرت ناموفق بود');
   }catch(error){const failed=[];for(const key of applied.reverse()){try{if(original[key]===null)storage.removeItem(key);else storage.setItem(key,original[key])}catch{failed.push(key)}}try{storage.removeItem('rd_equipment_release')}catch{}throw Error(error.message+(failed.length?'؛ بازیابی از پشتیبان لازم است: '+failed.join(', '):''))}
   return Object.values(original).some(x=>x!==null);
  }
- global.RoomEquipment={release,backupKey,defaults,cleanCatalog,cleanDocument,migrateStorage,capture,saveBackup,isArchitecture};
+ global.RoomEquipment={release,defaults,appendMissingDefaults,cleanCatalog,cleanDocument,migrateStorage,isArchitecture};
 })(globalThis);

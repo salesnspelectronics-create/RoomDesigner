@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 510">
+<title>Power Terminal</title><desc>Vector illustration drawn from the supplied power terminal photograph: six RJ45 sockets, one four-contact bus terminal and a two-contact power input.</desc>
+<defs><linearGradient id="pt-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e1e3dc"/><stop offset=".45" stop-color="#b7bdb5"/><stop offset="1" stop-color="#878f87"/></linearGradient><linearGradient id="pt-board"><stop stop-color="#8c654c"/><stop offset=".5" stop-color="#a98060"/><stop offset="1" stop-color="#70513e"/></linearGradient></defs>
+<path d="M18 12H281V470H18Z" fill="#263130" stroke="#101b1b" stroke-width="4"/>
+<path d="M28 16H273V465H28Z" fill="url(#pt-board)"/>
+<g fill="none" stroke="#3b3329" stroke-width="6" stroke-linejoin="round"><path d="M47 43V115L78 139V280L55 306V386M112 63V276L133 296M128 63V261L149 282V406M148 63V259L166 275V402M220 63V278L202 297M237 63V278L222 297M252 64V279L245 298M93 350V378M179 349V378"/></g>
+<g fill="none" stroke="#bd9573" stroke-width="1.5"><path d="M116 79V270L138 292M152 79V253L171 272V397M241 79V271L226 290M57 75V105L87 130V280"/></g>
+<g fill="#111e1e" stroke="#68736c" stroke-width="2"><path d="M14 14H24V461H14Z"/><path d="M275 12H286V464H275Z"/></g>
+
+<g><path d="M94 14h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M99 18h68v7h-68Z" fill="#d7d9d0"/><path d="M98 79h70v7h-70Z" fill="#626c66"/><path d="M100 74h66v4h-66Z" fill="#8d968e"/><circle cx="103" cy="35" r="1.5" fill="#555f59"/><circle cx="163" cy="35" r="1.5" fill="#555f59"/></g>
+<g><path d="M184 14h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M189 18h68v7h-68Z" fill="#d7d9d0"/><path d="M188 79h70v7h-70Z" fill="#626c66"/><path d="M190 74h66v4h-66Z" fill="#8d968e"/><circle cx="193" cy="35" r="1.5" fill="#555f59"/><circle cx="253" cy="35" r="1.5" fill="#555f59"/></g>
+<g><path d="M94 298h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M99 302h68v7h-68Z" fill="#d7d9d0"/><path d="M98 363h70v7h-70Z" fill="#626c66"/><path d="M100 358h66v4h-66Z" fill="#8d968e"/><circle cx="103" cy="319" r="1.5" fill="#555f59"/><circle cx="163" cy="319" r="1.5" fill="#555f59"/></g>
+<g><path d="M184 298h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M189 302h68v7h-68Z" fill="#d7d9d0"/><path d="M188 363h70v7h-70Z" fill="#626c66"/><path d="M190 358h66v4h-66Z" fill="#8d968e"/><circle cx="193" cy="319" r="1.5" fill="#555f59"/><circle cx="253" cy="319" r="1.5" fill="#555f59"/></g>
+<g><path d="M94 380h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M99 384h68v7h-68Z" fill="#d7d9d0"/><path d="M98 445h70v7h-70Z" fill="#626c66"/><path d="M100 440h66v4h-66Z" fill="#8d968e"/><circle cx="103" cy="401" r="1.5" fill="#555f59"/><circle cx="163" cy="401" r="1.5" fill="#555f59"/></g>
+<g><path d="M184 380h78v72h-78Z" fill="url(#pt-metal)" stroke="#737d75" stroke-width="2"/><path d="M189 384h68v7h-68Z" fill="#d7d9d0"/><path d="M188 445h70v7h-70Z" fill="#626c66"/><path d="M190 440h66v4h-66Z" fill="#8d968e"/><circle cx="193" cy="401" r="1.5" fill="#555f59"/><circle cx="253" cy="401" r="1.5" fill="#555f59"/></g>
+<path d="M36 138H77V247H36Z" fill="#739c37" stroke="#294d27" stroke-width="3"/><path d="M36 144H45V241H36Z" fill="#9bbc54"/>
+<g fill="#203f23" stroke="#9cbd58" stroke-width="2">
+<circle cx="56" cy="153" r="9"/><path d="M50 153H62" stroke="#516d35"/>
+<circle cx="56" cy="179" r="9"/><path d="M50 179H62" stroke="#516d35"/>
+<circle cx="56" cy="205" r="9"/><path d="M50 205H62" stroke="#516d35"/>
+<circle cx="56" cy="231" r="9"/><path d="M50 231H62" stroke="#516d35"/>
+</g><g fill="#eee9d2" font-family="sans-serif" font-size="12" text-anchor="middle"><text x="85" y="156">+</text><text x="85" y="182">D+</text><text x="85" y="208">D−</text><text x="85" y="234">−</text></g>
+<path d="M43 261h27v8H43Z" fill="#201f1a" stroke="#c6c3a3"/><circle cx="56" cy="284" r="7" fill="#e4d03c" stroke="#827020" stroke-width="2"/>
+<path d="M29 403H84V492H29Z" fill="#819c4c" stroke="#426432" stroke-width="3"/><path d="M29 411H40V463H29Z" fill="#a4b269"/><path d="M26 465H84V503H26Z" fill="#7ba14d" stroke="#3f6430" stroke-width="2"/>
+<g fill="#243728" stroke="#b0bc75" stroke-width="2"><circle cx="42" cy="481" r="10"/><circle cx="68" cy="481" r="10"/></g><g stroke="#72854b" stroke-width="3"><path d="M36 481H48M62 481H74"/></g>
+<g fill="#f0ecd9" font-family="sans-serif" text-anchor="middle"><text x="42" y="396" font-size="16">−</text><text x="69" y="396" font-size="16">+</text><text x="177" y="183" font-size="14" transform="rotate(-90 177 183)">POWER TERMINAL</text></g>
+<g fill="#c2b49a" stroke="#605c4d"><circle cx="88" cy="26" r="3"/><circle cx="266" cy="26" r="3"/><circle cx="88" cy="455" r="3"/><circle cx="266" cy="455" r="3"/></g>
+</svg>

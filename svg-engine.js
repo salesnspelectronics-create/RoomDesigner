@@ -53,7 +53,7 @@
  function transform(point,d){let x=point.x-d.x,y=point.y-d.y;if(d.flipX)x=-x;if(d.flipY)y=-y;const a=(Number(d.rotation)||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a);return {x:d.x+x*c-y*s,y:d.y+x*s+y*c}}
  function bounds(raw){
   const safe=sanitize(raw);if(!safe)throw Error('SVG نامعتبر است');
-  const host=document.createElement('div');host.style.cssText='position:absolute;left:-100000px;visibility:hidden;pointer-events:none';
+  const host=document.createElement('div');host.style.cssText='position:absolute;left:-100000px;opacity:0;pointer-events:none';
   const root=parse(safe).documentElement,graphic=document.importNode(root,true);graphic.setAttribute('width','1000');graphic.setAttribute('height','1000');host.append(graphic);document.body.append(host);
   try{
    const points=[],inv=graphic.getCTM()?.inverse();if(!inv)return null;

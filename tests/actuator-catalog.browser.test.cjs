@@ -1,0 +1,25 @@
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),vm=require('vm'),{chromium}=require('playwright');
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+ try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let html=fs.readFileSync('index.html','utf8');const match=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes("(()=>{'use strict';"));
+ const main=match[1],at=main.lastIndexOf('})();');html=html.replace(main,main.slice(0,at)+"window.actuatorAudit={get catalog(){return catalog},get doc(){return doc},addDevice,deviceArtwork};"+main.slice(at));
+ await page.route('https://roomdesigner.test/**',route=>{const relative=decodeURIComponent(new URL(route.request().url()).pathname).slice(1);if(!relative||relative==='index.html')return route.fulfill({contentType:'text/html',body:html});const file=path.resolve(relative);if(!file.startsWith(process.cwd()+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:''});return route.fulfill({contentType:relative.endsWith('.js')?'application/javascript':relative.endsWith('.json')?'application/json':'image/svg+xml',body:fs.readFileSync(file)});});
+ const c={};for(const f of ['data/svg-library-builtin.js','data/equipment-catalog-builtin.js','cable-routing.js','connection-model.js','equipment-release.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),c);
+ const old=c.RoomEquipment.defaults();for(const t of old.filter(t=>['AC12CH','AC4CH'].includes(t.code)))t.ports=[{id:'network',name:'Ethernet',side:'left',type:'ethernet'},{id:'power',name:'Power',side:'right',type:'power'}];old[0].name='Edited existing name';old.push({name:'Saved custom device',kind:'custom',category:'equipment',equipmentRelease:c.RoomEquipment.release,ports:[{name:'BUS',type:'any',side:'left'}]});
+ await page.addInitScript(({old,release})=>{localStorage.setItem('rd_storage_reset_physical_v1','done');if(!localStorage.getItem('rd_catalog')){localStorage.setItem('rd_catalog',JSON.stringify(old));localStorage.setItem('rd_equipment_release',release);localStorage.setItem('rd_active_user','Tester')}},{old,release:c.RoomEquipment.release});
+ await page.goto('https://roomdesigner.test/');await page.waitForFunction(()=>window.__roomStartupReady&&window.actuatorAudit);
+ for(const code of ['AC12CH','AC4CH']){
+  const result=await page.evaluate(code=>{const a=actuatorAudit,i=a.catalog.findIndex(t=>t.code===code);a.addDevice(i);const d=a.doc.devices.at(-1);return {code:d.code,name:d.name,nameEn:d.nameEn,portDetails:d.ports.map(p=>({name:p.name,side:p.side,type:p.type})),ports:d.ports.length,power:d.ports.filter(p=>p.type==='power').length,rs485:d.ports.filter(p=>p.type==='rs485').length,unique:new Set(d.ports.map(p=>p.id)).size,svg:!!a.deviceArtwork(d),asset:d.svgAssetId}},code);
+  assert.deepEqual(result.portDetails,[{name:'RS-485 + Power',side:'top',type:'rs485_power'},...Array.from({length:code==='AC12CH'?12:4},(_,i)=>({name:'R'+(i+1),side:code==='AC12CH'&&i<2?'top':'bottom',type:'do'})),...[{name:'S1',side:'top',type:'di'},{name:'S2',side:'top',type:'di'}]]);assert.equal(result.code,code);assert.equal(result.ports,code==='AC12CH'?15:7);assert.equal(result.unique,result.ports);assert.ok(result.svg);assert.equal(result.asset,'nsp-'+code.toLowerCase());
+ }
+ const relayTooltips=await page.locator('#drawing .port[fill="#D97706"]').evaluateAll(ports=>ports.map(p=>p.querySelector('title').textContent));assert.deepEqual(relayTooltips,[...Array.from({length:12},(_,i)=>'Digital Output — DO | R'+(i+1)),...Array.from({length:4},(_,i)=>'Digital Output — DO | R'+(i+1))]);await page.locator('#drawing .port[fill="#D97706"]').first().hover();
+ const state=await page.evaluate(()=>({count:actuatorAudit.catalog.length,first:actuatorAudit.catalog[0].name,custom:actuatorAudit.catalog.some(t=>t.name==='Saved custom device')}));assert.equal(state.count,37);assert.equal(state.first,'Edited existing name');assert.ok(state.custom);
+ await page.screenshot({path:'work/actuators-desktop.png'});
+ await page.reload();await page.waitForFunction(()=>window.__roomStartupReady&&window.actuatorAudit);assert.equal(await page.evaluate(()=>actuatorAudit.catalog.length),37);
+ await page.setViewportSize({width:390,height:844});await page.locator('#addBtn').click();assert.equal(await page.locator('#sheetContent .equipment-item').count(),31);
+ for(const code of ['AC12CH','AC4CH']){const row=page.locator('#sheetContent .equipment-item').filter({hasText:code});assert.equal(await row.count(),1);assert.ok(await row.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0));}
+ assert.deepEqual(errors,[]);console.log('PASS: desktop and mobile previews, placement with correct artwork/identity/ports, saved-catalog upgrade, reload without duplicates; no browser errors.');
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exitCode=1});

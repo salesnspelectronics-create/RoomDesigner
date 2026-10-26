@@ -1,1 +1,5 @@
 node_modules/
+
+# Local preview artifacts and dependency caches
+work/*
+!work/preview-server.cjs

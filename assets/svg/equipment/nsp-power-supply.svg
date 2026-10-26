@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><title>Power Supply</title><desc>Vector illustration redrawn from the supplied DIN-rail power supply photograph.</desc><defs><linearGradient id="ps-case"><stop stop-color="#626e75"/><stop offset="1" stop-color="#303b43"/></linearGradient></defs>
+<path d="M55 34L254 8L288 25V371L225 394L55 365Z" fill="#45515a" stroke="#25323a" stroke-width="3"/>
+<path d="M225 110L288 80V371L225 394Z" fill="#36434c" stroke="#23313a" stroke-width="2"/>
+<path d="M50 34L245 8L282 26L91 60Z" fill="#7b878b" stroke="#3c4950" stroke-width="2"/>
+<path d="M51 35L226 55V112L28 98V81L51 75Z" fill="url(#ps-case)" stroke="#2b3840" stroke-width="2"/>
+<path d="M28 98L226 112V155L8 143V125Z" fill="#52616b" stroke="#2b3840" stroke-width="2"/>
+<path d="M9 144L226 158V332L14 314Z" fill="#53616b" stroke="#2c3a43" stroke-width="3"/>
+<path d="M14 314L226 332V392L57 367V344L14 337Z" fill="#34434c" stroke="#26353e" stroke-width="2"/>
+<path d="M17 163L215 176V309L22 291Z" fill="#34434d" stroke="#9c9f94" stroke-width="2"/>
+<g fill="#101d26">
+<path d="M67 33l22-6 14 3-22 6Z"/>
+<path d="M89 33l22-6 14 3-22 6Z"/>
+<path d="M111 33l22-6 14 3-22 6Z"/>
+<path d="M133 33l22-6 14 3-22 6Z"/>
+<path d="M155 33l22-6 14 3-22 6Z"/>
+<path d="M177 33l22-6 14 3-22 6Z"/>
+<path d="M199 33l22-6 14 3-22 6Z"/>
+<path d="M38 111l18 2-15 9-18-2Z"/>
+<path d="M61 111l18 2-15 9-18-2Z"/>
+<path d="M84 111l18 2-15 9-18-2Z"/>
+<path d="M107 111l18 2-15 9-18-2Z"/>
+<path d="M130 111l18 2-15 9-18-2Z"/>
+<path d="M153 111l18 2-15 9-18-2Z"/>
+<path d="M176 111l18 2-15 9-18-2Z"/>
+<path d="M48 133l18 1-9 9-18-1Z"/>
+<path d="M73 133l18 1-9 9-18-1Z"/>
+<path d="M98 133l18 1-9 9-18-1Z"/>
+<path d="M123 133l18 1-9 9-18-1Z"/>
+<path d="M148 133l18 1-9 9-18-1Z"/>
+<path d="M173 133l18 1-9 9-18-1Z"/>
+<path d="M95 62c-7-8-19-5-19 2s9 10 16 5c6 8 17 8 22 0 8 4 16-1 14-7s-11-7-16-1c-5-7-12-6-17 1Z"/><ellipse cx="149" cy="67" rx="7" ry="10"/><ellipse cx="85" cy="356" rx="7" ry="10"/><ellipse cx="134" cy="363" rx="7" ry="10"/></g>
+<g fill="#c8c8b7" font-family="sans-serif"><text x="29" y="189" font-size="16" font-weight="bold" transform="rotate(4 29 189)">POWER SUPPLY</text><text x="29" y="211" font-size="11" transform="rotate(4 29 211)">DIN RAIL · DC</text><path d="M28 221L202 234" stroke="#b1b3a7"/><text x="30" y="249" font-size="11" transform="rotate(4 30 249)">AC INPUT</text><text x="30" y="270" font-size="11" transform="rotate(4 30 270)">DC OUTPUT</text><text x="34" y="285" font-size="9" transform="rotate(4 34 285)">L     N                 +     −</text></g>
+<g fill="none" stroke="#94a0a1" stroke-width="2"><path d="M244 144l27-13v181l-27 11ZM251 159l14-6M251 170l14-6M251 181l14-6M251 192l14-6M251 203l14-6M251 214l14-6M251 225l14-6M251 236l14-6M251 247l14-6M251 258l14-6M251 269l14-6M251 280l14-6M251 291l14-6"/></g></svg>
