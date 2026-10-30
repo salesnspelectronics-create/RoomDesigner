@@ -672,7 +672,7 @@ function finishCable(t){
  if(!geometry?.length){notify('مسیر بدون برخورد پیدا نشد؛ جای تجهیزات یا مسیر را تغییر بده');return false}
  if(!allowDocumentGrowth(0,1,0))return false;
  checkpoint();
- doc.cables.push({id:uid(),a:{dev:start.dev,port:start.port},b:{dev:t.dev,port:t.port},type:start.type==='any'?t.type:start.type,name:cableTypeName(start.type==='any'?t.type:start.type),waypoints:routeMode==='orthogonal'?geometry.slice(1,-1).map(p=>({...p})):rawBends,routeMode,autoRouting:automatic,reserve:sourceDevice.kind==='reserve'||targetDevice.kind==='reserve'});
+ doc.cables.push({id:uid(),layerId:doc.activeLayer||'main',a:{dev:start.dev,port:start.port},b:{dev:t.dev,port:t.port},type:start.type==='any'?t.type:start.type,name:cableTypeName(start.type==='any'?t.type:start.type),waypoints:routeMode==='orthogonal'?geometry.slice(1,-1).map(p=>({...p})):rawBends,routeMode,autoRouting:automatic,reserve:sourceDevice.kind==='reserve'||targetDevice.kind==='reserve'});
  start=null;routePoints=[];previewPoint=null;setTool('select');notify('کابل متصل شد؛ ابزار انتخاب فعال شد');return true
 }
 function positionQuickDock(){const dock=$('quickDock'),rect=dock.getBoundingClientRect(),panel=$('quickActions'),panelWidth=110,panelHeight=230,margin=10;dock.dataset.expandX=(rect.left>=panelWidth+margin)?'left':'right';dock.dataset.expandY=(innerHeight-rect.top>=panelHeight+margin)?'down':'up';if(rect.left<panelWidth+margin&&innerWidth-rect.right<panelWidth+margin)dock.dataset.expandX=rect.left>innerWidth-rect.right?'left':'right';if(rect.top<panelHeight+margin&&innerHeight-rect.bottom<panelHeight+margin)dock.dataset.expandY=rect.top>innerHeight-rect.bottom?'up':'down'}
