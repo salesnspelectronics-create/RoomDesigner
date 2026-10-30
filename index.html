@@ -1650,7 +1650,7 @@ function filterToolbox(query) {
 }
 function deskField(key,label,value,options={}) {
  const id='deskProp-'+key;
- const control=options.choices?`<select id="${id}" data-desk-prop="${key}">${options.choices.map(([v,n])=>`<option value="${clean(v)}" ${v===value?'selected':''}>${clean(n)}</option>`).join('')}</select>`:
+ const control=options.choices?`<select id="${id}" data-desk-prop="${key}" ${options.disabled?'disabled':''}>${options.choices.map(([v,n])=>`<option value="${clean(v)}" ${v===value?'selected':''}>${clean(n)}</option>`).join('')}</select>`:
   `<input id="${id}" data-desk-prop="${key}" type="${options.type||'text'}" ${options.readonly?'readonly':''} ${options.disabled?'disabled':''} ${options.type==='checkbox'?(value?'checked':''): `value="${clean(value)}"`} ${options.type==='number'?'step="any"':''} ${options.min!=null?`min="${options.min}"`:''} ${options.max!=null?`max="${options.max}"`:''}>`;
  return `<label class="desk-field" for="${id}"><span>${clean(label)}</span>${control}</label>`;
 }
@@ -1658,13 +1658,13 @@ function updateDesktopProperties() {
  const root=$('deskProperties');if(!root)return;
  const d=selection?.kind==='device'?device(selection.id):null,c=selection?.kind==='cable'?doc.cables.find(x=>x.id===selection.id):null;
  const walls=selection?.kind==='wall'?(doc.walls||[]).filter(w=>(w.shapeId||w.id)===selection.id):[];
- const signature=JSON.stringify([selection,multiSelection,d,c,walls]);if(root.dataset.signature===signature)return;
+ const signature=JSON.stringify([selection,multiSelection,d,c,walls,d?layerLocked(d):false]);if(root.dataset.signature===signature)return;
  root.dataset.signature=signature;
- if(d){const disabled=!!d.locked;
+ if(d){const disabled=!!d.locked||layerLocked(d);
   root.innerHTML=`<div class="desk-property-type">${clean(d.kind)} · ${d.ports.length?'تجهیز':'نماد معماری'}</div>`+
   deskField('name','نام فارسی',d.name,{disabled})+deskField('code','پارت‌نامبر',d.code||'',{disabled})+deskField('model','مدل / سری',d.model||'',{disabled})+deskField('nameEn','نام انگلیسی',d.nameEn||'',{disabled})+deskField('showLabel','نمایش نام زیر آبجکت',d.showLabel!==false,{type:'checkbox',disabled})+deskField('backgroundColor','رنگ پس‌زمینه',deviceBackground(d),{type:'color',disabled})+deskField('x','X',d.x,{type:'number',disabled})+deskField('y','Y',d.y,{type:'number',disabled})+
   deskField('w','عرض',d.w,{type:'number',min:50,disabled})+deskField('h','ارتفاع',d.h,{type:'number',min:35,disabled})+
-  deskField('rotation','زاویه (°)',Number(d.rotation)||0,{type:'number',disabled})+deskField('svgMode','نمایش SVG',deviceSvgMode(d),{choices:[['fit','Fit'],['center','Center'],['stretch','Stretch']]})+
+  deskField('rotation','زاویه (°)',Number(d.rotation)||0,{type:'number',disabled})+deskField('svgMode','نمایش SVG',deviceSvgMode(d),{choices:[['fit','Fit'],['center','Center'],['stretch','Stretch']],disabled})+
   `<p class="desk-properties-note">ابعاد و مختصات بر حسب واحد نقشه؛ مقیاس واقعی کالیبره نشده است.${disabled?' برای ویرایش ابتدا قفل را باز کنید.':''}</p>
   <div class="desk-property-actions"><button data-desk-lock="${clean(d.id)}" aria-pressed="${disabled}">${deskIcon(disabled?'lock':'unlock')} ${disabled?'بازکردن قفل':'قفل'}</button><button class="primary" data-desk-act="properties">✎ ویرایش SVG و تجهیز</button></div>`;
  }else if(c){root.innerHTML=`<div class="desk-property-type">کابل · ${clean(types[c.type]?.name||c.type)}</div>`+
@@ -1825,7 +1825,7 @@ function setupDesktopWorkspace() {
  document.addEventListener('keydown',e=>{if(e.key==='Escape')nav.querySelectorAll('details').forEach(d=>d.open=false)});
  document.addEventListener('click',e=>{
   const cmd=e.target.closest('[data-desk-command]');if(cmd){nav.querySelectorAll('details').forEach(d=>d.open=false);const a=cmd.dataset.deskCommand;if(a==='toolboxOrder')editToolboxOrder();else if(a==='select')setTool('select');else if(a==='selectAll')selectAllObjects();else if(a==='group')groupAllSelected();else if(a==='ungroup')ungroupSelected();else if(a==='actionHistory')actionHistory();else deskCommand(a);return}
-  const lock=e.target.closest('[data-desk-lock]');if(lock){const d=device(lock.dataset.deskLock);if(!d)return;checkpoint();d.locked=!d.locked;clearPointerState();render();return}
+  const lock=e.target.closest('[data-desk-lock]');if(lock){const d=device(lock.dataset.deskLock);if(!d)return;if(layerLocked(d))return notify('لایه قفل است؛ ابتدا قفل لایه را باز کنید');checkpoint();d.locked=!d.locked;clearPointerState();render();return}
   const pin=e.target.closest('[data-desk-pin]');if(pin){const pane=$(pin.dataset.deskPin==='left'?'deskLeft':'deskRight'),on=pane.classList.toggle('auto-hide');pane.classList.remove('collapsed','peek');pin.setAttribute('aria-pressed',String(!on));updateDesktopWidths();return}
   const toggle=e.target.closest('[data-desk-toggle]');if(toggle){const pane=$(toggle.dataset.deskToggle==='left'?'deskLeft':'deskRight'),collapsed=pane.classList.toggle('collapsed');pane.classList.remove('auto-hide','peek');toggle.setAttribute('aria-expanded',String(!collapsed));updateDesktopWidths();return}
   const all=e.target.closest('[data-desk-all]');if(all){const pane=$(all.dataset.deskAll==='left'?'deskLeft':'deskRight'),details=[...pane.querySelectorAll('.desk-body details')],expand=details.some(d=>!d.open);details.forEach(d=>d.open=expand);return}
@@ -1842,7 +1842,7 @@ function setupDesktopWorkspace() {
  document.addEventListener('change',e=>{
   const input=e.target.closest('[data-desk-prop]');if(!input||input.readOnly||input.disabled)return;
   const key=input.dataset.deskProp,d=selection?.kind==='device'?device(selection.id):null,c=selection?.kind==='cable'?doc.cables.find(c=>c.id===selection.id):null;
-  if(d&&!d.locked){let value=input.value;if(key==='showLabel'){value=input.checked}else if(['x','y','w','h','rotation'].includes(key)){if(value.trim()===''||!Number.isFinite(Number(value))){$('deskProperties').dataset.signature='';updateDesktopProperties();return}value=Number(value);if(key==='w')value=Math.max(50,value);if(key==='h')value=Math.max(35,value);if(key==='rotation'){value=(value%360+360)%360}}else if(key==='backgroundColor'){if(!/^#[0-9a-f]{6}$/i.test(value))return}else if(key==='svgMode'){if(!['fit','center','stretch'].includes(value))return}else if(!['name','code','model','nameEn'].includes(key))return;
+  if(d&&!d.locked&&!layerLocked(d)){let value=input.value;if(key==='showLabel'){value=input.checked}else if(['x','y','w','h','rotation'].includes(key)){if(value.trim()===''||!Number.isFinite(Number(value))){$('deskProperties').dataset.signature='';updateDesktopProperties();return}value=Number(value);if(key==='w')value=Math.max(50,value);if(key==='h')value=Math.max(35,value);if(key==='rotation'){value=(value%360+360)%360}}else if(key==='backgroundColor'){if(!/^#[0-9a-f]{6}$/i.test(value))return}else if(key==='svgMode'){if(!['fit','center','stretch'].includes(value))return}else if(!['name','code','model','nameEn'].includes(key))return;
    if(d[key]===value)return;checkpoint();d[key]=value;if(key==='svgMode')d.stretchSvg=value==='stretch';render();$('deskProp-'+key)?.focus();
   }else if(c){if(c.locked||layerLocked(c))return;if(key==='routeMode'){changeCableRouteMode(c,input.value);return;}let value=input.type==='checkbox'?input.checked:input.value;if(key==='labelRotation'){if(!value.trim()||!Number.isFinite(Number(value)))return;value=((Number(value)%360)+360)%360;}else if(key==='width'){if(!value.trim()||!Number.isFinite(Number(value)))return;value=Math.max(1,Math.min(24,Number(value)))}else if(key==='name')value=value.trim()||'کابل';else if(key==='lineStyle'){if(!['solid','dashed'].includes(value))return}else if(key!=='reserve')return;
    if(c[key]===value)return;checkpoint();c[key]=value;render();$('deskProp-'+key)?.focus();
