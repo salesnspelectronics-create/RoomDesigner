@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V274-R",
-    "project_evolution_version": "V274-R",
+    "software_version": "V275-R",
+    "project_evolution_version": "V275-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V274-R",
+  "current_source_release": "V275-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -956,6 +956,13 @@
       "date": "2026-10-31",
       "phase": "desktop delete lock/dependency consistency",
       "summary": "Prevent enabled Delete control when locked dependent cables/doors make the operation invalid; preserve existing deletion safeguards. Prior V273-R UI commit already existed on main but had not been recorded in Project Evolution.",
+      "runtime_status": "PENDING_USER — USER_TESTING_POLICY"
+    },
+    {
+      "release": "V275-R",
+      "date": "2026-10-31",
+      "phase": "architectural polyline object identity",
+      "summary": "Reuse a stable shapeId for successive segments of the same active-layer polyline, so shape selection, visibility, renaming, movement and deletion operate on the entire continuous shape.",
       "runtime_status": "PENDING_USER — USER_TESTING_POLICY"
     }
   ],
@@ -4110,6 +4117,27 @@
         "index.html updateDesktopPanels previously enabled Delete based solely on selected objects' locks, ignoring locked dependencies.",
         "Static source review only; no unit, integration, E2E, browser, mobile or build validation."
       ]
+    },
+    {
+      "id": "RD-188",
+      "record_type": "source_defect",
+      "module": "architectural_polyline_shape_identity",
+      "source": "scheduled RoomDesigner V8.2 source regression",
+      "source_actor": "automation",
+      "recorded_by": "ChatGPT",
+      "created_at": "2026-10-31",
+      "target_version": "V275-R",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "Run evidence-backed scheduled regression, safely fix verified defects on main, increment version with -R suffix, and leave testing to the user.",
+      "assistant_interpretation": "Polyline segments created in successive wallTap invocations must share a logical shapeId within the active layer; currently each segment receives a new shapeId, so multi-segment polylines are treated as unrelated shapes in selection and object operations.",
+      "implementation_status": "Persist the polyline shapeId and source layer on wallStart only while drawing; reset naturally when setTool clears wallStart. Keep endpoint coordinates free of drawing-only metadata.",
+      "runtime_status": "PENDING_USER — AUTOMATED_TESTS=NOT_RUN (USER_TESTING_POLICY)",
+      "verification_evidence": [
+        "index.html wallTap assigns const shapeId=uid() for each completed segment, including archMode==='polyline'.",
+        "index.html wallTap retains wallStart only as {...b}, losing the previous segment's shapeId.",
+        "index.html clipboardSelection, layerObject and rendering group wall segments by shapeId||id; independent IDs break whole-polyline operations.",
+        "V275-R due source audit: repository tree, 25 recent commits, issues and prioritized source modules reviewed statically; no tests or builds."
+      ]
     }
   ],
   "analyses": [
@@ -4726,6 +4754,12 @@
       "date": "2026-10-31",
       "decision": "Align desktop Delete enabled state with lockedDeletionDependencies; optimize selected cable membership to a Set to avoid quadratic lookup during panel updates. Increment actual UI V273-R to V274-R in the same source fix commit. Prior ledger release V272 was stale relative to independently observed main V273-R; do not invent missing historical entries.",
       "remaining_risks": "Runtime acceptance remains with user. Cross-store LocalStorage/IndexedDB crash recovery and historical Project Evolution gaps remain open."
+    },
+    {
+      "id": "RD-188-analysis",
+      "date": "2026-10-31",
+      "decision": "Retain a stable shapeId for the duration of an active polyline on the same layer, storing only ephemeral identity in wallStart. Start a new identity after tool switch/cancel or active-layer change. Version increment V274-R to V275-R in the same patch. V275 due static source audit recorded; runtime acceptance deferred to user.",
+      "remaining_risks": "No automated tests or builds under USER_TESTING_POLICY; mobile/desktop runtime behavior remains unverified. Existing LocalStorage/IndexedDB cross-store atomicity and historical audit gaps remain open."
     }
   ],
   "deferred_scope": [
@@ -5501,13 +5535,19 @@
       "date": "2026-10-31",
       "change": "RD-187: synchronize desktop Delete button eligibility with locked dependent cables/doors; use Set-based cable membership for bounded panel refresh work. Update UI, cache keys and Project Evolution to V274-R.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V275-R",
+      "date": "2026-10-31",
+      "change": "RD-188: preserve architectural polyline shapeId across consecutive segments on the same layer; align UI/cache keys, README and Project Evolution with V275-R; record V275 due source audit.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V274-R",
+    "release": "V275-R",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
     "runtime_status": "PENDING_USER — AUTOMATED_TESTS=NOT_RUN (USER_TESTING_POLICY)",
-    "audit": "Static source-only review. No multiple-of-five boundary at V274-R; legacy history gaps and cross-store persistence risks remain open."
+    "audit": "V275 multiple-of-five boundary: static source review of main branch, 25 recent commits, repository tree, issues, editor/geometry/routing/storage modules and open backlog; no tests/builds by USER_TESTING_POLICY. LocalStorage/IndexedDB atomicity and historical audit gaps remain open."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
