@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V272",
-    "project_evolution_version": "V272",
+    "software_version": "V274-R",
+    "project_evolution_version": "V274-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V272",
+  "current_source_release": "V274-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -950,6 +950,13 @@
       "phase": "equipment, physical connections and canvas editing",
       "summary": "Release accumulated authorized local changes; increment displayed V271. Intervening ledger history remains unreconciled.",
       "runtime_status": "automated_verification_pending_user_acceptance"
+    },
+    {
+      "release": "V274-R",
+      "date": "2026-10-31",
+      "phase": "desktop delete lock/dependency consistency",
+      "summary": "Prevent enabled Delete control when locked dependent cables/doors make the operation invalid; preserve existing deletion safeguards. Prior V273-R UI commit already existed on main but had not been recorded in Project Evolution.",
+      "runtime_status": "PENDING_USER — USER_TESTING_POLICY"
     }
   ],
   "records": [
@@ -4083,6 +4090,26 @@
         "Previous focused unit and real-browser verification is preserved in RD-158 through RD-185.",
         "Release regression results recorded separately in verification_evidence."
       ]
+    },
+    {
+      "id": "RD-187",
+      "record_type": "source_defect",
+      "module": "desktop_selection_delete_guard",
+      "source": "scheduled RoomDesigner V8.2 source regression",
+      "source_actor": "automation",
+      "recorded_by": "ChatGPT",
+      "created_at": "2026-10-31",
+      "target_version": "V274-R",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "Run hourly evidence-backed regression, fix safe defects, publish to main, increment software version with -R suffix, and leave runtime testing to user.",
+      "assistant_interpretation": "The desktop Delete button must remain disabled when selected objects have locked dependent cables or doors, matching deleteDrawing's existing dependency guard.",
+      "implementation_status": "Source patch prepared for direct main commit; preserve locked deletion behavior and use a Set for linear dependency membership.",
+      "runtime_status": "PENDING_USER — automated tests/builds not run under USER_TESTING_POLICY",
+      "verification_evidence": [
+        "index.html lockedDeletionDependencies previously checked selected cable IDs with an array scan; deleteDrawing already blocks locked dependent objects.",
+        "index.html updateDesktopPanels previously enabled Delete based solely on selected objects' locks, ignoring locked dependencies.",
+        "Static source review only; no unit, integration, E2E, browser, mobile or build validation."
+      ]
     }
   ],
   "analyses": [
@@ -4693,6 +4720,12 @@
       "date": "2026-10-26",
       "decision": "Increment displayed V271 to V272. Ledger last release was V260; preserve that historical gap rather than inventing V261-V271 audit history. Use direct GitHub Git-data connection because local .git is read-only, with parent/head verification and non-forced main update. Exclude local screenshots, dependency caches and scratch scripts; include preview server and regression suites.",
       "remaining_risks": "Manual mobile/device acceptance and historical audit gaps remain open. Local Git metadata cannot be advanced in this permission profile."
+    },
+    {
+      "id": "RD-187-analysis",
+      "date": "2026-10-31",
+      "decision": "Align desktop Delete enabled state with lockedDeletionDependencies; optimize selected cable membership to a Set to avoid quadratic lookup during panel updates. Increment actual UI V273-R to V274-R in the same source fix commit. Prior ledger release V272 was stale relative to independently observed main V273-R; do not invent missing historical entries.",
+      "remaining_risks": "Runtime acceptance remains with user. Cross-store LocalStorage/IndexedDB crash recovery and historical Project Evolution gaps remain open."
     }
   ],
   "deferred_scope": [
@@ -5462,13 +5495,19 @@
       "date": "2026-10-26",
       "change": "RD-158–RD-186: equipment SVG catalog and power devices; physical port types, relay outputs and S1/S2 inputs; fan coil and sensors; cable routing, bend editing and rotation; canvas shortcuts, placement, panning and responsive keyboard movement; obsolete legacy archive removal.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V274-R",
+      "date": "2026-10-31",
+      "change": "RD-187: synchronize desktop Delete button eligibility with locked dependent cables/doors; use Set-based cable membership for bounded panel refresh work. Update UI, cache keys and Project Evolution to V274-R.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V272",
+    "release": "V274-R",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "34_unit_checks_and_8_browser_suites_passed_pending_user_acceptance",
-    "audit": "No new multiple-of-five boundary at V272; historical ledger and audit gaps remain disclosed, not reconciled by this release."
+    "runtime_status": "PENDING_USER — AUTOMATED_TESTS=NOT_RUN (USER_TESTING_POLICY)",
+    "audit": "Static source-only review. No multiple-of-five boundary at V274-R; legacy history gaps and cross-store persistence risks remain open."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

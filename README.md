@@ -1,5 +1,7 @@
 # RoomDesigner
 
+Current source release: **V274-R** (runtime acceptance pending user).
+
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
 Cable drawing and editing: [drawing modes, editing and obstacle-safe automatic routing](./CABLE-ROUTING.md).
