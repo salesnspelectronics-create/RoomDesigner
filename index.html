@@ -1080,7 +1080,7 @@ async function saveLocal(copy=false){
  doc.revisions.push(revision);
  if(doc.revisions.length>MAX_EMBEDDED_REVISIONS)doc.revisions.splice(0,doc.revisions.length-MAX_EMBEDDED_REVISIONS);
  doc.revision=revision.number;doc.lastEditedBy=activeUser;
- const revisionIntent={format:2,previous:[['rd_profiles',previousProfilesStorage],['rd_last',previousCurrentStorage]],expected:[['rd_profiles',mirrorChecksum(JSON.stringify(profiles))],['rd_last',mirrorChecksum(JSON.stringify(doc))]]};
+ const revisionIntent={format:2,previous:[['rd_profiles',previousProfilesStorage],['rd_last',previousCurrentStorage]],expected:[['rd_profiles',mirrorChecksum(JSON.stringify({...profiles,[doc.id]:doc}))],['rd_last',mirrorChecksum(JSON.stringify(doc))]]};
  if(!safeStorage.setItem('rd_pending_revision',JSON.stringify(revisionIntent))){
   doc=beforeRevisionSave;notify('ثبت نسخه بازیابی Revision ناموفق بود؛ ذخیره انجام نشد');return
  }
