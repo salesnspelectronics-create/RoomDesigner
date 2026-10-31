@@ -1,0 +1,29 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});try{
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error(e.message)});page.setDefaultTimeout(10000);
+let html=fs.readFileSync('index.html','utf8');const main=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes("(()=>{'use strict';"))[1],at=main.lastIndexOf('})();');html=html.replace(main,main.slice(0,at)+"window.audit={get doc(){return doc},get catalog(){return catalog},addDevice,propertyMenu,render,effectiveArtwork,validateRoomDocument,prepareRoomImport,applyRoomImport,snapshot,select(id){selection={kind:'device',id};render()}};"+main.slice(at));
+await page.route('https://roomdesigner.test/**',route=>{const relative=decodeURIComponent(new URL(route.request().url()).pathname).slice(1);if(!relative)return route.fulfill({contentType:'text/html',body:html});const file=path.resolve(relative);if(!file.startsWith(process.cwd()+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:''});return route.fulfill({contentType:relative.endsWith('.js')?'application/javascript':relative.endsWith('.json')?'application/json':'image/svg+xml',body:fs.readFileSync(file)});});
+const arch={id:'arch',name:'تخت',kind:'bed',category:'architecture',x:180,y:180,w:100,h:100,ports:[],backgroundColor:'#FF0000',svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 10h80v80H10z" fill="none" stroke="#111"/></svg>'};const old={...arch,id:'old',name:'old',kind:'custom',category:'equipment',equipmentRelease:'nsp-equipment-260'};
+await page.addInitScript(seed=>{if(!localStorage.getItem('seeded')){for(const[k,v]of Object.entries(seed))localStorage.setItem(k,v);localStorage.setItem('seeded','1')}},{rd_storage_reset_physical_v1:'done',rd_connection_model:'physical-connections-1',rd_equipment_release:'nsp-equipment-260',rd_active_user:'Tester',rd_catalog:JSON.stringify([{kind:'custom',name:'Old equipment',ports:[],assetId:'nsp-1l'}]),rd_last:JSON.stringify({schema:'room-designer/v0.3',connectionModel:'physical-connections-1',equipmentRelease:'nsp-equipment-260',id:'test',name:'Lighting test',devices:[old,arch],cables:[],walls:[]})});
+await page.goto('https://roomdesigner.test/');await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);
+
+
+assert.equal(await page.locator('#deskLeft [data-section="equipment"]').evaluate(n=>n.nextElementSibling.dataset.section),'requests');
+await page.locator('#deskLeft [data-section="requests"] summary').click();const root=page.locator('#deskProperties');
+for(const n of [2,3,4,6]){
+ const tile=page.locator('#deskLeft [data-section="requests"] [data-symbol-code="'+n+'R"]');assert.equal(await tile.count(),1);await tile.locator('img').evaluate(n=>n.decode());await tile.click();
+ assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).kind),'request-switch');assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).gangCount),n);assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).ports.length),0);
+ assert.equal(await root.locator('[data-desk-prop="lightingModel"]').inputValue(),'negin');
+ await root.locator('[data-inspector-tab="lighting"]').click();assert.equal(await root.locator('[data-lighting-picker]').count(),n);assert.ok((await root.locator('.lighting-gang-card').first().textContent()).includes('فرمان 1'));
+ await root.locator('[data-lighting-picker="0"]').click();assert.equal(await page.locator('#lightingPicker-0 [data-lighting-choice]').count(),11);await page.locator('[data-lighting-gang="0"][data-lighting-choice="laundry"]').click();assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).gangIcons[0]),'laundry');
+ await root.locator('[data-live-prop="iconColor"]').evaluate(el=>{el.value='#22bb99';el.dispatchEvent(new Event('input',{bubbles:true}))});assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).gangIconColors.every(c=>c==='#22bb99')),true);
+ await root.locator('[data-inspector-tab="general"]').click();await root.locator('[data-desk-prop="displayMode"]').selectOption('code');assert.ok((await page.evaluate(()=>audit.effectiveArtwork(audit.doc.devices.at(-1)))).includes('>'+n+'R-NE</text>'));
+ await root.locator('[data-desk-prop="displayMode"]').selectOption('real');assert.ok((await page.evaluate(()=>audit.effectiveArtwork(audit.doc.devices.at(-1)))).includes('<path'));
+ assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).realAssetId),'nsp-'+n+'r'+(n===6?'-01':''));await page.evaluate(()=>audit.validateRoomDocument(audit.doc));
+ await root.locator('[data-desk-prop="displayMode"]').selectOption('iconic');
+}
+await root.locator('[data-inspector-tab="lighting"]').click();await root.locator('[data-lighting-picker="0"]').click();await page.screenshot({path:'work/request-switch-picker.png'});await page.keyboard.press('Escape');
+await page.waitForTimeout(800);await page.reload();await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).code),'6R-NE');assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).gangIcons[0]),'laundry');assert.equal(await page.evaluate(()=>localStorage.getItem('rd_last').includes('<svg')),false);
+assert.deepEqual(errors,[]);console.log('PASS: Requests below Lighting, four Negin R products, command labels, nine shared icons, service selection/colors, code/real/iconic modes, catalog asset references, import validation and reload.');
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

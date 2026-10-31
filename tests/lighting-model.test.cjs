@@ -1,0 +1,95 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const c={};for(const f of ['data/svg-library-builtin.js','data/equipment-catalog-builtin.js','connection-model.js','lighting-model.js','equipment-release.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),c);
+const data=JSON.parse(fs.readFileSync('data/equipment-catalog.json','utf8'));assert.equal(data.entries.length,24);assert.equal(c.RoomEquipment.defaults()[0].kind,'lighting-switch');assert.equal(c.RoomEquipment.defaults()[0].ports.length,0);
+const fixedPalette=c.RoomEquipment.defaults();assert.equal(fixedPalette.length,42);assert.equal(new Set(fixedPalette.map(t=>t.paletteVariantId)).size,42);assert.equal(fixedPalette.filter(t=>t.catalogId==='request-8r').length,3);assert.equal(fixedPalette.filter(t=>t.catalogId==='lighting-8l').length,1);for(const t of fixedPalette){assert.equal(t.backgroundColor,'#000000');assert.equal(t.iconColor,'#ffffff');assert.ok(t.gangIconColors.every(c=>c==='#ffffff'));if(t.orientation==='portrait'&&t.gangCount===8)assert.ok(t.h>t.w)}
+for(const count of [1,2,3,4,6,8]){const d={gangCount:count,gangIcons:Array(count).fill('pendant')};assert.equal(c.LightingModel.configuration(d).gangIcons.length,count);const art=c.LightingModel.artwork(d);assert.equal((art.match(/viewBox="4 1 56 62"/g)||[]).length,count);assert.ok(art.includes('stroke="none"'));assert.ok(art.includes('fill="#000000"'));}
+const old={id:'old',kind:'custom',equipmentRelease:'nsp-equipment-260',ports:[]},arch={id:'arch',kind:'bed',ports:[]},doc={devices:[old,arch],cables:[{a:{dev:'old'},b:{dev:'arch'}}],walls:[],revisions:[{snapshot:{devices:[old,arch],cables:[]}}]};
+const values=new Map(Object.entries({rd_equipment_release:'nsp-equipment-260',rd_catalog:'[]',rd_last:JSON.stringify(doc),rd_profiles:JSON.stringify({p:doc}),rd_shortcuts:JSON.stringify([{data:doc}])}));const storage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+c.RoomEquipment.migrateStorage(storage);for(const d of [JSON.parse(values.get('rd_last')),JSON.parse(values.get('rd_profiles')).p,JSON.parse(values.get('rd_shortcuts'))[0].data]){assert.deepEqual(d.devices.map(x=>x.id),['arch']);assert.equal(d.cables.length,0);assert.equal(d.revisions[0].snapshot.devices.length,1)}
+const next=JSON.parse(values.get('rd_last'));next.devices.push({...JSON.parse(JSON.stringify(c.RoomEquipment.defaults()[0])),id:'switch'});values.set('rd_last',JSON.stringify(next));assert.equal(c.RoomEquipment.migrateStorage(storage),false);assert.equal(JSON.parse(values.get('rd_last')).devices.length,2);
+const cat=c.RoomConnections.resetCatalog([{kind:'custom',name:'retired',ports:[],assetId:'nsp-1l'}]);assert.equal(cat.filter(t=>t.category==='equipment').length,42);assert.equal(cat.some(t=>t.assetId==='nsp-1l'),false);
+console.log('PASS: single semantic equipment catalog, six gang counts, three vector icons, migration removes old devices/wires recursively and preserves architecture/new switches on reload.');
+
+for(const [count,cols,rows] of [[1,1,1],[2,2,1],[3,3,1],[4,2,2],[6,2,3],[8,4,2]]){const positions=c.LightingModel.layout(count);assert.equal(new Set(positions.map(p=>p.x)).size,cols);assert.equal(new Set(positions.map(p=>p.y)).size,rows);for(const p of positions){assert.equal(p.width,20);assert.equal(p.height,20);}assert.ok(Math.abs(positions.reduce((s,p)=>s+p.x+10,0)/count-c.LightingModel.faceSize(count).width/2)<4);assert.ok(Math.abs(positions.reduce((s,p)=>s+p.y+10,0)/count-50)<4);}
+const styled={gangCount:2,gangIcons:['bulb','spot'],iconColor:'#00ff88',gangIconColors:['#ff4400','#0088ff'],borderColor:'#112233',backgroundColor:'#445566'};let art=c.LightingModel.artwork(styled);for(const color of ['#ff4400','#0088ff','#445566'])assert.ok(art.includes(color));art=c.LightingModel.artwork({...styled,borderVisible:false,backgroundVisible:false});assert.ok(art.includes('fill="none" stroke="#000000"'));assert.ok(art.includes('#ff4400'));assert.ok(c.LightingModel.iconSvg('bulb').includes('stroke="#ffffff"'));assert.equal(c.LightingModel.configuration({borderColor:'invalid'}).borderColor,'#000000');console.log('PASS: six centered layouts, identical icon dimensions across counts, independent vector colors, transparency and white modal previews.');
+
+const eight=c.LightingModel.layout(8);assert.ok(Math.max(...eight.slice(0,4).map(p=>p.x))<Math.min(...eight.slice(4).map(p=>p.x)));assert.ok(c.LightingModel.faceRatio>2&&c.LightingModel.faceRatio<2.1);assert.ok(c.LightingModel.layout(4)[1].x-c.LightingModel.layout(4)[0].x>40);const oldEight={kind:'lighting-switch',gangCount:8,w:100,h:100};assert.equal(c.LightingModel.ensureLayout({devices:[oldEight]}),true);assert.ok(oldEight.w>200);assert.equal(c.LightingModel.ensureLayout({devices:[oldEight]}),false);const manual={kind:'lighting-switch',gangCount:8,w:160,h:80,faceLayoutVersion:2};c.LightingModel.ensureLayout({devices:[manual]});assert.equal(manual.w,160);console.log('PASS: reference-based spacing, 2.03:1 eight-gang face, left/right group order and idempotent upgrade without overriding later manual resizing.');
+
+for(const [w,h]of [[200,50],[50,180],[170,90]]){const svg=c.LightingModel.artwork({gangCount:4,w,h});assert.ok(svg.includes('viewBox="0 0 '+w+' '+h+'"'));const rect=svg.match(/<rect x="([^"]+)" y="([^"]+)" width="([^"]+)" height="([^"]+)"/);assert.ok(Math.abs(Number(rect[1])*2+Number(rect[3])-w)<1e-8);assert.ok(Math.abs(Number(rect[2])*2+Number(rect[4])-h)<1e-8);const icons=[...svg.matchAll(/<svg x="[^"]+" y="[^"]+" width="([^"]+)" height="([^"]+)"/g)];assert.equal(icons.length,4);assert.ok(icons.every(m=>m[1]===m[2]));}console.log('PASS: independent width/height resize fills the complete face while retaining undistorted icon viewports.');
+
+for(const n of c.LightingModel.counts){
+ const conf=c.LightingModel.configuration({gangCount:n});const reference=c.RoomEquipment.variantFor({kind:'lighting-switch',gangCount:n});assert.equal(conf.code,reference.code);assert.equal(conf.realAssetId,reference.assetId);assert.equal(conf.displayMode,'iconic');
+ const real=c.LightingModel.artwork({gangCount:n,displayMode:'real',borderColor:'#123abc',iconColor:'#123abc'});assert.equal(real,c.SvgLibraryBuiltin.assets[conf.realAssetId]);
+ const code=c.LightingModel.artwork({gangCount:n,displayMode:'code'});assert.ok(code.includes('>'+reference.code+'</text>'));assert.equal((code.match(/<svg /g)||[]).length,1);
+}
+assert.equal(fs.readFileSync('assets/svg/equipment/nsp-8l.svg','utf8'),fs.readFileSync('assets/svg/equipment/nsp-8r-almas.svg','utf8'));
+assert.ok(c.LightingModel.icons.every(i=>i.assetId&&!i.svg));assert.ok(c.RoomConnections.consumers().every(t=>t.svgAssetId&&!t.svg));
+console.log('PASS: six code/photo variants, immutable real artwork, independent 8L asset copy, and reference-only default icons/field devices.');
+
+for(const t of data.entries.filter(t=>t.kind==='lighting-switch')){assert.equal(t.code,t.gangCount+'L');assert.equal(t.gangIcons.length,t.gangCount);assert.equal(t.catalogId,'lighting-'+t.gangCount+'l');assert.equal(t.h,t.gangCount===7?70:50);assert.equal(t.w,t.gangCount===18?150:t.gangCount===8?100:50)}
+
+const azin=c.LightingModel.configuration({gangCount:1,lightingModel:'azin'});assert.equal(azin.code,'1L-AZ');assert.equal(azin.realAssetId,'nsp-1l-azin');assert.equal(c.LightingModel.configuration({gangCount:2,lightingModel:'azin'}).lightingModel,'azin');assert.equal(c.LightingModel.displayName({name:'Desk',gangCount:1,lightingModel:'azin'}),'Desk');
+assert.equal(c.LightingModel.artwork({gangCount:1,lightingModel:'azin',displayMode:'real'}),c.SvgLibraryBuiltin.assets['nsp-1l-azin']);
+
+for(const n of [1,2,3,4,6,8]){const d={kind:'lighting-switch',gangCount:n};assert.deepEqual(Array.from(c.RoomEquipment.modelsFor(d),m=>m.id),n===8?['negin']:['negin','azin']);const v=c.RoomEquipment.variantFor(d,'azin');assert.equal(v.modelId,n===8?'negin':'azin');assert.ok(c.SvgLibraryBuiltin.assets[v.assetId]);}
+assert.equal(c.RoomEquipment.validateCatalog(c.EquipmentCatalogBuiltin,c.SvgLibraryBuiltin.assets),true);
+const invalid=JSON.parse(JSON.stringify(c.EquipmentCatalogBuiltin));invalid.entries[0].variants.push({modelId:'azin',realAssetId:'unknown'});assert.throws(()=>c.RoomEquipment.validateCatalog(invalid,c.SvgLibraryBuiltin.assets));
+// A future non-lighting family uses the same resolver without lighting-specific branches.
+c.EquipmentCatalogBuiltin.equipmentTypes.push({id:'camera',name:'Camera',defaultModelId:'negin',modelField:'modelId',fields:[],defaults:{channels:1}});c.EquipmentCatalogBuiltin.entries.push({catalogId:'camera-test',typeId:'camera',kind:'camera',code:'CAM',fields:{channels:2},variants:[{modelId:'negin',realAssetId:'test-camera',fields:{channels:4}}]});
+assert.equal(c.RoomEquipment.variantFor({catalogId:'camera-test',kind:'camera'}).code,'CAM-NE');assert.equal(c.RoomEquipment.variantFor({catalogId:'camera-test',kind:'camera'}).fields.channels,4);
+console.log('PASS: data-driven model availability, no 8L Azin, validated asset/model/type references and generic non-lighting field overrides.');
+
+assert.deepEqual(Array.from(c.RoomEquipment.modelsFor({catalogId:'lighting-1l',kind:'lighting-switch',gangCount:8}),m=>m.id),['negin']);assert.equal(fs.existsSync('assets/svg/equipment/nsp-8l-azin.svg'),false);
+
+const seven=c.LightingModel.configuration({gangCount:7});assert.equal(seven.gangIcons.length,7);assert.equal(seven.code,'7L-NE');assert.equal(c.LightingModel.layout(7).length,7);assert.equal(c.LightingModel.faceSize(7).height,140);assert.equal(c.LightingModel.variant(7,'azin').assetId,'nsp-7l-azin');
+
+const badLayout=JSON.parse(JSON.stringify(data));badLayout.entries.find(t=>t.gangCount===7).iconLayout.centers.pop();assert.throws(()=>c.RoomEquipment.validateCatalog(badLayout));
+
+for(const n of [2,3,4,6]){const d={kind:'request-switch',gangCount:n},v=c.LightingModel.configuration(d);assert.equal(v.code,n+'R-NE');assert.ok(c.SvgLibraryBuiltin.assets[v.realAssetId]);assert.equal(c.LightingModel.unitName(d),'فرمان');assert.equal(c.LightingModel.modelsFor(d).length,2);}
+assert.equal(c.LightingModel.icons.length,19);assert.equal(c.LightingModel.icons.filter(i=>i.category==='services').length,16);
+console.log('PASS: four request models/codes/images, command labels and six shared service icons.');
+
+assert.equal(c.LightingModel.configuration({gangCount:2,gangIcons:['service-bell','assistance']}).gangIcons.join(','),'room-service,housekeeping');assert.equal(c.LightingModel.isIcon('not-an-icon'),false);
+
+for(const t of data.entries){const direction=c.RoomEquipment.variantFor(t);assert.equal(direction.orientation,t.orientation||'landscape');assert.equal(c.RoomEquipment.orientationsFor(t).length,1);assert.equal(direction.code,t.code+'-'+data.models.find(m=>m.id===t.variants[0].modelId).codeSuffix);}
+const dual=c.EquipmentCatalogBuiltin.entries.find(t=>t.catalogId==='lighting-1l');dual.variants[0].orientationIds=['landscape','portrait'];assert.equal(c.RoomEquipment.variantFor({...dual,orientation:'landscape'}).code,'1L-L-NE');assert.equal(c.RoomEquipment.variantFor({...dual,orientation:'portrait'}).code,'1L-P-NE');assert.equal(c.RoomEquipment.orientationsFor(dual).length,2);
+console.log('PASS: catalog direction restrictions and suffix only when both orientations are available.');
+
+const r8={kind:'request-switch',catalogId:'request-8r',gangCount:8};assert.equal(c.LightingModel.configuration(r8).code,'8R-NE');assert.equal(c.LightingModel.configuration({...r8,lightingModel:'almas'}).realAssetId,'nsp-8r-almas');assert.equal(c.LightingModel.modelsFor(r8).length,3);assert.equal(c.LightingModel.iconChoices(r8).length,13);assert.equal(c.LightingModel.iconChoices({kind:'lighting-switch',gangCount:1}).length,11);assert.ok(c.LightingModel.artwork(r8).includes('Checkout'));
+
+// Families are identified by type + subtype; model/direction never replace family identity.
+for(const entry of data.entries){
+ assert.equal(c.RoomEquipment.familyFor(entry).id,entry.subtypeId);
+ assert.equal(c.RoomEquipment.toolboxSectionFor(entry),data.equipmentTypes.find(t=>t.id===entry.typeId).toolboxSection);
+ for(const variant of entry.variants){
+  const placed={catalogId:entry.catalogId,kind:entry.kind,gangCount:entry.gangCount,lightingModel:variant.modelId,orientation:variant.orientationIds[0]};
+  assert.equal(c.RoomEquipment.definitionFor(placed).catalogId,entry.catalogId);
+  assert.equal(c.RoomEquipment.familyFor(placed).id,entry.subtypeId);
+  assert.equal(c.RoomEquipment.variantFor(placed).modelId,variant.modelId);
+ }
+}
+const invalidFamily=JSON.parse(JSON.stringify(data));invalidFamily.entries[0].subtypeId='missing';assert.throws(()=>c.RoomEquipment.validateCatalog(invalidFamily));
+console.log('PASS: catalog families remain stable across every supported model/direction and determine toolbox placement.');
+
+const almasRequest={kind:'request-switch',catalogId:'request-8r',gangCount:8,lightingModel:'almas',displayMode:'iconic'};
+const alSize=c.LightingModel.standardSize(almasRequest,'real');assert.ok(Math.abs(alSize.w/alSize.h-698.11/343.66)<1e-8);
+const alIcon=c.LightingModel.artwork(almasRequest);assert.ok(!alIcon.includes('Checkout'));assert.ok(c.LightingModel.standardSize(almasRequest,'iconic').h<50);
+assert.ok(c.LightingModel.artwork({...almasRequest,lightingModel:'negin'}).includes('Checkout'));
+console.log('PASS: model-level aspect ratios and iconic layouts override family defaults.');
+
+for(const model of ['negin','azin','almas']){const d={kind:'request-switch',catalogId:'request-8r',gangCount:8,lightingModel:model,displayMode:'iconic',borderColor:'#ff0000',borderWidth:33,borderVisible:false},c1=c.LightingModel.configuration(d);assert.equal(c1.borderColor,model==='azin'?'#e9ca16':'#000000');assert.equal(c1.borderWidth,2);assert.equal(c1.borderVisible,model==='azin');const c2=c.LightingModel.configuration({...d,displayMode:'code'});assert.equal(c2.borderColor,'#ff0000');assert.equal(c2.borderWidth,33);assert.equal(c2.borderVisible,false)}
+console.log('PASS: model-defined iconic borders override stale styling, Azin always visible, code styling preserved.');
+
+const switched=c.LightingModel.appearanceModePatch({displayMode:'iconic',borderColor:'#123456',backgroundColor:'#000000'},'code');assert.equal(switched.borderColor,'#000000');assert.equal(switched.backgroundColor,'#ffffff');assert.equal(switched.codeColor,'#000000');assert.equal(switched.appearanceByMode.iconic.borderColor,'#123456');assert.ok(!('ports' in c.LightingModel.appearanceModePatch({displayMode:'iconic',appearanceByMode:{code:{ports:[],borderColor:'#112233'}}},'code')));
+console.log('PASS: independent mode appearance defaults and filtered cached styling.');
+
+for(const model of ['negin','almas']){const d={kind:'request-switch',catalogId:'request-8r',gangCount:8,lightingModel:model,displayMode:'iconic'};assert.equal(c.LightingModel.configuration(d).borderVisible,false);const off={...d,backgroundVisible:false};assert.equal(c.LightingModel.configuration(off).borderVisible,true);assert.equal(c.LightingModel.configuration({...off,autoOutlineColor:'#123456'}).borderColor,'#123456');assert.equal(c.LightingModel.borderControls(off).color,true);assert.equal(c.LightingModel.borderControls(d).color,false);assert.equal(c.LightingModel.borderControls(off).visibility,false);assert.equal(c.LightingModel.borderControls(off).width,false)}
+console.log('PASS: iconic frame is automatic from background visibility; only fallback outline color is editable.');
+
+const legacyMount={catalogId:'lighting-18l',kind:'lighting-switch',gangCount:18,lightingModel:'atlas',orientation:'portrait',paletteVariantId:'lighting-18l/atlas/portrait',x:42,y:84,w:50,h:150};assert.equal(c.RoomEquipment.variantFor(legacyMount).assetId,'nsp-18l-atlas-portrait');assert.equal(c.RoomEquipment.normalizeInstallation(legacyMount),true);assert.equal(legacyMount.orientation,'landscape');assert.equal(legacyMount.installationDirection,'portrait');assert.equal(legacyMount.paletteVariantId,'lighting-18l/atlas/landscape');assert.equal(legacyMount.x,42);assert.equal(c.RoomEquipment.variantFor(legacyMount).code,'18L-AT');
+const mountFamily=c.EquipmentCatalogBuiltin.entries.find(e=>e.catalogId==='lighting-18l'),mountVariant=mountFamily.variants[0],originalMounts=mountVariant.installationDirectionIds;mountVariant.installationDirectionIds=['landscape','portrait','landscape-reverse','portrait-reverse'];mountVariant.installationAssets['landscape-reverse']=mountVariant.realAssetId;mountVariant.installationAssets['portrait-reverse']=mountVariant.installationAssets.portrait;
+for(const id of mountVariant.installationDirectionIds){const value=c.RoomEquipment.variantFor({...mountFamily,installationDirection:id});assert.equal(value.code,'18L-AT');assert.equal(value.installationDirection,id);assert.equal(value.iconLayout.centers.length,18);assert.equal(c.RoomEquipment.installationDirectionsFor(mountFamily).length,4)}
+const layout180=c.RoomEquipment.variantFor({...mountFamily,installationDirection:'landscape-reverse'}).iconLayout,baseLayout=mountFamily.iconLayout;assert.ok(Math.abs(layout180.centers[0][0]-(baseLayout.width-baseLayout.centers[0][0]))<1e-8);assert.equal(c.RoomEquipment.defaults().filter(e=>e.catalogId==='lighting-18l').length,1);mountVariant.installationDirectionIds=originalMounts;delete mountVariant.installationAssets['landscape-reverse'];delete mountVariant.installationAssets['portrait-reverse'];console.log('PASS: installation direction does not duplicate products/change codes, legacy portrait migration and generic four-direction layout support.');
+
+for(const template of fixedPalette.filter(t=>t.kind==='thermostat')){assert.deepEqual(Array.from(c.LightingModel.modesFor(template)),['code','real']);assert.equal(c.LightingModel.configuration({...template,displayMode:'iconic'}).displayMode,'real');assert.equal(c.LightingModel.configuration({...template,displayMode:'code'}).displayMode,'code');assert.ok(c.LightingModel.paletteArtwork(template).includes('#e1edf5'))}console.log('PASS: thermostat code/real-only modes with independent iconic palette previews.');

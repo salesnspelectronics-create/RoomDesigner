@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 3,
+  "version": 13,
   "symbols": [
     {
       "id": "single_bed",
@@ -731,6 +731,999 @@
       "version": 1,
       "assignedEquipmentTypes": [
         "nsp-power-supply"
+      ]
+    },
+    {
+      "id": "nsp-8l",
+      "name": "8L",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8l.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 100,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "lighting-bulb",
+      "name": "bulb",
+      "category": "lighting",
+      "filePath": "assets/svg/lighting/bulb.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 100,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "lighting-pendant",
+      "name": "pendant",
+      "category": "lighting",
+      "filePath": "assets/svg/lighting/pendant.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 100,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "lighting-spot",
+      "name": "spot",
+      "category": "lighting",
+      "filePath": "assets/svg/lighting/spot.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 100,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-light",
+      "name": "لامپ",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-light.svg",
+      "viewBox": "0 0 80 80",
+      "defaultWidth": 80,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-valve",
+      "name": "شیر برقی",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-valve.svg",
+      "viewBox": "0 0 80 80",
+      "defaultWidth": 80,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-fan-coil",
+      "name": "فن کویل",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-fan-coil.svg",
+      "viewBox": "0 0 120 80",
+      "defaultWidth": 120,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-speaker",
+      "name": "بلندگو",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-speaker.svg",
+      "viewBox": "0 0 80 80",
+      "defaultWidth": 80,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-smoke",
+      "name": "سنسور دود",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-smoke.svg",
+      "viewBox": "0 0 80 80",
+      "defaultWidth": 80,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "load-motion",
+      "name": "سنسور حرکت",
+      "category": "electrical",
+      "filePath": "assets/svg/electrical/load-motion.svg",
+      "viewBox": "0 0 80 80",
+      "defaultWidth": 80,
+      "defaultHeight": 80,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-1l-azin",
+      "name": "کلید روشنایی یک پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-1l-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-2l-azin",
+      "name": "کلید روشنایی 2 پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-2l-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-3l-azin",
+      "name": "کلید روشنایی 3 پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-3l-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-4l-azin",
+      "name": "کلید روشنایی 4 پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-4l-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-6l-azin",
+      "name": "کلید روشنایی 6 پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-6l-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-7l",
+      "name": "کلید روشنایی 7 پل - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-7l.svg",
+      "viewBox": "0 0 685 953",
+      "defaultWidth": 50,
+      "defaultHeight": 70,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-7l-azin",
+      "name": "کلید روشنایی 7 پل - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-7l-azin.svg",
+      "viewBox": "0 0 685 953",
+      "defaultWidth": 50,
+      "defaultHeight": 70,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "cleaning",
+      "name": "نظافت اتاق",
+      "category": "services",
+      "filePath": "assets/svg/services/cleaning.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "do-not-disturb",
+      "name": "مزاحم نشوید",
+      "category": "services",
+      "filePath": "assets/svg/services/do-not-disturb.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "laundry",
+      "name": "لباس‌شویی",
+      "category": "services",
+      "filePath": "assets/svg/services/laundry.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "room-service",
+      "name": "پذیرایی",
+      "category": "services",
+      "filePath": "assets/svg/services/room-service.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "vacuum",
+      "name": "جاروبرقی",
+      "category": "services",
+      "filePath": "assets/svg/services/vacuum.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "housekeeping",
+      "name": "خدمات نظافت",
+      "category": "services",
+      "filePath": "assets/svg/services/housekeeping.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "garment",
+      "name": "خدمات لباس",
+      "category": "services",
+      "filePath": "assets/svg/services/garment.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "yoga",
+      "name": "آرامش و تندرستی",
+      "category": "services",
+      "filePath": "assets/svg/services/yoga.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 2,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-2r-azin",
+      "name": "کلید درخواست 2 فرمان - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-2r-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-3r-azin",
+      "name": "کلید درخواست 3 فرمان - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-3r-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-4r-azin",
+      "name": "کلید درخواست 4 فرمان - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-4r-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-6r-azin",
+      "name": "کلید درخواست 6 فرمان - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-6r-azin.svg",
+      "viewBox": "0 0 1062 1018",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-8r-negin",
+      "name": "تجهیز 8R - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8r-negin.svg",
+      "viewBox": "0 0 961 674",
+      "defaultWidth": 100,
+      "defaultHeight": 70,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-8r-azin",
+      "name": "تجهیز 8R - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8r-azin.svg",
+      "viewBox": "0 0 961 674",
+      "defaultWidth": 100,
+      "defaultHeight": 70,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "service-power",
+      "name": "پاور",
+      "category": "services",
+      "filePath": "assets/svg/services/service-power.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "stop-hand",
+      "name": "مزاحم نشوید (دست)",
+      "category": "services",
+      "filePath": "assets/svg/services/stop-hand.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "nsp-tmp-o-negin",
+      "name": "ترموستات ست‌پوینت / OLED نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-o-negin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-o-icon",
+      "name": "ترموستات ست‌پوینت / OLED — آیکون",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-o-icon.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-7s-negin",
+      "name": "ترموستات سون‌سگمنت نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-7s-negin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-7s-icon",
+      "name": "ترموستات سون‌سگمنت — آیکون",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-7s-icon.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-f-negin",
+      "name": "ترموستات فیکس نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-f-negin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-f-icon",
+      "name": "ترموستات فیکس — آیکون",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-f-icon.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-8l-portrait",
+      "name": "کلید روشنایی هشت‌پل نگین عمودی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8l-portrait.svg",
+      "viewBox": "0 0 343.66 698.11",
+      "defaultWidth": 50,
+      "defaultHeight": 100,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "lighting-switch"
+      ]
+    },
+    {
+      "id": "nsp-8r-almas-portrait",
+      "name": "کلید درخواست هشت‌فرمان الماس عمودی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-8r-almas-portrait.svg",
+      "viewBox": "0 0 343.66 698.11",
+      "defaultWidth": 50,
+      "defaultHeight": 100,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "request-switch"
+      ]
+    },
+    {
+      "id": "nsp-tmp-o-azin",
+      "name": "ترموستات ست‌پوینت / OLED آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-o-azin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-7s-azin",
+      "name": "ترموستات سون‌سگمنت آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-7s-azin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-tmp-f-azin",
+      "name": "ترموستات فیکس آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-tmp-f-azin.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "thermostat"
+      ]
+    },
+    {
+      "id": "nsp-18l-atlas",
+      "name": "کلید روشنایی ۱۸پل اطلس افقی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-18l-atlas.svg",
+      "viewBox": "0 0 1469 492",
+      "defaultWidth": 150,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "lighting-switch"
+      ]
+    },
+    {
+      "id": "nsp-18l-atlas-portrait",
+      "name": "کلید روشنایی ۱۸پل اطلس عمودی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-18l-atlas-portrait.svg",
+      "viewBox": "0 0 492 1469",
+      "defaultWidth": 50,
+      "defaultHeight": 150,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "lighting-switch"
+      ]
+    },
+    {
+      "id": "nsp-db-bp-negin",
+      "name": "دوربل بزرگ عمودی - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-bp-negin.svg",
+      "viewBox": "252.48 100.78 489.44 750.98",
+      "defaultWidth": 50,
+      "defaultHeight": 76.71829029094475,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-bp-fixed",
+      "name": "دوربل بزرگ عمودی - نگین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-bp-fixed.svg",
+      "viewBox": "252.48 100.78 489.44 750.98",
+      "defaultWidth": 50,
+      "defaultHeight": 76.71829029094475,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-laundry",
+      "name": "لباس‌شویی دوربل",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-laundry.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-bell",
+      "name": "زنگ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-bell.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-bl-negin",
+      "name": "دوربل بزرگ افقی - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-bl-negin.svg",
+      "viewBox": "127.75 201.43 827.25 509.72",
+      "defaultWidth": 80,
+      "defaultHeight": 49.29295859776368,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-bl-fixed",
+      "name": "دوربل بزرگ افقی - نگین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-bl-fixed.svg",
+      "viewBox": "127.75 201.43 827.25 509.72",
+      "defaultWidth": 80,
+      "defaultHeight": 49.29295859776368,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-card",
+      "name": "کارت‌خوان",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-card.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-porter",
+      "name": "خدمات پذیرش",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-porter.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-dnd-bell",
+      "name": "زنگ مزاحم نشوید",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-dnd-bell.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "doorbell-washer",
+      "name": "لباس‌شویی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/doorbell-washer.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-az-p-fixed",
+      "name": "دوربل عمودی - آذین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-az-p-fixed.svg",
+      "viewBox": "0 0 683 978",
+      "defaultWidth": 50,
+      "defaultHeight": 71.59590043923865,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-az-p",
+      "name": "دوربل عمودی - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-az-p.svg",
+      "viewBox": "0 0 683 978",
+      "defaultWidth": 50,
+      "defaultHeight": 71.59590043923865,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-az-l-fixed",
+      "name": "دوربل افقی - آذین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-az-l-fixed.svg",
+      "viewBox": "0 0 978 683",
+      "defaultWidth": 80,
+      "defaultHeight": 55.86912065439673,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-az-l",
+      "name": "دوربل افقی - آذین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-az-l.svg",
+      "viewBox": "0 0 978 683",
+      "defaultWidth": 80,
+      "defaultHeight": 55.86912065439673,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-al-p-fixed",
+      "name": "دوربل عمودی - الماس؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-al-p-fixed.svg",
+      "viewBox": "0 0 529 1007",
+      "defaultWidth": 50,
+      "defaultHeight": 95.17958412098298,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-al-p",
+      "name": "دوربل عمودی - الماس",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-al-p.svg",
+      "viewBox": "339.69 162 344.08 657",
+      "defaultWidth": 50,
+      "defaultHeight": 95.17958412098298,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-al-l-fixed",
+      "name": "دوربل افقی - الماس؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-al-l-fixed.svg",
+      "viewBox": "0 0 1022 502",
+      "defaultWidth": 100,
+      "defaultHeight": 49.11937377690802,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-al-l",
+      "name": "دوربل افقی - الماس",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-al-l.svg",
+      "viewBox": "139.41 314.42 772.6 377.39",
+      "defaultWidth": 100,
+      "defaultHeight": 49.11937377690802,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-ne-s-fixed",
+      "name": "دوربل کوچک - نگین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-ne-s-fixed.svg",
+      "viewBox": "0 0 500 500",
+      "defaultWidth": 50,
+      "defaultHeight": 50.0,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-ne-s",
+      "name": "دوربل کوچک - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-ne-s.svg",
+      "viewBox": "0 0 500 500",
+      "defaultWidth": 50,
+      "defaultHeight": 50.0,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-mp-negin",
+      "name": "دوربل متوسط عمودی - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-mp-negin.svg",
+      "viewBox": "260.85 134 493.6 691",
+      "defaultWidth": 50,
+      "defaultHeight": 69.88873435326843,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-mp-fixed",
+      "name": "دوربل متوسط عمودی - نگین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-mp-fixed.svg",
+      "viewBox": "0 0 719 1005",
+      "defaultWidth": 50,
+      "defaultHeight": 69.88873435326843,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-ml-negin",
+      "name": "دوربل متوسط افقی - نگین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-ml-negin.svg",
+      "viewBox": "0 0 945 677",
+      "defaultWidth": 80,
+      "defaultHeight": 57.31216931216931,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-db-ml-fixed",
+      "name": "دوربل متوسط افقی - نگین؛ اجزای ثابت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-db-ml-fixed.svg",
+      "viewBox": "0 0 945 677",
+      "defaultWidth": 80,
+      "defaultHeight": 57.31216931216931,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "doorbell"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-portrait",
+      "name": "پاور سوییچ سه‌فرمان - نگین؛ portrait",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-portrait.svg",
+      "viewBox": "288.67 136 443.83 628",
+      "defaultWidth": 50,
+      "defaultHeight": 70.74780884572922,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-portrait-fixed",
+      "name": "پاور سوییچ سه‌فرمان؛ قاب کارت portrait",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-portrait-fixed.svg",
+      "viewBox": "0 0 712 1007",
+      "defaultWidth": 50,
+      "defaultHeight": 70.71629213483146,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-landscape",
+      "name": "پاور سوییچ سه‌فرمان - نگین؛ landscape",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-landscape.svg",
+      "viewBox": "192 246.28 692 496.12",
+      "defaultWidth": 70,
+      "defaultHeight": 50.185549132947976,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-negin-landscape-fixed",
+      "name": "پاور سوییچ سه‌فرمان؛ قاب کارت landscape",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-negin-landscape-fixed.svg",
+      "viewBox": "0 0 997 715",
+      "defaultWidth": 70,
+      "defaultHeight": 50.20060180541625,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-azin-portrait",
+      "name": "پاور سوییچ سه‌فرمان - آذین؛ portrait",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-azin-portrait.svg",
+      "viewBox": "0 0 690 974",
+      "defaultWidth": 50,
+      "defaultHeight": 70.57971014492753,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-azin-portrait-fixed",
+      "name": "پاور سوییچ سه‌فرمان - آذین؛ قاب کارت portrait",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-azin-portrait-fixed.svg",
+      "viewBox": "0 0 690 974",
+      "defaultWidth": 50,
+      "defaultHeight": 70.57971014492753,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-azin-landscape",
+      "name": "پاور سوییچ سه‌فرمان - آذین؛ landscape",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-azin-landscape.svg",
+      "viewBox": "0 0 959 702",
+      "defaultWidth": 70,
+      "defaultHeight": 51.24087591240876,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-azin-landscape-fixed",
+      "name": "پاور سوییچ سه‌فرمان - آذین؛ قاب کارت landscape",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-azin-landscape-fixed.svg",
+      "viewBox": "0 0 959 702",
+      "defaultWidth": 70,
+      "defaultHeight": 51.24087591240876,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
       ]
     }
   ]

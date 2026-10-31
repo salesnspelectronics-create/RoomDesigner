@@ -1,3 +1,5 @@
+> Current local equipment model: see [LIGHTING-MODEL.md](./LIGHTING-MODEL.md). This supersedes the previous equipment defaults below; SVG assets are retained.
+
 # Equipment catalog and legacy cleanup
 
 The current catalog has 30 equipment models, defined in `data/equipment-catalog.json` and mirrored offline. Original supplied SVGs or photographs are retained with SHA-256 provenance. Published vector artwork, manifest and mappings stay synchronized. Desktop equipment entries use compact text rows; mobile rows retain previews. Catalog metadata edits affect future placements; existing placements have independent Properties.

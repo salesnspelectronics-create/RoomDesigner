@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V275-R** (runtime acceptance pending user).
+Current source release: **V276** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -24,7 +24,7 @@ Expected URL: https://salesnspelectronics-create.github.io/RoomDesigner/
 
 ## Scope and limitations
 
-This is a prototype, not a production CAD engine. Current HTML is self-contained; no React, Node.js, ASP.NET, or database is needed to serve it. Any browser-local autosave is device/browser-specific: export project files to retain backups. Mobile Safari runtime behavior and DXF/PDF export require device acceptance testing.
+This is a prototype, not a production CAD engine. The app uses index.html plus local JavaScript/data/SVG assets; no React, Node.js, ASP.NET, or database is needed to serve it. Any browser-local autosave is device/browser-specific: export project files to retain backups. Mobile Safari runtime behavior and DXF/PDF export require device acceptance testing.
 
 RoomDesigner is independent from NSP Office; the latter is intentionally unchanged. Publishing this repository publicly does not itself grant an open-source license to reuse proprietary portions; license choice and third-party dependency audit remain pending.
 
@@ -80,3 +80,10 @@ This test uses a small synthetic Corel-style fixture; user-provided SVG artwork 
 The equipment menu now contains the 26 supplied NSP models with full-width rows, right-hand artwork and editable part number, series, Persian name and English name. New equipment defaults to Stretch and visible labels. Original source SVGs and their SHA-256 hashes are retained.
 
 Legacy equipment and dependent cables are removed from browser-local drawings, profiles, revisions, shortcuts and imported files. The retired equipment/connection archive controls and permanent migration backups have been removed; current project autosave and import transaction recovery remain available. See [Equipment migration and recovery](./EQUIPMENT-MIGRATION.md) for the current cleanup scope and tests. Migration happens when each browser opens v260; user iPhone/Safari acceptance remains pending.
+
+
+## V276 — catalog and editor integration
+
+Semantic equipment is organized by type, subtype, model and installation direction. Lighting, requests, thermostats, doorbells and Negin/Azin three-command power switches use central SVG references, model-specific real artwork, and live properties. The editor adds paged canvas navigation, image objects/paste, line bends and length, integer typography, accurate selection/resize/rotation, and bounded color updates with Undo. Independent main lock/deletion/polyline fixes are retained; local product/editor behavior takes precedence in conflicts. See [model data](./LIGHTING-MODEL.md) and [workspace properties](./WORKSPACE-PROPERTIES.md).
+
+Current regression coverage is in tests/lighting-model.test.cjs and the focused browser suites for power-switch variants, doorbell editing/models, door selection, line length/integer fonts, color-picker performance, images, placement and installation directions. Historical browser fixtures may describe superseded UI/product behavior; they are not the current acceptance specification. Browser/mobile user acceptance remains pending.

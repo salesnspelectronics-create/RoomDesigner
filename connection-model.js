@@ -55,7 +55,7 @@
   smoke:'<ellipse cx="40" cy="46" rx="27" ry="20"/><path d="M18 43q22 16 44 0M26 53h28M30 59h20M25 23c-8-7 7-9 0-16M40 21c-8-7 7-9 0-16M55 23c-8-7 7-9 0-16"/><circle cx="40" cy="37" r="3" fill="#0891B2"/>',
   motion:'<path d="M23 29q17-9 34 0v32q-17 11-34 0ZM23 39q17-8 34 0M23 50q17-8 34 0M34 26v40M46 26v40M15 22q-9 16 0 32M8 16q-13 22 0 44M65 22q9 16 0 32M72 16q13 22 0 44"/>'
  };
- function consumers(){return [['light','لامپ','Light','light','do'],['valve','شیر برقی','Solenoid Valve','valve','do'],['fan-coil','فن کویل','Fan Coil Unit','fan-coil','do'],['speaker','بلندگو','Speaker','speaker','do'],['smoke','سنسور دود','Smoke Sensor','smoke','di'],['motion','سنسور حرکت','Motion Sensor','motion','di']].map(([id,name,nameEn,icon,type])=>({catalogId:'load-'+id,kind:'load-'+id,category:'loads',equipmentRelease:global.RoomEquipment?.release||'nsp-equipment-260',connectionModel:version,name,nameEn,code:'',model:'',w:id==='fan-coil'?120:80,h:80,svgMode:'fit',showLabel:true,ports:id==='fan-coil'?[{id:'fan-1',name:'دور فن 1',type:'do',side:'top'},{id:'fan-2',name:'دور فن 2',type:'do',side:'top'},{id:'fan-c',name:'دور فن C',type:'do',side:'top'},{id:'hot-water',name:'لوله آب گرم',type:'do',side:'bottom'},{id:'cold-water',name:'لوله آب سرد',type:'do',side:'bottom'}]:loadPorts(type),svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+(id==='fan-coil'?120:80)+' 80"><rect x="1" y="1" width="'+(id==='fan-coil'?118:78)+'" height="78" rx="10" fill="#fff"/><g fill="none" stroke="#24374d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+symbols[icon]+'</g></svg>'}))}
+ function consumers(){return [['light','لامپ','Light','light','do'],['valve','شیر برقی','Solenoid Valve','valve','do'],['fan-coil','فن کویل','Fan Coil Unit','fan-coil','do'],['speaker','بلندگو','Speaker','speaker','do'],['smoke','سنسور دود','Smoke Sensor','smoke','di'],['motion','سنسور حرکت','Motion Sensor','motion','di']].map(([id,name,nameEn,icon,type])=>({catalogId:'load-'+id,kind:'load-'+id,category:'loads',equipmentRelease:global.RoomEquipment?.release||'nsp-equipment-260',connectionModel:version,name,nameEn,code:'',model:'',w:id==='fan-coil'?120:80,h:80,svgMode:'fit',showLabel:true,ports:id==='fan-coil'?[{id:'fan-1',name:'دور فن 1',type:'do',side:'top'},{id:'fan-2',name:'دور فن 2',type:'do',side:'top'},{id:'fan-c',name:'دور فن C',type:'do',side:'top'},{id:'hot-water',name:'لوله آب گرم',type:'do',side:'bottom'},{id:'cold-water',name:'لوله آب سرد',type:'do',side:'bottom'}]:loadPorts(type),svgAssetId:'load-'+id}))}
  function upgradeFieldDevices(d){
   let changed=false;const defaults=new Map(consumers().map(t=>[t.kind,t]));
   for(const v of d.devices||[]){
@@ -78,20 +78,11 @@
   if(Array.isArray(d.revisions))for(const r of d.revisions)r.snapshot=resetDocument(r.snapshot,current);
   return d;
  }
- function resetCatalog(items,legacy=false){
-  const builtins=new Map(global.RoomEquipment.defaults().map(t=>[t.assetId,t]));
-  const loads=consumers(),loadMap=new Map(loads.map(t=>[t.kind,t]));
-  const kept=items.filter(t=>!['load-fan-1','load-fan-2','load-fan-3','load-fan-c'].includes(t.kind));
-  let changed=kept.length!==items.length;
-  const result=kept.map(t=>{
-
-   const canonical=builtins.get(t.assetId||t.svgAssetId)||loadMap.get(t.kind);
-   if(canonical){const patch=canonical.category==='loads'?{svg:canonical.svg,catalogId:canonical.catalogId}:{};if(t.connectionModel===version&&JSON.stringify(t.ports)===JSON.stringify(canonical.ports)&&(!patch.svg||t.svg===patch.svg))return t;changed=true;return {...t,...patch,connectionModel:version,ports:canonical.ports.map(p=>({...p}))}}
-   if(legacy){changed=true;return {...t,connectionModel:version,ports:global.RoomEquipment.isArchitecture(t)?[]:equipmentPorts()}}
-   return t;
-  });
-  for(const t of [...builtins.values(),...loads])if(!result.some(x=>t.assetId?((x.assetId||x.svgAssetId)===t.assetId):x.kind===t.kind)){result.push(t);changed=true}
-  return changed?result:items;
+ function resetCatalog(items){
+ const kept=items.filter(t=>global.RoomEquipment.isArchitecture(t)||t.category==='loads').map(t=>t.category==='loads'?{...t,equipmentRelease:global.RoomEquipment.release}:t);
+ const result=[...global.RoomEquipment.defaults(),...kept];
+ for(const t of consumers())if(!result.some(x=>x.kind===t.kind))result.push(t);
+ return JSON.stringify(result)===JSON.stringify(items)?items:result;
  }
  function migrateStorage(storage){
   if(storage.getItem('rd_connection_model')===version)return false;

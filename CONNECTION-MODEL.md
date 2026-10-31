@@ -1,3 +1,5 @@
+> Current local equipment model: see [LIGHTING-MODEL.md](./LIGHTING-MODEL.md). This supersedes the previous equipment defaults below; SVG assets are retained.
+
 # Physical connection model — local changes pending release
 
 The next source release uses these physical connection types for both port fills and cable strokes:

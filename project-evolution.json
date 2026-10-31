@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V275-R",
-    "project_evolution_version": "V275-R",
+    "software_version": "V276",
+    "project_evolution_version": "V276",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V275-R",
+  "current_source_release": "V276",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -952,6 +952,254 @@
       "runtime_status": "automated_verification_pending_user_acceptance"
     },
     {
+      "date": "2026-10-27",
+      "event": "RD-202/RD-203 implemented and focused tests passed locally, pending runtime user acceptance and explicit release request."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-204: local catalog split and conditional اختصاصی inspector tab, pending user acceptance and release authorization."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-205: compact symbol palette and hover preview implemented locally, targeted browser tests passed, pending user review."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-206: consistent inspector rows, persistent disabled controls, code visibility/color and larger category chevrons implemented locally and verified."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-207: preserve size across display modes, set new 8L default to 100×50, format two-decimal geometry and accept one-unit dimensions; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-208 supersedes RD-207 mode-size preservation: restore standard bounds on mode change; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-209: Specific tab uses compact alternating icon/color property rows with shared General layout; local only."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-210: combined appearance/gang property rows and color activation limited to control; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-211: real product artwork stretches to independent object bounds; verified locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-212: Negin/Azin lighting model, 1L Azin vector and model-suffixed display names/codes implemented and tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-213/RD-214: Azin 2/3/4/6 SVGs and data-driven catalog type/model/variant rules implemented locally; eight-gang Azin excluded; focused tests passed."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-215: seven-gang Negin/Azin SVGs, catalog entry, portrait palette and editable iconic layout added and tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-216/RD-217: content-aware initial/100% view and per-object caption size implemented and browser-tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-218/RD-219/RD-220: default9 and hidden-size disabling, expanding paged graph canvas with edge auto-pan and row-major print mode, corrected آذین spelling; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-221: corrected false four-page start; tested content-driven single-page initialization and rectangular closure."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-222: request-switch family2R/3R/4R/6R Negin, Requests category and shared nine-icon registry added and tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-223: eight supplied request/service icon vectors replace provisional artwork in palette and picker, with saved-reference aliases; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-224/RD-225: fixed initial-paper coordinate display/editing and eight-point per-item multi-selection guides; verified locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-226: device X/Y now represent its top-left frame; numeric and mode-size edits preserve that anchor; tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-227: caption row last and catalog-driven restricted orientation field/code rule implemented and tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-228: four Azin request SVGs and catalog model variants added and tested locally."
+    },
+    {
+      "date": "2026-10-27",
+      "event": "RD-229: corrected8R request product with Negin/Azin redraws and existing Almas reference added and tested locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-230: product-family hierarchy made explicit and toolbox routing derived from type metadata locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-231: model-specific real proportions and iconic layout overrides implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-232: preserve existing single selection when starting additive selection."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-233: General palette and replaceable raster picture objects added locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-234: placeholder-only insertion, image double-click editing and native clipboard image paste added locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-235: proportional image sizing, immediate General shapes and live stroke thickness implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-236: single line palette with editable vertex and per-segment bend handles added locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-237: adjustable equipment border thickness, line selection correction and rotated resize cursors implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-238: border field reordered and context-dependent canvas cursors implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-239: editable code font size and scroll-to-pan/Ctrl-scroll-to-zoom implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-240: thinner General shape palette icon strokes applied locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-241: three Negin thermostat families with dedicated toolbox group and SVG references implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-242: shape_inspector_and_centered_insertion implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-243: closed_shape_backgrounds implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-244: model-owned iconic border color/thickness/visibility rules implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-245: fixed model/orientation toolbox variants, dark iconic defaults and upright portrait8L/8R assets added locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-246: editable non-Azin frames, independent code appearance, type-direction-model codes and exact editable names implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-247: family-only captions, full hidden-frame footprint and transparent light toolbox previews implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-248: automatic iconic outline based on background visibility with color-only editing implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-249: mixed enabled/disabled property rows now style each control independently."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-250: three Azin thermostat palette variants/real SVGs and whole-degree rotation implemented locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-251: below-object captions now share the central UI font family."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-252: Atlas18L landscape/portrait lighting templates and native real SVGs added locally."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-253: installation direction separated from product orientation; three products deduplicated in toolbox and legacy portrait instances migrated."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-254: shared bulb icon rotated to face downward."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-255: thermostat display limited to code/real with legacy iconic migration and separate toolbox previews."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-256: real-image mode now always resizes proportionally across handles, numeric fields and scale gestures."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-257: add large Negin BP/BL doorbells, editable iconic number and three service icons."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-258: independent room-number color and LTR inline editor."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-259: remove repeated Negin from doorbell family titles."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-260: add five fixed Azin/Almas/small-Negin doorbells with native SVGs and model-specific iconic layouts."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-261: inspector_ownership_and_doorbell_number"
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-262: color_picker_performance"
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-263: integer font sizes and open-line thickness/length properties."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-264: Persian door name, full selection bounds and manual rotation near walls."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-265: add medium Negin MP/ML doorbell products and assets."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-266: medium portrait and landscape follow small Negin at end of doorbell palette."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-267: one CR3R-NE power switch with two installation directions."
+    },
+    {
+      "date": "2026-10-28",
+      "event": "RD-268: CR3R-AZ power switch with portrait/landscape installation and fixed gold appearance."
+    },
+    {
+      "date": "2026-10-31",
+      "event": "RD-269: local-first commit/merge/push authorized; Git metadata write blocked by environment. Read-only comparison confirms main ahead by 15 commits."
+    },
+    {
       "release": "V274-R",
       "date": "2026-10-31",
       "phase": "desktop delete lock/dependency consistency",
@@ -964,6 +1212,13 @@
       "phase": "architectural polyline object identity",
       "summary": "Reuse a stable shapeId for successive segments of the same active-layer polyline, so shape selection, visibility, renaming, movement and deletion operate on the entire continuous shape.",
       "runtime_status": "PENDING_USER — USER_TESTING_POLICY"
+    },
+    {
+      "release": "V276",
+      "date": "2026-10-31",
+      "phase": "Local editor/product changes integrated with main",
+      "summary": "RD-187–RD-270 local product catalog/editor changes plus independent main lock/deletion/polyline fixes; local conflicts take precedence.",
+      "runtime_status": "2 unit suites and 13 focused browser suites passed; user/device acceptance pending"
     }
   ],
   "records": [
@@ -4099,7 +4354,1605 @@
       ]
     },
     {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local implementation only; no commit or push; visible V272 retained",
+      "runtime_status": "Focused source/browser verification; manual user acceptance pending",
       "id": "RD-187",
+      "record_type": "user_requirement",
+      "module": "architecture_properties",
+      "user_statement": "Distinguish architecture from equipment/field devices. Architecture has one name and label checkbox, geometry, angle and SVG mode; remove equipment metadata, background color and port-side controls.",
+      "assistant_interpretation": "Use explicit category/kind classification rather than port-count inference; simplify the sidebar and double-click sheet for architecture symbols while preserving their SVG/transform controls.",
+      "verification_evidence": [
+        "Browser tests verify visible architecture fields, absence of metadata/background/port controls and saved name."
+      ]
+    },
+    {
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local implementation only; no commit or push; visible V272 retained",
+      "runtime_status": "Focused source/browser verification; manual user acceptance pending",
+      "id": "RD-188",
+      "record_type": "user_requirement",
+      "module": "semantic_lighting_switch",
+      "user_statement": "Replace all existing default equipment with one lighting switch, keep SVGs, draw a black-bordered white square with lamp icon and label, no ports. Double-click chooses 1/2/3/4/6/8 gangs and an independent SVG icon for each. Remove previous placed equipment so testing can restart.",
+      "assistant_interpretation": "Replace JSON/offline equipment catalog and migrate current/profile/revision/shortcut equipment once, preserving architecture and all SVG assets/drafts. Generate a composite vector face from gangCount and gangIcons; offer three native lamp icons with draft-based Save/Cancel. Keep the separate field-device category.",
+      "verification_evidence": [
+        "Focused model checks cover single-item catalog, all six gang counts, vector composition and recursive migration/reload idempotence.",
+        "Real browser checks cover actual double-click, category-specific properties, per-gang icon editing, cancel, reload and mobile.",
+        "Browser regression also passed Undo/Redo, export-shaped import round trip, dark readable labels and schema validation. Local preview serves lighting-model.js successfully (HTTP 200); diff whitespace checks passed."
+      ]
+    },
+    {
+      "id": "RD-189",
+      "record_type": "user_requirement",
+      "module": "lighting_layout_and_styling",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Use centered 1; side-by-side 2 and 3; 2×2 for four; three rows of two for six; two rows of four for eight. All icon sizes must match. Show white icon previews on the dark modal. Allow changing border, background and icon colors and hiding border/background.",
+      "assistant_interpretation": "Use fixed 18-unit icon boxes and 22-unit pitch on a common 100-unit face. Add optional border/background visibility, their colors, bulk icon color and independent per-gang colors. Preserve older test switches via default values, no new cleanup/reset.",
+      "implementation_status": "Local uncommitted source; no push; visible V272 retained",
+      "runtime_status": "Focused model and real-browser regression passed; manual user acceptance pending",
+      "verification_evidence": [
+        "Compared retained original lighting SVG asset structures; used the explicitly requested layouts.",
+        "Unit checks cover all six centered layouts, same icon dimensions, colored vectors, hidden border/background and white picker previews.",
+        "Real-browser tests passed white picker previews, bulk/per-gang colors, border/background transparency, Undo/Redo, cancel, reload, import round trip and mobile editing. Canvas screenshot visually reviewed; local preview module returns HTTP 200."
+      ]
+    },
+    {
+      "id": "RD-190",
+      "record_type": "user_requirement",
+      "module": "lighting_reference_proportions_and_color_swatches",
+      "source": "user chat and six attached local SVG paths",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Measure icon proportions and positions against the supplied lighting SVGs; existing icons are too small and four-gang icons too close. Eight gangs must be a landscape rectangle with the first four on the left and the next four on the right. Replace thin-line color inputs with clickable colored squares.",
+      "assistant_interpretation": "Measure visible face and icon getBBox clusters, normalize away artboard margins, average aligned row/column centers, enlarge the common icon viewport to 20 units and tighten icon padding. Use source eight-gang aspect ratio 2.0314, update dimensions on type changes and upgrade existing square test devices once. Style native color inputs as 40px swatches.",
+      "implementation_status": "Local only, uncommitted and unpushed; visible V272 unchanged",
+      "runtime_status": "Focused unit and real-browser checks passed; screenshots visually reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "Source measurements recorded in data/lighting-layout-reference.json; original SVG files retained.",
+        "Unit coverage: layout spacing, equal icon size, eight-gang 2.03 ratio, left/right gang ordering, one-time square upgrade and preservation of later manual dimensions.",
+        "Real browser: 40x40 color controls on desktop/mobile, automatic width changes to/from eight, color/save/cancel/undo/import/reload regression passed.",
+        "Visual review: six-count gallery and actual mobile modal color controls."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; V272 retained",
+      "runtime_status": "Focused real-browser regression passed and screenshots reviewed; manual user acceptance pending",
+      "id": "RD-191",
+      "module": "compact_lighting_editor",
+      "user_statement": "Style the modal scrollbar, remove the frame around all fields, put border/background visibility and color on single rows with matched checkbox/swatch sizes, put bulk icon color inline, and select an icon by clicking the icon instead of using a select.",
+      "assistant_interpretation": "Use themed scrollbar CSS, visually borderless disabled-aware fieldset, compact horizontal appearance rows and a per-gang visual picker with keyboard focus and Escape dismissal.",
+      "verification_evidence": [
+        "Browser assertions verify fieldset border 0, scrollbar thin, aligned row centers, matching 24px swatches, selected-icon focus and Escape closing only the picker.",
+        "Full lighting browser flow still passes save/cancel, per-gang colors, undo/redo, reload, import, type/aspect changes and mobile; screenshots reviewed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; V272 retained",
+      "runtime_status": "Focused real-browser regression passed and screenshots reviewed; manual user acceptance pending",
+      "id": "RD-192",
+      "module": "responsive_quick_dock",
+      "user_statement": "Hide the movable floating smiling-emoji quick toggle on desktop and keep it on mobile.",
+      "assistant_interpretation": "Hide #quickDock via desktop-layout-specific CSS; preserve mobile interaction and stored position without deleting shared functionality.",
+      "verification_evidence": [
+        "Browser assertions verify hidden dock on desktop, visible dock after switching to mobile, and hidden dock again on returning to desktop."
+      ]
+    },
+    {
+      "id": "RD-193",
+      "record_type": "user_requirement",
+      "module": "floating_icon_picker",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "Replace the expanding inline icon selector with a small floating square beside the clicked icon, like a color picker. Show smaller icons without titles and scroll internally when there are more choices.",
+      "assistant_interpretation": "Use a viewport-clamped fixed 176px picker with caption-free 24px images and 40px selectable tiles. Move the open panel out of the sheet to avoid clipping and layout expansion; retain accessible names, focus return, Escape/outside dismissal and current draft/save behavior.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused real-browser regression passed; screenshot reviewed; manual user acceptance pending",
+      "verification_evidence": [
+        "Browser assertions: fixed square dimensions, no parent form reflow, panel attached outside sheet, caption-free 24px icons, overflow scrolling with many temporary test choices, viewport containment on mobile.",
+        "Picker selection, Escape focus return, outside dismissal, per-gang settings, colors, undo/redo, reload/import and desktop/mobile regression passed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed; desktop/mobile screenshots reviewed; manual user acceptance pending",
+      "id": "RD-194",
+      "module": "shared_right_workspace_dock",
+      "user_statement": "Place toolbox and layers/groups together on the right, like Visual Studio, supporting both closed, pinning one while the other opens on hover/click, or both open splitting the space. Keep Properties on the left.",
+      "assistant_interpretation": "Create a shared right dock and edge rail, pinned vertical split with movable separator, transient hover preview, click-latched overlays and independent left inspector. Persist panel modes, dimensions and split outside document history.",
+      "verification_evidence": [
+        "Browser checks: physical right/left placement, split geometry, both closed, hover dismissal, clicked overlay persistence, one/both pinned, keyboard split/width adjustments and restoration after reload."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed; desktop/mobile screenshots reviewed; manual user acceptance pending",
+      "id": "RD-195",
+      "module": "live_tabbed_property_inspector",
+      "user_statement": "Remove lock/edit buttons from Properties. Use General for name, label, geometry and appearance; show a lighting-only tab for gang type and icons, with radios in two rows of three. Reserve a future Ports tab. Apply all changes immediately, without Save or double-click opening a dialog.",
+      "assistant_interpretation": "Render type-aware live inspector tabs. Use the existing semantic lighting appearance and floating picker, explicit six gang radios, immediate input/change patches with focus preservation and one Undo gesture per field focus. Retain architecture-specific field rules and expose Ports as disabled future work.",
+      "verification_evidence": [
+        "Browser checks: immediate name/colors/visibility, six radios, eight-gang aspect update, per-gang choices/colors, conditional architecture tab, no double-click sheet, no Save button, Undo/Redo and saved data reload.",
+        "Mobile uses the same live fields through Properties; desktop/mobile screenshots reviewed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending explicit release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed; desktop/mobile screenshots reviewed; manual user acceptance pending",
+      "id": "RD-196",
+      "module": "context_only_locking",
+      "user_statement": "Move lock/unlock to right-click and remove it elsewhere; show lock when unlocked and unlock when locked.",
+      "assistant_interpretation": "Add contextual lock/unlock for objects, groups and multiple selections on canvas, and objects/layers in the tree. Remove lock buttons in the inspector, old object modal, quick dock and layer headers; keep status badges. Enforce locked-layer membership protection.",
+      "verification_evidence": [
+        "Browser checks: context lock/unlock, read-only inspector while object/layer locked, no other lock controls, and layer context lock/unlock."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and selection screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit and browser checks passed; manual acceptance pending",
+      "id": "RD-197",
+      "module": "lighting_initial_dimensions",
+      "user_statement": "Make the initial lighting switch width and height 50 instead of 100.",
+      "assistant_interpretation": "Set JSON/offline catalog defaults to 50 by 50 for new placements only.",
+      "verification_evidence": [
+        "Unit and browser assertions passed exact 50 by 50 defaults."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and selection screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit and browser checks passed; manual acceptance pending",
+      "id": "RD-198",
+      "module": "blue_eight_handle_selection",
+      "user_statement": "Match the supplied draw.io selections: blue dashed non-rounded bounding box, eight blue filled circle handles, directional edge resizing, free corner resizing, Shift ratio preservation from all handles, and a smaller blue rotation icon. Circle selection is rectangular.",
+      "assistant_interpretation": "Share rotated local resize geometry for devices, rectangles and ellipses. Keep the opposite corner/edge fixed; proportional side drags grow the other dimension symmetrically. Separate editor guides from object artwork and preserve multi-selection, locks, attached doors and port hit priority.",
+      "verification_evidence": [
+        "64 unit combinations verify rotation, opposite anchors, side constraints, ratio and minimum size.",
+        "Browser passed all eight rotated Shift drags, side axes, zoom-invariant markers, rectangle/ellipse resizing, Undo, locks and real port clicks.",
+        "Live inspector/dock browser regression passed after new defaults. Shape screenshots reviewed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit/browser checks passed; screenshots reviewed; manual acceptance pending",
+      "id": "RD-199",
+      "module": "lighting_face_independent_resize",
+      "user_statement": "Independent width or height resizing changes the highlight but not the actual lighting face; only Shift-proportional resizing appears correct.",
+      "assistant_interpretation": "Generate the SVG face in actual object dimensions, fill the entire bounds and uniformly size icon viewports so glyphs are not distorted.",
+      "verification_evidence": [
+        "Unit tests passed wide/tall/rectangular face bounds and equal icon viewport axes.",
+        "Real browser verified rendered image width/height equal object dimensions after side/corner drags and live numeric edits; selection regression passed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit/browser checks passed; screenshots reviewed; manual acceptance pending",
+      "id": "RD-200",
+      "module": "single_pinned_dock_height",
+      "user_statement": "Only split the right-hand area when both toolbox and layers are pinned. If only one is pinned, it should use the whole available height.",
+      "assistant_interpretation": "Use flex-grow 1 for a sole pinned panel and apply the saved split fraction only when both are pinned.",
+      "verification_evidence": [
+        "Browser assertions passed full host height for toolbox-only and layers-only, plus the existing both-pinned split, overlay and persisted layout scenarios."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-26",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit/browser checks passed; screenshots reviewed; manual acceptance pending",
+      "id": "RD-201",
+      "module": "connected_inspector_tabs",
+      "user_statement": "General and other property tabs look like buttons; make them look like tabs.",
+      "assistant_interpretation": "Use a joined tab strip with inactive transparent tabs, a content-connected selected tab, blue top accent, roving focus and keyboard navigation.",
+      "verification_evidence": [
+        "Browser checks passed Home/Left navigation and correct visible panels; desktop tab appearance reviewed."
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit and browser checks passed; manual acceptance pending",
+      "id": "RD-202",
+      "module": "lighting_display_modes",
+      "user_statement": "سه حالت کد، آیکونی و تصویر واقعی برای کلید روشنایی، با کد و SVG متناسب با تعداد پل؛ کپی تصویر هشت الماس برای 8L.",
+      "assistant_interpretation": "General tab selects code/iconic/real; six variants use 1L through 8L and fixed nsp-Nl assets. Code ink and iconic styling editable; real images hide styling and per-gang controls. Preserve settings when switching modes.",
+      "verification_evidence": [
+        "lighting-model.test.cjs passed",
+        "lighting-display-modes.browser.test.cjs passed: six variants, conditional controls, references, save/reload",
+        "live-workspace.browser.test.cjs and selection-handles.browser.test.cjs passed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused unit and browser checks passed; manual acceptance pending",
+      "id": "RD-203",
+      "module": "shared_svg_references",
+      "user_statement": "اطلاعات SVG یا base64 روی objectها و JSONهای مختلف ذخیره نشود؛ آیکون‌ها و تصاویر به کتابخانه SVG ارجاع دهند.",
+      "assistant_interpretation": "Register icons and product/field images centrally; persist only references on objects, nested revisions, catalogs and exports. Promote legacy/custom raw and original SVG to shared deduplicated local library before replacing payloads.",
+      "verification_evidence": [
+        "lighting-model.test.cjs passed",
+        "lighting-display-modes.browser.test.cjs passed: six variants, conditional controls, references, save/reload",
+        "live-workspace.browser.test.cjs and selection-handles.browser.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-204",
+      "record_type": "user_requirement",
+      "module": "lighting_catalog_variants_and_specific_tab",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "شش روشنایی ۱،۲،۳،۴،۶،۸ پل با کد مرتبط در فهرست تجهیزات؛ حذف تغییر نوع پس از افزودن؛ عمومی برای حالت نمایش و ظاهر، اختصاصی فقط برای آیکون‌ها؛ حذف کد اضافی زیر حالت نمایش.",
+      "assistant_interpretation": "Six distinct catalog IDs share the semantic lighting model; fix gang count at insertion. Rename conditional icon tab to اختصاصی and show only in iconic mode. Keep display mode and relevant appearance/code ink in General without extra code paragraph.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and six-variant browser tests passed; user acceptance pending",
+      "verification_evidence": [
+        "lighting-model.test.cjs: six catalog definitions, dimensions, codes and icon references",
+        "lighting-display-modes.browser.test.cjs: all six catalog variants, no type changer, conditional specific tab, reload"
+      ]
+    },
+    {
+      "id": "RD-205",
+      "record_type": "user_requirement",
+      "module": "compact_symbol_toolbox",
+      "source": "user chat and supplied draw.io screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "جعبه ابزار با دسته‌های ساده بدون کادر و پلاس؛ چهار آیکون بدون متن در هر ردیف؛ پیش‌نمایش بزرگ همراه عنوان در هاور؛ حذف کابل‌کشی؛ عنوان روشنایی؛ خالی‌کردن شورتکات‌ها؛ نماد روشن و بدون پس‌زمینه سفید برای عملگرها و سنسورها.",
+      "assistant_interpretation": "Render compact borderless category headings and four-column icon-only tiles. Show viewport-clamped floating artwork/title/code on hover or focus. Remove cabling and add buttons, rename equipment heading to lighting, reset shortcuts once. Use transient light transparent field-device artwork in palette without modifying canvas assets.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused compact-toolbox browser suite passed and screenshot reviewed; user acceptance pending",
+      "verification_evidence": [
+        "compact-toolbox.browser.test.cjs: no plus/cabling, six lighting icons, empty prior shortcuts, four columns, zero category border, decoded SVG thumbnails, hover/focus preview, code search and insertion",
+        "work/compact-toolbox-preview.png visually reviewed"
+      ]
+    },
+    {
+      "id": "RD-206",
+      "record_type": "user_requirement",
+      "module": "consistent_property_rows_and_disclosure",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "فلش دسته‌بندی‌ها بزرگ‌تر؛ ادامه خصوصیات در ردیف‌های مشابه نام و اندازه، نحوه نمایش به‌صورت select؛ نمایش/رنگ کادر، پس‌زمینه، کد؛ انتخاب رنگ مستطیلی؛ کنترل‌های نامرتبط غیرفعال ولی باقی بمانند؛ تب اختصاصی همیشه بازشدنی و در حالت خالی پیام داشته باشد.",
+      "assistant_interpretation": "Use larger 8px two-pixel chevrons, shared deskField rows and a display-mode select. Add persistent showCode/codeColor. Keep all style controls visible and disable them by display mode; keep Specific tab for all lighting modes with empty-state text outside iconic mode.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and browser suites passed; screenshot reviewed; user acceptance pending",
+      "verification_evidence": [
+        "lighting-display-modes.browser.test.cjs: actual 2px chevron border, rectangular color swatches, disabled code fields in iconic, disabled appearance in real, enabled Specific empty state, showCode rendering and reload",
+        "live-workspace.browser.test.cjs passed",
+        "lighting-model.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-207",
+      "record_type": "user_requirement",
+      "module": "property_geometry_precision_and_mode_size",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "اندازه آیکونی/تصویر برای معمولی ۵۰×۵۰ و 8L برابر ۱۰۰×۵۰؛ ابتدا اندازه کد ۵۰×۲۵ مطرح شد ولی در پایان اصلاح شد که تغییر حالت نمایش به اندازه دست نزند. مقادیر موقعیت و اندازه حداکثر دو یا سه اعشار نمایش داده شوند؛ حداقل عرض/ارتفاع فیلدها یک باشد.",
+      "assistant_interpretation": "Honor the final correction: display mode changes only mode and preserves actual current width/height, including manual resizing. Use 100×50 for newly inserted 8L and retain 50×50 for other iconic defaults. Display x/y/w/h at maximum two decimal places without rounding existing stored geometry; round new numeric edits to two decimals and allow dimensions down to one.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser and lighting-model unit checks passed; user acceptance pending",
+      "verification_evidence": [
+        "property-size-precision.browser.test.cjs passed: all three modes preserve arbitrary dimensions, initial 8L size, display precision, retained model precision, width/height=1 and manual-entry rounding",
+        "lighting-model.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-208",
+      "record_type": "user_requirement",
+      "module": "standard_size_on_display_mode_change",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "با تغییر نحوه نمایش، بدون توجه به ابعاد فعلی، عرض و ارتفاع استاندارد همان حالت اعمال شود.",
+      "assistant_interpretation": "Supersede RD-207 size preservation: changing mode resets code to 50×25, iconic/real to 50×50, or 100×50 for eight-gang iconic/real. Keep manual sizing possible until next mode change.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Browser regression passed for all six variants and three modes; user acceptance pending",
+      "verification_evidence": [
+        "property-size-precision.browser.test.cjs passed: standard reset for all modes/counts, manual size override, precision and minimum dimensions"
+      ]
+    },
+    {
+      "id": "RD-209",
+      "record_type": "user_requirement",
+      "module": "specific_icon_property_rows",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "تب اختصاصی در حالت آیکونی هم مانند عمومی ردیفی باشد: رنگ همه آیکون‌ها، آیکون پل ۱، رنگ پل ۱، آیکون پل ۲، رنگ پل ۲ و غیره؛ انتخابگر آیکون کوچک و هم‌ارتفاع کنترل‌های دیگر.",
+      "assistant_interpretation": "Use shared desk-field grid for bulk color and alternating per-gang icon/color rows. Reduce icon trigger to 48×29 with 20px glyph; retain floating picker and immediate independent/bulk color updates.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Live inspector browser suite passed; manual acceptance pending",
+      "verification_evidence": [
+        "live-workspace.browser.test.cjs: bulk and per-gang updates, picker, mobile; added exact row-order and 29px trigger checks"
+      ]
+    },
+    {
+      "id": "RD-210",
+      "record_type": "user_requirement",
+      "module": "combined_property_controls",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "کادر/پس‌زمینه/کد هرکدام یک ردیف با چک‌باکس نمایش و انتخابگر رنگ؛ اختصاصی: همه آیکون‌ها با رنگ، هر پل با انتخابگر آیکون و رنگ در یک ردیف؛ رنگ فقط با کلیک روی خود کنترل باز شود؛ عرض کمتر و ارتفاع ثابت.",
+      "assistant_interpretation": "Group visibility and color controls in one shared property row. Group per-gang icon and color in one row, bulk color above. Replace wrapping labels with neutral containers and explicit accessible input names so adjacent text/whitespace does not activate native color input. Narrow color swatches to 36px and retain height 26px.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Live inspector browser suite passed; screenshot reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "live-workspace.browser.test.cjs: correct combined row labels, per-gang/bulk updates, picker, color width36/height26; clicking label and neighboring text produces zero color input clicks, direct control click produces one"
+      ]
+    },
+    {
+      "id": "RD-211",
+      "record_type": "user_requirement",
+      "module": "real_image_stretch",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "در نمایش تصویر واقعی، تغییر مستقل عرض/ارتفاع باید تصویر را در تمام کادر بگستراند؛ کشیده‌شدن تصویر ایرادی ندارد.",
+      "assistant_interpretation": "Use Stretch for real lighting artwork instead of Fit, with both image element and inner SVG preserveAspectRatio none. Retain other modes and default-size behavior.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Six-variant browser checks verify independent wide/tall dimensions; user acceptance pending",
+      "verification_evidence": [
+        "lighting-display-modes.browser.test.cjs: each real variant rendered at 180×35 and 35×180, correct width/height and no aspect-ratio preservation"
+      ]
+    },
+    {
+      "id": "RD-212",
+      "record_type": "user_requirement",
+      "module": "lighting_product_models",
+      "source": "user chat and supplied 1L Azin reference image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "مدل نگین و آزین در خصوصیات روشنایی؛ آزین فعلاً فقط یک پل با SVG ساخته‌شده از عکس؛ تغییر مدل تصویر واقعی، نام زیر آبجکت و کد NE/AZ را تغییر دهد.",
+      "assistant_interpretation": "Persist lightingModel default negin and expose Azin only for 1L while other Azin pictures are unavailable. Register a native vector redraw matching the existing 1L artboard/face dimensions. Derive model-suffixed code and canvas/export label, without changing user-entered base name or iconic artwork.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Model browser and lighting unit/display mode suites passed; screenshot reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "lighting-model-variants.browser.test.cjs: model selector, immutable iconic art, Azin/Negин real images, crop frame, unchanged dimensions, model suffix label/code, Undo, reload and reference-only storage",
+        "lighting-model.test.cjs passed",
+        "lighting-display-modes.browser.test.cjs passed",
+        "work/lighting-azin-real.png reviewed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and four supplied Azin images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and browser suites passed; vector gallery reviewed; manual acceptance pending",
+      "id": "RD-213",
+      "module": "azin_remaining_lighting_vectors",
+      "user_statement": "تصاویر آزین دو، سه، چهار و شش پل به SVG تبدیل شوند؛ آزین هشت پل وجود ندارد.",
+      "assistant_interpretation": "Add four native vector redraws with existing artboard/face bounds and register their SVG references; allow Azin for counts 1/2/3/4/6 only.",
+      "verification_evidence": [
+        "lighting-model-variants.browser.test.cjs passed for new model choices/assets/codes",
+        "work/azin-vector-gallery.png reviewed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and four supplied Azin images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and browser suites passed; vector gallery reviewed; manual acceptance pending",
+      "id": "RD-214",
+      "module": "equipment_type_model_relations",
+      "user_statement": "روابط نوع تجهیز، مدل‌ها و فیلدها استاندارد و در JSON تعریف شوند؛ نبودن آزین برای هشت پل از روی همین قواعد تصمیم‌گیری شود؛ ساختار برای تجهیزات آینده قابل توسعه باشد.",
+      "assistant_interpretation": "Extend the existing equipment catalog with schemaVersion2, equipmentTypes, models and per-entry variants. Add generic lookup/validation/field merge functions; drive lighting model dropdown, asset, code suffix and label from these data rather than gang-specific conditionals. No unrelated registry files.",
+      "verification_evidence": [
+        "lighting-model.test.cjs: valid relations, missing/duplicate references rejected, Azin unavailable for8, forged catalogId guarded, generic synthetic camera model/field merge",
+        "live-workspace.browser.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-215",
+      "record_type": "user_requirement",
+      "module": "seven_gang_lighting",
+      "source": "user chat and two supplied 7L Negin/Azin images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "روشنایی هفت پل با دو تصویر نگین و آزین به SVG تبدیل و به سیستم و جعبه ابزار با آیکون قابل انتخاب اضافه شود.",
+      "assistant_interpretation": "Add lighting-7l with both catalog model variants and shared SVG references. Define portrait layout (one top + three paired rows), seven configurable icons, defaults50×70 and code50×25. Read gang counts and mode sizes from existing catalog data.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused seven-gang browser and existing mode/unit suites passed; gallery reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "seven-gang.browser.test.cjs: palette/hover/insertion, icon7 editing, both model images/codes, import validation, mode sizes and reload",
+        "lighting-model.test.cjs: seven-item catalog, seven positions, both models, layout validation",
+        "lighting-display-modes.browser.test.cjs passed",
+        "work/seven-gang-gallery.png reviewed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser suites passed; desktop inspector screenshot reviewed; manual acceptance pending",
+      "id": "RD-216",
+      "module": "initial_view_and_reset_zoom",
+      "user_statement": "هنگام بازشدن/رفرش همه المان‌ها دیده شوند، زوم در صورت نیاز کمتر شود ولی بالاتر از۱۰۰٪ نباشد؛ دکمه۱۰۰٪ بر اساس ابتدای آیتم‌ها موقعیت بوم را تنظیم کند.",
+      "assistant_interpretation": "Measure visible world bounds including rotated devices, labels, cables and walls. Fit on startup/reload/recovered startup with maximum100%; anchor100% reset to top/left content with a safe screen margin instead of world origin.",
+      "verification_evidence": [
+        "startup-view-captions.browser.test.cjs: negative and distant objects visible on desktop/mobile reload, zoom<=100%, reset100 anchors first content",
+        "live-workspace.browser.test.cjs passed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser suites passed; desktop inspector screenshot reviewed; manual acceptance pending",
+      "id": "RD-217",
+      "module": "device_caption_font_size",
+      "user_statement": "فونت نام زیر آیتم کوچک‌تر شود و کنار نمایش نام زیر آبجکت امکان تغییر اندازه فونت در خصوصیات باشد.",
+      "assistant_interpretation": "Use default caption size10 instead of12, add compact نام زیر آبجکت row with show checkbox and font-size input, persist per-device labelFontSize, and apply to canvas/print/DXF labels.",
+      "verification_evidence": [
+        "startup-view-captions.browser.test.cjs: default10, live16, hide/show, reload persistence",
+        "work/live-inspector-general.png reviewed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and two supplied draw.io screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser suites passed; paged canvas screenshot reviewed; manual acceptance pending",
+      "id": "RD-218",
+      "module": "caption_default_and_disabled_size",
+      "user_statement": "فونت پیش‌فرض نام زیر آیتم۹ شود؛ وقتی نمایش نام خاموش است اندازه قابل تغییر نباشد.",
+      "assistant_interpretation": "Default captions to9 while retaining explicit saved sizes, disable font-size input when showLabel=false and preserve its prior value.",
+      "verification_evidence": [
+        "paged-canvas.browser.test.cjs: default9, disable hidden caption size and restore14",
+        "startup-view-captions.browser.test.cjs and live-workspace.browser.test.cjs passed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat and two supplied draw.io screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser suites passed; paged canvas screenshot reviewed; manual acceptance pending",
+      "id": "RD-219",
+      "module": "expanding_page_canvas_and_print",
+      "user_statement": "مانند draw.io صفحه شطرنجی اولیه با اندازه حدود۸۵۰×۱۱۰۰، گسترش صفحه در چهار جهت، خط جداکننده و حرکت نما همراه کشیدن آیتم؛ چاپ هر بخش در یک صفحه به ترتیب چپ‌به‌راست و سپس پایین.",
+      "assistant_interpretation": "Render a white graph-paper region over gray workspace with logical850×1100 tiles. Derive extent from visible content including origin tile, draw dashed seams, auto-pan continuously at canvas edges while dragging, and add separate row-major canvas-page printing while retaining whole/view print options.",
+      "verification_evidence": [
+        "paged-canvas.browser.test.cjs: initial tile, expansion in four directions, dashed seams, continuous edge movement in four directions and stopping, four-page row-major print HTML without editor overlays",
+        "startup desktop/mobile fit regression passed",
+        "work/paged-canvas.png reviewed"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user spelling correction during RD-219 work",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser suites passed; paged canvas screenshot reviewed; manual acceptance pending",
+      "id": "RD-220",
+      "module": "azin_persian_spelling",
+      "user_statement": "املای درست نام مدل «آذین» است.",
+      "assistant_interpretation": "Correct displayed model and SVG manifest names to آذین while keeping stable azin IDs, filenames and AZ code suffixes unchanged.",
+      "verification_evidence": [
+        "Catalog and offline bundles updated together",
+        "lighting-model.test.cjs passed with corrected display name"
+      ]
+    },
+    {
+      "id": "RD-221",
+      "record_type": "user_report_and_clarification",
+      "module": "initial_paper_allocation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "شروع فقط یک صفحه؛ افزودن صفحات بر اساس عبور کنترل از مرز، با پرکردن گوشه خالی برای حفظ مستطیل هنگام گسترش در دو جهت.",
+      "assistant_interpretation": "Place new items inside actual paper instead of gray viewport margins. Allocate pages using body geometry, excluding captions. Establish fixed paper origin for compact legacy margin-placed diagrams without moving objects.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Browser checks passed; user acceptance pending",
+      "verification_evidence": [
+        "page-allocation.browser.test.cjs passed: initial1 page, legacy coordinates unchanged, exact thresholds, caption exclusion, L-to-rectangle closure and reload",
+        "paged-canvas and startup-view-captions browser suites passed"
+      ]
+    },
+    {
+      "id": "RD-222",
+      "record_type": "user_requirement",
+      "module": "request_switch_catalog_and_service_icons",
+      "source": "user chat, including correction that three-command code is 3R",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "دسته درخواست‌ها زیر روشنایی؛ کلید درخواست دو، سه، چهار و شش فرمان نگین با کدهای2R/3R/4R/6R؛ همان مدل و نمایش کد/آیکن/تصویر؛ شش آیکن پایه خدمات به انتخابگر اضافه شود.",
+      "assistant_interpretation": "Register request-switch type and four products with existing Negin SVG references; reuse semantic panel rendering and live properties. Add a Requests palette section immediately after Lighting. Move icon choices into the shared catalog registry: three lighting and six new native service SVGs. Use فرمان labels and 3R code.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Request browser, lighting unit and existing live-inspector checks passed; picker screenshot reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "request-switches.browser.test.cjs: category order, four palette entries, Negin/model/assets, command labels, nine icon choices, service/bulk color changes, all display modes, no ports, import/reload and reference-only storage",
+        "lighting-model.test.cjs passed",
+        "work/request-switch-picker.png reviewed"
+      ]
+    },
+    {
+      "id": "RD-223",
+      "record_type": "user_requirement",
+      "module": "supplied_request_service_icons",
+      "source": "user chat and eight supplied service-icon images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "آیکون‌های ارسالی درخواست جایگزین آیکون‌های خدمات قبلی در جعبه ابزار درخواست‌ها و انتخابگر شوند؛ تصویر واقعی فعلی تأیید است.",
+      "assistant_interpretation": "Redraw eight supplied silhouettes as recolorable native SVGs: cleaning, do-not-disturb, laundry, room-service, vacuum, housekeeping, garment and yoga. Replace service choices/default request compositions, keep three lighting choices and original real equipment SVGs. Alias retired service-bell/assistance IDs to replacement icons for saved documents.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Service-icon and request browser suites plus lighting unit checks passed; gallery reviewed; user visual acceptance pending",
+      "verification_evidence": [
+        "supplied-service-icons.browser.test.cjs: eight reference-derived choices,11 total, toolbox defaults, all images decode, old-ID migration, recoloring, real asset reference and reload",
+        "request-switches.browser.test.cjs passed with11 choices",
+        "lighting-model.test.cjs passed",
+        "work/supplied-service-icons.png reviewed",
+        "Git diff of the four existing request real SVGs is empty"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed; screenshot reviewed; user acceptance pending",
+      "id": "RD-224",
+      "module": "initial_paper_coordinate_origin",
+      "user_statement": "مبدأ مختصات گوشه بالا-چپ بوم اولیه باشد؛ در سمت چپ X و بالای آن Y منفی شود و با اضافه‌شدن صفحات جابه‌جا نشود.",
+      "assistant_interpretation": "Use the stored initial paper origin for inspector X/Y display and numeric edits, read-only shape coordinates, cursor coordinates, grid alignment and grid snapping; keep existing world geometry unchanged.",
+      "verification_evidence": [
+        "origin-multiselection.browser.test.cjs: nonzero paper origin maps to UI0,0; numeric negative values cross left/top, origin stays fixed after reset and grid aligns"
+      ]
+    },
+    {
+      "record_type": "user_requirement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed; screenshot reviewed; user acceptance pending",
+      "id": "RD-225",
+      "module": "multi_selection_visual_handles",
+      "user_statement": "در انتخاب چندتایی دور هر آیتم همان خط و دایره‌های آبی انتخاب تکی دیده شود.",
+      "assistant_interpretation": "Show eight blue points and the existing dashed blue outline on each unlocked selected device/rectangular or elliptical shape in multi/group selection. Points are visual markers; existing multi-move behavior is retained.",
+      "verification_evidence": [
+        "origin-multiselection.browser.test.cjs: three selected devices each have8 blue points/dashed guides",
+        "selection-handles.browser.test.cjs and live-workspace.browser.test.cjs passed",
+        "work/multi-selection-origin.png reviewed"
+      ]
+    },
+    {
+      "id": "RD-226",
+      "record_type": "user_clarification",
+      "module": "item_top_left_position",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "X و Y موقعیت هر آیتم، گوشه بالا-چپ خود آن آیتم را مشخص کند.",
+      "assistant_interpretation": "Display/edit the item frame top-left relative to the fixed initial paper origin instead of its center. Preserve this anchor during numeric width/height changes and standard display-mode resizing; retain center-based internal rendering geometry.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed; user acceptance pending",
+      "verification_evidence": [
+        "item-top-left.browser.test.cjs: nonzero page origin, negative top-left edits, resize/mode anchor preservation and reload",
+        "origin-multiselection.browser.test.cjs passed with top-left expectations"
+      ]
+    },
+    {
+      "id": "RD-227",
+      "record_type": "user_requirement",
+      "module": "switch_direction_and_general_row_order",
+      "source": "user chat including single-direction disabled-field clarification",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "نام زیر آبجکت آخر تب عمومی بعد از کد باشد. جهت بعد از مدل: همه روشنایی‌ها و درخواست‌ها افقی، فقط7L عمودی. انتخاب جهت از قواعد کاتالوگ؛ یک گزینه غیرفعال و بدون پسوند، دو گزینه فعال با پسوندL/P.",
+      "assistant_interpretation": "Move caption row last. Add data-driven orientation selector after model, disabled for one allowed direction. Define per-model variant orientationIds, default existing products accordingly, and append L/P to code only when more than one direction is supported.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Orientation/browser and unit checks passed; inspector screenshot reviewed; manual acceptance pending",
+      "verification_evidence": [
+        "orientation-fields.browser.test.cjs:11 product restrictions, disabled one-choice selector, portrait7L, last caption row, generic two-direction L/P fixture",
+        "lighting-model.test.cjs passed",
+        "live-workspace.browser.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-228",
+      "record_type": "user_requirement",
+      "module": "azin_request_variants",
+      "source": "user chat and four supplied request-switch Azin images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "تصاویر آذین درخواست دو، سه، چهار و شش فرمان به SVG مطابق استاندارد موجود تبدیل و مدل قابل انتخاب شود.",
+      "assistant_interpretation": "Add four native product SVGs retaining the supplied symbol arrangements and common face dimensions, register in central SVG library, and add Azin landscape variants to the four request catalog entries. Existing generic model UI/resolver supplies AZ codes and real images without new product-specific branches.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser and unit suites passed; vector gallery reviewed; user visual acceptance pending",
+      "verification_evidence": [
+        "request-azin.browser.test.cjs: four model lists, AZ codes/references, fixed landscape direction, correct crop, unchanged iconic art, preserved model-switch dimensions and reload",
+        "lighting-model.test.cjs passed",
+        "work/request-azin-gallery.png reviewed"
+      ]
+    },
+    {
+      "id": "RD-229",
+      "record_type": "user_requirement",
+      "module": "request_8r_three_models",
+      "source": "user chat and two supplied images; follow-up clarifies HR means8R and existing Almas image is nsp-8r-almas.svg",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-27",
+      "target_version": "V273 pending release request",
+      "status": "local_source_verified_pending_user_acceptance",
+      "user_statement": "تجهیز8R در درخواست‌ها با سه مدل نگین، آذین و الماس؛ همه افقی؛ تصاویر نگین و آذین ارسالی و الماس همانnsp-8r-almas.svg موجود.",
+      "assistant_interpretation": "Add request-8r with native Negin/Azin redraws and a direct reference to the existing unchanged Almas SVG. Use three model choices, fixed landscape orientation, eight configurable controls, Checkout caption and product-specific icon layout in the existing catalog.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "8R/browser and unit checks passed; model gallery reviewed; user visual acceptance pending",
+      "verification_evidence": [
+        "request-8r.browser.test.cjs: palette, eight icon controls, Checkout, three models/assets/code suffixes, fixed landscape, reload/reference-only persistence",
+        "lighting-model.test.cjs passed",
+        "work/8r-model-gallery.png reviewed",
+        "Git diff for nsp-8r-almas.svg is empty"
+      ]
+    },
+    {
+      "id": "RD-230",
+      "record_type": "user_requirement",
+      "module": "product_family_catalog",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Products are grouped by type (lighting/request), then subtype (gang/command family); a placed family can select supported model and direction. Review and align the implementation with this basis.",
+      "assistant_interpretation": "Make subtype families explicit in the existing canonical catalog; derive toolbox grouping from type metadata; retain one catalog entry per family and per-family model/orientation restrictions.",
+      "implementation_status": "Local uncommitted changes; visible V272 retained; no push",
+      "runtime_status": "Unit checks and request-switch browser regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs: family resolution, all supported variants and invalid subtype rejection",
+        "tests/request-switches.browser.test.cjs passed: toolbox routing, insertion, live properties, model references and reload"
+      ]
+    },
+    {
+      "id": "RD-231",
+      "record_type": "user_requirement",
+      "module": "model_specific_artwork_proportions",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Preserve each selected model real-image aspect ratio;8R Almas is wider/shorter than Negin. Iconic rendering can also vary by model and should reflect original proportions/layout.",
+      "assistant_interpretation": "Store measured real aspect ratios and optional model-level iconic layouts in the existing catalog. Use fit rendering, model-aware standard size and anchored model switching; preserve customized icon references/colors.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 unchanged",
+      "runtime_status": "Unit and focused8R browser checks passed; user visual acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed",
+        "tests/request-8r.browser.test.cjs passed: proportions, anchored model switch, retained icons, fit after manual resize and code size"
+      ]
+    },
+    {
+      "id": "RD-232",
+      "record_type": "user_bug_report",
+      "module": "additive_canvas_selection",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "A normally selected item loses selection when Ctrl is subsequently held to select a second item. Keep both selected.",
+      "assistant_interpretation": "Seed additive selection from the existing single/group selection before toggling the clicked target.",
+      "implementation_status": "Local uncommitted source change; no push; visible V272 retained",
+      "runtime_status": "Focused real-pointer browser regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/additive-selection.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-233",
+      "record_type": "user_requirement",
+      "module": "general_toolbox_picture_object",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add General as the first toolbox category; move rectangle, line, square, polyline, circle there. Add a picture object with choose/replace image support, suitable for background use. Keep home items/doors in Architecture.",
+      "assistant_interpretation": "Split palette categories and implement a portless picture object with live properties, embedded raster reference storage and background rendering.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed: palette split, upload/replacement, reference storage, reload, snapshot, copy/paste and Undo; user acceptance pending",
+      "verification_evidence": [
+        "tests/general-image.browser.test.cjs",
+        "work/general-image.png visual review"
+      ]
+    },
+    {
+      "id": "RD-234",
+      "record_type": "user_requirement",
+      "module": "picture_clipboard_and_editing",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Do not open file chooser on image insertion; double-click should choose/edit image. Pasting a copied image onto the page should create an image object.",
+      "assistant_interpretation": "Separate placeholder insertion from image selection and share safe raster decoding with native clipboard import. Preserve internal object paste and native text editing.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed including native clipboard PNG paste, internal object paste, double-click, reload and Undo; user acceptance pending",
+      "verification_evidence": [
+        "tests/general-image.browser.test.cjs: insertion, double-click, actual PNG clipboard, Undo/reload"
+      ]
+    },
+    {
+      "id": "RD-235",
+      "record_type": "user_requirement",
+      "module": "general_shapes_and_picture_resizing",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Images must resize proportionally from every direction with their bounds fitting the picture. General rectangle/line/square/polyline/circle should insert immediately on click; allow changing stroke thickness.",
+      "assistant_interpretation": "Always use proportional resize for image objects including numeric width/height, preserve optional Shift behavior for other objects. Reuse existing shape geometry for immediate insertion and add whole-shape live thickness editing.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks and existing selection-handle regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/general-shape-resize.browser.test.cjs passed: five shape tiles, segment-wide thickness, eight image handles and numeric aspect ratio",
+        "tests/selection-handles.browser.test.cjs passed: ordinary edge-only resize, optional Shift ratio, rotation, Undo and locks"
+      ]
+    },
+    {
+      "id": "RD-236",
+      "record_type": "user_requirement",
+      "module": "editable_line_vertices",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Remove the polyline toolbox item. Selected lines have blue endpoints to extend length and a draggable midpoint on each segment to create a bend anywhere. After splitting, each new segment gains its own midpoint; all existing points remain movable.",
+      "assistant_interpretation": "Use a single line tool with editable endpoints/joints and lazy midpoint insertion, retaining the existing grouped segment document format.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/line-handles.browser.test.cjs: endpoint extension, insertion/slide, repeated subdivision, joint continuity, Undo/Redo and reload"
+      ]
+    },
+    {
+      "id": "RD-237",
+      "record_type": "user_requirement",
+      "module": "border_and_selection_presentation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Allow changing other item border thickness in properties. Selected lines should keep their original stroke and use blue nodes/optional dashed guide, without rectangular selection bounds. Resize cursors must rotate with rotated items.",
+      "assistant_interpretation": "Add semantic device borderWidth control, preserve line stroke under blue dashed overlay, recognize rectangles by actual closed axis-aligned geometry and rotate standard resize cursors.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Border/cursor browser checks, unit suite and four-segment line reselect regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/border-cursors.browser.test.cjs passed: border appearance, real-mode disabled control, reload and rotated cursors",
+        "tests/lighting-model.test.cjs passed",
+        "tests/line-handles.browser.test.cjs passed including four-segment open path, no rectangular selection frame and retained base stroke"
+      ]
+    },
+    {
+      "id": "RD-238",
+      "record_type": "user_requirement",
+      "module": "property_order_and_contextual_cursors",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Move border thickness directly below border visibility/color. Use default arrow normally, move cursor for draggable objects, pointing finger for line endpoints, plus for midpoint bend creation, and keep current resize cursors.",
+      "assistant_interpretation": "Place thickness inside the border appearance sequence and replace the global crosshair with contextual select-mode cursor routing.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser regression passed: border field adjacency, default/move/pointer/midpoint cursors and unchanged rotated resize cursors; user acceptance pending",
+      "verification_evidence": [
+        "tests/border-cursors.browser.test.cjs extended for property order and cursor routing"
+      ]
+    },
+    {
+      "id": "RD-239",
+      "record_type": "user_requirement",
+      "module": "code_font_and_wheel_navigation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add code font-size control below code visibility/color, disabled outside code display mode. Ordinary scrolling pans vertically and two-finger horizontal trackpad scrolling pans horizontally; zoom requires Ctrl plus scroll.",
+      "assistant_interpretation": "Persist an explicit codeFontSize for semantic equipment and route unmodified wheel deltas to two-axis canvas navigation, reserving Ctrl-wheel for pointer-anchored zoom.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and focused browser checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed",
+        "tests/code-font-wheel.browser.test.cjs passed: font placement/live rendering/mode disabling/reload, vertical and horizontal pan, Ctrl-wheel zoom"
+      ]
+    },
+    {
+      "id": "RD-240",
+      "record_type": "user_requirement",
+      "module": "general_palette_icon_weight",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "General rectangle/square/circle/line icons are too bold; thin their strokes to match Picture/equipment icons. Keep Architecture icons unchanged.",
+      "assistant_interpretation": "Reduce only the four General shape palette SVG strokes, keeping shared deskIcon and actual canvas shapes intact.",
+      "implementation_status": "Local uncommitted change; no push; visible V272 retained",
+      "runtime_status": "Source scope/whitespace checked; user visual acceptance pending",
+      "verification_evidence": [
+        "One targeted General palette renderer substitution: normalized stroke1.7 to0.75; shared/Architecture icon renderer unchanged"
+      ]
+    },
+    {
+      "id": "RD-241",
+      "record_type": "user_requirement",
+      "module": "thermostat_product_families",
+      "source": "user chat and three supplied Negin thermostat images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add a Thermostat toolbox category with Negin setpoint/OLED (TMP-O-NE), seven-segment (TMP-7S-NE) and fixed (TMP-F-NE) square products; create real SVGs/palette icons and allow insertion.",
+      "assistant_interpretation": "Add a thermostat type with three subtype families and only Negin variants in the canonical catalog. Use real/iconic native SVG asset references and the existing model/code/display/inspector pipeline.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and thermostat browser checks passed; native vector gallery visually reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed with15 catalog families",
+        "tests/thermostats.browser.test.cjs passed: category, three insertions, dimensions, codes/models/modes, sanitizer and reference-only reload",
+        "work/thermostats-gallery.png reviewed",
+        "tests/request-switches.browser.test.cjs passed after shared panel-rendering extension"
+      ]
+    },
+    {
+      "id": "RD-242",
+      "record_type": "user_requirement",
+      "module": "shape_inspector_and_centered_insertion",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Clicking rectangle interior fails to show properties. Hide lone General tab. Make rectangle/square/circle X/Y/width/height editable, remove readonly note. Unify architecture/equipment/general insertion near the center of the currently visible workspace, avoiding unintended extra pages.",
+      "assistant_interpretation": "Use closed-shape interior hit testing, live affine geometry fields and one viewport-centered placement helper across all insertion paths. Hide single-pane tab strips.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Combined browser regression passed: interior selection, editable geometry, centered placement, background visibility/color; user acceptance pending",
+      "verification_evidence": [
+        "tests/shape-properties-placement.browser.test.cjs: interior selection including image background, geometry and centered insertion",
+        "tests/page-allocation.browser.test.cjs passed",
+        "work/shape-properties-background.png visually reviewed"
+      ]
+    },
+    {
+      "id": "RD-243",
+      "record_type": "user_requirement",
+      "module": "closed_shape_backgrounds",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "New rectangle/square/circle controls should have white backgrounds by default; allow changing color and hiding background in properties.",
+      "assistant_interpretation": "Store optional shape style on its first segment, render fills behind strokes and expose live visibility/color controls. Keep interior selection when fill is hidden.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Combined browser regression passed: interior selection, editable geometry, centered placement, background visibility/color; user acceptance pending",
+      "verification_evidence": [
+        "tests/shape-properties-placement.browser.test.cjs extended: default white fill, color change, hide/show and interior selection without fill",
+        "work/shape-properties-background.png visually reviewed"
+      ]
+    },
+    {
+      "id": "RD-244",
+      "record_type": "user_requirement",
+      "module": "iconic_model_border_policy",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "In iconic mode Negin/Almas borders are black with fixed thickness and only visibility editable; Azin border is SVG gold, always visible, with no editable frame controls.",
+      "assistant_interpretation": "Define model-owned iconic border policies in the catalog and enforce them in rendering and live controls while preserving other display-mode styling.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and focused browser checks passed across Negin/Azin/Almas including reload; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: model policies override stale frame color/width/visibility, code styling retained",
+        "tests/model-iconic-border.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-245",
+      "record_type": "user_requirement",
+      "module": "fixed_variant_palette_and_dark_defaults",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "New iconic items should have black background/white symbols; Negin/Almas white frames and Azin fixed gold. Choose model/orientation by separate toolbox items instead of inspector fields. Add portrait8L Negin and portrait8R Almas with upright symbols;8R becomes Negin, Azin, Almas landscape and Almas portrait.",
+      "assistant_interpretation": "Flatten existing canonical family/model/orientation relations into fixed variant palette templates, preserve family references, remove model/direction controls and add orientation-specific native assets/layout/sizes.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit suite and final browser regression passed with corrected portrait assets; full gallery/detail visually reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs:29 unique palette variants from15 canonical families, defaults/relations/policies",
+        "tests/fixed-variant-palette.browser.test.cjs:14 lighting choices,12 request choices, four8R, two8L, no model/direction inputs, mode changes, safe SVGs and reload",
+        "work/portrait-detail.png visually reviewed after removal of old compound-frame ghost artwork",
+        "work/fixed-variant-gallery.png reviewed after corrected portrait-asset rerun"
+      ]
+    },
+    {
+      "id": "RD-246",
+      "record_type": "user_requirement",
+      "module": "editable_frames_mode_appearance_and_names",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Iconic Negin/Almas frames default black and allow visibility/color/thickness editing; Azin remains locked. Code mode defaults to black border, white background, black text. Codes are type-direction-model where direction applies. Editable name must exactly match the below-object caption, initially including model/direction, with an immutable original product title above it.",
+      "assistant_interpretation": "Make non-Azin iconic frames editable, cache independent appearance by display mode, reorder code generation and separate canonical product title from editable object name.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit suite and final focused browser regression passed, including cached style validation and reload; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: code order, appearance defaults/filtering and policies",
+        "tests/mode-style-names.browser.test.cjs: Negin/Almas/Azin controls, code defaults, styles across modes, exact editable caption, fixed title and reload"
+      ]
+    },
+    {
+      "id": "RD-247",
+      "record_type": "user_requirement",
+      "module": "short_names_border_footprint_palette_style",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Default editable captions should be family-only without model/direction. Hiding the frame must let content fill its previous space rather than shrink. Restore transparent light toolbox icons, changing only Azin outlines to gold.",
+      "assistant_interpretation": "Use family-only initial names, eliminate hidden-stroke inset in generated panels, and render toolbox previews with a dedicated light/transparent presentation independent of canvas defaults.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and focused browser checks passed; screenshot visually reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/palette-caption-footprint.browser.test.cjs passed: short captions, palette colors/transparency, hidden-frame full fill bounds and reload",
+        "tests/lighting-model.test.cjs passed",
+        "work/light-palette-short-names.png reviewed"
+      ]
+    },
+    {
+      "id": "RD-248",
+      "record_type": "user_requirement",
+      "module": "background_driven_iconic_outline",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Real mode has no frame/background effects or controls; code mode has full controls. Iconic Azin always keeps fixed gold frame. Iconic Negin/Almas have no frame while background is shown; hiding background automatically adds a black frame with editable color only. Re-enabling background removes frame and disables its controls.",
+      "assistant_interpretation": "Derive iconic outline visibility from background visibility, separate automatic-outline color from ordinary code frame styling and enforce control capabilities per mode.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit suite and focused browser regression passed for Negin/Almas/Azin, code/real controls and reload; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: background-driven visibility/color capabilities",
+        "tests/automatic-iconic-frame.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-249",
+      "record_type": "user_requirement",
+      "module": "mixed_control_disabled_styling",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "When an automatic iconic frame is active, do not dim the entire Border row. Keep its title and editable color bright; dim only disabled visibility checkbox and Show text.",
+      "assistant_interpretation": "Apply disabled appearance to individual control groups in partially enabled rows, and dim the whole row only if no controls are enabled.",
+      "implementation_status": "Local uncommitted CSS change; no push; visible V272 retained",
+      "runtime_status": "Computed-style and behavior browser regression passed: row/color fully bright, disabled Show group dimmed; user acceptance pending",
+      "verification_evidence": [
+        "tests/automatic-iconic-frame.browser.test.cjs extended with computed row/color/visibility opacity assertions"
+      ]
+    },
+    {
+      "id": "RD-250",
+      "record_type": "user_requirement",
+      "module": "azin_thermostats_integer_rotation",
+      "source": "user chat and three supplied Azin thermostat images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add Azin thermostat variants, toolbox icons and real SVGs for the three supplied images. Rotation values in properties and dragged rotation handles should be whole degrees only.",
+      "assistant_interpretation": "Extend each thermostat family with an Azin real-asset variant, reuse its iconic template with gold model frame, and normalize numeric/drag rotation to integer degrees.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and focused thermostat/integer-rotation browser checks passed; vector gallery reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed with32 palette templates",
+        "tests/thermostat-azin-integer-rotation.browser.test.cjs passed: six thermostat choices, three AZ assets, numeric step1/rounding, integer drag and reload",
+        "work/thermostats-azin-gallery.png reviewed",
+        "tests/rotation-and-cable-mode.browser.test.cjs passed after updating its obsolete equipment-release fixture to the current retained release; covers independent cable-label drag, Undo/Redo, DXF and import"
+      ]
+    },
+    {
+      "id": "RD-251",
+      "record_type": "user_requirement",
+      "module": "canvas_caption_font_family",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Below-object labels should use the same font family as the app UI, with a basis for changing the font family later.",
+      "assistant_interpretation": "Centralize the current UI font stack, inherit it for SVG text and explicitly preserve the resolved UI family on below-object labels.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused desktop/mobile browser checks passed: UI font stack, caption equality, central font changes and SVG serialization; user acceptance pending",
+      "verification_evidence": [
+        "tests/caption-font.browser.test.cjs: UI family equality, central variable change, SVG serialization, default9 size and mobile"
+      ]
+    },
+    {
+      "id": "RD-252",
+      "record_type": "user_requirement",
+      "module": "atlas_eighteen_gang_lighting",
+      "source": "user chat and supplied horizontal18-gang Atlas panel image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add18-gang Atlas lighting in landscape/portrait, with toolbox icons and real SVGs. Portrait symbols should stay upright; behavior follows Negin.",
+      "assistant_interpretation": "Add one18L family and Atlas model with two fixed orientation choices, reference-derived three-six-gang-section layouts and native real SVGs.",
+      "implementation_status": "Local uncommitted catalog/assets change; no push; visible V272 retained",
+      "runtime_status": "Unit and focused browser checks passed; landscape/portrait gallery reviewed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed with16 canonical families/34 palette templates",
+        "tests/atlas-18l.browser.test.cjs passed: both choices,18 per-gang controls/editing, modes, automatic frame policy, safe vectors and reload",
+        "work/atlas-18l-gallery.png reviewed"
+      ]
+    },
+    {
+      "id": "RD-253",
+      "record_type": "user_requirement",
+      "module": "installation_direction_vs_product_orientation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Separate actual horizontal/vertical products from one product with multiple installation directions.8L Negin,18L Atlas and8R Almas each appear once, without direction in title/code; installation direction is editable in iconic/real properties and switches layouts/images. Prepare for four mounting directions.",
+      "assistant_interpretation": "Keep manufacturing orientation in product identity; introduce independent installationDirection metadata/state with dynamic choices, orientation-specific real assets and automatically rotated iconic layouts. Migrate prior portrait instances without geometry loss.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and focused browser regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed:31 palette templates, constant codes, legacy migration and generic four-direction layout",
+        "tests/installation-direction.browser.test.cjs passed: one item/product, direction dropdown, identity/code stability, real/iconic sizes/assets, code-mode disabling, reload and legacy portrait import"
+      ]
+    },
+    {
+      "id": "RD-254",
+      "record_type": "user_requirement",
+      "module": "downward_bulb_icon",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "The bulb icon in the shared icon selector should face downward, matching the real SVG/photo bulb orientation.",
+      "assistant_interpretation": "Rotate the shared lighting-bulb vector180 degrees about its viewport center and synchronize the central SVG library.",
+      "implementation_status": "Local uncommitted asset change; no push; visible V272 retained",
+      "runtime_status": "Existing lighting-model unit suite passed; user visual acceptance pending",
+      "verification_evidence": [
+        "assets/svg/lighting/bulb.svg:180-degree center transform",
+        "Central manifest/offline library synchronized, symbol version incremented",
+        "tests/lighting-model.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-255",
+      "record_type": "user_requirement",
+      "module": "thermostat_supported_display_modes",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Thermostats should not offer iconic display mode because their icons cannot be edited; only code and real image display modes are supported.",
+      "assistant_interpretation": "Declare allowed/default display modes per type, restrict thermostat properties/rendering to code/real and retain separate toolbox icon previews.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Unit and all-six-thermostat browser checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: thermostat modes/legacy normalization and palette preview separation",
+        "tests/thermostat-display-modes.browser.test.cjs passed: six variants, code/real dropdown, default real, controls, legacy iconic import migration and reload"
+      ]
+    },
+    {
+      "id": "RD-256",
+      "record_type": "user_requirement",
+      "module": "real_image_proportional_resize",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "In real-image display mode, resizing from any direction must always preserve width/height ratio, like picture objects. Only real-image mode gets this rule.",
+      "assistant_interpretation": "Extend picture aspect locking to semantic real-image mode, using the selected model/installation asset ratio; keep independent code/iconic resizing.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused real-image and existing picture/shape browser regressions passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/real-image-proportional-resize.browser.test.cjs passed: all eight rotated handles, portrait numeric dimensions, code/iconic free resizing and reload",
+        "tests/general-shape-resize.browser.test.cjs passed: existing picture aspect lock and shape controls retained"
+      ]
+    },
+    {
+      "id": "RD-257",
+      "record_type": "user_requirement",
+      "module": "doorbell_products",
+      "source": "user chat with two reference images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add separate large Negin portrait and landscape doorbells after thermostats. In iconic mode edit only the room number and three lower service icons; other printed artwork stays fixed. Codes DB-BP/BL with the existing Negin suffix. No installation direction.",
+      "assistant_interpretation": "Two canonical doorbell subtypes BP and BL with one fixed Negin variant each, codes DB-BP-NE and DB-BL-NE; use supplied matching existing native vectors cropped to face bounds. Add reference-based fixed artwork and a validated editable room number in the specific inspector.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Doorbell browser and semantic catalog checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/doorbell.browser.test.cjs: two palette entries, three independent pickers, room-number live editing, fixed artwork, modes, real aspect and reload passed",
+        "tests/lighting-model.test.cjs passed with 18 product families / 33 palette entries",
+        "work/doorbell-gallery.png visually reviewed against supplied reference images"
+      ]
+    },
+    {
+      "id": "RD-258",
+      "record_type": "user_requirement",
+      "module": "doorbell_room_number_color",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Room number must have a separate color control at the end of its text-box row in the specific tab. Text box is left-to-right. Changing all icon colors must not change the room number. No font-size control needed.",
+      "assistant_interpretation": "Add independent white-default roomNumberColor driven by catalog text-field metadata, render number with this color and put LTR number input and swatch on one row.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Doorbell browser and semantic catalog checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/doorbell.browser.test.cjs passed: independent number color retained after bulk icon recoloring, LTR input and reload",
+        "tests/lighting-model.test.cjs passed",
+        "Whitespace check passed"
+      ]
+    },
+    {
+      "id": "RD-259",
+      "record_type": "user_requirement",
+      "module": "doorbell_names",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Use دوربل بزرگ عمودی - نگین everywhere rather than repeating نگین twice, matching other product titles.",
+      "assistant_interpretation": "Keep the family name model-free and append the model once in canonical/palette titles. Update exact former default names on existing objects while retaining customized names.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Catalog and doorbell browser checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed",
+        "tests/doorbell.browser.test.cjs passed including one model suffix in canonical titles"
+      ]
+    },
+    {
+      "id": "RD-260",
+      "record_type": "user_requirement",
+      "module": "doorbell_model_variants",
+      "source": "user chat with five reference images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add Azin portrait/landscape doorbells, Almas portrait/landscape doorbells (no size qualifier), and a small square Negin doorbell. Each is a fixed product with only one direction, no installation selection. Provide toolbox icons and real SVGs with the established model behavior.",
+      "assistant_interpretation": "Add five fixed palette products through three additional family subtypes P, L, S and model variants. Codes DB-P/L-AZ, DB-P/L-AL and DB-S-NE. Preserve shared code/iconic/real modes, independent number color, three editable service slots, fixed static print and Azin gold border policy.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Expanded doorbell browser and catalog tests passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/doorbell-models.browser.test.cjs passed: seven total palette entries; no model/install edit; three editable service slots; independent number/color; vertical digits; model border/background policies; real SVG validation and aspect-locked resize; code and reload",
+        "tests/lighting-model.test.cjs passed with 21 canonical families and 38 palette entries",
+        "work/doorbells-expanded-gallery.png visually reviewed against all five references"
+      ]
+    },
+    {
+      "id": "RD-261",
+      "record_type": "user_requirement",
+      "module": "inspector_ownership_and_doorbell_number",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Editing the room number while focused then selecting another doorbell changes both. Add room-number font size, move number to its own row and put color/size on the following row. Order Azin portrait then Azin landscape then Almas portrait and landscape.",
+      "assistant_interpretation": "Bind inspector events to the object/document that generated each control. Add a typed roomNumberFontSize field, separate content and appearance rows, and explicit model-level palette order.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed; user runtime acceptance pending",
+      "verification_evidence": [
+        "Reproduced original failure in tests/doorbell-edit-isolation.browser.test.cjs before fix: numbers became 901/901",
+        "After fix: focused number/color isolation, font size, palette order and reload passed",
+        "tests/lighting-model.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-262",
+      "record_type": "user_requirement",
+      "module": "color_picker_performance",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Color pickers, including all-icons color, are extremely slow and pointer movement is not synchronized; inspect whether Undo management is responsible.",
+      "assistant_interpretation": "Remove per-input full-canvas rebuilding for semantic equipment colors. Apply state immediately, coalesce image refresh to animation frames, keep other canvas/inspector nodes untouched and retain one Undo checkpoint per edit gesture.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser checks passed; user runtime acceptance pending",
+      "verification_evidence": [
+        "tests/color-picker-performance.browser.test.cjs passed: 250 color inputs with 80 devices produced one image refresh, preserved other nodes/focus, final color exact and one Undo/Redo",
+        "Measured synthetic input burst 8.1ms in headless Edge; native picker responsiveness still requires user confirmation"
+      ]
+    },
+    {
+      "id": "RD-263",
+      "record_type": "user_requirement",
+      "module": "integer_font_and_line_dimensions",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Font size should always be integer, not fractional. Lines should use thickness and length instead of width/height and not have a duplicate thickness row.",
+      "assistant_interpretation": "Round room/code/caption font size values and prior saved fractions; show open lines with stroke thickness and true path length. Changing total length scales all segments about the first endpoint while preserving direction and bends.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser and catalog tests passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/line-length-integer-font.browser.test.cjs passed: thickness/length rows, true broken-line length scaling and integer font controls",
+        "tests/lighting-model.test.cjs passed"
+      ]
+    },
+    {
+      "id": "RD-264",
+      "record_type": "user_requirement",
+      "module": "door_name_bounds_rotation",
+      "source": "user chat with selection screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Built-in door is named Door; rename it در. Selection only covers its bottom part instead of the whole symbol and is not tight. Remove automatic rotation when approaching a line; rotate manually.",
+      "assistant_interpretation": "Use Persian built-in name, represent the entire door leaf/swing/base inside its standard object bounds so selection/resizing match, migrate legacy door geometry while preserving the old base position, and preserve manual angle during wall snapping.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused door browser regression passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/door-selection.browser.test.cjs passed: Persian name, tight full shape bounds, height resize, wall proximity retains angle, prior saved door migration",
+        "Whitespace check passed"
+      ]
+    },
+    {
+      "id": "RD-265",
+      "record_type": "user_requirement",
+      "module": "medium_negin_doorbells",
+      "source": "user chat with portrait/landscape reference images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add medium-size Negin doorbell portrait and landscape from the two supplied pictures, with the same system behavior as the existing doorbells.",
+      "assistant_interpretation": "Add fixed MP/ML Negin product subtypes, codes DB-MP-NE and DB-ML-NE, cropped matching native real SVGs and reference-based iconic/palette artwork. Retain independent number/color/integer font and three editable service icons; no installation choices.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Expanded doorbell browser and catalog checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: 23 canonical families / 40 palette products",
+        "tests/doorbell-models.browser.test.cjs passed including both medium products, independent number/color/icons/font, fixed direction, real ratio and reload",
+        "Expanded gallery reviewed; corrected dark service artwork in legacy medium landscape by assembling white native vectors matching supplied reference"
+      ]
+    },
+    {
+      "id": "RD-266",
+      "record_type": "user_requirement",
+      "module": "doorbell_palette_order",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Place both medium doorbells at the end after small doorbell: medium portrait first, medium landscape next.",
+      "assistant_interpretation": "Change model paletteOrder to put small Negin before medium MP then ML; retain other doorbell ordering.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Browser palette order check passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/doorbell-edit-isolation.browser.test.cjs passed with small then medium portrait then medium landscape"
+      ]
+    },
+    {
+      "id": "RD-267",
+      "record_type": "user_requirement",
+      "module": "power_switch_three_command",
+      "source": "user chat with two installation reference images and subsequent naming/code correction",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add Negin power switch as one product in a Power Switch category, with portrait and landscape installation, three editable icons and code/model modes. Correction: call it three-command power switch and use CR3R-NE because a commandless model will follow.",
+      "assistant_interpretation": "One power-switch-3r family and Negin variant, code CR3R-NE, two mounting directions with separate actual SVG and static card-slot layouts, three configurable service icon references. No room-number field.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused browser and catalog checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: 24 canonical families / 41 palette choices",
+        "tests/power-switch.browser.test.cjs passed: one palette product, portrait/landscape assets/layouts, persistent three editable icons, constant CR3R-NE identity, real aspect and reload",
+        "work/power-switch-gallery.png visually reviewed"
+      ]
+    },
+    {
+      "id": "RD-268",
+      "record_type": "user_requirement",
+      "module": "azin_power_switch_three_command",
+      "source": "user chat with portrait/landscape references",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-28",
+      "target_version": "V273 pending release request",
+      "status": "local_source_pending_user_acceptance",
+      "user_statement": "Add Azin three-command power switch, one toolbox icon/product with portrait and landscape installation, using the established Azin behavior and corresponding code.",
+      "assistant_interpretation": "Add an Azin variant to the existing power-switch-3r family, code CR3R-AZ, one palette choice with two installation-specific real assets/fixed artwork/layouts and editable three icons.",
+      "implementation_status": "Local uncommitted changes; no push; visible V272 retained",
+      "runtime_status": "Focused Azin browser and catalog checks passed; user acceptance pending",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs passed: 24 families / 42 palette choices",
+        "tests/power-switch-azin.browser.test.cjs passed: one CR3R-AZ palette entry, fixed gold frame, two mount assets/layouts, editable icons, stable code/identity, real ratio and reload",
+        "work/power-switch-azin-gallery.png visually reviewed"
+      ]
+    },
+    {
+      "id": "RD-269",
+      "record_type": "user_requirement",
+      "module": "local_commit_merge_main_release",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "Next version after latest main, pending Git write access",
+      "status": "pending_environment_git_write_access",
+      "user_statement": "Commit local work locally with the V<number>-M: convention first, merge latest main prioritizing local changes, then push the final result and keep local/main synchronized.",
+      "assistant_interpretation": "Create a local checkpoint commit before integration, preserve remote non-conflicting work, resolve overlapping changes in favor of local requirements, reconcile release version, validate, and push without force.",
+      "implementation_status": "Not committed/merged/pushed: git add --all failed creating .git/index.lock because the environment grants read-only access to .git. CLI GitHub connection also unavailable; authenticated connector read access works.",
+      "runtime_status": "Catalog regression and whitespace checks passed; integration not started",
+      "verification_evidence": [
+        "git add --all: fatal Unable to create .git/index.lock: Permission denied",
+        "GitHub connector compare: main is 15 commits ahead of local 69ca8e0251439472092c4c59dfb2c31527d8058d; remote changes affect README.md, index.html and project-evolution.json",
+        "tests/lighting-model.test.cjs and git diff --check passed"
+      ]
+    },
+    {
+      "id": "RD-187-remote-main",
       "record_type": "source_defect",
       "module": "desktop_selection_delete_guard",
       "source": "scheduled RoomDesigner V8.2 source regression",
@@ -4116,10 +5969,12 @@
         "index.html lockedDeletionDependencies previously checked selected cable IDs with an array scan; deleteDrawing already blocks locked dependent objects.",
         "index.html updateDesktopPanels previously enabled Delete based solely on selected objects' locks, ignoring locked dependencies.",
         "Static source review only; no unit, integration, E2E, browser, mobile or build validation."
-      ]
+      ],
+      "original_id": "RD-187",
+      "source_main_commit": "7acb4d2b6a10c528a2ccf21c0499ed3779d657b4"
     },
     {
-      "id": "RD-188",
+      "id": "RD-188-remote-main",
       "record_type": "source_defect",
       "module": "architectural_polyline_shape_identity",
       "source": "scheduled RoomDesigner V8.2 source regression",
@@ -4137,6 +5992,44 @@
         "index.html wallTap retains wallStart only as {...b}, losing the previous segment's shapeId.",
         "index.html clipboardSelection, layerObject and rendering group wall segments by shapeId||id; independent IDs break whole-polyline operations.",
         "V275-R due source audit: repository tree, 25 recent commits, issues and prioritized source modules reviewed statically; no tests or builds."
+      ],
+      "original_id": "RD-188",
+      "source_main_commit": "7acb4d2b6a10c528a2ccf21c0499ed3779d657b4"
+    },
+    {
+      "id": "RD-270",
+      "record_type": "user_requirement",
+      "module": "V276_remote_integration",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V276",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "Use the earlier GitHub-connector publication workflow, version 276, and prioritize local changes over main conflicts.",
+      "assistant_interpretation": "Preserve latest main as parent, integrate independent lock/deletion/polyline fixes without regressing local product/editor requirements, publish one V276-M commit through the authorized connector, and supply safe manual local Git sync commands because local .git writes remain blocked.",
+      "implementation_status": "V276 source integrated and validated for authorized GitHub connector publication; local HEAD synchronization remains a separate manual step because .git is read-only in this execution environment",
+      "runtime_status": "2 unit suites and 13 focused browser suites passed; user/device acceptance pending",
+      "verification_evidence": [
+        "Original local source snapshot retained in work/local-before-v276.zip",
+        "Remote main tree verified at 7acb4d2b6a10c528a2ccf21c0499ed3779d657b4; 15 commits beyond local base",
+        "Local product/editor implementation takes precedence in all conflicts",
+        "Passed tests/lighting-model.test.cjs",
+        "Passed tests/selection-geometry.test.cjs",
+        "Passed tests/power-switch.browser.test.cjs",
+        "Passed tests/power-switch-azin.browser.test.cjs",
+        "Passed tests/doorbell-models.browser.test.cjs",
+        "Passed tests/doorbell-edit-isolation.browser.test.cjs",
+        "Passed tests/door-selection.browser.test.cjs",
+        "Passed tests/line-length-integer-font.browser.test.cjs",
+        "Passed tests/color-picker-performance.browser.test.cjs",
+        "Passed tests/shape-properties-placement.browser.test.cjs",
+        "Passed tests/installation-direction.browser.test.cjs",
+        "Passed tests/real-image-proportional-resize.browser.test.cjs",
+        "Passed tests/additive-selection.browser.test.cjs",
+        "Passed tests/rotation-and-cable-mode.browser.test.cjs",
+        "Passed tests/main-integration.browser.test.cjs",
+        "Inline JavaScript syntax and whitespace checks passed; no new ledger ID collisions; historical duplicate RD-081 retained"
       ]
     }
   ],
@@ -4750,6 +6643,426 @@
       "remaining_risks": "Manual mobile/device acceptance and historical audit gaps remain open. Local Git metadata cannot be advanced in this permission profile."
     },
     {
+      "id": "RD-187-188-analysis",
+      "date": "2026-10-26",
+      "decision": "Introduce an explicit lighting-switch kind with portless semantic configuration. Do not infer architecture from zero ports. Keep native SVG assets and drafts; delete retired placed equipment once under a new equipment migration marker, rather than clearing new test switches on every refresh. Keep field-device templates separate pending their later specification.",
+      "remaining_risks": "Manual runtime acceptance pending; previous catalog-specific tests document superseded 30-model behavior and are not acceptance tests for this new design. Release version stays V272 until requested."
+    },
+    {
+      "id": "RD-189-analysis",
+      "date": "2026-10-26",
+      "decision": "Use a fixed icon footprint independent of gang count; object resizing scales the whole face as before. Keep white modal previews independent from the chosen canvas color so black icons stay identifiable. Persist style fields in semantic object data and generate them into SVG so exports match the canvas. Colors are validated as six-digit hex values and optional visibility fields are booleans.",
+      "remaining_risks": "Manual acceptance pending. Equal icon sizes refer to equal-size switch objects; resizing a whole object scales its icons too."
+    },
+    {
+      "id": "RD-190-analysis",
+      "date": "2026-10-26",
+      "decision": "Use visible device-face coordinates rather than full SVG artboard dimensions. Keep all icon sizes equal in units relative to the standard face height, including the landscape eight-gang face. Keep first four gang identities together on the left and the next four on the right. Reuse the native color picker with square swatch styling for accessibility and platform behavior.",
+      "remaining_risks": "Manual acceptance pending; the user may still resize equipment freely, which scales the complete face. Original icon shapes vary, so the shared viewport slightly increases visual size for readability instead of copying each icon size independently."
+    },
+    {
+      "id": "RD-191-192-analysis",
+      "date": "2026-10-26",
+      "decision": "Keep native fieldset disabled semantics and color pickers while removing only the surrounding fieldset border and improving layout. Replace the old icon select with a local disclosure picker rather than nesting another modal, preserving unsaved sibling fields and returning focus after selection. Tie dock visibility to active layout rather than physical device detection.",
+      "remaining_risks": "Scrollbar rendering follows browser support and OS overlay-scrollbar preferences. Manual acceptance pending."
+    },
+    {
+      "id": "RD-193-analysis",
+      "date": "2026-10-26",
+      "decision": "Use a body-level portal for the open picker because the sheet is transformed and scrollable; a fixed element inside it would inherit clipping/position constraints. Restore hidden panels on close and dismiss before rows/sheets are replaced to avoid orphan panels. Keep native icon names as accessible labels/tooltips while removing visible captions.",
+      "remaining_risks": "Manual acceptance pending; the current icon library has three entries, while internal scrolling was checked using temporary test-only choices."
+    },
+    {
+      "id": "RD-194-196-analysis",
+      "date": "2026-10-26",
+      "decision": "Keep toolbox/layer IDs for existing menu integration but move their DOM into the shared right host. Use overlays for auto-hide panels to avoid changing the canvas extent on hover. Persist workspace preferences separately. Preserve focused live inputs while redrawing canvas, batch each focus gesture into one Undo entry, and force inspector rebuild only for selection/type/tab changes. Ports remain disabled future scope; no physical ports are introduced.",
+      "remaining_risks": "Manual runtime acceptance pending. Some historical modal/canvas test fixtures target superseded equipment defaults; current live-inspector regression replaces modal acceptance coverage. Mobile retains an explicit Properties entry because side panels do not fit narrow screens."
+    },
+    {
+      "id": "RD-197-198-analysis",
+      "date": "2026-10-26",
+      "decision": "Use one eight-handle affine resizing model for rotated device bounds and shape segment bounds; keep guides editor-only and original strokes unchanged. Actual ports take precedence over coincident resize markers.",
+      "remaining_risks": "Manual acceptance pending. Eight-handle dragging uses the existing mouse path; existing two-finger mobile resizing remains. Existing placements are not bulk resized."
+    },
+    {
+      "id": "RD-199-201-analysis",
+      "date": "2026-10-26",
+      "decision": "Resolve artwork Fit letterboxing by matching its generated viewBox to object bounds, while scaling icon viewports isotropically. Flex-grow fractions below one intentionally leave space when their sum is below one, so give the sole pinned pane grow 1. Retain split preferences for later two-panel mode. Keep property tabs semantic and prevent their arrow navigation from nudging canvas objects.",
+      "remaining_risks": "Manual acceptance pending. Icon size follows the smaller face scale under non-uniform resizing, preserving glyph proportions. No changes are committed or published."
+    },
+    {
+      "id": "RD-202-203-analysis",
+      "date": "2026-10-27",
+      "decision": "Keep iconic as default, derive variant code and picture from gang count. Use centralized manifest/assets and ID lookup for rendering. Store custom/imported artwork once in SVG drafts; migrate nested inline originals and artwork without clearing drawings. Preserve prior styling across display modes.",
+      "remaining_risks": "User acceptance pending. Portable drawings with custom symbols require their separately exported SVG library on the receiving installation. No commit or publish authorized; V272 stays visible."
+    },
+    {
+      "id": "RD-204-analysis",
+      "date": "2026-10-27",
+      "decision": "Keep the equipment release marker unchanged to preserve existing drawings. Replace the generic catalog entry with six stable catalog IDs. Retain the common lighting kind and reference rendering; remove gang-count mutation UI/handler. Eight-gang default is 101.57 by 50 to preserve the approved landscape ratio.",
+      "remaining_risks": "Manual acceptance pending; previously placed lights retain their selected counts and customization. No commit/push authorized."
+    },
+    {
+      "id": "RD-205-analysis",
+      "date": "2026-10-27",
+      "decision": "Retain existing category IDs/order preferences and insertion handlers while replacing desktop palette presentation. Keep accessible names/search labels separate from visible icon-only content. Use shared light SVG previews, a 250ms hover delay, viewport clamping and Escape/click dismissal. Clear stored shortcuts once using a dedicated marker; do not alter saved drawings.",
+      "remaining_risks": "User acceptance pending. Styling targets the desktop toolbox. Canvas symbol artwork and cable connection/editing remain as before. No commit/push authorized."
+    },
+    {
+      "id": "RD-206-analysis",
+      "date": "2026-10-27",
+      "decision": "Reuse the existing label/control grid instead of appearance subgroups or mode radio cards. Persist code visibility and separate code ink from per-gang ink. Preserve appearance configuration when controls become disabled. Specific tab remains accessible for lighting modes; architecture keeps its existing General-only semantics.",
+      "remaining_risks": "Manual acceptance pending. No commit/push authorized; version remains V272."
+    },
+    {
+      "id": "RD-207-analysis",
+      "date": "2026-10-27",
+      "decision": "The user retracted automatic mode-specific resets within the same request, so remove previous ratio-based width adjustment. Catalog defaults govern insertion only. Format inspector geometry to two decimals while retaining existing full-precision document geometry until edited; numeric inspector limits become one.",
+      "remaining_risks": "User acceptance pending. Existing placed 8L geometry stays intact. No commit or push authorized."
+    },
+    {
+      "id": "RD-208-analysis",
+      "date": "2026-10-27",
+      "decision": "Apply displayMode,width,height together through the existing single live patch and undo checkpoint. Use explicit standard sizes instead of previous bounds/ratios. Supersedes the prior preserve-size decision only.",
+      "remaining_risks": "User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-209-analysis",
+      "date": "2026-10-27",
+      "decision": "Retain existing gang-card wrapper solely for picker return anchor, remove its visible border/padding, and replace the three-column card with General-style label/control rows. Preserve accessible icon names and detached floating picker behavior.",
+      "remaining_risks": "User runtime acceptance pending; no commit or push authorized."
+    },
+    {
+      "id": "RD-210-analysis",
+      "date": "2026-10-27",
+      "decision": "Preserve existing edit keys, disabled states and floating picker anchors while grouping controls. Avoid implicit HTML label activation for native color inputs; provide aria-label per control. Use 36px swatch width and keep current heights.",
+      "remaining_risks": "User runtime acceptance pending; no commit or push authorized."
+    },
+    {
+      "id": "RD-211-analysis",
+      "date": "2026-10-27",
+      "decision": "Select existing SVG Stretch pipeline only for real lighting mode. This shares crop/asset references and avoids adding a separate layout path.",
+      "remaining_risks": "Image distortion is explicitly accepted by user; no commit/push authorized."
+    },
+    {
+      "id": "RD-212-analysis",
+      "date": "2026-10-27",
+      "decision": "Keep kind and six catalog entries; add lightingModel with known ne/az identities and derive code/reference. Default old objects to Negin. Limit Azin choice to 1L pending further images. Native vector uses identical 1062×1018 artboard and 439.86×422.86 face as nsp-1l; flat root face rectangles preserve existing trim pipeline. Model switching is one undoable patch and preserves bounds.",
+      "remaining_risks": "Azin vector is a manual redraw from the supplied screenshot, pending user visual acceptance. Other Azin gang variants intentionally unavailable. No commit/push authorized."
+    },
+    {
+      "id": "RD-213-214-analysis",
+      "date": "2026-10-27",
+      "decision": "Use the existing canonical equipment-catalog.json and generated offline bundle. Type definitions hold defaultModelId/modelField/field descriptors; model definitions hold names/code suffixes; each product explicitly lists available model variants with realAssetId and optional field overrides. Put generic resolution/validation in existing equipment-release module; LightingModel consumes it. Remove the redundant per-entry real image reference in favor of variants. Keep SVG manifest for actual asset metadata only.",
+      "remaining_risks": "Vector redraws need user visual acceptance. Generic type/model metadata is implemented, but future camera/power-switch renderers and property controls still require their own authorized implementation. No commit/push authorized."
+    },
+    {
+      "id": "RD-215-analysis",
+      "date": "2026-10-27",
+      "decision": "Use the existing catalog entry/model contract and central SVG manifest. Add optional iconLayout metadata for the portrait product and displaySizes to catalog entries; generic mode switching now consumes these sizes, keeping prior products unchanged. Default7L to50×70 based on portrait references. Vector redraws preserve distinct black Negin and gold-frame Azin faces.",
+      "remaining_risks": "User visual acceptance pending. Default seven-gang dimensions are inferred from portrait images and remain manually editable. No commit/push authorized."
+    },
+    {
+      "id": "RD-216-217-analysis",
+      "date": "2026-10-27",
+      "decision": "Use actual canvas aspect ratio for initial/reset views to avoid viewBox letterboxing surprises. Compute bounds with world transforms and include device/cable labels, excluding selection overlay groups. Fit only on initial/restored startup; reset100 preserves100% and anchors content rather than fitting lower content. Store viewport changes independently of document history. Derive caption size10 when absent; validate1..72 and expose live combined controls.",
+      "remaining_risks": "User acceptance pending. At100%, items extending below/right may remain offscreen as explicitly allowed. No commit/push authorized."
+    },
+    {
+      "id": "RD-218-220-analysis",
+      "date": "2026-10-27",
+      "decision": "Keep page(0,0) as initial logical tile and extend the rectangular tile union from visible content. Use850×1100 design units without claiming physical calibration. Startup fits page bounds capped100%; ordinary drag retains zoom and pans by requestAnimationFrame near edges. Screen-stable dashed seams distinguish pages. Print tiles in row-major order, removing page decorations and selection overlays from printed SVGs. Remove legacy ±10000 device drag clamp for page expansion continuity. Preserve prior whole-drawing/current-view print choices. Correct only user-facing model names, leaving references stable.",
+      "remaining_risks": "User acceptance pending; actual physical PDF output remains subject to browser print settings. Page size is inferred from the user-supplied ruler estimate. Page extent shrinks when outlying content is removed/moved back; no persisted empty-page history. No commit/push authorized."
+    },
+    {
+      "id": "RD-221-analysis",
+      "date": "2026-10-27",
+      "decision": "Intersect insertion bounds with existing paper. Separate geometric page bounds from caption-inclusive view bounds. Store pageLayout origin metadata and preserve it in revision snapshots; initialize compact legacy content inside a single paper without moving objects. Large diagrams keep genuinely required pages.",
+      "remaining_risks": "Manual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-222-analysis",
+      "date": "2026-10-27",
+      "decision": "Use the existing schemaVersion2 type/model/variant contract. Retain the shared LightingModel filename/API as a compatibility facade supporting lighting-switch and request-switch, rather than copying another rendering/editor implementation. Type metadata supplies controlLabel فرمان versus پل; icon registry supplies picker data and references. Requests use only Negin variants referencing nsp-2r/nsp-3r/nsp-4r/nsp-6r-01; no fabricated Azin variants. Preserve custom toolbox orders but insert a previously absent Requests section after Lighting.",
+      "remaining_risks": "Six service icons are editable starting artwork pending user feedback/replacement. No physical ports or service automation added. No commit/push authorized; user runtime acceptance pending."
+    },
+    {
+      "id": "RD-223-analysis",
+      "date": "2026-10-27",
+      "decision": "Keep icon metadata in the shared catalog registry and SVG payloads only in central assets/offline library. Replace retained semantic IDs with new vector artwork, remove two obsolete assets and expose four additional IDs. Add validated iconAliases for retired IDs so old imports and active documents normalize to replacements rather than failing or rendering blank. Request templates use the supplied icons for thumbnails; real images remain unchanged.",
+      "remaining_risks": "Manual vector redraws are pending user visual acceptance; stable IDs and tint controls remain supported. No commit/push authorized."
+    },
+    {
+      "id": "RD-224-225-analysis",
+      "date": "2026-10-27",
+      "decision": "Present coordinates relative to doc.pageLayout origin rather than the outermost allocated rectangle or raw SVG world. Convert numeric input back to world values, leaving artwork/cables/rotation unchanged. Align grid and snapping to the same datum. Retain noninteractive multiple-selection points rather than introducing multi-resize semantics; preserve locked-item restrictions.",
+      "remaining_risks": "User acceptance pending; native stored geometry remains world-space with pageLayout metadata defining the initial paper datum. No commit/push authorized."
+    },
+    {
+      "id": "RD-226-analysis",
+      "date": "2026-10-27",
+      "decision": "Subtract half width/height when presenting device X/Y and add them when applying input, in addition to the paper origin offset. Numeric dimensions and mode size changes shift internal centers by half the dimension delta to keep the top-left frame fixed. Pointer resize semantics and rotation center remain unchanged.",
+      "remaining_risks": "Position refers to the unrotated object frame, matching its width/height geometry. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-227-analysis",
+      "date": "2026-10-27",
+      "decision": "Extend the existing catalog with orientation metadata and allowed IDs per model variant. Generic variant resolution picks a valid orientation, supports optional orientation-specific SVG references, and adds a suffix only for multiple options. UI/import validation share that same list. Do not infer orientation from square dimensions or rotation. Current products keep their original code strings and SVG artwork.",
+      "remaining_risks": "All real products currently have one direction. Two-direction behavior is verified with isolated test data only; no fabricated second-direction assets were added. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-228-analysis",
+      "date": "2026-10-27",
+      "decision": "Use the existing equipment type/model/orientation schema and shared manifest/offline bundles. Add nsp-2r-azin, nsp-3r-azin, nsp-4r-azin, nsp-6r-azin with the existing1062x1018 artboard/439.86x422.86 face geometry. Model switching resolves images and suffixes declaratively. Keep Negin originals, editable iconic compositions, default sizes and single landscape restrictions.",
+      "remaining_risks": "Native vector redraws pending user visual acceptance. No commit/push authorized."
+    },
+    {
+      "id": "RD-229-analysis",
+      "date": "2026-10-27",
+      "decision": "Follow the user correction to8R rather than HR. Reuse nsp-8r-almas after confirming the exact filename. Add model almas/code suffixAL to shared metadata only where listed. Entry iconLayout uses a142.5x100 reference with eight positions and static Checkout text; product-specific power/hand icons are scoped to8R so other pickers stay unchanged. Default real/iconic size100x70, code50x25; all variants allow landscape only. Renderer reads per-entry layout even when gang count overlaps8L.",
+      "remaining_risks": "New vectors pending user visual acceptance. Original Almas aspect differs and follows the existing stretch behavior within current object bounds. No commit/push authorized."
+    },
+    {
+      "id": "RD-230-analysis",
+      "date": "2026-10-28",
+      "decision": "Existing entries and variants already model families and supported models/directions. Add type-owned subtypes and toolboxSection, entry subtypeId, generic family/group resolvers and validation. Keep stable catalogId references on placed objects and kind/count compatibility. No artificial model-specific palette entries or document purge.",
+      "remaining_risks": "Future product types need their own fields/rendering capabilities; this change establishes catalog hierarchy without inventing unsupported products. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-231-analysis",
+      "date": "2026-10-28",
+      "decision": "Real rendering uses fit instead of stretch, superseding the earlier stretching request. Per-model realAspectRatio determines standard height. Optional variant iconLayout overrides family layout;8R Almas uses2x4 with no Checkout. Model change preserves width/top-left, adjusts height outside code mode, retains customized icons/colors.",
+      "remaining_risks": "Manual non-proportional bounds can leave empty space around the undistorted real image. User visual acceptance pending; no commit/push authorization."
+    },
+    {
+      "id": "RD-232-analysis",
+      "date": "2026-10-28",
+      "decision": "Reuse clipboardSelection to resolve the existing device/cable/wall/group into IDs when entering multiselection. Preserve Ctrl/Shift/Meta toggle behavior; deduplicate shape IDs. Modified clicks on cable labels enter selection rather than label dragging.",
+      "remaining_risks": "User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-233-analysis",
+      "date": "2026-10-28",
+      "decision": "Reuse existing shape tools and palette; add general section to default/legacy ordering. Add image object without replacing SVG management. Raster assets stored once per document and referred to by ID; included in snapshots/import/clipboard. Decode/re-encode selected local images and render behind ordinary objects with fit. Keep existing transforms and locking.",
+      "remaining_risks": "Large numbers of images still consume browser storage; existing storage-failure feedback applies. Raster picture objects are not vector DXF geometry. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-234-analysis",
+      "date": "2026-10-28",
+      "decision": "Native paste event takes priority for image files; keydown does not suppress browser clipboard access. Internal clipboard fallback is cancelled when native paste arrives. Decode before insertion to avoid empty objects on invalid paste; preserve original-document guard during asynchronous work. File selection remains available in properties and on double-click.",
+      "remaining_risks": "Browser/OS clipboard formats must expose an image MIME item; text fields keep their normal paste. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-235-analysis",
+      "date": "2026-10-28",
+      "decision": "Force proportional flag only for picture selection resize and link numeric image dimensions to asset ratio. Insert general shapes as existing grouped wall segments instead of introducing parallel geometry; ellipse retains archShape marker. Thickness updates all segments under one live edit session and honors locks. Existing image bounds with a mismatched stored ratio are normalized to asset ratio, preserving width/top-left.",
+      "remaining_risks": "Line/polyline retain established wall endpoint/shape editing capabilities; user visual acceptance pending. No commit/push authorized."
+    },
+    {
+      "id": "RD-236-analysis",
+      "date": "2026-10-28",
+      "decision": "An ordered open wall shape exposes solid blue vertex handles and lighter blue per-segment midpoint handles. Midpoint drag creates one new segment only after a movement threshold, keeping original shapeId, width/layer/style and other segment IDs. Existing endpoint/joint drags update both adjoining segments. Closed shapes and ellipses retain their own resize handles. Existing polylines remain editable; only the separate palette entry is removed. Locked/invisible paths do not expose editable handles.",
+      "remaining_risks": "Automatic simplification or deletion of collinear vertices is not introduced. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-237-analysis",
+      "date": "2026-10-28",
+      "decision": "Lighting/request code/iconic frames expose borderWidth with existing appearance controls (0.1–100), persisted/validated; real-image appearance stays immutable. Renderer fits the stroke inside its viewbox. Base wall stroke no longer switches to blue; editable open lines add thin dashed blue path plus nodes. rectangleCorners rejects open paths, line-tagged paths, ellipses and non-axis-aligned/disconnected four-segment data. Resize cursor uses local handle direction plus object rotation, quantized to native45-degree cursor directions.",
+      "remaining_risks": "Border control applies to generated equipment frames; internal lines of fixed SVG illustrations remain artwork. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-238-analysis",
+      "date": "2026-10-28",
+      "decision": "Render thickness immediately following border row. Default canvas arrow; use move for unlocked hit targets, pointer for line endpoints, crosshair for segment midpoint insertions. Preserve rotated resize, port wiring and temporary-pan cursors. Existing joint nodes use move. Group/layer locks suppress move cursor. Remove desktop crosshair defaults.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-239-analysis",
+      "date": "2026-10-28",
+      "decision": "Code font size defaults to7 design units, allows1–200, renders as an explicit font size and is validated/persisted. Control stays visible but disabled outside code mode or when code visibility is off. Wheel pan converts pixel/line/page deltas through inverse screen transform and uses scheduled render; native horizontal trackpad deltas are respected. Ctrl-wheel keeps anchored zoom; Shift plus vertical scroll pans horizontally. Handler is scoped to desktop canvas, preserving normal property-panel scrolling and mobile gestures.",
+      "remaining_risks": "Large font sizes may exceed object bounds, requiring user resizing or a smaller font. Trackpad pinch events encoded as Ctrl-wheel continue to zoom. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-240-analysis",
+      "date": "2026-10-28",
+      "decision": "General shape palette thumbnails use0.75 stroke in their24-unit viewbox, approximately matching the Picture icon screen thickness at the existing tile size. The hover preview inherits the same thumbnail. Keep actual shape geometry/stroke settings and Architecture unchanged.",
+      "remaining_risks": "User visual acceptance pending. This is an unshipped local UX change targeting V273, not a V240 release; the historical audit cadence is not triggered by record ID."
+    },
+    {
+      "id": "RD-241-analysis",
+      "date": "2026-10-28",
+      "decision": "Shared type metadata renderer=panel enables the semantic pipeline generically. Thermostat iconEditor=false uses dedicated iconicAssetId SVG templates with no editable gang slots; optional future models can extend the same variants. Three Negin real vectors and three transparent icon templates retain the supplied display/control arrangements. Square50x50 iconic/real and50x25 code defaults; landscape-only. Keep SVG content in the central manifest/offline library; document instances contain references only. Existing physical port defaults are not added.",
+      "remaining_risks": "Native redraws pending user visual acceptance. Only Negin is available; other models have not been invented. OLED terminology follows the user naming. No commit/push authorized."
+    },
+    {
+      "id": "RD-242-analysis",
+      "date": "2026-10-28",
+      "decision": "Closed rectangle/ellipse interiors resolve to the same shapeId as their edges. Background images are hit-tested after foreground geometry to match paint order. Numeric X/Y apply the fixed paper origin; width/height scale endpoints from top-left, synchronize attached doors and respect locks. Single-pane device/wall/cable inspectors omit the tab strip. Placement reads actual SVG screen center, picks nearest empty in-view spot constrained to existing paper when possible and never pans the view. Architecture built-ins, plan symbols, library assets, equipment, pictures and general shapes share it.",
+      "remaining_risks": "If no empty spot remains inside the visible area, insertion falls back to its center instead of moving to another page. Zero-height/width straight-line dimensions cannot be scaled from zero and remain disabled; their endpoints are editable. User acceptance pending."
+    },
+    {
+      "id": "RD-243-analysis",
+      "date": "2026-10-28",
+      "decision": "New closed general shapes start backgroundVisible=true/backgroundColor=#ffffff on their first segment, with no repeated fill metadata on every ellipse edge. Optional styles are validated, preserved in snapshots/copy and rendered as native SVG rect/ellipse fills behind strokes. Existing unstyled shapes retain transparent backgrounds until explicitly enabled. Fill visibility does not affect geometric hit testing.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-244-analysis",
+      "date": "2026-10-28",
+      "decision": "models[].iconicBorder supplies color,width,visibility. Negin/Almas use #000000,width2,optional visibility; Azin uses #e9ca16 taken from nsp-1l-azin.svg,width2,always visible. Effective configuration overrides old styling only in iconic mode, with disabled controls and mutation guards. Stored code-mode frame styling and optional visibility preference remain preserved across model/mode switches. Palette white outline tint remains presentation-only. Future unspecified models fall back to optional fixed black.",
+      "remaining_risks": "User visual acceptance pending. No commit/push authorized."
+    },
+    {
+      "id": "RD-245-analysis",
+      "date": "2026-10-28",
+      "decision": "Keep15 canonical type/subtype families and derive29 templates:14 lighting,12 request,3 thermostat. Each template has stable paletteVariantId, chosen model/orientation, resolved dimensions/asset/code and model-aware label. New document instances persist the variant reference and do not expose model/direction controls; live mutation guards reject those fields. Existing drawings are retained with their own background/icon customization. Default new styles are black background/white symbols; fixed optional Negin/Almas frames become white, Azin stays gold/mandatory. Code styling remains editable. Add orientationAssets/orientationProperties for8L Negin and8R Almas: sizes/ratios/layout vary by direction, and codes append-L/-P only where both exist. Native portrait vectors reuse the original eight symbol groups with whole-panel90-degree rotation and individual-90-degree counterrotation; replace the original compound background path with a clean solid background to avoid rotated ghost symbols.",
+      "remaining_risks": "User visual acceptance pending. Earlier drawings may gain a direction suffix on code where the family now supports two orientations, but geometry/custom appearance is not purged. No commit/push authorized."
+    },
+    {
+      "id": "RD-246-analysis",
+      "date": "2026-10-28",
+      "decision": "iconicBorder.editable is true for Negin/Almas, false for Azin; non-Azin defaults black without overriding custom colors/widths. Mode switches save a whitelisted appearanceByMode record and restore target defaults/custom settings: code black/white/black; iconic black background and optional custom frame. Azin iconic overrides remain mandatory gold. Cached appearance is validated and cannot inject non-style fields. Code generator places optional direction before model suffix (8L-P-NE,8R-L-AL); single-direction variants keep1L-NE,8R-NE. Newly placed names use full canonical title; labels render name exactly. Existing base names are expanded once with nameVersion while custom names are retained. Immutable canonical product title is derived from family/variant in the inspector.",
+      "remaining_risks": "User acceptance pending; no commit/push authorized. Existing customized appearance is preserved rather than reset."
+    },
+    {
+      "id": "RD-247-analysis",
+      "date": "2026-10-28",
+      "decision": "New names use canonical family name only while immutable inspector identity and toolbox tooltip retain model/direction. nameVersion2 shortens prior automatic full titles but preserves custom names. Hidden borders use zero stroke/inset so background covers the full unchanged object rectangle; icon positions and dimensions do not shrink. LightingModel.paletteArtwork transiently uses transparent background/light symbols and light optional frames; locked Azin policy keeps gold. Canvas default styles remain independent.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-248-analysis",
+      "date": "2026-10-28",
+      "decision": "Non-Azin iconic policies use visibility=without-background. Iconic frame width is fixed; visibility ignores stored borderVisible. It becomes visible only when backgroundVisible=false and uses autoOutlineColor with black fallback. Only that color control is enabled in this state; visibility/width remain disabled. With background enabled all frame controls are disabled and no frame is rendered. Azin remains mandatory gold independent of background visibility/color. Code mode retains full standard border/background controls and its separate cached appearance; real artwork bypasses both styles. Auto-outline custom color is preserved for later background toggles and validated on import. Palette previews explicitly set their own light auto-outline color.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-249-analysis",
+      "date": "2026-10-28",
+      "decision": "Replace any-disabled row dimming with all-disabled row dimming. In mixed rows, only a property-control containing disabled controls and no enabled ones is dimmed. Disabled inputs inherit group dimming rather than stacking a second opacity. Remove the caption-specific opacity workaround because the generic mixed-control rule covers it. No functional capability changes. Removed a second older combined-property dimming rule that otherwise overrode the mixed-row presentation.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-250-analysis",
+      "date": "2026-10-28",
+      "decision": "Thermostat o/7s/f gain Azin variants nsp-tmp-o-azin/nsp-tmp-7s-azin/nsp-tmp-f-azin, with existing square50x50 standard and landscape orientation. Native SVGs retain the supplied control arrangements and black/gold face;7S inner frame has rounded corners. Iconic/palette representation reuses family symbol references and central Azin gold policy. integerAngle normalizes to0–359 and rounds numeric inputs, rotation-handle drag, quick rotation and door snapping; saved fractional device/cable-label rotations normalize on render. Angular inputs use step1 while dimensions/positions retain their existing precision.",
+      "remaining_risks": "New vectors pending user visual acceptance. Integer angular snapping intentionally supersedes former0.01-degree free rotation. RD-250 is a record ID, not a V250 release/audit boundary. No commit/push authorized."
+    },
+    {
+      "id": "RD-251-analysis",
+      "date": "2026-10-28",
+      "decision": "--app-font-family owns the existing Vazirmatn/Tahoma/Segoe UI/sans-serif stack for UI and SVG inheritance. Remove forced Arial on outer SVG text. Each render reads the body font once and applies explicit font-family/style to device/door captions, preserving the chosen family when serialized/cloned. Existing caption size controls/default9 are unchanged. This prepares central family customization without adding a selector yet.",
+      "remaining_risks": "Font availability still follows the existing font loading/fallback stack; exported SVG references a family rather than embedding font files. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-252-analysis",
+      "date": "2026-10-28",
+      "decision": "Atlas uses model ID atlas/code suffixAT and the same without-background optional-color automatic iconic outline policy as Negin. Lighting18L has only Atlas, landscape/portrait refs nsp-18l-atlas and nsp-18l-atlas-portrait, codes18L-L-AT/18L-P-AT. Source black face1469x492 excludes the white bottom strip. Layout centers follow three sections of two columns/three rows, indexed section-first; portrait rotates centers clockwise and retains upright symbol geometry. Native vectors share one local bulb definition referenced18 times. Defaults150x50 landscape and50x150 portrait adjusted by exact face aspect; code50x25. Shared renderer discovers count18 from the catalog without a new hardcoded rendering path.",
+      "remaining_risks": "User visual acceptance pending. AT is the chosen Atlas model abbreviation under the existing suffix convention. No commit/push authorized."
+    },
+    {
+      "id": "RD-253-analysis",
+      "date": "2026-10-28",
+      "decision": "Product orientationIds/orientationAssets/orientationProperties remain available for genuinely different products and can still affect palette identity/code. For the three current mountable products, move portrait variation to installationDirectionIds/defaultInstallationDirection/installationAssets/installationProperties; palette projects only product identity, reducing34 templates to31. Add registry directions landscape/portrait/landscape-reverse/portrait-reverse with rotations0/90/180/270; each actual model declares its supported subset and must map each to a real SVG. Iconic center positions and optional labels rotate from the base layout while glyphs remain upright; portrait aspect/sizes and real assets follow mounting metadata. Inspector installation selector is enabled only in iconic/real mode. Changing direction preserves code/product/name/customizations and top-left, resets appropriate standard dimensions. Legacy portrait orientation/palette IDs are accepted then normalized to product landscape plus installation portrait, preserving geometry.",
+      "remaining_risks": "Only two directions are enabled for current products; four-direction capability is tested with a synthetic fixture, not invented product images. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-254-analysis",
+      "date": "2026-10-28",
+      "decision": "Change the single shared bulb asset rather than per-product instances or picker rendering. Rotate180 around32,32 within the64x64 viewport; references/ink recoloring/layout sizes remain intact. All uses of this picker icon, including placed iconic panels and palette previews, adopt the direction automatically. Real product artwork is unchanged.",
+      "remaining_risks": "User visual acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-255-analysis",
+      "date": "2026-10-28",
+      "decision": "equipmentTypes thermostat now declares displayModes=[code,real] and defaultDisplayMode=real; family templates default real. modesFor drives UI options and edit guards, configuration resolves old unsupported iconic state to real, and render migration persists the corrected mode without changing geometry/name. Document validation accepts legacy known mode values so old files remain readable. Palette artwork uses a render-only preview flag, allowing existing transparent light/gold thumbnails without enabling iconic canvas mode. Other product types keep their three modes.",
+      "remaining_risks": "User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-256-analysis",
+      "date": "2026-10-28",
+      "decision": "lockedResizeRatio centralizes picture and semantic real-mode ratio from the selected model/installation metadata. Selection handles force proportional resize without Shift; numeric dimension edits update both dimensions while preserving unrotated top-left. Existing mismatched real bounds normalize on render using width and actual ratio. Mobile pinch and legacy scale controls use one bounded uniform factor so min/max clamping cannot distort locked objects. Code/iconic paths keep existing free resize and optional Shift behavior.",
+      "remaining_risks": "Existing real-image objects with previously non-proportional bounds adjust height on refresh, preserving width/top-left. User acceptance pending; no commit/push authorized."
+    },
+    {
+      "id": "RD-257-analysis",
+      "date": "2026-10-28",
+      "decision": "Doorbell is a catalog equipment type with BP and BL as distinct product subtypes, no mounting choices. Cropped real SVGs retain source paths; iconic fixed parts are separate central SVG references, with luminance masks preserving transparent cut-outs. Layout metadata binds the room-number label to a typed text field; numeric-only, eight-character document/live validation. Three icon slots use the existing independent reference/color editor. Two scoped service vectors reproduce the supplied laundry and bell symbols.",
+      "remaining_risks": "The fixed real photo/vector remains immutable, so room-number edits apply only to iconic mode as requested. User runtime acceptance pending."
+    },
+    {
+      "id": "RD-258-analysis",
+      "date": "2026-10-28",
+      "decision": "Typed text fields can declare colorField/defaultColor/direction. Configuration and label rendering resolve that separate color. Live editing and document import validate hex colors. Bulk icon color only updates iconColor and gangIconColors.",
+      "remaining_risks": "User runtime acceptance pending."
+    },
+    {
+      "id": "RD-259-analysis",
+      "date": "2026-10-28",
+      "decision": "Correct canonical doorbell family names and SVG library labels; catalog-declared legacyDefaultNames migrate exact prior auto names only. Shared canonical/palette builders already append the model once.",
+      "remaining_risks": "Custom names intentionally remain untouched; user acceptance pending."
+    },
+    {
+      "id": "RD-260-analysis",
+      "date": "2026-10-28",
+      "decision": "Doorbell P and L families each have Azin/Almas variants; S is small Negin. Model-specific layout, fixed artwork, face ratio, standard sizes and default values reside in canonical catalog variants. Palette generation applies validated variant default values once; placed objects retain their own number/icons. Vertical Almas digits use data-driven vertical label flow, supporting editable whole number and independent color. Existing matching Almas native vectors are face-cropped; Azin and small Negin are assembled as native SVGs from reference proportions and shared vector elements. New scoped card/porter/DND-bell/washer icons remain central SVG references. No mounting options, no ports.",
+      "remaining_risks": "New codes inferred consistently from existing DB/BP/BL/model standard: P/L omit size, S denotes small. New references reproduced with vector symbols; user visual acceptance pending."
+    },
+    {
+      "id": "RD-261-analysis",
+      "date": "2026-10-28",
+      "decision": "Browser change on blur could arrive after pointer selection changed; livePropertyEvent used the current selection instead of the originating control owner. Inspector controls now stamp owner kind/id and document ID, and reject stale events. Number font size metadata is validated for import/live edits (1–200), rendered independently of icon color and retained across modes/reload. Vertical digit line spacing scales with font size. Palette variants declare order 10–70 for large Negin, Azin P/L, Almas P/L, small Negin.",
+      "remaining_risks": "Custom toolbox ordering remains user-controlled. User acceptance pending."
+    },
+    {
+      "id": "RD-262-analysis",
+      "date": "2026-10-28",
+      "decision": "Every color input previously called render(), which normalized the whole document/catalog, rebuilt properties/tree and recreated all SVG device images. Color edits now mutate/save state immediately and queue only the affected semantic device image for at most one redraw per animation frame. Checkpoint remains once per control edit; pending jobs ignore replaced documents/objects. Structural edits keep full rendering.",
+      "remaining_risks": "Synthetic browser regression verifies bounded work and Undo; actual OS-native color dialog smoothness awaits user confirmation."
+    },
+    {
+      "id": "RD-263-analysis",
+      "date": "2026-10-28",
+      "decision": "Line inspector replaces bounding-box dimensions with actual stroke width and sum of segment lengths; closed rectangle/ellipse inspectors retain width/height and their existing styling. Length editing uses uniform scaling from the first endpoint and syncs attached doors, respects locks, and uses the existing Undo grouping. Font display and edits round to integers; historical decimal documents remain accepted and normalize on render. Repeated unchanged stroke-width and length change events are ignored, avoiding unnecessary form replacement when moving focus between line controls.",
+      "remaining_risks": "User acceptance pending. Line length uses existing map units, not screen pixels."
+    },
+    {
+      "id": "RD-264-analysis",
+      "date": "2026-10-28",
+      "decision": "The procedural door drew its leaf and arc upward from d.y using width, while selection used a short center-based h rectangle. Door geometry v2 uses full w/h bounds and a bottom base; default height includes swing plus base. Legacy doors expand height and shift center in rotated/flipped coordinates, retaining the original base location. Exact old default Door names migrate to در; custom names remain unchanged. snapDoorToWall keeps translation/attachment but no longer assigns rotation.",
+      "remaining_risks": "User visual acceptance pending. Wall proximity still snaps position, as only automatic angle changes were requested removed."
+    },
+    {
+      "id": "RD-265-analysis",
+      "date": "2026-10-28",
+      "decision": "MP and ML are distinct fixed product subtypes, each with one Negin variant. Matching original nsp-db-negin-mp/ml vectors are copied with face-cropped viewBoxes. Iconic layouts are measured against the supplied photos; fixed logo/card/divider artwork uses shared vector parts. Model default numbers are 301 portrait and 302 landscape. Medium products appear after large Negin, leaving the Azin P/L and Almas P/L pairs adjacent. Visual review found dark lower service icons in the legacy ML artwork; its real asset was rebuilt from native white service vectors and shared fixed artwork to match the supplied reference. MP retains the cropped original source.",
+      "remaining_risks": "User visual acceptance pending. New codes inferred from existing BP/BL and size convention."
+    },
+    {
+      "id": "RD-266-analysis",
+      "date": "2026-10-28",
+      "decision": "Supersedes RD-265 default placement near large Negin: medium portrait/landscape paletteOrder becomes 80/90, after small at 70. No product identifiers or document values change.",
+      "remaining_risks": "User runtime acceptance pending."
+    },
+    {
+      "id": "RD-267-analysis",
+      "date": "2026-10-28",
+      "decision": "Add power-switch equipment type/subtype 3r, separate toolbox section and one fixed Negin palette product. Existing matching native portrait/landscape assets are face-cropped, referenced through installationAssets. Explicit installation icon layouts and fixedArtworkAssetId preserve card-slot/indicator arrangement with upright configurable icons. Extend generic mounting resolution/validation to mounted fixed artwork. Code and product identity do not change with mounting; icon selections persist. Latest user correction supersedes initial CR/name wording with CR3R and سه‌فرمان.",
+      "remaining_risks": "Actual reference images use different example service symbols across directions; iconic user choices remain consistent across mounting changes. User visual acceptance pending."
+    },
+    {
+      "id": "RD-268-analysis",
+      "date": "2026-10-28",
+      "decision": "Retain the family/type/subtype schema and add one model variant with portrait default and portrait/landscape installation metadata. Native real SVGs adapt the matching Negin vector symbols to reference-specific outer dimensions, fixed gold border and gold card-slot fills/gradient; iconic fixed card artwork has a gold outline and an icon-colored indicator. Existing Azin policy keeps the frame fixed in iconic mode, independent of background visibility; code remains fully styleable and real immutable. Installation switching retains custom icons, model/product identity and CR3R-AZ code.",
+      "remaining_risks": "User visual acceptance pending."
+    },
+    {
+      "id": "RD-269-analysis",
+      "date": "2026-10-31",
+      "decision": "User authorizes commit and push, but operating environment independently marks .git read-only. Do not bypass the restriction with alternate Git metadata directories or remote-only commits; preserve requested local-first workflow. Stop before merge until write access is available. Remote comparison was read-only and confirms 15 newer commits affecting three files.",
+      "remaining_risks": "Need writable Git metadata and a working Git remote transport before local commit/merge/push. Final release number must be determined from latest main, not assumed V273."
+    },
+    {
       "id": "RD-187-analysis",
       "date": "2026-10-31",
       "decision": "Align desktop Delete enabled state with lockedDeletionDependencies; optimize selected cable membership to a Set to avoid quadratic lookup during panel updates. Increment actual UI V273-R to V274-R in the same source fix commit. Prior ledger release V272 was stale relative to independently observed main V273-R; do not invent missing historical entries.",
@@ -4760,6 +7073,12 @@
       "date": "2026-10-31",
       "decision": "Retain a stable shapeId for the duration of an active polyline on the same layer, storing only ephemeral identity in wallStart. Start a new identity after tool switch/cancel or active-layer change. Version increment V274-R to V275-R in the same patch. V275 due static source audit recorded; runtime acceptance deferred to user.",
       "remaining_risks": "No automated tests or builds under USER_TESTING_POLICY; mobile/desktop runtime behavior remains unverified. Existing LocalStorage/IndexedDB cross-store atomicity and historical audit gaps remain open."
+    },
+    {
+      "id": "RD-270-analysis",
+      "date": "2026-10-31",
+      "decision": "File merge favors local conflicts; independent main fixes are retained for locked layers/cables, smart routing, logical polyline identity, paste offsets and deletion dependencies. Duplicate automation record IDs are namespaced with -remote-main plus original_id/source_main_commit to preserve both histories. User explicitly authorizes GitHub-connector publication instead of local-first commit; no .git ACL/security changes or alternate metadata checkout used.",
+      "remaining_risks": "User runtime acceptance remains pending. Local HEAD remains V272 until the user performs the provided sync outside the restricted execution environment."
     }
   ],
   "deferred_scope": [
@@ -5541,13 +7860,19 @@
       "date": "2026-10-31",
       "change": "RD-188: preserve architectural polyline shapeId across consecutive segments on the same layer; align UI/cache keys, README and Project Evolution with V275-R; record V275 due source audit.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V276",
+      "date": "2026-10-31",
+      "change": "Product/model/mounting catalog, reference SVGs, doorbells, thermostats, power switches, inspector/palette/canvas improvements, selection/resize/line controls, color performance, and latest main safety fixes.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V275-R",
+    "release": "V276",
     "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "PENDING_USER — AUTOMATED_TESTS=NOT_RUN (USER_TESTING_POLICY)",
-    "audit": "V275 multiple-of-five boundary: static source review of main branch, 25 recent commits, repository tree, issues, editor/geometry/routing/storage modules and open backlog; no tests/builds by USER_TESTING_POLICY. LocalStorage/IndexedDB atomicity and historical audit gaps remain open."
+    "runtime_status": "2 unit suites and 13 focused browser suites passed; user/device acceptance pending",
+    "audit": "Latest main V275 static audit retained; historical audit/storage caveats remain open. No new five-version boundary at V276."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

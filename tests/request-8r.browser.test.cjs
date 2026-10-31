@@ -1,0 +1,38 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});try{
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error(e.message)});page.setDefaultTimeout(10000);
+let html=fs.readFileSync('index.html','utf8');const main=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes("(()=>{'use strict';"))[1],at=main.lastIndexOf('})();');html=html.replace(main,main.slice(0,at)+"window.audit={get doc(){return doc},get catalog(){return catalog},addDevice,propertyMenu,render,effectiveArtwork,validateRoomDocument,prepareRoomImport,applyRoomImport,snapshot,select(id){selection={kind:'device',id};render()}};"+main.slice(at));
+await page.route('https://roomdesigner.test/**',route=>{const relative=decodeURIComponent(new URL(route.request().url()).pathname).slice(1);if(!relative)return route.fulfill({contentType:'text/html',body:html});const file=path.resolve(relative);if(!file.startsWith(process.cwd()+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:''});return route.fulfill({contentType:relative.endsWith('.js')?'application/javascript':relative.endsWith('.json')?'application/json':'image/svg+xml',body:fs.readFileSync(file)});});
+const arch={id:'arch',name:'تخت',kind:'bed',category:'architecture',x:180,y:180,w:100,h:100,ports:[],backgroundColor:'#FF0000',svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 10h80v80H10z" fill="none" stroke="#111"/></svg>'};const old={...arch,id:'old',name:'old',kind:'custom',category:'equipment',equipmentRelease:'nsp-equipment-260'};
+await page.addInitScript(seed=>{if(!localStorage.getItem('seeded')){for(const[k,v]of Object.entries(seed))localStorage.setItem(k,v);localStorage.setItem('seeded','1')}},{rd_storage_reset_physical_v1:'done',rd_connection_model:'physical-connections-1',rd_equipment_release:'nsp-equipment-260',rd_active_user:'Tester',rd_catalog:JSON.stringify([{kind:'custom',name:'Old equipment',ports:[],assetId:'nsp-1l'}]),rd_last:JSON.stringify({schema:'room-designer/v0.3',connectionModel:'physical-connections-1',equipmentRelease:'nsp-equipment-260',id:'test',name:'Lighting test',devices:[old,arch],cables:[],walls:[]})});
+await page.goto('https://roomdesigner.test/');await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);
+
+
+await page.locator('#deskLeft [data-section="requests"] summary').click();const tile=page.locator('#deskLeft [data-section="requests"] [data-symbol-code="8R"]');assert.equal(await tile.count(),1);await tile.locator('img').evaluate(n=>n.decode());await tile.click();
+const root=page.locator('#deskProperties');assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).catalogId),'request-8r');assert.deepEqual(await root.locator('[data-desk-prop="lightingModel"] option').evaluateAll(nodes=>nodes.map(n=>n.value)),['negin','azin','almas']);assert.equal(await root.locator('[data-desk-prop="orientation"]').isDisabled(),true);
+await root.locator('[data-inspector-tab="lighting"]').click();assert.equal(await root.locator('[data-lighting-picker]').count(),8);await root.locator('[data-lighting-picker="0"]').click();assert.equal(await page.locator('#lightingPicker-0 [data-lighting-choice]').count(),13);await root.locator('[data-lighting-picker="0"]').click();await root.locator('[data-inspector-tab="general"]').click();assert.ok((await page.evaluate(()=>audit.effectiveArtwork(audit.doc.devices.at(-1)))).includes('Checkout'));
+for(const [model,suffix,asset]of [['negin','NE','nsp-8r-negin'],['azin','AZ','nsp-8r-azin'],['almas','AL','nsp-8r-almas']]){
+ await root.locator('[data-desk-prop="lightingModel"]').selectOption(model);assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).code),'8R-'+suffix);assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).realAssetId),asset);
+ await root.locator('[data-desk-prop="displayMode"]').selectOption('code');assert.ok((await page.evaluate(()=>audit.effectiveArtwork(audit.doc.devices.at(-1)))).includes('>8R-'+suffix+'</text>'));
+ await root.locator('[data-desk-prop="displayMode"]').selectOption('real');await page.locator('g[data-id="'+await page.evaluate(()=>audit.doc.devices.at(-1).id)+'"] image').evaluate(n=>new Promise((resolve,reject)=>{const i=new Image();i.onload=resolve;i.onerror=reject;i.src=n.getAttribute('href')}));await page.evaluate(()=>audit.validateRoomDocument(audit.doc));
+}
+// Model-specific real/iconic proportions, anchored top-left, preserving editable icon choices.
+await root.locator('[data-desk-prop="displayMode"]').selectOption('iconic');
+await root.locator('[data-desk-prop="lightingModel"]').selectOption('negin');
+const before=await page.evaluate(()=>{const d=audit.doc.devices.at(-1);return {x:d.x-d.w/2,y:d.y-d.h/2,w:d.w,icons:[...d.gangIcons]}});
+assert.ok((await page.evaluate(()=>audit.effectiveArtwork(audit.doc.devices.at(-1)))).includes('Checkout'));
+await root.locator('[data-desk-prop="lightingModel"]').selectOption('almas');
+const after=await page.evaluate(()=>{const d=audit.doc.devices.at(-1);return {x:d.x-d.w/2,y:d.y-d.h/2,w:d.w,h:d.h,icons:[...d.gangIcons],art:audit.effectiveArtwork(d)}});
+assert.equal(after.w,before.w);assert.ok(Math.abs(after.x-before.x)<1e-8&&Math.abs(after.y-before.y)<1e-8);assert.ok(after.w/after.h>2);assert.deepEqual(after.icons,before.icons);assert.ok(!after.art.includes('Checkout'));
+await root.locator('[data-desk-prop="displayMode"]').selectOption('real');
+assert.ok(await page.evaluate(()=>{const d=audit.doc.devices.at(-1);return Math.abs(d.w/d.h-698.11/343.66)<.0001}));
+const image=page.locator('g[data-id="'+await page.evaluate(()=>audit.doc.devices.at(-1).id)+'"] image');assert.equal(await image.getAttribute('preserveAspectRatio'),'xMidYMid meet');
+await root.locator('[data-desk-prop="h"]').fill('90');await root.locator('[data-desk-prop="h"]').press('Tab');assert.equal(await image.getAttribute('preserveAspectRatio'),'xMidYMid meet');
+await root.locator('[data-desk-prop="displayMode"]').selectOption('code');assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).h),25);
+await root.locator('[data-desk-prop="displayMode"]').selectOption('real');
+await page.waitForTimeout(800);await page.reload();await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);assert.equal(await page.evaluate(()=>audit.doc.devices.at(-1).code),'8R-AL');assert.equal(await page.evaluate(()=>localStorage.getItem('rd_last').includes('<svg')),false);
+const gallery=await page.evaluate(()=>['negin','azin','almas','iconic'].map(model=>({model,svg:audit.effectiveArtwork({...audit.doc.devices.at(-1),lightingModel:model==='iconic'?'negin':model,displayMode:model==='iconic'?'iconic':'real'})})));
+await page.setContent('<html><body style="background:#ccc;font:16px Arial;display:flex;gap:16px">'+gallery.map(({model,svg})=>'<div><p>8R '+model+'</p><img width="310" height="217" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'"></div>').join('')+'</body></html>');await page.locator('img').evaluateAll(nodes=>Promise.all(nodes.map(n=>n.decode())));await page.screenshot({path:'work/8r-model-gallery.png'});
+assert.deepEqual(errors,[]);console.log('PASS: corrected8R toolbox product, eight configurable controls plus Checkout, Negin/Azin/Almas model choices and SVG references, fixed landscape direction, codes and reference-only reload.');
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

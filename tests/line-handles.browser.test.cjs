@@ -1,0 +1,28 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});try{
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error(e.message)});page.setDefaultTimeout(10000);
+let html=fs.readFileSync('index.html','utf8');const main=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes("(()=>{'use strict';"))[1],at=main.lastIndexOf('})();');html=html.replace(main,main.slice(0,at)+"window.audit={get doc(){return doc},positionWorkspaceView,workspacePages,get catalog(){return catalog},addDevice,propertyMenu,render,effectiveArtwork,validateRoomDocument,prepareRoomImport,applyRoomImport,snapshot,select(id){selection={kind:'device',id};render()}};"+main.slice(at));
+await page.route('https://roomdesigner.test/**',route=>{const relative=decodeURIComponent(new URL(route.request().url()).pathname).slice(1);if(!relative)return route.fulfill({contentType:'text/html',body:html});const file=path.resolve(relative);if(!file.startsWith(process.cwd()+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:''});return route.fulfill({contentType:relative.endsWith('.js')?'application/javascript':relative.endsWith('.json')?'application/json':'image/svg+xml',body:fs.readFileSync(file)});});
+const arch={id:'arch',name:'تخت',kind:'bed',category:'architecture',x:180,y:180,w:100,h:100,ports:[],backgroundColor:'#FF0000',svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 10h80v80H10z" fill="none" stroke="#111"/></svg>'};const old={...arch,id:'old',name:'old',kind:'custom',category:'equipment',equipmentRelease:'nsp-equipment-260'};
+await page.addInitScript(seed=>{if(!localStorage.getItem('seeded')){for(const[k,v]of Object.entries(seed))localStorage.setItem(k,v);localStorage.setItem('seeded','1')}},{rd_storage_reset_physical_v1:'done',rd_connection_model:'physical-connections-1',rd_equipment_release:'nsp-equipment-260',rd_active_user:'Tester',rd_catalog:JSON.stringify([{kind:'custom',name:'Old equipment',ports:[],assetId:'nsp-1l'}]),rd_last:JSON.stringify({schema:'room-designer/v0.3',connectionModel:'physical-connections-1',equipmentRelease:'nsp-equipment-260',id:'test',name:'Lighting test',devices:[old,arch],cables:[],walls:[]})});
+await page.goto('https://roomdesigner.test/');await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);
+
+
+
+
+await page.locator('[data-section="general"] summary').click();assert.equal(await page.locator('[data-desk-arch="polyline"]').count(),0);
+await page.locator('[data-desk-arch="line"]').click();await page.evaluate(()=>{audit.positionWorkspaceView(true);audit.render()});
+assert.equal(await page.locator('[data-line-node]').count(),2);assert.equal(await page.locator('[data-line-midpoint]').count(),1);
+async function dragHandle(selector,dx,dy){const p=await page.locator(selector).evaluate(n=>{const m=document.getElementById('canvas').getScreenCTM();return {x:Number(n.getAttribute('cx'))*m.a+m.e,y:Number(n.getAttribute('cy'))*m.d+m.f}});await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+dx,p.y+dy,{steps:5});await page.mouse.up();}
+const endBefore=await page.evaluate(()=>({...audit.doc.walls.at(-1).b}));await dragHandle('[data-line-node="1"]',35,0);assert.ok(await page.evaluate(before=>audit.doc.walls.at(-1).b.x>before.x,endBefore));assert.equal(await page.evaluate(()=>audit.doc.walls.length),1);
+await dragHandle('[data-line-midpoint="0"]',-15,40);assert.equal(await page.evaluate(()=>audit.doc.walls.length),2);assert.equal(await page.locator('[data-line-node]').count(),3);assert.equal(await page.locator('[data-line-midpoint]').count(),2);
+const joint=await page.evaluate(()=>audit.doc.walls[0].b);assert.deepEqual(await page.evaluate(()=>audit.doc.walls[1].a),joint);
+await dragHandle('[data-line-node="1"]',25,-10);assert.deepEqual(await page.evaluate(()=>audit.doc.walls[0].b),await page.evaluate(()=>audit.doc.walls[1].a));
+await dragHandle('[data-line-midpoint="1"]',20,25);assert.equal(await page.evaluate(()=>audit.doc.walls.length),3);assert.equal(await page.locator('[data-line-midpoint]').count(),3);
+await page.keyboard.press('Control+z');assert.equal(await page.evaluate(()=>audit.doc.walls.length),2);await page.keyboard.press('Control+Shift+z');assert.equal(await page.evaluate(()=>audit.doc.walls.length),3);
+const reselect=await page.evaluate(()=>{const w=audit.doc.walls[0],m=document.getElementById('canvas').getScreenCTM();return {x:(w.a.x+w.b.x)/2*m.a+m.e,y:(w.a.y+w.b.y)/2*m.d+m.f}});await page.mouse.click(reselect.x,reselect.y);await dragHandle('[data-line-midpoint="0"]',10,-20);assert.equal(await page.evaluate(()=>audit.doc.walls.length),4);assert.equal(await page.locator('[data-selection-kind="wall"]').count(),0);assert.equal(await page.locator('[data-line-node]').count(),5);
+assert.ok(await page.locator('#drawing > path').evaluateAll(nodes=>nodes.every(n=>n.getAttribute('stroke')==='#465160')));
+await page.evaluate(()=>audit.validateRoomDocument(audit.doc));await page.waitForTimeout(800);await page.reload();await page.waitForFunction(()=>window.__roomStartupReady&&window.audit);assert.equal(await page.evaluate(()=>audit.doc.walls.length),4);
+assert.deepEqual(errors,[]);console.log('PASS: no polyline tile, endpoint extension, midpoint insertion/slide, repeated subdivision, connected joints, Undo/Redo and reload.');
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});
