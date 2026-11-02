@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V280",
-    "project_evolution_version": "V280",
+    "software_version": "V285-R",
+    "project_evolution_version": "V285-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,7 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V230 (V155–V225 historical audit records remain unreconciled)"
+    "next_due_boundary": "V290 (V155–V225 historical audit records remain unreconciled)"
   },
   "_file_documentation": {
     "title": "RoomDesigner Project Evolution",
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V284",
+  "current_source_release": "V285-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1577,6 +1577,13 @@
       "phase": "Consolidated runtime corrections",
       "summary": "RD-324: wall-aware detail leaders, two-tab import and default-selected proposals, dressing-table set, true geometry color, hover menu, inspector rotations and header controls.",
       "runtime_status": "Focused source and browser checks; user acceptance pending."
+    },
+    {
+      "release": "V285-R",
+      "date": "2026-11-02",
+      "phase": "اصلاح انتخاب واحد DXF و ممیزی ایستای مرز نسخه",
+      "summary": "خطای نشانه‌گذاری گزینهٔ میلی‌متر در فهرست واحد DXF را اصلاح کردم؛ گزینهٔ ضریب ۰٫۱ اکنون به‌صورت یک option مستقل تعریف شده است. نمایش نسخه، ارجاع‌های کش و Project Evolution هماهنگ شدند.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER. ممیزی ایستای محدود سورس و تغییرات انجام شد؛ هیچ ادعای اجرای مرورگر یا Build وجود ندارد."
     }
   ],
   "records": [
@@ -7496,6 +7503,26 @@
         "Staged DXF browser regression PASS: cancel, source layers, no-conversion choice, undo/redo, crop, filters, reload, mobile.",
         "Syntax and whitespace checks; real project acceptance remains pending."
       ]
+    },
+    {
+      "id": "RD-325",
+      "record_type": "source_defect",
+      "module": "DXF unit selector",
+      "source": "GitHub source inspection, main c25cc7ab6ccd7eb34dfb39e43a09cec6c7f423a4",
+      "source_actor": "scheduled regression executor",
+      "recorded_by": "RoomDesigner regression V8.2",
+      "created_at": "2026-11-02",
+      "target_version": "V285-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "درخواست کلی کاربر: نقص‌های مستند سورس را با اصلاح ایمن و انتشار مستقیم روی main برطرف کن؛ تست Runtime بر عهده کاربر است.",
+      "assistant_interpretation": "در قالب HTML پنجرهٔ ورود DXF، تگ پایان گزینهٔ «تعیین واحد» به‌اشتباه دارای value=0.1 بود و تگ آغاز گزینهٔ «میلی‌متر» وجود نداشت؛ بنابراین گزینهٔ معتبر با مقدار ۰٫۱ تعریف نمی‌شد.",
+      "implementation_status": "تگ option میلی‌متر به‌صورت مستقل اصلاح شد؛ نسخه و کش به V285-R افزایش یافت.",
+      "runtime_status": "NOT_RUN — USER_TESTING_POLICY; PENDING_USER",
+      "verification_evidence": [
+        "مقایسهٔ ایستای رشتهٔ HTML قبل و بعد از اصلاح؛ تگ بسته‌شوندهٔ نامعتبر به دو تگ صحیح تبدیل شد.",
+        "بازخوانی HEAD و SHA فایل‌ها پیش از تهیهٔ تغییر؛ بررسی محدود دامنهٔ Diff و هم‌ترازی نسخه‌ها.",
+        "ممیزی مرز مضرب پنج: بررسی ایستای ساختار، تغییرات اخیر، Issues و کد DXF؛ تست، Build و مرورگر اجرا نشد."
+      ]
     }
   ],
   "analyses": [
@@ -8863,6 +8890,12 @@
       "date": "2026-11-02",
       "decision": "Treat the user final instruction as authorization to implement the accumulated runtime batch, after earlier hold. Leader routing reuses bounded orthogonal geometry, excludes decorative DXF furniture/door linework, avoids other product boxes and architectural wall/window segments, and never draws a fallback crossing path. Object placement is kept manual. Apply layer ink to SVG strokes, preserving fills and avoiding box overlays. Default selection is an explicit user-directed policy change from V281 conservative defaults; geometry edits clear stale proposals before reanalysis.",
       "remaining_risks": "Orthogonal routing uses conservative segment bounding rectangles; dense, enclosed or limit-exceeding geometry can return blocked and omit the leader. An attachment point lying inside a wall is treated as an endpoint connection. Detail images themselves can still be manually placed over geometry. Vanity inference uses dimensions and nearby chair context and can misclassify; review default-selected proposals before importing. Older document colors remain as stored."
+    },
+    {
+      "id": "RD-325-analysis",
+      "date": "2026-11-02",
+      "decision": "فقط اصلاح تگ ناقص واحد میلی‌متر در انتخاب‌گر DXF؛ عدم تغییر پیش‌فرض سانتی‌متر، محاسبات ضریب یا رفتار ورود نقشه. نسخهٔ V285-R با یک Commit واحد و پیام فارسی.",
+      "remaining_risks": "تأیید انتخاب میلی‌متر در مرورگر و مقیاس نقشه پس از Import بر عهدهٔ کاربر است؛ ممیزی مخزن کامل نیست و تست خودکار عمداً اجرا نشد."
     }
   ],
   "deferred_scope": [
@@ -9956,13 +9989,19 @@
       "date": "2026-11-02",
       "change": "اصلاح تجمیعی فلش جزئیات، رنگ خطوط بدون کادر، تب‌های ورود DXF، انتخاب همه، تشخیص میز آرایش، چرخش و زیرمنوی فارسی؛ جابه‌جایی دکمه‌ها کنار بازگشت.",
       "status": "source_and_browser_verified_pending_user_acceptance"
+    },
+    {
+      "version": "V285-R",
+      "date": "2026-11-02",
+      "change": "گزینهٔ میلی‌متر را در فهرست واحد ورود DXF اصلاح کردم؛ نسخهٔ نمایشی، کلیدهای کش و دفتر تکامل پروژه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V284",
-    "source_status": "source_and_browser_verified_pending_user_acceptance",
-    "runtime_status": "50 focused DXF/routing tests PASS; safe leader detour and no unsafe fallback under routing limits.; Display-controls browser: two DXF tabs, selected-by-default proposals, select all/none, native geometry tint without boxes, header location, Persian hover submenu, property rotations, modes, captions, locks and Undo.; Actual Type 1 DXF: 14 proposals, including separate dressing table, polygonal lamp, chair and sanitary toilet.; Staged DXF browser regression PASS: cancel, source layers, no-conversion choice, undo/redo, crop, filters, reload, mobile.; Syntax and whitespace checks; real project acceptance remains pending.",
-    "audit": "Scoped consolidated runtime checks; prior V280 boundary audit retained; no full application acceptance claim."
+    "release": "V285-R",
+    "source_status": "static_source_fix_reviewed_pending_user_acceptance",
+    "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
+    "audit": "V285 boundary: static review of main HEAD, recent commits, repository structure, Issues, DXF source and focused diff. No automated tests, builds, browser or runtime checks were executed. Full repository audit and user acceptance remain pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
