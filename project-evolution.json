@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V293-R",
-    "project_evolution_version": "V293-R",
+    "software_version": "V294-R",
+    "project_evolution_version": "V294-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V293-R",
+  "current_source_release": "V294-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1611,6 +1611,13 @@
       "date": "2026-11-03",
       "phase": "جلوگیری از ورود هندسه بیضی سه‌بعدی به نقشه دوبعدی",
       "summary": "در پردازش ELLIPSE فایل DXF، بیضی‌های دارای بردار نرمال خارج از صفحه XY، به‌جای تصویرسازی نادرست در نقشه دوبعدی با هشدار NON-XY OCS کنار گذاشته می‌شوند.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
+    },
+    {
+      "release": "V294-R",
+      "date": "2026-11-03",
+      "phase": "جلوگیری از تبدیل خاموش خطوط سه‌بعدی DXF به هندسه دوبعدی",
+      "summary": "خطوط LINE با ارتفاع Z غیرصفر یا نامعتبر، به‌جای فرافکنی بی‌هشدار روی صفحه XY با هشدار NON-XY LINE کنار گذاشته می‌شوند؛ خطوط XY بدون تغییر وارد می‌شوند.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
     }
   ],
@@ -10085,13 +10092,19 @@
       "date": "2026-11-03",
       "change": "ورود نادرست بیضی‌های خارج از صفحه XY را متوقف کردم و هشدار مناسب، نسخه و دفتر تکامل را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V294-R",
+      "date": "2026-11-03",
+      "change": "ورود بی‌هشدار خطوط سه‌بعدی DXF را متوقف کردم و گزارش هشدار، نسخه و دفتر تکامل پروژه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V293-R",
+    "release": "V294-R",
     "source_status": "static_source_fix_reviewed_pending_user_acceptance",
     "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "Static review: non-XY ELLIPSE extrusion is skipped with NON-XY OCS warning rather than silently flattened. Builds and runtime tests not executed."
+    "audit": "Static review: DXF LINE entities with nonzero or invalid Z coordinates are skipped with NON-XY LINE warning; planar LINE processing remains unchanged. Builds and runtime tests not executed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
