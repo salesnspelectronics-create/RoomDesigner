@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V279** (runtime acceptance pending user).
+Current source release: **V280** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -88,7 +88,7 @@ Semantic equipment is organized by type, subtype, model and installation directi
 
 Current regression coverage is in tests/lighting-model.test.cjs and the focused browser suites for power-switch variants, doorbell editing/models, door selection, line length/integer fonts, color-picker performance, images, placement and installation directions. Historical browser fixtures may describe superseded UI/product behavior; they are not the current acceptance specification. Browser/mobile user acceptance remains pending.
 
-## DXF import (V278)
+## DXF import (V280)
 
 See [DXF-IMPORT.md](./DXF-IMPORT.md) for units, placement, editable grouped imports and unlocking existing reference layers.
 
@@ -99,3 +99,5 @@ Properties → محل نمایش نام selects پایین آبجکت or بال�
 ## Rotation submenu (V279)
 
 Object context menu → چرخش offers 90° left/right and 180° left/right. Hover or click opens the submenu; keyboard navigation, Undo/Redo and object/layer locks are supported. Commit naming: -N for new functionality, -R for fixes.
+
+V280 adds a staged in-app DXF vector importer: preview, source layer selection, unit conversion, crop, editable native layers and optional grouping. No external roomplan conversion is required. See [DXF-IMPORT.md](./DXF-IMPORT.md).
