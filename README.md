@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V282** (runtime acceptance pending user).
+Current source release: **V283** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -105,3 +105,7 @@ V280 adds a staged in-app DXF vector importer: preview, source layer selection, 
 V281 adds confirmed native object recognition inside the DXF preview, centimeter fallback units, Ctrl+N/O file shortcuts and architecture palette furniture additions. Recognition remains a reviewable proposal; unapproved source lines are retained.
 
 V282-R replaces the browser-reserved Ctrl+N shortcut with Ctrl+Alt+N and updates the File menu hint. Ctrl+O remains the file picker shortcut.
+
+V283: DXF import always starts with centimeters/factor 1, with source-unit mismatch notice; toilet proposals; header color/monochrome and global product-detail toggles; supported display modes in product context menus. Commit descriptions are Persian from this release onward.
+
+Product display mode and four-side caption placement use mutually exclusive radio groups. Caption coordinates and text alignment apply to canvas/detail images and DXF output; source validation accepts all four positions.

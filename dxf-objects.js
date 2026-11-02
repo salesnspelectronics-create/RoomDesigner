@@ -1,8 +1,8 @@
 /* Conservative local proposals, never an automatic/destructive semantic conversion. */
 (function(global){
 'use strict';
-const kinds={dining_chair:'صندلی',round_table:'میز گرد',square_table:'میز مربع',table:'میز ناهارخوری',double_bed:'تخت دونفره',single_bed:'تخت یک‌نفره',lamp:'آباژور',door:'در لولایی',sliding_door:'در کشویی'};
-function named(name){const s=name.toLowerCase();if(/slid|کشویی/.test(s))return 'sliding_door';if(/chair|صندلی/.test(s))return 'dining_chair';if(/bed|تخت/.test(s))return /single|یک/.test(s)?'single_bed':'double_bed';if(/lamp|آباژور/.test(s))return 'lamp';if(/door|درب|\bدر\b/.test(s))return 'door';if(/table|میز/.test(s))return /round|circle|گرد/.test(s)?'round_table':/square|مربع/.test(s)?'square_table':'table';return null}
+const kinds={toilet:'توالت',dining_chair:'صندلی',round_table:'میز گرد',square_table:'میز مربع',table:'میز ناهارخوری',double_bed:'تخت دونفره',single_bed:'تخت یک‌نفره',lamp:'آباژور',door:'در لولایی',sliding_door:'در کشویی'};
+function named(name){const s=name.toLowerCase();if(/toilet|water.?closet|\bwc\b|توالت|دستشویی/.test(s))return 'toilet';if(/slid|کشویی/.test(s))return 'sliding_door';if(/chair|صندلی/.test(s))return 'dining_chair';if(/bed|تخت/.test(s))return /single|یک/.test(s)?'single_bed':'double_bed';if(/lamp|آباژور/.test(s))return 'lamp';if(/door|درب|\bدر\b/.test(s))return 'door';if(/table|میز/.test(s))return /round|circle|گرد/.test(s)?'round_table':/square|مربع/.test(s)?'square_table':'table';return null}
 function bounds(lines,indices){let x=Infinity,y=Infinity,X=-Infinity,Y=-Infinity;for(const i of indices)for(const p of [lines[i].a,lines[i].b]){x=Math.min(x,p.x);y=Math.min(y,p.y);X=Math.max(X,p.x);Y=Math.max(Y,p.y)}return {x,y,w:X-x,h:Y-y}}
 function inside(a,b,pad=0){return a.x>=b.x-pad&&a.y>=b.y-pad&&a.x+a.w<=b.x+b.w+pad&&a.y+a.h<=b.y+b.h+pad}
 function analyze(segments,factor){
@@ -28,6 +28,7 @@ function analyze(segments,factor){
   if(!/furn|frn|chair|table|lamp|مبلمان/i.test(p.layer||''))continue;
   const cx=b.x+b.w/2,cy=b.y+b.h/2,radii=p.indices.flatMap(i=>[lines[i].a,lines[i].b]).map(q=>Math.hypot(q.x-cx,q.y-cy)),mean=radii.reduce((a,b)=>a+b,0)/radii.length,variation=Math.sqrt(radii.reduce((a,b)=>a+(b-mean)**2,0)/radii.length)/(mean||1),perimeter=p.indices.reduce((a,i)=>a+Math.hypot(lines[i].a.x-lines[i].b.x,lines[i].a.y-lines[i].b.y),0);
   const radial=n>=8&&ratio>.88&&variation<.08&&Math.abs(perimeter-2*Math.PI*mean)/(2*Math.PI*mean)<.18;
+  if(n>=12&&short>=28&&short<=48&&long>=50&&long<=85&&ratio>.45&&ratio<.75){add('toilet',contained(p),'کاسهٔ کشیدهٔ پیشنهادی؛ نیازمند تأیید',b.w>b.h?90:0);continue}
   if(radial&&long>=15&&long<=38)add('lamp',contained(p),'حلقهٔ کوچک؛ پیشنهاد آباژور');
   else if(radial&&long>=40&&long<=180)add('round_table',contained(p),'محیط دایره‌ای میز');
   else if(n===4&&ratio>.9&&long>=40&&long<=150)add('square_table',p.indices,'چهار ضلع مربع');

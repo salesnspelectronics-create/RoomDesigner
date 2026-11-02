@@ -1,9 +1,9 @@
-# Direct DXF vector import — V282
+# Direct DXF vector import — V283
 
 Use **File > Import DXF** (فایل > واردکردن DXF), or Open File with a .dxf file. The application reads the DXF locally and opens its own import dialog. No external conversion to roomplan, image or PDF is required.
 
 1. Inspect the vector preview. Visible/non-frozen source layers start selected. Select individual layers or All / Architecture / None. The Architecture preset matches common architectural layer names; it is a convenience filter, not semantic CAD classification.
-2. Check units and the displayed size in centimeters. `$INSUNITS` proposes mm/cm/m/dm/inch/feet; missing or unsupported units default to centimeters; the user can change that choice. A custom positive factor up to 100000 is supported.
+2. Check units and the displayed size in centimeters. The dialog always starts with centimeters/factor 1, even if INSUNITS states another unit. A mismatch notice asks the user to check dimensions; the unit can be changed manually. A custom positive factor up to 100000 is supported.
 3. Optional: choose Crop, then drag a rectangle around a room. Reset removes the crop. Wheel zooms; normal dragging pans the preview. Crop uses source coordinates and clips each segment, without connecting separated contours.
 4. Review the numbered object proposals. Confirm the correct ones; adjust their native type and rotation if needed. Changing units, crop or source layers clears proposals and approvals; click Recheck to analyze the new selection. Unchecked objects remain original vector lines.
 5. Choose whether the imported drawing is grouped, then click **Add editable drawing**. Source layers become new unlocked native layers, the geometry is placed at the viewport center and the camera fits it. Existing objects are preserved.
@@ -32,3 +32,5 @@ TEST_BROWSER_PATH=/path/to/chromium ROOM_DXF_FIXTURE=/path/to/type1.dxf node tes
 Ctrl+Alt+N uses the existing new drawing confirmation; Ctrl+O opens the normal file picker. Hints appear beside File menu entries. The physical key mapping also supports Persian keyboard layouts; modal dialogs guard against unintended resets. Browsers may reserve these shortcuts in some contexts. The architecture palette includes the existing chair and sliding door plus new round table, square table and lamp symbols.
 
 V282-R corrects the browser-reserved shortcut: normal browser tabs reserve Ctrl+N for a new window, so the application deliberately leaves it alone. New drawing uses Ctrl+Alt+N (Command+Option+N on macOS). Synthetic DOM/headless events do not validate operating-system/browser accelerator delivery; V281 test success did not establish real Ctrl+N support.
+
+V283 adds toilet proposals (semantic block names or a conservative elongated bowl heuristic; confirmation required). The header color toggle preserves imported DXF layer colors on native lines and identifies converted objects with colored outlines; monochrome uses grayscale without destroying source colors. Global product details are a document view setting, independent of individual display modes, for supported product artwork. The product context menu exposes only supported modes and respects locks.

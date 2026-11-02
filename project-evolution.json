@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V282",
+  "current_source_release": "V283",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -84,7 +84,8 @@
     "implementation": "Commit code and ledger changes, record source and verification",
     "resolved_items": "Runtime Done requires user acceptance",
     "source_rule": "No claims without verified source evidence",
-    "history_retention_rule": "Do not erase prior releases or superseded decisions"
+    "history_retention_rule": "Do not erase prior releases or superseded decisions",
+    "commit_language": "User instruction 2026-11-02: from now on write commit subjects and change descriptions in Persian for all work."
   },
   "history": [
     {
@@ -1562,6 +1563,13 @@
       "phase": "Browser shortcut regression",
       "summary": "RD-320: Ctrl+Alt+N replaces reserved Ctrl+N for New Drawing; correct V281 accelerator verification claim.",
       "runtime_status": "Focused browser automation and source checks; user acceptance pending."
+    },
+    {
+      "release": "V283",
+      "date": "2026-11-02",
+      "phase": "DXF sanitary recognition and product display",
+      "summary": "RD-321/322: fixed cm/1 import, toilet proposals, color and global detail view controls, context display modes, Persian commit messages. RD-323: radio mode/label controls with four caption sides.",
+      "runtime_status": "Focused automated browser and 48 source tests PASS; user acceptance pending."
     }
   ],
   "records": [
@@ -7401,6 +7409,64 @@
         "V281 synthetic/headless key tests did not validate real browser-reserved accelerator delivery; prior Ctrl+N runtime claim superseded.",
         "Inline JS syntax and whitespace checks; user desktop acceptance pending."
       ]
+    },
+    {
+      "id": "RD-321",
+      "record_type": "user_requirement",
+      "module": "DXF and product display",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V283",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "Add toilet recognition, always default DXF unit to cm and factor 1, header color/monochrome toggle, context-menu product display modes, and global product detail arrows/images toggle.",
+      "assistant_interpretation": "Add toilet recognition, always default DXF unit to cm and factor 1, header color/monochrome toggle, context-menu product display modes, and global product detail arrows/images toggle.",
+      "implementation_status": "Implemented in V283; Persian commit-message policy recorded in workflow.",
+      "runtime_status": "Focused browser verified; user acceptance pending",
+      "verification_evidence": [
+        "48 DXF focused tests PASS.",
+        "display-controls.browser.test.cjs PASS: actual sample, mm header still cm/1, toilet proposal, colored native lines and grayscale, doorbell context mode switch, global details on/off, Undo and native validation.",
+        "Source/module/inline syntax checks and whitespace; user acceptance pending."
+      ]
+    },
+    {
+      "id": "RD-322",
+      "record_type": "user_requirement",
+      "module": "Commit reporting preference",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V283",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "From now on write commit messages in Persian and explain what was changed in that commit.",
+      "assistant_interpretation": "From now on write commit messages in Persian and explain what was changed in that commit.",
+      "implementation_status": "Implemented in V283; Persian commit-message policy recorded in workflow.",
+      "runtime_status": "Focused browser verified; user acceptance pending",
+      "verification_evidence": [
+        "48 DXF focused tests PASS.",
+        "display-controls.browser.test.cjs PASS: actual sample, mm header still cm/1, toilet proposal, colored native lines and grayscale, doorbell context mode switch, global details on/off, Undo and native validation.",
+        "Source/module/inline syntax checks and whitespace; user acceptance pending."
+      ]
+    },
+    {
+      "id": "RD-323",
+      "record_type": "user_requirement",
+      "module": "Product property controls and captions",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V283",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "Replace display mode combo with mutually exclusive radio buttons; use radios for label placement above/below/right/left of object.",
+      "assistant_interpretation": "Use native radio groups for supported product modes and four label positions. Preserve locks/visibility, single-choice grouping, document validation and consistent screen/detail/DXF label coordinates.",
+      "implementation_status": "Implemented radio properties, context-menu integration, four-side captions and DXF text alignment.",
+      "runtime_status": "Focused browser checks; user acceptance pending",
+      "verification_evidence": [
+        "display-controls browser: mode radio groups, four label sides and text anchors, validation/reimport, DXF text, lock guards."
+      ]
     }
   ],
   "analyses": [
@@ -8750,6 +8816,18 @@
       "decision": "Use Ctrl+Alt+N for new drawing in browser tabs. Chromium BrowserCommandController browser test explicitly reserves Ctrl+N. A DOM preventDefault handler cannot guarantee receipt of a reserved accelerator. Preserve Ctrl+O and avoid unrelated UX changes.",
       "source": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/browser/ui/browser_command_controller_browsertest.cc",
       "remaining_risks": "Extensions or operating system mappings can intercept alternate combinations; real Windows Chrome acceptance pending. Prior V281 Ctrl+N browser-support claim is corrected, not treated as confirmed."
+    },
+    {
+      "id": "RD-321-analysis",
+      "date": "2026-11-02",
+      "decision": "Use explicit fixed cm/1 staging defaults with mismatch notice rather than header override. Toilet inference stays unchecked and reviewable. Persist view toggles as document settings, preserving native source colors and individual product modes. Reuse live mode dispatcher for context-menu actions and supported-mode/lock guards. Global detail layouts live at document level, leaving locked device properties untouched.",
+      "remaining_risks": "Toilet heuristic can misclassify similarly shaped sanitary fixtures; confirm proposals. Color mode uses DXF layer colors and colored native object outlines, not complete CAD appearance semantics. Detail artwork exists for catalog-supported products; custom unsupported images are excluded. User desktop acceptance pending."
+    },
+    {
+      "id": "RD-323-analysis",
+      "date": "2026-11-02",
+      "decision": "Shared caption coordinate/anchor helper for four sides. Unique native radio group names prevent desktop/mobile inspector controls from interfering. Context submenu dispatches to the matching radio input using the established live-property guard.",
+      "remaining_risks": "Caption sides are in the object local coordinate frame and follow existing object rotation. Real user project acceptance pending."
     }
   ],
   "deferred_scope": [
@@ -9831,13 +9909,19 @@
       "date": "2026-11-02",
       "change": "V282-R: fix New Drawing shortcut/browser conflict using Ctrl+Alt+N and matching menu hint.",
       "status": "source_and_browser_verified_pending_user_acceptance"
+    },
+    {
+      "version": "V283",
+      "date": "2026-11-02",
+      "change": "تشخیص پیشنهادی توالت، پیش‌فرض ثابت سانتی‌متر و ضریب ۱، نمایش رنگی و جزئیات سراسری، منوی نمایش محصول و پیام کامیت فارسی. رادیوباتن نحوهٔ نمایش و محل نام در چهار سمت.",
+      "status": "source_and_browser_verified_pending_user_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V282",
+    "release": "V283",
     "source_status": "source_and_browser_verified_pending_user_acceptance",
-    "runtime_status": "Focused DXF browser regression rerun with Ctrl+Alt+N, Ctrl+O, Persian physical key mapping, modal guard, native conversion, Undo/Redo and reload.; Source review: unmodified Ctrl+N passes through to browser; user confirmation for new drawing remains existing dispatcher behavior.; V281 synthetic/headless key tests did not validate real browser-reserved accelerator delivery; prior Ctrl+N runtime claim superseded.; Inline JS syntax and whitespace checks; user desktop acceptance pending.",
-    "audit": "Scoped shortcut regression only; V280 audit preserved in earlier release history."
+    "runtime_status": "48 DXF focused tests PASS.; display-controls.browser.test.cjs PASS: actual sample, mm header still cm/1, toilet proposal, colored native lines and grayscale, doorbell context mode switch, global details on/off, Undo and native validation.; Source/module/inline syntax checks and whitespace; user acceptance pending.",
+    "audit": "Scoped DXF/display checks; prior boundary audit retained."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
