@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V286-R",
-    "project_evolution_version": "V286-R",
+    "software_version": "V287-R",
+    "project_evolution_version": "V287-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V286-R",
+  "current_source_release": "V287-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1590,6 +1590,13 @@
       "date": "2026-11-02",
       "phase": "اصلاح محدودیت تعداد خطوط در ورود DXF",
       "summary": "کنترل سقف ۵۰ هزار خط را پس از اعتبارسنجی آبجکت‌های جایگزین‌شده قرار دادم تا خطوطی که به آبجکت تبدیل می‌شوند، اشتباهاً در تعداد دیوارهای واردشده محاسبه نشوند.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
+    },
+    {
+      "release": "V287-R",
+      "date": "2026-11-02",
+      "phase": "اصلاح ایمنی مسیر فلش جزئیات",
+      "summary": "حذف خودکار دیوارهایی را که نقطهٔ شروع یا پایان فلش با آن‌ها هم‌پوشانی دارد متوقف کردم؛ اکنون دیوارها در کنترل برخورد باقی می‌مانند و در نبود مسیر ایمن، فلش مسدود گزارش می‌شود.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
     }
   ],
@@ -7549,6 +7556,25 @@
         "بازخوانی سورس و HEAD پیش از تغییر؛ مقایسهٔ شمارش پیش و پس از حذف خطوط تبدیل‌شده.",
         "بازبینی ایستای دامنهٔ تغییر، هم‌ترازی نسخه و کلیدهای کش؛ بدون اجرای تست یا Build."
       ]
+    },
+    {
+      "id": "RD-327",
+      "record_type": "source_defect",
+      "module": "Detail leader obstacle avoidance",
+      "source": "GitHub main b7af27cf70bf87009c5f187be8b38b96c13ba99b — detail-routing.js route()",
+      "source_actor": "scheduled regression executor",
+      "recorded_by": "RoomDesigner regression V8.2",
+      "created_at": "2026-11-02",
+      "target_version": "V287-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "درخواست اصلاح خودکار نقص‌های مستند سورس، نسخه‌گذاری ترتیبی و پیام Commit فارسی.",
+      "assistant_interpretation": "فیلتر active هر دیواری را که یکی از نقاط شروع یا پایان فلش در مستطیل آن قرار داشت به‌طور کامل از موانع حذف می‌کرد؛ بنابراین مسیر پیشنهادی می‌توانست از بخش دیگری از همان دیوار عبور کند، برخلاف قرارداد اجتناب از دیوار.",
+      "implementation_status": "تمام موانع معماری برای safeRoute حفظ شدند؛ در موارد هم‌پوشانی غیرقابل عبور، مسیر به‌جای عبور ناایمن مسدود اعلام می‌شود.",
+      "runtime_status": "NOT_RUN — USER_TESTING_POLICY; PENDING_USER",
+      "verification_evidence": [
+        "مقایسهٔ ایستای حذف دیوار در فیلتر active با تابع segmentBlocked در cable-routing.js و پیام مسیر مسدود در index.html.",
+        "بازبینی ایستای تغییر محدود و یکپارچگی نسخه؛ بدون اجرای Build یا تست."
+      ]
     }
   ],
   "analyses": [
@@ -10027,13 +10053,19 @@
       "date": "2026-11-02",
       "change": "خطای محاسبهٔ سقف خطوط در ورود DXF را اصلاح کردم تا قطعه‌خط‌های تبدیل‌شده به آبجکت، دوباره به‌عنوان دیوار شمارش نشوند؛ نسخه و کش را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V287-R",
+      "date": "2026-11-02",
+      "change": "حذف ناایمن دیوارهای هم‌پوشان با نقاط فلش جزئیات را متوقف کردم تا مسیری از میان دیوار عبور نکند؛ نسخهٔ نمایشی، کش و تکامل پروژه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V286-R",
+    "release": "V287-R",
     "source_status": "static_source_fix_reviewed_pending_user_acceptance",
     "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "Scoped static source review of DXF import, recent commits, repository structure, issues, PDF import, cable routing, SVG and storage risk. No tests or builds executed; user runtime acceptance pending."
+    "audit": "Scoped static source review of detail-routing, cable-routing, DXF/PDF import, SVG and persistence. No tests or builds executed; user runtime acceptance pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

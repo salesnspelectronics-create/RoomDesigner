@@ -7,7 +7,8 @@
   const points=box=>[['left',{x:box.x,y:box.y+box.h/2}],['right',{x:box.x+box.w,y:box.y+box.h/2}],['top',{x:box.x+box.w/2,y:box.y}],['bottom',{x:box.x+box.w/2,y:box.y+box.h}]];
   const ends=points(target),starts=points(source);const pairs=starts.flatMap(([side,a])=>ends.map(([endSide,b])=>({side,a,endSide,b,length:Math.abs(a.x-b.x)+Math.abs(a.y-b.y)}))).sort((a,b)=>a.length-b.length);
   let result=null;for(const p of pairs.slice(0,8)){
-   const active=boxes.filter(r=>![p.a,p.b].some(q=>q.x>=r.minX&&q.x<=r.maxX&&q.y>=r.minY&&q.y<=r.maxY));
+   // Keep all architectural obstacles; if an endpoint overlaps a wall, fail closed rather than routing through it.
+   const active=boxes;
    const path=g.CableRouting.safeRoute({a:p.a,b:p.b,sourceSide:p.side,targetSide:p.endSide,sourceId:'source',targetId:'target',rects:[...active,{id:'source',minX:source.x,maxX:source.x+source.w,minY:source.y,maxY:source.y+source.h},{id:'target',minX:target.x,maxX:target.x+target.w,minY:target.y,maxY:target.y+target.h}]});
    if(path){result=path;break}
   }

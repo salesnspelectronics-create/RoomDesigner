@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V286-R** (runtime acceptance pending user).
+Current source release: **V287-R** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -111,3 +111,5 @@ V283: DXF import always starts with centimeters/factor 1, with source-unit misma
 Product display mode and four-side caption placement use mutually exclusive radio groups. Caption coordinates and text alignment apply to canvas/detail images and DXF output; source validation accepts all four positions.
 
 V284 consolidates runtime feedback: settings/objects import tabs, default-selected proposals and bulk selection, native dressing table with separate lamp/chair, native geometry color without bounding boxes, Persian hover display submenu, property rotation buttons, and header controls before Undo/Redo. Detail leaders route around architectural obstacles; blocked routes show a status rather than crossing walls.
+
+V287-R: مسیر فلش جزئیات دیگر هیچ دیوار هم‌پوشان با نقطهٔ شروع یا پایان را از فهرست موانع حذف نمی‌کند؛ در نبود مسیر ایمن، وضعیت انسداد نمایش داده می‌شود.
