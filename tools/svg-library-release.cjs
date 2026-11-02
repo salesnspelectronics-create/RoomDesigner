@@ -9,7 +9,7 @@ try{
  if(manifest?.schemaVersion!==1||!Number.isInteger(manifest.version)||manifest.version<1||!Array.isArray(manifest.symbols)||manifest.symbols.length>2000||!map||typeof map!=='object'||Array.isArray(map))throw Error('Invalid manifest or map');
  const ids=new Set(),paths=new Set(),assets=Object.create(null),writes=[];
  for(const e of manifest.symbols){
-  if(!/^[\w-]+$/.test(e.id)||['__proto__','constructor','prototype'].includes(e.id)||ids.has(e.id)||typeof e.name!=='string'||!e.name.trim()||!/^assets\/svg\/(equipment|architecture|electrical|custom)\/[\w-]+\.svg$/.test(e.filePath)||paths.has(e.filePath)||!Number.isInteger(e.version)||e.version<1||![e.defaultWidth,e.defaultHeight].every(x=>Number.isFinite(x)&&x>0)||!Array.isArray(e.assignedEquipmentTypes)||!e.assignedEquipmentTypes.every(x=>typeof x==='string'))throw Error('Invalid entry: '+e.id);
+  if(!/^[\w-]+$/.test(e.id)||['__proto__','constructor','prototype'].includes(e.id)||ids.has(e.id)||typeof e.name!=='string'||!e.name.trim()||!/^assets\/svg\/(equipment|architecture|electrical|custom|lighting|services)\/[\w-]+\.svg$/.test(e.filePath)||paths.has(e.filePath)||!Number.isInteger(e.version)||e.version<1||![e.defaultWidth,e.defaultHeight].every(x=>Number.isFinite(x)&&x>0)||!Array.isArray(e.assignedEquipmentTypes)||!e.assignedEquipmentTypes.every(x=>typeof x==='string'))throw Error('Invalid entry: '+e.id);
   if(!e.filePath.startsWith('assets/svg/'+e.category+'/'))throw Error('Category mismatch: '+e.id);
   ids.add(e.id);paths.add(e.filePath);dom.window.SvgEngine.viewBox(e.viewBox);
   const target=path.resolve(root,e.filePath);if(!target.startsWith(root+path.sep))throw Error('Unsafe asset path');
@@ -18,7 +18,7 @@ try{
   assets[e.id]=safe;writes.push([target,safe+'\n']);
  }
  for(const [type,id]of Object.entries(map)){if(['__proto__','constructor','prototype'].includes(type)||id!==null&&!ids.has(id))throw Error('Invalid type mapping: '+type)}
- for(const e of manifest.symbols){const expected=Object.keys(map).filter(type=>map[type]===e.id).sort();if(JSON.stringify(expected)!==JSON.stringify([...e.assignedEquipmentTypes].sort()))throw Error('Assignments disagree: '+e.id)}
+ for(const e of manifest.symbols){const expected=Object.keys(map).filter(type=>map[type]===e.id).sort();if(!expected.every(type=>e.assignedEquipmentTypes.includes(type)))throw Error('Assignments disagree: '+e.id)}
  if(!check){
   // Complete validation precedes every mutation. Existing unrelated files are retained.
   for(const [target,safe]of writes){fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,safe)}

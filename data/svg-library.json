@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 20,
+  "version": 21,
   "symbols": [
     {
       "id": "single_bed",
@@ -216,7 +216,7 @@
     },
     {
       "id": "sliding_door",
-      "name": "درب کشویی",
+      "name": "در کشویی",
       "category": "architecture",
       "filePath": "assets/svg/architecture/sliding_door.svg",
       "viewBox": "0 0 130 35",
@@ -2141,6 +2141,48 @@
       "preserveAspectRatio": "xMidYMid meet",
       "version": 1,
       "assignedEquipmentTypes": []
+    },
+    {
+      "id": "round_table",
+      "name": "میز گرد",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/round_table.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 90,
+      "defaultHeight": 90,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "round_table"
+      ]
+    },
+    {
+      "id": "square_table",
+      "name": "میز مربع",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/square_table.svg",
+      "viewBox": "0 0 100 100",
+      "defaultWidth": 90,
+      "defaultHeight": 90,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "square_table"
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "آباژور",
+      "category": "architecture",
+      "filePath": "assets/svg/architecture/lamp.svg",
+      "viewBox": "0 0 60 60",
+      "defaultWidth": 30,
+      "defaultHeight": 30,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "lamp"
+      ]
     }
   ]
 }

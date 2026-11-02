@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V280",
+  "current_source_release": "V281",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1548,6 +1548,13 @@
       "phase": "In-app staged DXF vector import",
       "summary": "RD-318: direct DXF import with editable source layers, preview, unit selection, layer filters and crop; retain V279 captions and rotation submenu.",
       "runtime_status": "41 unit tests, actual Type 1 browser import and prior caption/rotation browser checks passed; user acceptance pending."
+    },
+    {
+      "release": "V281",
+      "date": "2026-11-02",
+      "phase": "Confirmed native DXF objects and file UX",
+      "summary": "RD-319: review native object proposals inside DXF import; approve type/rotation before replacing lines; cm fallback, file shortcuts and architecture symbols.",
+      "runtime_status": "Focused 48 tests, both actual-file browser suites, prior caption/rotation regressions and SVG validation PASS; existing unrelated equipment-count failures reproduced on baseline; user acceptance pending."
     }
   ],
   "records": [
@@ -7344,6 +7351,28 @@
         "Existing V279 caption-position and rotation-submenu browser regressions: PASS (runtime-only executable path adaptation to Linux Chromium)",
         "Inline JS and new module syntax: PASS; user acceptance pending"
       ]
+    },
+    {
+      "id": "RD-319",
+      "record_type": "user_requirement",
+      "module": "DXF object recognition and file UX",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V281",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "Add Ctrl+N/O with menu hints, default DXF to centimeters, chair/sliding door/table/lamp objects and recognize native objects in the DXF import form before importing, showing proposals for confirmation.",
+      "assistant_interpretation": "Recognize conservatively in staged preview; allow approval, native kind correction and cardinal rotation. Replace only approved source segments and retain everything else. Reuse existing chair/sliding door and add round/square tables and lamp.",
+      "implementation_status": "Implemented local block-name and geometry proposals, numbered bounds, per-object approval/type/rotation, bounded inference, stale approval invalidation, native conversion in one checkpoint, palette and file shortcuts.",
+      "runtime_status": "PASS focused source and browser checks; two unrelated existing equipment count tests fail identically on baseline; USER_ACCEPTANCE_PENDING",
+      "verification_evidence": [
+        "48 focused tests PASS: dxf-engine, dxf-import, dxf-objects.",
+        "Both DXF browser suites PASS in Chromium using actual 472-segment Type 1 file: 12 confirmed native objects and 307 retained lines, precise footprint/rotation, cancellation, approval invalidation, units, crop/layers, unapproved geometry, Undo/Redo, reload, palette and Ctrl+N/O including Persian physical keys and modal guards.",
+        "V279 caption-position and rotation-submenu browser regressions PASS; SVG library validator PASS: 163 SVGs, 58 mappings.",
+        "equipment-release.test.cjs: 4 PASS, 2 pre-existing count failures (51 vs 30 and 52 vs 31), independently reproduced on unchanged V280 HEAD; not caused by this change.",
+        "Inline/module syntax and whitespace checks PASS; user acceptance pending."
+      ]
     }
   ],
   "analyses": [
@@ -8680,6 +8709,12 @@
       "date": "2026-11-02",
       "decision": "Use bounded local ASCII parsing with LINE/LWPOLYLINE/POLYLINE, sampled bulges/arcs/circles/ellipses and transformed nested INSERT blocks. Unsupported types and tilted OCS are reported. Stage layer/crop/unit changes without mutating the drawing; unknown units require explicit selection. Native conversion has one Undo checkpoint and preserves source layer identity. Crop splits disconnected source contours to avoid false editable connections.",
       "remaining_risks": "DXF is reference geometry rather than a complete CAD semantic importer; text, hatches, splines, meshes and unsupported entities are reported/omitted. Up to 80 MiB ASCII input, 200k expanded preview segments and 20k segments per import. Curves are approximated; user project acceptance pending."
+    },
+    {
+      "id": "RD-319-analysis",
+      "date": "2026-11-02",
+      "decision": "Use local heuristic proposals rather than claiming general visual understanding. Semantic INSERT metadata and connected geometry/layer/dimension rules propose objects; none is selected automatically. Units/layers/crop changes clear stale approvals. Recompute approved bounds from exact selected segments, replace only disjoint source indices and preserve native layers/grouping. Default unknown units to cm while honoring supported INSUNITS. Reuse the existing file dispatcher and confirmation for Ctrl+N/O.",
+      "remaining_risks": "Recognition may miss or misclassify symbols; human confirmation required. Geometry inference <=5000 selected segments and <=100 visible proposals. Native symbols preserve footprint and cardinal rotation, not every CAD detail or hinge handedness. Browsers can reserve Ctrl+N/O outside page-controlled contexts. User acceptance pending. Two existing equipment-count test failures remain documented, not silently fixed."
     }
   ],
   "deferred_scope": [
@@ -9749,13 +9784,19 @@
       "date": "2026-11-02",
       "change": "RD-318: import DXF directly through staged vector preview/layer filters/unit selection/crop and commit native editable geometry without external roomplan conversion.",
       "status": "source_and_browser_verified_pending_user_acceptance"
+    },
+    {
+      "version": "V281",
+      "date": "2026-11-02",
+      "change": "RD-319: staged DXF object proposals with explicit native conversion, Ctrl+N/O hints/actions, centimeter fallback and architecture palette additions.",
+      "status": "source_and_browser_verified_pending_user_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V280",
+    "release": "V281",
     "source_status": "source_and_browser_verified_pending_user_acceptance",
-    "runtime_status": "node --test tests/dxf-engine.test.cjs tests/dxf-import.test.cjs: 41/41 PASS; tests/dxf-import.browser.test.cjs: PASS in Chromium with actual 472-line Type 1 DXF; preview, source layers, units, cancel, crop/filter, grouping, Undo/Redo, hide/delete, reload, keyboard isolation, mobile, invalid input; Existing V279 caption-position and rotation-submenu browser regressions: PASS (runtime-only executable path adaptation to Linux Chromium); Inline JS and new module syntax: PASS; user acceptance pending",
-    "audit": "V280 five-version boundary: scoped DXF parser/import review, syntax, geometry/cap/cancel/lock invariants, actual file browser validation and V279 caption/rotation regressions completed. Historical wider maintenance/audit gaps are retained and were not independently re-audited. No claim of full-application audit or user acceptance."
+    "runtime_status": "48 focused tests PASS: dxf-engine, dxf-import, dxf-objects.; Both DXF browser suites PASS in Chromium using actual 472-segment Type 1 file: 12 confirmed native objects and 307 retained lines, precise footprint/rotation, cancellation, approval invalidation, units, crop/layers, unapproved geometry, Undo/Redo, reload, palette and Ctrl+N/O including Persian physical keys and modal guards.; V279 caption-position and rotation-submenu browser regressions PASS; SVG library validator PASS: 163 SVGs, 58 mappings.; equipment-release.test.cjs: 4 PASS, 2 pre-existing count failures (51 vs 30 and 52 vs 31), independently reproduced on unchanged V280 HEAD; not caused by this change.; Inline/module syntax and whitespace checks PASS; user acceptance pending.",
+    "audit": "V280 boundary audit retained in release history. V281 scoped recognition/native conversion/units/shortcut/SVG regression checks completed; no claim of full-app audit. V280 five-version boundary: scoped DXF parser/import review, syntax, geometry/cap/cancel/lock invariants, actual file browser validation and V279 caption/rotation regressions completed. Historical wider maintenance/audit gaps are retained and were not independently re-audited. No claim of full-application audit or user acceptance."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

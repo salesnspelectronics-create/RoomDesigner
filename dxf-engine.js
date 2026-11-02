@@ -11,7 +11,7 @@ function number(r,code,fallback=0){const v=value(r,code,null);return v===null?fa
 function parse(source){
  if(typeof source!=='string'||/^AutoCAD Binary DXF/i.test(source)||source.includes('\0'))throw Error('این ورودی DXF متنی نیست؛ خروجی ASCII DXF را انتخاب کنید');
  const lines=source.replace(/^\uFEFF/,'').replace(/\r/g,'').split('\n');if(lines.length>MAX_PAIRS*2)throw Error('تعداد داده‌های DXF بیش از حد مجاز است');
- const roots=[],blocks=new Map(),layerMeta=new Map(),warnings={},segments=[];let section='',pending=false,current=null,block=null,polyline=null,recordCount=0,unitCode=0,headerKey='',eof=false,invalid=0;
+ const roots=[],blocks=new Map(),layerMeta=new Map(),warnings={},segments=[];let section='',pending=false,current=null,block=null,polyline=null,recordCount=0,unitCode=0,headerKey='',eof=false,invalid=0,activeBlockNames=[],activeBlockPath='';
  const warn=type=>warnings[type]=(warnings[type]||0)+1;
  function accept(r){
   if(!r)return;if(++recordCount>MAX_RECORDS)throw Error('تعداد آبجکت‌های DXF بیش از حد مجاز است');
@@ -31,11 +31,11 @@ function parse(source){
   if(current)current.pairs.push([code,v]);
  }
  if(!eof)throw Error('پایان فایل DXF یافت نشد؛ فایل کامل ASCII DXF را انتخاب کنید');
- function add(a,b,m,layer,shapeId){const aa=point(m,a),bb=point(m,b);aa.y=-aa.y;bb.y=-bb.y;if(![aa.x,aa.y,bb.x,bb.y].every(Number.isFinite)){invalid++;return}if(Math.hypot(aa.x-bb.x,aa.y-bb.y)<1e-9)return;if(segments.length>=LIMIT)throw Error('هندسه بیش از ۲۰۰ هزار قطعه‌خط دارد؛ ابتدا نقشه یا لایه‌های کمتری را در CAD خروجی بگیرید');segments.push({a:aa,b:bb,layer,shapeId})}
+ function add(a,b,m,layer,shapeId){const aa=point(m,a),bb=point(m,b);aa.y=-aa.y;bb.y=-bb.y;if(![aa.x,aa.y,bb.x,bb.y].every(Number.isFinite)){invalid++;return}if(Math.hypot(aa.x-bb.x,aa.y-bb.y)<1e-9)return;if(segments.length>=LIMIT)throw Error('هندسه بیش از ۲۰۰ هزار قطعه‌خط دارد؛ ابتدا نقشه یا لایه‌های کمتری را در CAD خروجی بگیرید');segments.push({a:aa,b:bb,layer,shapeId,...(activeBlockNames.length?{blockNames:[...activeBlockNames],blockPath:activeBlockPath}:{})})}
  function edge(a,b,bulge,m,l,id){if(!Number.isFinite(bulge)||Math.abs(bulge)<1e-10){add(a,b,m,l,id);return}const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);if(d<1e-10)return;const k=(1-bulge*bulge)/(4*bulge),c={x:(a.x+b.x)/2-dy*k,y:(a.y+b.y)/2+dx*k},start=Math.atan2(a.y-c.y,a.x-c.x),theta=4*Math.atan(bulge),radius=Math.hypot(a.x-c.x,a.y-c.y),n=Math.max(2,Math.ceil(Math.abs(theta)/(Math.PI/36)));let prev=a;for(let i=1;i<=n;i++){const t=start+theta*i/n,p=i===n?b:{x:c.x+radius*Math.cos(t),y:c.y+radius*Math.sin(t)};add(prev,p,m,l,id);prev=p}}
  function poly(vertices,closed,m,l,id){for(let i=1;i<vertices.length;i++)edge(vertices[i-1],vertices[i],vertices[i-1].bulge||0,m,l,id);if(closed&&vertices.length>1)edge(vertices.at(-1),vertices[0],vertices.at(-1).bulge||0,m,l,id)}
  function walk(list,m,parentLayer,stack,prefix){
-  for(let i=0;i<list.length;i++){const r=list[i],own=value(r,8,'0'),l=own==='0'&&parentLayer?parentLayer:own,id=prefix+'/'+i;
+  for(let i=0;i<list.length;i++){activeBlockNames=stack;activeBlockPath=prefix;const r=list[i],own=value(r,8,'0'),l=own==='0'&&parentLayer?parentLayer:own,id=prefix+'/'+i;
    if(number(r,60)===1)continue;
    let em=m;if(['LWPOLYLINE','POLYLINE','ARC','CIRCLE','INSERT'].includes(r.type)){if(Math.abs(number(r,210))>1e-9||Math.abs(number(r,220))>1e-9){warn('NON-XY OCS');continue}if(number(r,230,1)<0)em=multiply(m,[-1,0,0,1,0,0])}
    if(r.type==='LINE'){add({x:number(r,10,NaN),y:number(r,20,NaN)},{x:number(r,11,NaN),y:number(r,21,NaN)},m,l,id);continue}

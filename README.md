@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V280** (runtime acceptance pending user).
+Current source release: **V281** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -101,3 +101,5 @@ Properties → محل نمایش نام selects پایین آبجکت or بال�
 Object context menu → چرخش offers 90° left/right and 180° left/right. Hover or click opens the submenu; keyboard navigation, Undo/Redo and object/layer locks are supported. Commit naming: -N for new functionality, -R for fixes.
 
 V280 adds a staged in-app DXF vector importer: preview, source layer selection, unit conversion, crop, editable native layers and optional grouping. No external roomplan conversion is required. See [DXF-IMPORT.md](./DXF-IMPORT.md).
+
+V281 adds confirmed native object recognition inside the DXF preview, centimeter fallback units, Ctrl+N/O file shortcuts and architecture palette furniture additions. Recognition remains a reviewable proposal; unapproved source lines are retained.

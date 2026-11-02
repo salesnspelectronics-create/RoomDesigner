@@ -53,5 +53,8 @@
   "nsp-ac12ch": "nsp-ac12ch",
   "nsp-ac4ch": "nsp-ac4ch",
   "nsp-power-terminal": "nsp-power-terminal",
-  "nsp-power-supply": "nsp-power-supply"
+  "nsp-power-supply": "nsp-power-supply",
+  "round_table": "round_table",
+  "square_table": "square_table",
+  "lamp": "lamp"
 }
