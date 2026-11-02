@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V278** (runtime acceptance pending user).
+Current source release: **V279** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -91,3 +91,11 @@ Current regression coverage is in tests/lighting-model.test.cjs and the focused 
 ## DXF import (V278)
 
 See [DXF-IMPORT.md](./DXF-IMPORT.md) for units, placement, editable grouped imports and unlocking existing reference layers.
+
+## V279 — object name placement
+
+Properties → محل نمایش نام selects پایین آبجکت or بالای آبجکت for each object. Name visibility, font size and color remain independent. Saved drawings retain the position; legacy drawings keep their previous placement. Focused browser regression: `node tests/caption-position.browser.test.cjs`. User acceptance and publication pending.
+
+## Rotation submenu (V279)
+
+Object context menu → چرخش offers 90° left/right and 180° left/right. Hover or click opens the submenu; keyboard navigation, Undo/Redo and object/layer locks are supported. Commit naming: -N for new functionality, -R for fixes.

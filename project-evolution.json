@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V278",
-    "project_evolution_version": "V278",
+    "software_version": "V279",
+    "project_evolution_version": "V279",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V278",
+  "current_source_release": "V279",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1534,6 +1534,13 @@
       "phase": "DXF import repair",
       "summary": "RD-315: unit-aware editable grouped DXF imports, viewport placement/fitting and actionable lock/deletion feedback.",
       "runtime_status": "17 focused tests passed; browser and user acceptance pending."
+    },
+    {
+      "release": "V279",
+      "date": "2026-11-02",
+      "phase": "Object caption placement",
+      "summary": "RD-316: selectable top/bottom object names in Properties. RD-317: rotation submenu with four signed angles; new feature commit suffix N.",
+      "runtime_status": "PASS: focused caption-position browser regression (three-command power switch, top/bottom, Undo/Redo, visibility, save/reload, import validation, serialized SVG, locking, mobile inspector); caption-font and compact-properties browser suites; lighting-model suite; inline JavaScript syntax. Legacy import-validation.test.cjs fails with Illegal return statement on both unchanged V277 and V279; browser import validation passes. User acceptance pending."
     }
   ],
   "records": [
@@ -7273,6 +7280,42 @@
         "Existing import-validation/regression suites: 13/35 pass, identical 22 failures on baseline 796387a (missing test harness globals); no new failures",
         "Browser interaction: NOT_RUN; user acceptance pending"
       ]
+    },
+    {
+      "id": "RD-316",
+      "record_type": "user_requirement",
+      "module": "object_caption",
+      "source": "user chat and screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V279",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در پراپرتیز محل قرارگیری نام آبجکت را اضافه کن تا نام پاور سوییچ سه فرمان بالای آبجکت قرار بگیرد؛ کنترل نمایش نام حفظ شود.",
+      "assistant_interpretation": "Add per-object top/bottom caption placement in the shared desktop/mobile inspector, preserving existing defaults and visibility.",
+      "implementation_status": "Source updated; position persists in document data and is used in canvas, detail views and exports.",
+      "runtime_status": "PASS: focused caption-position browser regression (three-command power switch, top/bottom, Undo/Redo, visibility, save/reload, import validation, serialized SVG, locking, mobile inspector); caption-font and compact-properties browser suites; lighting-model suite; inline JavaScript syntax. Legacy import-validation.test.cjs fails with Illegal return statement on both unchanged V277 and V279; browser import validation passes. User acceptance pending.",
+      "verification_evidence": [
+        "tests/caption-position.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-317",
+      "record_type": "user_requirement",
+      "module": "object_context_menu",
+      "source": "user chat and screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V279",
+      "status": "source_implemented_pending_user_runtime_acceptance",
+      "user_statement": "در منوی آبجکت زیرمنوی چرخش با ۹۰ درجه چپ و راست و ۱۸۰ درجه چپ و راست اضافه شود؛ تغییرات قبلی و شاخه‌ها با main ادغام و push شوند. نامگذاری قابلیت جدید -N و رفع اشکال -R باشد.",
+      "assistant_interpretation": "Replace the two flat rotation commands with a hover/click/keyboard submenu with four signed angles; integrate prior caption placement and remote DXF fixes on main.",
+      "implementation_status": "Four rotation options share the existing rotation operation and respect object/layer locks, save and Undo/Redo.",
+      "runtime_status": "Focused browser regression passes: all angles, hover, keyboard, viewport edges, Undo/Redo and locks. User runtime acceptance pending.",
+      "verification_evidence": [
+        "tests/rotation-submenu.browser.test.cjs"
+      ]
     }
   ],
   "analyses": [
@@ -8591,6 +8634,18 @@
       "date": "2026-11-02",
       "decision": "Preserve context-menu-only locking and existing lock protection. Do not auto-unlock or delete old reference layers. New DXF imports are editable/grouped, use known header unit defaults, and receive a fitted camera. Confirmed layer deletion retains its existing ownership/dependency cleanup.",
       "remaining_risks": "Existing incorrectly declared sample files must be replaced by the corrected cm sample or explicitly imported with factor 1. New import grouping can be undone or ungrouped. Browser acceptance pending; baseline test harness failures remain."
+    },
+    {
+      "id": "RD-316-analysis",
+      "date": "2026-11-02",
+      "decision": "Use optional labelPosition enum (top/bottom), preserve legacy placement when absent, disable editing for hidden names and locked objects. Include captions in print bounds.",
+      "remaining_risks": "User browser/mobile acceptance pending. Website deployment is separate."
+    },
+    {
+      "id": "RD-317-analysis",
+      "date": "2026-11-02",
+      "decision": "Preserve existing remote V278 DXF release and all historical records. Integrate caption placement and rotation under V279-N. Derive unique record IDs from existing records; no force push. User explicitly requested all project branches merged into main and feature/fix suffixes N/R.",
+      "remaining_risks": "User runtime acceptance and online deployment completion remain pending."
     }
   ],
   "deferred_scope": [
@@ -9648,13 +9703,19 @@
       "date": "2026-11-02",
       "change": "RD-315: repair tiny locked corner-positioned DXF imports without bypassing existing layer locks.",
       "status": "source_verified_pending_user_runtime"
+    },
+    {
+      "version": "V279",
+      "date": "2026-11-02",
+      "change": "RD-316: per-object top/bottom name placement, shared inspector, persistence and exports. RD-317: four-option rotation submenu and standard N/R commit suffixes.",
+      "status": "source_implemented_pending_user_runtime_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V277",
-    "source_status": "source_updated_pending_user_commit",
-    "runtime_status": "Prior focused feature tests retained; source version markers and metadata verified. User acceptance pending.",
-    "audit": "No new five-version audit boundary at V277. Existing historical audit and storage caveats remain open. No commit or push performed."
+    "release": "V279",
+    "source_status": "source_implemented_pending_user_runtime_acceptance",
+    "runtime_status": "PASS: focused caption-position browser regression (three-command power switch, top/bottom, Undo/Redo, visibility, save/reload, import validation, serialized SVG, locking, mobile inspector); caption-font and compact-properties browser suites; lighting-model suite; inline JavaScript syntax. Legacy import-validation.test.cjs fails with Illegal return statement on both unchanged V277 and V279; browser import validation passes. User acceptance pending.",
+    "audit": "No five-version audit boundary at V279. Existing remote DXF V278 release and all historical records preserved. User authorized integration into main and push, with N for features and R for fixes. User acceptance pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
