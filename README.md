@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V283** (runtime acceptance pending user).
+Current source release: **V284** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -109,3 +109,5 @@ V282-R replaces the browser-reserved Ctrl+N shortcut with Ctrl+Alt+N and updates
 V283: DXF import always starts with centimeters/factor 1, with source-unit mismatch notice; toilet proposals; header color/monochrome and global product-detail toggles; supported display modes in product context menus. Commit descriptions are Persian from this release onward.
 
 Product display mode and four-side caption placement use mutually exclusive radio groups. Caption coordinates and text alignment apply to canvas/detail images and DXF output; source validation accepts all four positions.
+
+V284 consolidates runtime feedback: settings/objects import tabs, default-selected proposals and bulk selection, native dressing table with separate lamp/chair, native geometry color without bounding boxes, Persian hover display submenu, property rotation buttons, and header controls before Undo/Redo. Detail leaders route around architectural obstacles; blocked routes show a status rather than crossing walls.

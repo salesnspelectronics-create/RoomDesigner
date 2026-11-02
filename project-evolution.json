@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V283",
+  "current_source_release": "V284",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1570,6 +1570,13 @@
       "phase": "DXF sanitary recognition and product display",
       "summary": "RD-321/322: fixed cm/1 import, toilet proposals, color and global detail view controls, context display modes, Persian commit messages. RD-323: radio mode/label controls with four caption sides.",
       "runtime_status": "Focused automated browser and 48 source tests PASS; user acceptance pending."
+    },
+    {
+      "release": "V284",
+      "date": "2026-11-02",
+      "phase": "Consolidated runtime corrections",
+      "summary": "RD-324: wall-aware detail leaders, two-tab import and default-selected proposals, dressing-table set, true geometry color, hover menu, inspector rotations and header controls.",
+      "runtime_status": "Focused source and browser checks; user acceptance pending."
     }
   ],
   "records": [
@@ -7467,6 +7474,28 @@
       "verification_evidence": [
         "display-controls browser: mode radio groups, four label sides and text anchors, validation/reimport, DXF text, lock guards."
       ]
+    },
+    {
+      "id": "RD-324",
+      "record_type": "user_requirement_and_runtime_reports",
+      "module": "Consolidated DXF and product display corrections",
+      "source": "user chat and attached runtime screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V284",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "Collect runtime issues and then apply all in one push: detail leader crosses walls; separate import settings/objects tabs; proposals selected by default with select/unselect all; recognize dressing table/lamp/chair; property rotation buttons; nested hover menu with Persian display labels; color actual geometry rather than bounding boxes; move color/details buttons before Undo/Redo.",
+      "assistant_interpretation": "Consolidate explicitly authorized accumulated requirements. Preserve manual detail image placement but route leader around architecture; if no safe route is possible, show blocked status instead of crossing. Native dressing table has its own built-in vector, not a dining-table-with-chairs symbol.",
+      "implementation_status": "Implemented together in V284 with shared native controls, colored SVG strokes and the same DXF preview palette, two staged tabs, selected proposals and explicit bulk selection, standalone dressing-table geometry, and bounded cached detail routing.",
+      "runtime_status": "Focused automated checks; user runtime acceptance pending",
+      "verification_evidence": [
+        "50 focused DXF/routing tests PASS; safe leader detour and no unsafe fallback under routing limits.",
+        "Display-controls browser: two DXF tabs, selected-by-default proposals, select all/none, native geometry tint without boxes, header location, Persian hover submenu, property rotations, modes, captions, locks and Undo.",
+        "Actual Type 1 DXF: 14 proposals, including separate dressing table, polygonal lamp, chair and sanitary toilet.",
+        "Staged DXF browser regression PASS: cancel, source layers, no-conversion choice, undo/redo, crop, filters, reload, mobile.",
+        "Syntax and whitespace checks; real project acceptance remains pending."
+      ]
     }
   ],
   "analyses": [
@@ -8828,6 +8857,12 @@
       "date": "2026-11-02",
       "decision": "Shared caption coordinate/anchor helper for four sides. Unique native radio group names prevent desktop/mobile inspector controls from interfering. Context submenu dispatches to the matching radio input using the established live-property guard.",
       "remaining_risks": "Caption sides are in the object local coordinate frame and follow existing object rotation. Real user project acceptance pending."
+    },
+    {
+      "id": "RD-324-analysis",
+      "date": "2026-11-02",
+      "decision": "Treat the user final instruction as authorization to implement the accumulated runtime batch, after earlier hold. Leader routing reuses bounded orthogonal geometry, excludes decorative DXF furniture/door linework, avoids other product boxes and architectural wall/window segments, and never draws a fallback crossing path. Object placement is kept manual. Apply layer ink to SVG strokes, preserving fills and avoiding box overlays. Default selection is an explicit user-directed policy change from V281 conservative defaults; geometry edits clear stale proposals before reanalysis.",
+      "remaining_risks": "Orthogonal routing uses conservative segment bounding rectangles; dense, enclosed or limit-exceeding geometry can return blocked and omit the leader. An attachment point lying inside a wall is treated as an endpoint connection. Detail images themselves can still be manually placed over geometry. Vanity inference uses dimensions and nearby chair context and can misclassify; review default-selected proposals before importing. Older document colors remain as stored."
     }
   ],
   "deferred_scope": [
@@ -9915,13 +9950,19 @@
       "date": "2026-11-02",
       "change": "تشخیص پیشنهادی توالت، پیش‌فرض ثابت سانتی‌متر و ضریب ۱، نمایش رنگی و جزئیات سراسری، منوی نمایش محصول و پیام کامیت فارسی. رادیوباتن نحوهٔ نمایش و محل نام در چهار سمت.",
       "status": "source_and_browser_verified_pending_user_acceptance"
+    },
+    {
+      "version": "V284",
+      "date": "2026-11-02",
+      "change": "اصلاح تجمیعی فلش جزئیات، رنگ خطوط بدون کادر، تب‌های ورود DXF، انتخاب همه، تشخیص میز آرایش، چرخش و زیرمنوی فارسی؛ جابه‌جایی دکمه‌ها کنار بازگشت.",
+      "status": "source_and_browser_verified_pending_user_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V283",
+    "release": "V284",
     "source_status": "source_and_browser_verified_pending_user_acceptance",
-    "runtime_status": "48 DXF focused tests PASS.; display-controls.browser.test.cjs PASS: actual sample, mm header still cm/1, toilet proposal, colored native lines and grayscale, doorbell context mode switch, global details on/off, Undo and native validation.; Source/module/inline syntax checks and whitespace; user acceptance pending.",
-    "audit": "Scoped DXF/display checks; prior boundary audit retained."
+    "runtime_status": "50 focused DXF/routing tests PASS; safe leader detour and no unsafe fallback under routing limits.; Display-controls browser: two DXF tabs, selected-by-default proposals, select all/none, native geometry tint without boxes, header location, Persian hover submenu, property rotations, modes, captions, locks and Undo.; Actual Type 1 DXF: 14 proposals, including separate dressing table, polygonal lamp, chair and sanitary toilet.; Staged DXF browser regression PASS: cancel, source layers, no-conversion choice, undo/redo, crop, filters, reload, mobile.; Syntax and whitespace checks; real project acceptance remains pending.",
+    "audit": "Scoped consolidated runtime checks; prior V280 boundary audit retained; no full application acceptance claim."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
