@@ -2,7 +2,7 @@
 (function(global){
  'use strict';
  const NS='http://www.w3.org/2000/svg';
- const allowed=new Set('svg g defs path rect circle ellipse line polyline polygon text tspan title desc clipPath mask linearGradient radialGradient stop pattern marker symbol use style metadata font font-face'.toLowerCase().split(' '));
+ const allowed=new Set('svg image g defs path rect circle ellipse line polyline polygon text tspan title desc clipPath mask linearGradient radialGradient stop pattern marker symbol use style metadata font font-face'.toLowerCase().split(' '));
  function parse(raw){return new DOMParser().parseFromString(raw,'image/svg+xml')}
  function serialize(root){return new XMLSerializer().serializeToString(root)}
  function viewBox(value){const b=Array.isArray(value)?value:String(value||'').trim().split(/[ ,]+/).map(Number);if(b.length!==4||!b.every(Number.isFinite)||b[2]<=0||b[3]<=0)throw Error('ViewBox نامعتبر است');return b.slice()}
@@ -33,7 +33,7 @@
     if(a.name==='xml:base'||a.name==='base'||(a.namespaceURI&&!['http://www.w3.org/2000/xmlns/','http://www.w3.org/1999/xlink','http://www.w3.org/XML/1998/namespace'].includes(a.namespaceURI)))return null;
     if(a.namespaceURI==='http://www.w3.org/XML/1998/namespace'&&a.localName!=='space')return null;
     if(/^on/i.test(a.name)||/javascript:|expression\s*\(|@import|\\/i.test(a.value))return null;
-    if(/href/i.test(a.name)&&!/^#[\w.-]+$/.test(a.value))return null;
+    if(/href/i.test(a.name)&&!(n.localName==='image'?/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(a.value):/^#[\w.-]+$/.test(a.value)))return null;
     if(/url\s*\(/i.test(a.value.replace(/url\(\s*#[\w.-]+\s*\)/gi,'')))return null;
     if(a.name==='style'&&/@|[<>]/i.test(a.value))return null;
    }

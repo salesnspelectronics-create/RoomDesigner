@@ -8,7 +8,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 1,
       "gangIcons": [
         "bulb"
@@ -71,7 +79,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 2,
       "gangIcons": [
         "bulb",
@@ -136,7 +152,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "bulb",
@@ -203,7 +227,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 4,
       "gangIcons": [
         "bulb",
@@ -272,7 +304,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 6,
       "gangIcons": [
         "bulb",
@@ -345,7 +385,15 @@
       "category": "equipment",
       "w": 50,
       "h": 70,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 7,
       "gangIcons": [
         "bulb",
@@ -455,7 +503,15 @@
       "category": "equipment",
       "w": 100,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 8,
       "gangIcons": [
         "bulb",
@@ -590,7 +646,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 2,
       "gangIcons": [
         "cleaning",
@@ -655,7 +719,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "cleaning",
@@ -722,7 +794,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 4,
       "gangIcons": [
         "cleaning",
@@ -791,7 +871,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 6,
       "gangIcons": [
         "cleaning",
@@ -864,7 +952,15 @@
       "category": "equipment",
       "w": 100,
       "h": 70,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 8,
       "gangIcons": [
         "service-power",
@@ -1070,7 +1166,15 @@
       "iconicAssetId": "nsp-tmp-o-icon",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "showLabel": true,
       "displayMode": "real",
       "lightingModel": "negin",
@@ -1130,7 +1234,15 @@
       "iconicAssetId": "nsp-tmp-7s-icon",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "showLabel": true,
       "displayMode": "real",
       "lightingModel": "negin",
@@ -1190,7 +1302,15 @@
       "iconicAssetId": "nsp-tmp-f-icon",
       "w": 50,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "showLabel": true,
       "displayMode": "real",
       "lightingModel": "negin",
@@ -1247,7 +1367,15 @@
       "code": "18L",
       "w": 150,
       "h": 50,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 18,
       "gangIcons": [
         "bulb",
@@ -1441,7 +1569,15 @@
       "category": "equipment",
       "w": 50,
       "h": 76.71829029094475,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-laundry",
@@ -1532,7 +1668,15 @@
       "category": "equipment",
       "w": 80,
       "h": 49.29295859776368,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-laundry",
@@ -1623,7 +1767,15 @@
       "category": "equipment",
       "w": 50,
       "h": 71.59590043923865,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-washer",
@@ -1825,7 +1977,15 @@
       "category": "equipment",
       "w": 80,
       "h": 55.86912065439673,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-laundry",
@@ -2024,7 +2184,15 @@
       "category": "equipment",
       "w": 50,
       "h": 50.0,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-bell",
@@ -2161,7 +2329,15 @@
       "category": "equipment",
       "w": 50,
       "h": 69.88873435326843,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "laundry",
@@ -2298,7 +2474,15 @@
       "category": "equipment",
       "w": 80,
       "h": 57.31216931216931,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-laundry",
@@ -2435,7 +2619,15 @@
       "category": "equipment",
       "w": 50,
       "h": 70.71629213483146,
-      "ports": [],
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
       "gangCount": 3,
       "gangIcons": [
         "doorbell-laundry",
@@ -2677,8 +2869,1125 @@
             }
           },
           "fields": {}
+        },
+        {
+          "modelId": "almas",
+          "realAssetId": "nsp-cr3r-almas-real",
+          "fixedArtworkAssetId": "nsp-cr3r-almas-fixed",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 2.0348627798833427,
+          "fields": {},
+          "defaultValues": {
+            "gangIcons": [
+              "doorbell-laundry",
+              "power-service-dnd",
+              "vacuum"
+            ]
+          },
+          "iconLayout": {
+            "width": 203.25670498084293,
+            "height": 100,
+            "iconSize": 17.24137931034483,
+            "centers": [
+              [
+                25.478927203065133,
+                51.53256704980843
+              ],
+              [
+                48.65900383141762,
+                51.53256704980843
+              ],
+              [
+                72.41379310344827,
+                51.53256704980843
+              ]
+            ]
+          },
+          "displaySizes": {
+            "code": {
+              "w": 50,
+              "h": 25
+            },
+            "iconic": {
+              "w": 100,
+              "h": 49.198868991517436
+            },
+            "real": {
+              "w": 100,
+              "h": 49.198868991517436
+            }
+          }
         }
       ]
+    },
+    {
+      "catalogId": "power-switch-4r",
+      "kind": "power-switch",
+      "typeId": "power-switch",
+      "subtypeId": "4r",
+      "name": "پاور سوییچ چهارفرمان",
+      "category": "equipment",
+      "w": 50,
+      "h": 102.61627906976744,
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
+      "gangCount": 4,
+      "gangIcons": [
+        "power-service-dnd",
+        "power-service-cleaning",
+        "power-service-pendant",
+        "doorbell-washer"
+      ],
+      "gangIconColors": [
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff"
+      ],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#000000",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "CR4R",
+      "lightingModel": "almas",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 48.725212464589234,
+        "height": 100,
+        "iconSize": 7.0821529745042495,
+        "centers": [
+          [
+            17.847025495750707,
+            68.74409820585457
+          ],
+          [
+            30.68932955618508,
+            68.74409820585457
+          ],
+          [
+            17.847025495750707,
+            83.56940509915015
+          ],
+          [
+            30.68932955618508,
+            83.56940509915015
+          ]
+        ]
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 50,
+          "h": 102.61627906976744
+        },
+        "real": {
+          "w": 50,
+          "h": 102.61627906976744
+        }
+      },
+      "variants": [
+        {
+          "modelId": "almas",
+          "realAssetId": "nsp-cr4r-almas-portrait-real",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 0.4880263857191984,
+          "installationDirectionIds": [
+            "portrait",
+            "landscape"
+          ],
+          "defaultInstallationDirection": "portrait",
+          "installationAssets": {
+            "portrait": "nsp-cr4r-almas-portrait-real",
+            "landscape": "nsp-cr4r-almas-landscape-real"
+          },
+          "installationProperties": {
+            "portrait": {
+              "realAspectRatio": 0.4880263857191984,
+              "fixedArtworkAssetId": "nsp-cr4r-almas-portrait-fixed",
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 50,
+                  "h": 102.61627906976744
+                },
+                "real": {
+                  "w": 50,
+                  "h": 102.61627906976744
+                }
+              },
+              "iconLayout": {
+                "width": 48.725212464589234,
+                "height": 100,
+                "iconSize": 7.0821529745042495,
+                "centers": [
+                  [
+                    17.847025495750707,
+                    68.74409820585457
+                  ],
+                  [
+                    30.68932955618508,
+                    68.74409820585457
+                  ],
+                  [
+                    17.847025495750707,
+                    83.56940509915015
+                  ],
+                  [
+                    30.68932955618508,
+                    83.56940509915015
+                  ]
+                ]
+              }
+            },
+            "landscape": {
+              "realAspectRatio": 2.0229274767708456,
+              "fixedArtworkAssetId": "nsp-cr4r-almas-landscape-fixed",
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 100,
+                  "h": 49.47867298578199
+                },
+                "real": {
+                  "w": 100,
+                  "h": 49.47867298578199
+                }
+              },
+              "iconLayout": {
+                "width": 202.1072796934866,
+                "height": 100,
+                "iconSize": 14.367816091954023,
+                "centers": [
+                  [
+                    60.91954022988506,
+                    36.39846743295019
+                  ],
+                  [
+                    60.91954022988506,
+                    61.877394636015325
+                  ],
+                  [
+                    31.226053639846747,
+                    36.39846743295019
+                  ],
+                  [
+                    31.226053639846747,
+                    61.877394636015325
+                  ]
+                ]
+              }
+            }
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "catalogId": "power-switch-0",
+      "kind": "power-switch",
+      "typeId": "power-switch",
+      "subtypeId": "0",
+      "name": "پاور سوییچ بدون فرمان",
+      "category": "equipment",
+      "w": 50,
+      "h": 50,
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
+      "gangCount": 0,
+      "gangIcons": [],
+      "gangIconColors": [],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#000000",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "CR",
+      "lightingModel": "negin",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 100.0,
+        "height": 100,
+        "iconSize": 20.0,
+        "centers": []
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 50,
+          "h": 50
+        },
+        "real": {
+          "w": 50,
+          "h": 50
+        }
+      },
+      "variants": [
+        {
+          "modelId": "negin",
+          "realAssetId": "nsp-cr-negin-real",
+          "fixedArtworkAssetId": "nsp-cr-negin-fixed",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 1.001908396946565,
+          "displaySizes": {
+            "code": {
+              "w": 50,
+              "h": 25
+            },
+            "iconic": {
+              "w": 50,
+              "h": 49.904761904761905
+            },
+            "real": {
+              "w": 50,
+              "h": 49.904761904761905
+            }
+          },
+          "iconLayout": {
+            "width": 100.1908396946565,
+            "height": 100,
+            "iconSize": 15.267175572519085,
+            "centers": []
+          },
+          "fields": {}
+        },
+        {
+          "modelId": "azin",
+          "realAssetId": "nsp-cr-azin-real",
+          "fixedArtworkAssetId": "nsp-cr-azin-fixed",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 0.9741035856573705,
+          "displaySizes": {
+            "code": {
+              "w": 50,
+              "h": 25
+            },
+            "iconic": {
+              "w": 50,
+              "h": 51.329243353783234
+            },
+            "real": {
+              "w": 50,
+              "h": 51.329243353783234
+            }
+          },
+          "iconLayout": {
+            "width": 97.41035856573706,
+            "height": 100,
+            "iconSize": 15.936254980079681,
+            "centers": []
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "catalogId": "power-switch-3r3l",
+      "kind": "power-switch",
+      "typeId": "power-switch",
+      "subtypeId": "3r3l",
+      "name": "پاور سوییچ سه درخواست و سه روشنایی",
+      "category": "equipment",
+      "w": 150,
+      "h": 39.489489489489486,
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
+      "gangCount": 6,
+      "gangIcons": [
+        "bulb",
+        "power-lighting-vanity",
+        "power-lighting-shade",
+        "doorbell-laundry",
+        "power-service-dnd",
+        "vacuum"
+      ],
+      "gangIconColors": [
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff"
+      ],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#000000",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "CR-3R-3L",
+      "lightingModel": "atlas",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 379.84790874524714,
+        "height": 100,
+        "iconSize": 15.209125475285171,
+        "centers": [
+          [
+            118.25095057034221,
+            51.33079847908745
+          ],
+          [
+            140.68441064638785,
+            51.33079847908745
+          ],
+          [
+            164.44866920152091,
+            51.33079847908745
+          ],
+          [
+            215.77946768060835,
+            51.33079847908745
+          ],
+          [
+            237.6425855513308,
+            51.33079847908745
+          ],
+          [
+            262.3574144486692,
+            51.33079847908745
+          ]
+        ]
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 150,
+          "h": 39.489489489489486
+        },
+        "real": {
+          "w": 150,
+          "h": 39.489489489489486
+        }
+      },
+      "variants": [
+        {
+          "modelId": "atlas",
+          "realAssetId": "nsp-cr-3r-3l-atlas-real",
+          "fixedArtworkAssetId": "nsp-cr-3r-3l-atlas-fixed",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 3.7984790874524714,
+          "iconLayout": {
+            "width": 379.84790874524714,
+            "height": 100,
+            "iconSize": 15.209125475285171,
+            "centers": [
+              [
+                118.25095057034221,
+                51.33079847908745
+              ],
+              [
+                140.68441064638785,
+                51.33079847908745
+              ],
+              [
+                164.44866920152091,
+                51.33079847908745
+              ],
+              [
+                215.77946768060835,
+                51.33079847908745
+              ],
+              [
+                237.6425855513308,
+                51.33079847908745
+              ],
+              [
+                262.3574144486692,
+                51.33079847908745
+              ]
+            ]
+          },
+          "displaySizes": {
+            "code": {
+              "w": 50,
+              "h": 25
+            },
+            "iconic": {
+              "w": 150,
+              "h": 39.489489489489486
+            },
+            "real": {
+              "w": 150,
+              "h": 39.489489489489486
+            }
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "catalogId": "bedside-6r",
+      "kind": "combined-panel",
+      "typeId": "combined-panel",
+      "subtypeId": "bsp-6r",
+      "name": "سرتخت شش‌فرمان",
+      "category": "equipment",
+      "w": 100,
+      "h": 49.05847373637265,
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        }
+      ],
+      "gangCount": 6,
+      "gangIcons": [
+        "do-not-disturb",
+        "power-lighting-shade",
+        "service-power",
+        "pendant",
+        "doorbell-porter",
+        "bedside-wall-light"
+      ],
+      "gangIconColors": [
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff"
+      ],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#000000",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "BSP-6R",
+      "lightingModel": "almas",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 203.83838383838383,
+        "height": 100,
+        "iconSize": 14.14141414141414,
+        "centers": [
+          [
+            131.7171717171717,
+            26.262626262626267
+          ],
+          [
+            170.50505050505052,
+            26.262626262626267
+          ],
+          [
+            131.7171717171717,
+            50.70707070707071
+          ],
+          [
+            170.50505050505052,
+            50.70707070707071
+          ],
+          [
+            131.7171717171717,
+            75.75757575757575
+          ],
+          [
+            170.50505050505052,
+            75.75757575757575
+          ]
+        ]
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 100,
+          "h": 49.05847373637265
+        },
+        "real": {
+          "w": 100,
+          "h": 49.05847373637265
+        }
+      },
+      "variants": [
+        {
+          "modelId": "almas",
+          "realAssetId": "nsp-bsp-6r-almas-socket-left-real",
+          "orientationIds": [
+            "landscape"
+          ],
+          "installationDirectionIds": [
+            "socket-left",
+            "socket-top",
+            "socket-right",
+            "socket-bottom"
+          ],
+          "defaultInstallationDirection": "socket-left",
+          "installationAssets": {
+            "socket-left": "nsp-bsp-6r-almas-socket-left-real",
+            "socket-top": "nsp-bsp-6r-almas-socket-top-real",
+            "socket-right": "nsp-bsp-6r-almas-socket-right-real",
+            "socket-bottom": "nsp-bsp-6r-almas-socket-bottom-real"
+          },
+          "installationProperties": {
+            "socket-left": {
+              "fixedArtworkAssetId": "nsp-bsp-6r-almas-socket-left-fixed",
+              "realAspectRatio": 2.0383838383838384,
+              "iconLayout": {
+                "width": 203.83838383838383,
+                "height": 100,
+                "iconSize": 14.14141414141414,
+                "centers": [
+                  [
+                    131.7171717171717,
+                    26.262626262626267
+                  ],
+                  [
+                    170.50505050505052,
+                    26.262626262626267
+                  ],
+                  [
+                    131.7171717171717,
+                    50.70707070707071
+                  ],
+                  [
+                    170.50505050505052,
+                    50.70707070707071
+                  ],
+                  [
+                    131.7171717171717,
+                    75.75757575757575
+                  ],
+                  [
+                    170.50505050505052,
+                    75.75757575757575
+                  ]
+                ]
+              },
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 100,
+                  "h": 49.05847373637265
+                },
+                "real": {
+                  "w": 100,
+                  "h": 49.05847373637265
+                }
+              }
+            },
+            "socket-top": {
+              "fixedArtworkAssetId": "nsp-bsp-6r-almas-socket-top-fixed",
+              "realAspectRatio": 0.4905847373637265,
+              "iconLayout": {
+                "width": 49.05847373637265,
+                "height": 100,
+                "iconSize": 6.937561942517344,
+                "centers": [
+                  [
+                    36.174430128840434,
+                    64.61843409316155
+                  ],
+                  [
+                    36.174430128840434,
+                    83.64717542120911
+                  ],
+                  [
+                    24.182358771060457,
+                    64.61843409316155
+                  ],
+                  [
+                    24.182358771060457,
+                    83.64717542120911
+                  ],
+                  [
+                    11.892963330029731,
+                    64.61843409316155
+                  ],
+                  [
+                    11.892963330029731,
+                    83.64717542120911
+                  ]
+                ]
+              },
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 50,
+                  "h": 101.91919191919192
+                },
+                "real": {
+                  "w": 50,
+                  "h": 101.91919191919192
+                }
+              }
+            },
+            "socket-right": {
+              "fixedArtworkAssetId": "nsp-bsp-6r-almas-socket-right-fixed",
+              "realAspectRatio": 2.0383838383838384,
+              "iconLayout": {
+                "width": 203.83838383838383,
+                "height": 100,
+                "iconSize": 14.14141414141414,
+                "centers": [
+                  [
+                    72.12121212121212,
+                    73.73737373737373
+                  ],
+                  [
+                    33.33333333333333,
+                    73.73737373737373
+                  ],
+                  [
+                    72.12121212121212,
+                    49.292929292929294
+                  ],
+                  [
+                    33.33333333333333,
+                    49.292929292929294
+                  ],
+                  [
+                    72.12121212121212,
+                    24.242424242424242
+                  ],
+                  [
+                    33.33333333333333,
+                    24.242424242424242
+                  ]
+                ]
+              },
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 100,
+                  "h": 49.05847373637265
+                },
+                "real": {
+                  "w": 100,
+                  "h": 49.05847373637265
+                }
+              }
+            },
+            "socket-bottom": {
+              "fixedArtworkAssetId": "nsp-bsp-6r-almas-socket-bottom-fixed",
+              "realAspectRatio": 0.4905847373637265,
+              "iconLayout": {
+                "width": 49.05847373637265,
+                "height": 100,
+                "iconSize": 6.937561942517344,
+                "centers": [
+                  [
+                    12.884043607532211,
+                    35.38156590683845
+                  ],
+                  [
+                    12.884043607532211,
+                    16.35282457879088
+                  ],
+                  [
+                    24.87611496531219,
+                    35.38156590683845
+                  ],
+                  [
+                    24.87611496531219,
+                    16.35282457879088
+                  ],
+                  [
+                    37.16551040634292,
+                    35.38156590683845
+                  ],
+                  [
+                    37.16551040634292,
+                    16.35282457879088
+                  ]
+                ]
+              },
+              "displaySizes": {
+                "code": {
+                  "w": 50,
+                  "h": 25
+                },
+                "iconic": {
+                  "w": 50,
+                  "h": 101.91919191919192
+                },
+                "real": {
+                  "w": 50,
+                  "h": 101.91919191919192
+                }
+              }
+            }
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "catalogId": "actuator-12ch",
+      "kind": "actuator-hardware",
+      "typeId": "actuator-hardware",
+      "subtypeId": "12ch",
+      "name": "عملگر دوازده‌کانال",
+      "category": "equipment",
+      "w": 100,
+      "h": 59.878213802435724,
+      "ports": [
+        {
+          "id": "bus",
+          "name": "RS-485",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        },
+        {
+          "id": "relay-01",
+          "name": "R1",
+          "type": "do",
+          "side": "top",
+          "enabled": false
+        },
+        {
+          "id": "relay-02",
+          "name": "R2",
+          "type": "do",
+          "side": "top",
+          "enabled": false
+        },
+        {
+          "id": "relay-03",
+          "name": "R3",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-04",
+          "name": "R4",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-05",
+          "name": "R5",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-06",
+          "name": "R6",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-07",
+          "name": "R7",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-08",
+          "name": "R8",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-09",
+          "name": "R9",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-10",
+          "name": "R10",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-11",
+          "name": "R11",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "relay-12",
+          "name": "R12",
+          "type": "do",
+          "side": "bottom",
+          "enabled": false
+        }
+      ],
+      "gangCount": 0,
+      "gangIcons": [],
+      "gangIconColors": [],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#a8a9ad",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "AC12CH",
+      "partNumber": "AC12CH",
+      "lightingModel": "standard",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 100,
+        "height": 60,
+        "iconSize": 20,
+        "centers": []
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 100,
+          "h": 59.878213802435724
+        },
+        "real": {
+          "w": 100,
+          "h": 59.878213802435724
+        }
+      },
+      "variants": [
+        {
+          "modelId": "standard",
+          "realAssetId": "nsp-ac12ch",
+          "fixedArtworkAssetId": "nsp-ac12ch-iconic",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 1.6700564971751413,
+          "fields": {}
+        }
+      ],
+      "iconicBackgroundColor": "#a8a9ad"
+    },
+    {
+      "catalogId": "power-terminal",
+      "kind": "actuator-hardware",
+      "typeId": "actuator-hardware",
+      "subtypeId": "power-terminal",
+      "name": "پاور ترمینال",
+      "category": "equipment",
+      "w": 40,
+      "h": 68,
+      "ports": [
+        {
+          "id": "power",
+          "name": "Power",
+          "type": "power",
+          "side": "left",
+          "enabled": false
+        },
+        {
+          "id": "bus-01",
+          "name": "RS-485 1",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        },
+        {
+          "id": "bus-02",
+          "name": "RS-485 2",
+          "type": "rs485",
+          "side": "top",
+          "enabled": false
+        },
+        {
+          "id": "bus-03",
+          "name": "RS-485 3",
+          "type": "rs485",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "bus-04",
+          "name": "RS-485 4",
+          "type": "rs485",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "bus-05",
+          "name": "RS-485 5",
+          "type": "rs485",
+          "side": "bottom",
+          "enabled": false
+        },
+        {
+          "id": "bus-06",
+          "name": "RS-485 6",
+          "type": "rs485",
+          "side": "bottom",
+          "enabled": false
+        }
+      ],
+      "gangCount": 0,
+      "gangIcons": [],
+      "gangIconColors": [],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#a98060",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "PT",
+      "partNumber": "PT",
+      "lightingModel": "standard",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 60,
+        "height": 100,
+        "iconSize": 20,
+        "centers": []
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 40,
+          "h": 68
+        },
+        "real": {
+          "w": 40,
+          "h": 68
+        }
+      },
+      "variants": [
+        {
+          "modelId": "standard",
+          "realAssetId": "nsp-power-terminal",
+          "fixedArtworkAssetId": "nsp-power-terminal-iconic",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 0.5882352941176471,
+          "fields": {}
+        }
+      ],
+      "iconicBackgroundColor": "#a98060"
+    },
+    {
+      "catalogId": "electrical-panel",
+      "kind": "electrical-panel",
+      "typeId": "electrical-panel",
+      "subtypeId": "panel",
+      "name": "تابلو برق",
+      "category": "equipment",
+      "w": 60,
+      "h": 79.71615720524018,
+      "ports": [],
+      "gangCount": 0,
+      "gangIcons": [],
+      "gangIconColors": [],
+      "iconColor": "#ffffff",
+      "backgroundColor": "#e3e3e0",
+      "backgroundVisible": true,
+      "showLabel": true,
+      "displayMode": "iconic",
+      "code": "EP",
+      "partNumber": "EP",
+      "lightingModel": "standard",
+      "orientation": "landscape",
+      "realAssetCropped": true,
+      "iconLayout": {
+        "width": 90,
+        "height": 120,
+        "iconSize": 20,
+        "centers": []
+      },
+      "displaySizes": {
+        "code": {
+          "w": 50,
+          "h": 25
+        },
+        "iconic": {
+          "w": 60,
+          "h": 80
+        },
+        "real": {
+          "w": 60,
+          "h": 79.71615720524018
+        }
+      },
+      "variants": [
+        {
+          "modelId": "standard",
+          "realAssetId": "electrical-panel-real",
+          "fixedArtworkAssetId": "electrical-panel-iconic",
+          "orientationIds": [
+            "landscape"
+          ],
+          "realAspectRatio": 0.752670501232539,
+          "fields": {}
+        }
+      ],
+      "iconicBackgroundColor": "#e3e3e0",
+      "portPolicy": "configurable"
     }
   ],
   "schemaVersion": 2,
@@ -2720,6 +4029,17 @@
       "id": "atlas",
       "name": "اطلس",
       "codeSuffix": "AT",
+      "iconicBorder": {
+        "color": "#000000",
+        "width": 2,
+        "visibility": "without-background",
+        "editable": true
+      }
+    },
+    {
+      "id": "standard",
+      "name": "استاندارد",
+      "codeSuffix": "STD",
       "iconicBorder": {
         "color": "#000000",
         "width": 2,
@@ -2938,6 +4258,81 @@
           "id": "3r",
           "name": "سه‌فرمان",
           "controlCount": 3
+        },
+        {
+          "id": "4r",
+          "name": "چهارفرمان",
+          "controlCount": 4
+        },
+        {
+          "id": "0",
+          "name": "بدون فرمان",
+          "controlCount": 0
+        },
+        {
+          "id": "3r3l",
+          "name": "سه درخواست و سه روشنایی",
+          "controlCount": 6
+        }
+      ]
+    },
+    {
+      "id": "combined-panel",
+      "name": "محصولات ترکیبی",
+      "renderer": "panel",
+      "defaultModelId": "almas",
+      "modelField": "lightingModel",
+      "toolboxSection": "combined-products",
+      "controlLabel": "فرمان",
+      "fields": [],
+      "subtypes": [
+        {
+          "id": "bsp-6r",
+          "name": "سرتخت شش‌فرمان",
+          "controlCount": 6
+        }
+      ]
+    },
+    {
+      "id": "actuator-hardware",
+      "name": "عملگرها و سنسورها",
+      "renderer": "panel",
+      "defaultModelId": "standard",
+      "modelField": "lightingModel",
+      "toolboxSection": "actuators",
+      "controlLabel": "کانال",
+      "iconEditor": false,
+      "titleIncludesModel": false,
+      "fields": [],
+      "subtypes": [
+        {
+          "id": "12ch",
+          "name": "عملگر دوازده‌کانال",
+          "controlCount": 0
+        },
+        {
+          "id": "power-terminal",
+          "name": "پاور ترمینال",
+          "controlCount": 0
+        }
+      ]
+    },
+    {
+      "id": "electrical-panel",
+      "name": "تابلو برق",
+      "renderer": "panel",
+      "defaultModelId": "standard",
+      "modelField": "lightingModel",
+      "toolboxSection": "actuators",
+      "controlLabel": "پورت",
+      "iconEditor": false,
+      "titleIncludesModel": false,
+      "fields": [],
+      "subtypes": [
+        {
+          "id": "panel",
+          "name": "تابلو برق",
+          "controlCount": 0
         }
       ]
     }
@@ -3015,7 +4410,8 @@
       "assetId": "service-power",
       "category": "services",
       "productIds": [
-        "request-8r"
+        "request-8r",
+        "bedside-6r"
       ]
     },
     {
@@ -3040,7 +4436,10 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
       ]
     },
     {
@@ -3056,7 +4455,10 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
       ]
     },
     {
@@ -3072,7 +4474,10 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
       ]
     },
     {
@@ -3088,7 +4493,10 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
       ]
     },
     {
@@ -3104,7 +4512,10 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
       ]
     },
     {
@@ -3120,7 +4531,75 @@
         "doorbell-s",
         "doorbell-mp",
         "doorbell-ml",
-        "power-switch-3r"
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "power-service-pendant",
+      "name": "چراغ آویز خدمات",
+      "assetId": "power-service-pendant",
+      "category": "services",
+      "productIds": [
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "power-service-dnd",
+      "name": "مزاحم نشوید خدمات",
+      "assetId": "power-service-dnd",
+      "category": "services",
+      "productIds": [
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "power-service-cleaning",
+      "name": "نظافت خدمات",
+      "assetId": "power-service-cleaning",
+      "category": "services",
+      "productIds": [
+        "power-switch-3r",
+        "power-switch-4r",
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "power-lighting-vanity",
+      "name": "چراغ میز آرایش",
+      "assetId": "power-lighting-vanity",
+      "category": "lighting",
+      "productIds": [
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "power-lighting-shade",
+      "name": "چراغ سقفی",
+      "assetId": "power-lighting-shade",
+      "category": "lighting",
+      "productIds": [
+        "power-switch-3r3l",
+        "bedside-6r"
+      ]
+    },
+    {
+      "id": "bedside-wall-light",
+      "name": "چراغ دیواری",
+      "assetId": "bedside-wall-light",
+      "category": "lighting",
+      "productIds": [
+        "bedside-6r"
       ]
     }
   ],
@@ -3159,6 +4638,26 @@
     {
       "id": "portrait-reverse",
       "name": "عمودی معکوس",
+      "rotation": 270
+    },
+    {
+      "id": "socket-left",
+      "name": "پریز چپ",
+      "rotation": 0
+    },
+    {
+      "id": "socket-top",
+      "name": "پریز بالا",
+      "rotation": 90
+    },
+    {
+      "id": "socket-right",
+      "name": "پریز راست",
+      "rotation": 180
+    },
+    {
+      "id": "socket-bottom",
+      "name": "پریز پایین",
       "rotation": 270
     }
   ]

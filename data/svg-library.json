@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 13,
+  "version": 20,
   "symbols": [
     {
       "id": "single_bed",
@@ -1725,6 +1725,422 @@
       "assignedEquipmentTypes": [
         "power-switch"
       ]
+    },
+    {
+      "id": "power-service-pendant",
+      "name": "چراغ آویز خدمات",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/power-service-pendant.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "power-service-dnd",
+      "name": "مزاحم نشوید خدمات",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/power-service-dnd.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "power-service-cleaning",
+      "name": "نظافت خدمات",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/power-service-cleaning.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-almas-real",
+      "name": "پاور سوییچ nsp-cr3r-almas-real",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-almas-real.svg",
+      "viewBox": "194.64 290.53 757.03 372.03",
+      "defaultWidth": 100,
+      "defaultHeight": 49.14336287861776,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr3r-almas-fixed",
+      "name": "قاب کارت پاور سوییچ nsp-cr3r-almas-fixed",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr3r-almas-fixed.svg",
+      "viewBox": "0 0 1061 522",
+      "defaultWidth": 100,
+      "defaultHeight": 49.198868991517436,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-portrait-real",
+      "name": "پاور سوییچ nsp-cr4r-almas-portrait-real",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-portrait-real.svg",
+      "viewBox": "366.1 173 312.21 639.74",
+      "defaultWidth": 50,
+      "defaultHeight": 102.45347682649499,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-portrait-fixed",
+      "name": "قاب کارت پاور سوییچ nsp-cr4r-almas-portrait-fixed",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-portrait-fixed.svg",
+      "viewBox": "0 0 516 1059",
+      "defaultWidth": 50,
+      "defaultHeight": 102.61627906976744,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-landscape-real",
+      "name": "پاور سوییچ nsp-cr4r-almas-landscape-real",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-landscape-real.svg",
+      "viewBox": "207.24 331.63 670.56 331.48",
+      "defaultWidth": 100,
+      "defaultHeight": 49.433309472679554,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr4r-almas-landscape-fixed",
+      "name": "قاب کارت پاور سوییچ nsp-cr4r-almas-landscape-fixed",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr4r-almas-landscape-fixed.svg",
+      "viewBox": "0 0 1055 522",
+      "defaultWidth": 100,
+      "defaultHeight": 49.47867298578199,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-negin-fixed",
+      "name": "قاب کارت پاور سوییچ nsp-cr-negin-fixed",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-negin-fixed.svg",
+      "viewBox": "0 0 525 524",
+      "defaultWidth": 50,
+      "defaultHeight": 49.904761904761905,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-negin-real",
+      "name": "پاور سوییچ بدون فرمان - negin",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-negin-real.svg",
+      "viewBox": "0 0 525 524",
+      "defaultWidth": 50,
+      "defaultHeight": 49.904761904761905,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-azin-fixed",
+      "name": "قاب کارت پاور سوییچ nsp-cr-azin-fixed",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-azin-fixed.svg",
+      "viewBox": "0 0 489 502",
+      "defaultWidth": 50,
+      "defaultHeight": 51.329243353783234,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-azin-real",
+      "name": "پاور سوییچ بدون فرمان - azin",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-azin-real.svg",
+      "viewBox": "0 0 489 502",
+      "defaultWidth": 50,
+      "defaultHeight": 51.329243353783234,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "power-lighting-vanity",
+      "name": "چراغ میز آرایش",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/power-lighting-vanity.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 150,
+      "defaultHeight": 39.489489489489486,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "power-lighting-shade",
+      "name": "چراغ سقفی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/power-lighting-shade.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 150,
+      "defaultHeight": 39.489489489489486,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-3r-3l-atlas-fixed",
+      "name": "اجزای ثابت پاور سوییچ اطلس",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-3r-3l-atlas-fixed.svg",
+      "viewBox": "0 0 1998 526",
+      "defaultWidth": 150,
+      "defaultHeight": 39.489489489489486,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "nsp-cr-3r-3l-atlas-real",
+      "name": "پاور سوییچ سه درخواست سه روشنایی - اطلس",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-cr-3r-3l-atlas-real.svg",
+      "viewBox": "0 0 1998 526",
+      "defaultWidth": 150,
+      "defaultHeight": 39.489489489489486,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "power-switch"
+      ]
+    },
+    {
+      "id": "bedside-wall-light",
+      "name": "چراغ دیواری سرتخت",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/bedside-wall-light.svg",
+      "viewBox": "0 0 64 64",
+      "defaultWidth": 50,
+      "defaultHeight": 50,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-left-fixed",
+      "name": "پریز سرتخت الماس - پریز چپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-left-fixed.svg",
+      "viewBox": "0 0 1009 495",
+      "defaultWidth": 100,
+      "defaultHeight": 49.05847373637265,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 2,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-left-real",
+      "name": "سرتخت شش‌فرمان الماس - پریز چپ",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-left-real.svg",
+      "viewBox": "0 0 1009 495",
+      "defaultWidth": 100,
+      "defaultHeight": 49.05847373637265,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 2,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-top-fixed",
+      "name": "پریز سرتخت الماس - پریز بالا",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-top-fixed.svg",
+      "viewBox": "0 0 495 1009",
+      "defaultWidth": 50,
+      "defaultHeight": 101.91919191919192,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 3,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-top-real",
+      "name": "سرتخت شش‌فرمان الماس - پریز بالا",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-top-real.svg",
+      "viewBox": "0 0 495 1009",
+      "defaultWidth": 50,
+      "defaultHeight": 101.91919191919192,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 3,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-right-fixed",
+      "name": "پریز سرتخت الماس - پریز راست",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-right-fixed.svg",
+      "viewBox": "0 0 1009 495",
+      "defaultWidth": 100,
+      "defaultHeight": 49.05847373637265,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 2,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-right-real",
+      "name": "سرتخت شش‌فرمان الماس - پریز راست",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-right-real.svg",
+      "viewBox": "0 0 1009 495",
+      "defaultWidth": 100,
+      "defaultHeight": 49.05847373637265,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 2,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-bottom-fixed",
+      "name": "پریز سرتخت الماس - پریز پایین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-bottom-fixed.svg",
+      "viewBox": "0 0 495 1009",
+      "defaultWidth": 50,
+      "defaultHeight": 101.91919191919192,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 3,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-bsp-6r-almas-socket-bottom-real",
+      "name": "سرتخت شش‌فرمان الماس - پریز پایین",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-bsp-6r-almas-socket-bottom-real.svg",
+      "viewBox": "0 0 495 1009",
+      "defaultWidth": 50,
+      "defaultHeight": 101.91919191919192,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 3,
+      "assignedEquipmentTypes": [
+        "combined-panel"
+      ]
+    },
+    {
+      "id": "nsp-ac12ch-iconic",
+      "name": "آیکون عملگر دوازده‌کانال",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-ac12ch-iconic.svg",
+      "viewBox": "0 0 100 60",
+      "defaultWidth": 100,
+      "defaultHeight": 60,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "actuator-hardware"
+      ]
+    },
+    {
+      "id": "nsp-power-terminal-iconic",
+      "name": "آیکون پاور ترمینال",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/nsp-power-terminal-iconic.svg",
+      "viewBox": "0 0 60 100",
+      "defaultWidth": 100,
+      "defaultHeight": 170,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": [
+        "actuator-hardware"
+      ]
+    },
+    {
+      "id": "electrical-panel-real",
+      "name": "تابلو برق - تصویر واقعی",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/electrical-panel-real.svg",
+      "viewBox": "0 0 916 1217",
+      "defaultWidth": 60,
+      "defaultHeight": 79.71615720524018,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": []
+    },
+    {
+      "id": "electrical-panel-iconic",
+      "name": "تابلو برق - آیکون",
+      "category": "equipment",
+      "filePath": "assets/svg/equipment/electrical-panel-iconic.svg",
+      "viewBox": "0 0 90 120",
+      "defaultWidth": 60,
+      "defaultHeight": 80,
+      "preserveAspectRatio": "xMidYMid meet",
+      "version": 1,
+      "assignedEquipmentTypes": []
     }
   ]
 }

@@ -274,3 +274,162 @@ Supersedes RD-265 placement: medium Negin portrait and landscape now follow smal
 ## Azin three-command power switch (2026-10-28, RD-268)
 
 The power-switch-3r family now offers a fixed Azin palette product CR3R-AZ alongside Negin. Each model has one toolbox item and two installation directions. Azin has native portrait/landscape real SVGs with gold outer frame/card pocket and per-direction iconic fixed artwork/layout/ratio. The shared Azin frame rule applies regardless of background visibility; icon slots remain independently editable, code mode fully styled and real mode immutable. Custom icons persist across installation/mode/reload. Totals: 24 canonical families / 42 palette products. Local uncommitted changes; user acceptance pending.
+
+
+## Additional power-switch products (2026-10-31, RD-271)
+
+Four new palette choices: CR3R-AL (fixed landscape), CR4R-AL (one product with portrait/default and landscape mounting), CR-NE and CR-AZ (fixed commandless). Original native Almas vectors are face-cropped for real artwork; commandless models use new native face/pocket SVGs. All assets remain centrally referenced. Three scoped service icon references reproduce DND, cleaning and pendant shapes. CR4R logical icon identities persist across its mounting layouts.
+
+Canonical subtype controlCount supports zero independently from the lighting count list; zero-command panels render only fixed card-pocket artwork in iconic mode and show no icon-editor/bulk-color controls. General appearance retains the existing Negin/Almas/Azin rules, code controls and immutable real mode. Totals: 26 canonical families, 46 palette products, six power-switch products. Model unit suite and three focused power-switch browser suites passed, including document validation, reload, editable icon persistence and real aspect ratios; gallery visually inspected. Local changes uncommitted, user acceptance pending; published/visible version remains V276.
+
+
+## Atlas three-request/three-lighting power switch (2026-10-31, RD-272)
+
+One product CR-3R-3L-AT in the power-switch palette, fixed landscape orientation without installation choices. Subtype 3r3l declares six controls: three lighting slots followed by three service slots, independently editable and colored. A wide 1998x526 native real SVG and fixed logo/card-pocket SVG are centrally referenced. Two scoped lighting icons (vanity and ceiling shade) join existing shared choices. Atlas uses the established non-Azin appearance rules. Three modes retain icon edits; real rendering uses the reference ratio. Totals: 27 canonical families, 47 palette choices, seven power-switch products. Unit and focused browser coverage includes all six edits, mode changes, ratio, import validation and reload; gallery visually checked. Local uncommitted work, user acceptance pending, published version remains V276.
+
+
+## Combined bedside panel (2026-10-31, RD-273)
+
+The combined-products section follows power-switches, including migration of older saved toolbox orders. One combined-panel product, bedside-6r / BSP-6R-AL, has six independent icon/color slots and a fixed Almas model. Four catalog mounting choices are named socket-left/top/right/bottom (پریز چپ/بالا/راست/پایین). Explicit per-mount layouts, fixed socket artwork and real SVGs rotate physical socket geometry while retaining upright command glyphs. Code/identity remain constant, real aspect ratio tracks the selected mounting. No ports added. All built-in artwork is centrally referenced; no per-object SVG payloads. Totals: 28 canonical families, 48 palette products. Unit and focused browser validation cover category order, all mounts, six edits, modes, import validation and reload; gallery visually inspected. Local uncommitted changes; user acceptance pending; visible/published release remains V276.
+
+
+## Bedside socket rotation (2026-10-31, RD-274)
+
+All four fixed/real socket assets now bake mounting rotation into their circle/rectangle coordinates. The two holes align vertically for socket-top/bottom and horizontally for socket-left/right. Command glyphs remain upright. Browser regression verifies both holes in all eight assets, plus mounting, icon edits and reload. Local uncommitted work; user visual confirmation pending.
+
+
+## Corrected hole alignment (2026-10-31, RD-275)
+
+Supersedes RD-274: socket-top and socket-bottom holes must also be horizontal (side by side). Both fixed/iconic and real assets now use that geometry; regression covers all eight direction/mode assets. Local uncommitted correction, user visual acceptance pending.
+
+
+## Part-number detail callouts (2026-10-31, RD-276)
+
+Visible code-mode labels are now پارت نامبر, including display choice, color/show row and font size. Internal code identifiers remain compatible. General inspector adds جزئیات محصول / نمایش تصویر و فلش, enabled only in part-number mode. The linked real artwork uses catalog/model/mounting references and its native aspect ratio. Per-device detailView stores enabled,x,y; it contains no SVG payload. New placement chooses the nearest exterior side of all visible devices (including image bounds), walls and existing details. The picture can be dragged independently; owner-to-picture edge arrow updates on either movement. Locks and visible layers apply, and a drag creates one Undo checkpoint. Details disappear outside part-number mode without losing their saved position. Owner deletion removes them. Workspace/page/print/SVG-export bounds include visible callouts.
+
+Browser regression covers Persian labels, mode gating, nonoverlap, actual pointer dragging, owner isolation, changing arrow, Undo/Redo, save/reload and validation. Model suite and bedside regression also passed; screenshot visually inspected. Manual placement may overlap other objects. Initial placement may lie outside the viewport for large plan backgrounds; fit/zoom shows it. Local uncommitted work, user acceptance pending; visible release remains V276.
+
+
+## PDF page raster import (2026-10-31, RD-277)
+
+File > واردکردن PDF is available in desktop and mobile menus. A local dialog previews pages, selects one/many, stores each crop independently, supports pointer rectangles and percentage fields, resets crop and chooses output quality. Pages are rendered sequentially into PNGs before modifying the drawing; one Undo step adds all pages as native image objects, placed side by side. The image library stores pixels once by asset reference; pdfSource metadata records filename, page and normalized crop without the original PDF. Existing move/proportional resize/lock/export/reload behavior applies.
+
+See PDF-IMPORT.md for bundled libraries and validation. Actual sample test passed, including rotated pages, crop, multiple selection, no overlap, Undo/Redo, save/reload, invalid file, cancellation and mobile layout. Local uncommitted work; user acceptance pending.
+
+
+## PDF crop direct manipulation (2026-10-31, RD-278)
+
+Supersedes RD-277 percentage fields: they are removed. Drag inside the crop to move it; eight corner/edge handles resize in all directions within the page. Pointer capture supports mouse/touch, cancellation restores the previous rectangle, and keyboard arrows adjust the focused crop/handle. Per-page state and raster import remain unchanged. Local uncommitted work; user acceptance pending.
+
+
+## Inspector selection and detail captions (2026-10-31, RD-279)
+
+Double-click selects the whole text/number value in desktop/mobile property inspectors. When a part-number detail is visible, its owner caption is suppressed and one caption follows the detail image. The caption sits above the picture when the leader enters its bottom edge; otherwise it sits below. Existing custom name, labelFontSize, page font and showLabel checkbox remain the source of truth. Disabling the detail or leaving code mode restores the ordinary caption. Detail bounds include caption height. Browser coverage verifies angle/multiword-name replacement, four placement directions, single caption, visibility/font controls and the existing drag/Undo/reload workflow. Local uncommitted changes; user acceptance pending.
+
+
+## Portless actuator hardware (2026-10-31, RD-280)
+
+The old loads section is now مصرف‌کننده‌ها, retaining its existing light/valve/fan-coil/speaker/sensor items. New عملگرها و سنسورها section (actuators) follows combined-products, including older saved section orders. It offers AC12CH / عملگر دوازده‌کانال and PT / پاور ترمینال. PT is provisional because no terminal part number was supplied. Both use the generic actuator-hardware panel type with zero icon slots, no ports, no installation choices, three display modes and existing real images from the SVG library. New native schematic SVGs provide toolbox/iconic artwork. General appearance, labels, proportional real resizing and part-number detail callouts apply. The specific tab is empty.
+
+Catalog partNumber optionally overrides generated model-suffix codes, with strict validation; titleIncludesModel=false hides internal standard-model metadata. Existing product behavior remains generated and unchanged. Totals: 30 canonical families, 50 palette products. Model and focused browser suites passed, including reload and no automatic legacy relay ports. Gallery reviewed; local changes uncommitted, user acceptance pending; visible version remains V276.
+
+
+## Hardware iconic body colors (2026-10-31, RD-281)
+
+Catalog iconicBackgroundColor now defaults AC12CH to #a8a9ad (actual gray body) and PT to #a98060 (board brown). Defaults apply on insertion and mode changes; code mode remains white. One-time iconicAppearanceVersion migration replaces prior black defaults/caches for existing hardware, retaining non-black custom colors and other modes. Palette transparency remains unchanged. Unit and browser coverage verify defaults, mode re-entry and upgrade behavior. Local uncommitted changes; user visual acceptance pending.
+
+
+## Optional physical ports and unified RS-485 (2026-10-31, RD-282)
+
+Supersedes the earlier portless semantic-equipment stage and separate RS-485 + Power type. Canonical types are Power #DC2626, RS-485 #16A34A, DO #D97706, DI #0891B2 and Ethernet #2563EB. Legacy rs485_power ports/cables normalize to rs485 with IDs/links retained; standard legacy names update, custom names remain. Default type registry removes the alias and restores agreed colors. No document reset is performed.
+
+Central catalog entries hold named port definitions with enabled:false. Placed d.ports contains only activated instances, linked by catalogPortId. All lighting, request, thermostat, doorbell, power-switch and combined products define one RS-485. AC12CH defines one RS-485 plus R1-R12 DO (R1/R2 top, remaining relays bottom). PT defines one Power left plus RS-485 1-6 (two top, four bottom). Every device starts with zero active ports. Existing consumer ports are retained.
+
+The desktop/mobile Ports tab lists each definition with its name/type/color and activation checkbox in all display modes. Activating creates a stable active instance; deactivating removes it only when no cable is attached. Connected-port disable attempts leave the port checked and notify the user to delete its cables first. One edit is undoable; save/export/import/reload retain active ports. Active ports reuse existing routing/hover/hit testing/rotation/locks. Dense panel ports distribute within the face, with reduced handle sizes. Legacy relay auto-add ignores inactive templates; semantic import validation now permits active ports. Control-event-to-relay assignment remains deferred.
+
+Validation: model suite and equipment-ports.browser.test.cjs passed, including real pointer cable connection, exact counts/colors, default hidden state, toggle, connected guard, Undo/Redo, reload and import roundtrip. Screenshot reviewed. Old connection-model tests describe superseded physical catalogs and are not claimed as current acceptance coverage. Local uncommitted changes; visible release remains V276; user runtime acceptance pending.
+
+
+## Manual cable polylines and port sides (2026-10-31, RD-283)
+
+Supersedes route-mode switching, automatic obstacle routing and cable reserve. A new cable is always a straight link between ports. Selecting it shows blue endpoint/bend nodes and a light midpoint on every segment; dragging a midpoint inserts one bend. Existing bends move freely; right-click removes a bend. Every resulting segment gets a midpoint. Endpoints can be dragged to compatible ports; invalid drops keep the original connection. Cable body click selects without rearranging geometry. Selection adds a dashed blue overlay without recoloring/thickening the actual cable or drawing a rectangular bounding box. Cable properties expose solid/dashed style, name, width and text angle; no route/reserve controls.
+
+New cableGeometryVersion=1 stores manual waypoints. Old routeMode/autoRouting/offset/reserve data is normalized once: evaluate the prior path, freeze it as waypoints, preserve old reserve appearance as dashed. Existing legacy evaluator is retained for that conversion only. Smart Ports no longer regenerates routes. New straight geometry may cross devices; this is the user's explicit replacement of earlier obstacle-routing behavior.
+
+Ports tab now offers four pictorial native radio choices for top/bottom/left/right. Preferences persist in per-device portSides by catalog ID, including before activation and across deactivate/reactivate. Active port-side changes retain IDs and update attached endpoints while leaving manual bends fixed. Locked attached cables block side changes. Definitions and enabled state retain RD-282 behavior.
+
+Validation: cable-line-editing.browser.test.cjs covers all new pointer interactions, controls, side persistence, Undo/Redo, reload and legacy geometry conversion. Existing equipment-ports browser and model suites passed. Screenshots reviewed. Historical route-mode suites describe superseded behavior. Local uncommitted changes; user acceptance pending; visible release remains V276.
+
+### RD-284 — compact edited polylines (local, pending release)
+
+Line and cable point editing now removes redundant collinear vertices after release and merges a dragged vertex dropped within 6 screen pixels of another vertex. Straight-segment cleanup uses a 2 screen pixel tolerance; each surviving segment has one insertion midpoint. Cable endpoints remain port references. Undo/Redo preserves the complete gesture. Right-click on an internal bend offers deletion; the cable context menu no longer offers insertion. Line handles support the same contextual deletion. Checked by `tests/polyline-cleanup.browser.test.cjs` and the existing line/cable editing browser suites. User acceptance remains pending.
+
+### RD-285 / RD-286 — port display, Shift bends and cable presentation (local)
+
+The Ports tab now has one standard-styled show/hide checkbox per device. Showing instantiates every catalog port; hiding only hides handles and prevents hidden-port hit testing, preserving IDs and existing cable connections. Existing partial port lists expand to full catalog definitions. Side selectors remain per port.
+
+Shift-drag on either a general line or cable bend compares the angle with straight and 90 degrees. It projects to the straight segment or to the right-angle circle through the neighboring vertices, retaining the side of the drag. Press/release of Shift also updates a stationary held point. Existing release cleanup removes straightened bends.
+
+Cable flow is explicitly controlled from right-click and the inspector, persists independently of selection and uses SVG motion without a JavaScript frame loop. Static print/SVG omit its moving marker. Cable labels have no halo; clicking their text selects the cable, clears prior multi-selection and displays the rotation handle. Inspector order: name, thickness, line style, label angle, flow visibility, text visibility. Hidden text has no rotation handle and is omitted from DXF too.
+
+Verified by `tests/cable-flow-shift.browser.test.cjs`, `tests/equipment-ports.browser.test.cjs` and `tests/cable-line-editing.browser.test.cjs`. User acceptance pending; no commit/push.
+
+### RD-287 / RD-288 / RD-289 — cable drafts, compact ports and corrected Shift (local)
+
+Cable creation accepts repeated non-port clicks as temporary vertices. Completion on a destination port stores those exact waypoints; Escape cancels the entire draft. Mouse clicks and touch pointer taps are covered by browser regression. Repeated construction from an already-connected port uses geometric port hit testing so an overlaid cable cannot block the port.
+
+Port properties are one compact row per definition: type-color dot with descriptive tooltip, name button, four small side choices. Clicking a name locates the matching port with two 450ms blinks and a same-color outline. Hidden ports can be located transiently without changing visibility, saved state or history.
+
+The earlier RD-285 oblique right-angle-circle interpretation is superseded: Shift now uses horizontal/vertical elbows and respects neighboring directions when choosing the elbow. Collinear anchors may require two elbows to preserve endpoint positions. A frozen base geometry allows safe repeated Shift toggles during a gesture. Straightened or coincident vertices are compacted immediately, so no stacked handles remain while Shift is held; release cleanup remains in place.
+
+Passed: `tests/cable-draft-port-list.browser.test.cjs`, `tests/cable-flow-shift.browser.test.cjs`, `tests/polyline-cleanup.browser.test.cjs`, `tests/line-handles.browser.test.cjs`. User runtime acceptance pending. No commit/push; V276 remains visible.
+
+### RD-290 — immutable Shift gesture anchors (local)
+
+Both line and cable point gestures now capture their actual vertices at pointerdown, before subdividing any segment. The shared frozen basis contains only original vertices plus the single edited midpoint placeholder when inserting. All subsequent moves and Shift key changes reuse the fixed edited index and original adjacent anchors. Rendering new midpoint handles or inserting/removing preview elbows never changes the snap basis. Checked by `tests/shift-fixed-anchors.browser.test.cjs` with repeated free/Shift previews and straight cleanup; existing Shift and line-handle regression retained. User acceptance pending; no commit/push.
+
+### RD-291 — Shift on a lone bend (local)
+
+For a path with only two fixed endpoints and one edited bend, Shift always straightens against the endpoint segment and immediately removes the interior vertex. This overrides closest-angle snapping for both newly dragged midpoints and existing lone bends, avoiding tiny orthogonal steps beside nearly aligned ports. Multi-bend paths retain fixed-anchor orthogonal snapping. Verified using the screenshot-like case in `tests/shift-single-bend.browser.test.cjs`, plus existing Shift/fixed-anchor suites. No commit/push; user acceptance pending.
+
+### RD-292 — remove reversed overlapping segments (local)
+
+Shared polyline cleanup now removes collinear reversal vertices, including an exact out-and-back triple. The earlier clamped-segment test retained outward corners if the next leg doubled back over the previous one. Measuring perpendicular distance to the supporting line allows iterative cleanup to remove those corners while preserving the path endpoints. Shift previews and final geometry both use this cleanup. Screenshot-like zigzag coverage for cables and mirrored general lines is in `tests/shift-overlap.browser.test.cjs`; fixed-anchor and general cleanup regression passed. User acceptance pending; no commit/push.
+
+### RD-293 — cropped detail artwork and shared bounds (local)
+
+Detail rendering now reuses effective real artwork, including the legacy Negin face crop. Its cropped viewBox supplies the detail aspect ratio, and the image, arrow intersection, caption, collision placement, print extent and workspace pages use those same dimensions. This removes invisible artboard padding around lighting detail faces without changing saved detail positions. Transient bounded artwork caching avoids repeated XML parsing; saved device data still contains references only. Checked by `tests/product-detail-crop.browser.test.cjs` and `tests/product-detail.browser.test.cjs`; screenshot reviewed. No commit/push; user acceptance pending.
+
+### RD-294 — uniform product detail scale (local)
+
+Details now use the catalog-backed standard real-display width and height multiplied by 1.4, consistently across products, models and installation directions. This replaces the earlier ratio-based width buckets and supersedes RD-293 sizing by cropped viewBox ratio. Cropped artwork and shared arrow/caption/workspace geometry remain in place. Equal-width lighting and power-switch products now have equal detail widths, with the portrait height retained. Existing instance resizing does not alter the standard detail size. Passed detail crop/scale and detail interaction browser regression; user acceptance pending. No commit/push.
+
+### RD-295 — no-selection global display controls (local)
+
+With no single/group/multiple selection, Properties shows product-details and port-display checkboxes. Each is checked only when every applicable device has the corresponding state; empty target sets disable the checkbox. Aggregate state is derived, not stored as a separate preference. Multiple-selection properties remain deferred.
+
+As clarified by the user, enabling global details converts all products to standard part-number appearance and shows real images/arrows. Disabling only hides the details, retaining the display mode. Existing detail offsets are preserved. Global port display instantiates missing catalog ports on show and only changes visibility on hide, preserving IDs/connections. Both bulk operations use one Undo checkpoint and retain lock/layer data as document-wide presentation actions. A newly added device inherits visible ports if any current device has visible ports; details are not inherited.
+
+Verified by `tests/global-display.browser.test.cjs`, existing equipment-port and cable-editing browser regressions. Legacy test fixtures explicitly hide ports before adding isolated default-state fixtures, then show them before cable interaction. User acceptance pending; no commit/push.
+
+### RD-296 — Shift distinguishes first drag from re-grabbing (local)
+
+The initial midpoint drag of a straight segment keeps only its original endpoints as Shift references until release. Re-grabbing a completed sole bend instead freezes the two adjacent segment handles already visible at the start of that later gesture as local Shift anchors. This supersedes RD-291 flattening of every existing lone bend. New handles appearing during a gesture never replace its frozen references. A separate free-drag basis avoids adding geometry during ordinary movement; settled Shift references are promoted only when used. Near-axis classification uses screen-space tolerance to avoid tiny redundant corner legs.
+
+Passed `tests/shift-single-bend.browser.test.cjs` with the full two-stage cable and line scenario, plus line-handle, Shift/flow and fixed-anchor regressions. User acceptance pending. No commit/push.
+
+### RD-297 — unified line/cable geometry and interaction audit (local)
+
+Geometry now lives in `polyline-editor.js`, shared by line and cable edits. See `POLYLINE-EDITOR.md` for the gesture contracts, overlap/intersection policy and validation matrix. Added nonadjacent collinear overlap cleanup, index-independent finalization, endpoint axis constraints, Shift cable drafting, complete edit cancellation/history rollback, no-op history suppression and closed-line point editing. Existing single-bend lifecycle and fixed-reference behavior remain covered. Deterministic checks plus 6,000 generated cases, nine focused browser suites and actual localhost startup passed. Physical device/user acceptance pending. No commit/push; V276 retained.
+
+Empty multi-selection objects are normalized to no selection before rendering. Clicking blank canvas, drawing an empty marquee or removing the last selected member therefore shows the global product-detail and port checkboxes without requiring Escape.
+
+Print/PDF uses the current computed application font family rather than a separate Tahoma stack. The generated print document carries font-face/import declarations with absolute URLs, makes SVG text inherit that family and waits for document.fonts.ready plus layout before invoking print. Existing explicit product artwork fonts remain unchanged. See tests/print-font.browser.test.cjs.
+
+Only the border appearance row uses compact controls: label, unlabeled visibility checkbox, width input and a native color swatch with a decorative dropper glyph. Accessible labels/tooltips remain. Background/part-number rows keep their existing text and color controls; model and display-mode enablement policies remain unchanged.
+
+The compact swatch/dropper pattern now covers border, background, part number and object caption rows, plus specific room/icon appearance. Unchecked visibility hides associated size/color controls while keeping their values. Color aligns at physical left; numeric size stretches through remaining space. Room appearance places size before its independent color; bulk/per-icon colors use the same picker without redundant labels. labelColor independently controls regular and relocated detail captions, persists through history/reload and is validated as a six-digit hex color. Caption color input updates SVG fill directly to keep live dragging responsive. General shape backgrounds use the same checkbox/color pattern.
+
+Caption settings follow Name immediately. Position is one RTL-labeled row with LTR X/input/Y/input controls; dimensions use W/input/H/input. A shared helper preserves top-left origin conversion, two-decimal formatting, min-size and lock rules for devices and general shapes. Font-size numeric controls are left-aligned. Specific text fields such as room number combine text, font size and color in one row; text has a compact 56px basis and font size fills the remaining width. Line thickness/length controls retain their distinct semantics.
+
+Inspector appearance state comes from LightingModel.appearanceState rather than raw saved preference flags. Unsupported border/background/part-number/detail features are effectively unchecked and disabled; their dependent controls stay hidden. Existing readonly features such as the Azin iconic frame stay checked with visible disabled values. Real-image mode exposes none of the independent styling/callout features. Iconic mode exposes no part number or detail callout. Saved applicable-mode choices are retained for switching back; caption visibility remains independent.

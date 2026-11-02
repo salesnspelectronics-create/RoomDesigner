@@ -294,3 +294,65 @@ Visual QA: the medium landscape legacy SVG had dark service glyphs. Its real ass
 ## Azin three-command power switch (2026-10-28, RD-268)
 
 The power-switch-3r family now offers a fixed Azin palette product CR3R-AZ alongside Negin. Each model has one toolbox item and two installation directions. Azin has native portrait/landscape real SVGs with gold outer frame/card pocket and per-direction iconic fixed artwork/layout/ratio. The shared Azin frame rule applies regardless of background visibility; icon slots remain independently editable, code mode fully styled and real mode immutable. Custom icons persist across installation/mode/reload. Totals: 24 canonical families / 42 palette products. Local uncommitted changes; user acceptance pending.
+
+
+## Additional power-switch products (2026-10-31, RD-271)
+
+Four new palette choices: CR3R-AL (fixed landscape), CR4R-AL (one product with portrait/default and landscape mounting), CR-NE and CR-AZ (fixed commandless). Original native Almas vectors are face-cropped for real artwork; commandless models use new native face/pocket SVGs. All assets remain centrally referenced. Three scoped service icon references reproduce DND, cleaning and pendant shapes. CR4R logical icon identities persist across its mounting layouts.
+
+Canonical subtype controlCount supports zero independently from the lighting count list; zero-command panels render only fixed card-pocket artwork in iconic mode and show no icon-editor/bulk-color controls. General appearance retains the existing Negin/Almas/Azin rules, code controls and immutable real mode. Totals: 26 canonical families, 46 palette products, six power-switch products. Model unit suite and three focused power-switch browser suites passed, including document validation, reload, editable icon persistence and real aspect ratios; gallery visually inspected. Local changes uncommitted, user acceptance pending; published/visible version remains V276.
+
+
+## Atlas three-request/three-lighting power switch (2026-10-31, RD-272)
+
+One product CR-3R-3L-AT in the power-switch palette, fixed landscape orientation without installation choices. Subtype 3r3l declares six controls: three lighting slots followed by three service slots, independently editable and colored. A wide 1998x526 native real SVG and fixed logo/card-pocket SVG are centrally referenced. Two scoped lighting icons (vanity and ceiling shade) join existing shared choices. Atlas uses the established non-Azin appearance rules. Three modes retain icon edits; real rendering uses the reference ratio. Totals: 27 canonical families, 47 palette choices, seven power-switch products. Unit and focused browser coverage includes all six edits, mode changes, ratio, import validation and reload; gallery visually checked. Local uncommitted work, user acceptance pending, published version remains V276.
+
+
+## Combined bedside panel (2026-10-31, RD-273)
+
+The combined-products section follows power-switches, including migration of older saved toolbox orders. One combined-panel product, bedside-6r / BSP-6R-AL, has six independent icon/color slots and a fixed Almas model. Four catalog mounting choices are named socket-left/top/right/bottom (پریز چپ/بالا/راست/پایین). Explicit per-mount layouts, fixed socket artwork and real SVGs rotate physical socket geometry while retaining upright command glyphs. Code/identity remain constant, real aspect ratio tracks the selected mounting. No ports added. All built-in artwork is centrally referenced; no per-object SVG payloads. Totals: 28 canonical families, 48 palette products. Unit and focused browser validation cover category order, all mounts, six edits, modes, import validation and reload; gallery visually inspected. Local uncommitted changes; user acceptance pending; visible/published release remains V276.
+
+
+## Bedside socket rotation (2026-10-31, RD-274)
+
+All four fixed/real socket assets now bake mounting rotation into their circle/rectangle coordinates. The two holes align vertically for socket-top/bottom and horizontally for socket-left/right. Command glyphs remain upright. Browser regression verifies both holes in all eight assets, plus mounting, icon edits and reload. Local uncommitted work; user visual confirmation pending.
+
+
+## Corrected hole alignment (2026-10-31, RD-275)
+
+Supersedes RD-274: socket-top and socket-bottom holes must also be horizontal (side by side). Both fixed/iconic and real assets now use that geometry; regression covers all eight direction/mode assets. Local uncommitted correction, user visual acceptance pending.
+
+
+## Part-number detail callouts (2026-10-31, RD-276)
+
+Visible code-mode labels are now پارت نامبر, including display choice, color/show row and font size. Internal code identifiers remain compatible. General inspector adds جزئیات محصول / نمایش تصویر و فلش, enabled only in part-number mode. The linked real artwork uses catalog/model/mounting references and its native aspect ratio. Per-device detailView stores enabled,x,y; it contains no SVG payload. New placement chooses the nearest exterior side of all visible devices (including image bounds), walls and existing details. The picture can be dragged independently; owner-to-picture edge arrow updates on either movement. Locks and visible layers apply, and a drag creates one Undo checkpoint. Details disappear outside part-number mode without losing their saved position. Owner deletion removes them. Workspace/page/print/SVG-export bounds include visible callouts.
+
+Browser regression covers Persian labels, mode gating, nonoverlap, actual pointer dragging, owner isolation, changing arrow, Undo/Redo, save/reload and validation. Model suite and bedside regression also passed; screenshot visually inspected. Manual placement may overlap other objects. Initial placement may lie outside the viewport for large plan backgrounds; fit/zoom shows it. Local uncommitted work, user acceptance pending; visible release remains V276.
+
+
+## Inspector selection and detail captions (2026-10-31, RD-279)
+
+Double-click selects the whole text/number value in desktop/mobile property inspectors. When a part-number detail is visible, its owner caption is suppressed and one caption follows the detail image. The caption sits above the picture when the leader enters its bottom edge; otherwise it sits below. Existing custom name, labelFontSize, page font and showLabel checkbox remain the source of truth. Disabling the detail or leaving code mode restores the ordinary caption. Detail bounds include caption height. Browser coverage verifies angle/multiword-name replacement, four placement directions, single caption, visibility/font controls and the existing drag/Undo/reload workflow. Local uncommitted changes; user acceptance pending.
+
+
+## Portless actuator hardware (2026-10-31, RD-280)
+
+The old loads section is now مصرف‌کننده‌ها, retaining its existing light/valve/fan-coil/speaker/sensor items. New عملگرها و سنسورها section (actuators) follows combined-products, including older saved section orders. It offers AC12CH / عملگر دوازده‌کانال and PT / پاور ترمینال. PT is provisional because no terminal part number was supplied. Both use the generic actuator-hardware panel type with zero icon slots, no ports, no installation choices, three display modes and existing real images from the SVG library. New native schematic SVGs provide toolbox/iconic artwork. General appearance, labels, proportional real resizing and part-number detail callouts apply. The specific tab is empty.
+
+Catalog partNumber optionally overrides generated model-suffix codes, with strict validation; titleIncludesModel=false hides internal standard-model metadata. Existing product behavior remains generated and unchanged. Totals: 30 canonical families, 50 palette products. Model and focused browser suites passed, including reload and no automatic legacy relay ports. Gallery reviewed; local changes uncommitted, user acceptance pending; visible version remains V276.
+
+
+## Hardware iconic body colors (2026-10-31, RD-281)
+
+Catalog iconicBackgroundColor now defaults AC12CH to #a8a9ad (actual gray body) and PT to #a98060 (board brown). Defaults apply on insertion and mode changes; code mode remains white. One-time iconicAppearanceVersion migration replaces prior black defaults/caches for existing hardware, retaining non-black custom colors and other modes. Palette transparency remains unchanged. Unit and browser coverage verify defaults, mode re-entry and upgrade behavior. Local uncommitted changes; user visual acceptance pending.
+
+
+## Optional physical ports and unified RS-485 (2026-10-31, RD-282)
+
+Supersedes the earlier portless semantic-equipment stage and separate RS-485 + Power type. Canonical types are Power #DC2626, RS-485 #16A34A, DO #D97706, DI #0891B2 and Ethernet #2563EB. Legacy rs485_power ports/cables normalize to rs485 with IDs/links retained; standard legacy names update, custom names remain. Default type registry removes the alias and restores agreed colors. No document reset is performed.
+
+Central catalog entries hold named port definitions with enabled:false. Placed d.ports contains only activated instances, linked by catalogPortId. All lighting, request, thermostat, doorbell, power-switch and combined products define one RS-485. AC12CH defines one RS-485 plus R1-R12 DO (R1/R2 top, remaining relays bottom). PT defines one Power left plus RS-485 1-6 (two top, four bottom). Every device starts with zero active ports. Existing consumer ports are retained.
+
+The desktop/mobile Ports tab lists each definition with its name/type/color and activation checkbox in all display modes. Activating creates a stable active instance; deactivating removes it only when no cable is attached. Connected-port disable attempts leave the port checked and notify the user to delete its cables first. One edit is undoable; save/export/import/reload retain active ports. Active ports reuse existing routing/hover/hit testing/rotation/locks. Dense panel ports distribute within the face, with reduced handle sizes. Legacy relay auto-add ignores inactive templates; semantic import validation now permits active ports. Control-event-to-relay assignment remains deferred.
+
+Validation: model suite and equipment-ports.browser.test.cjs passed, including real pointer cable connection, exact counts/colors, default hidden state, toggle, connected guard, Undo/Redo, reload and import roundtrip. Screenshot reviewed. Old connection-model tests describe superseded physical catalogs and are not claimed as current acceptance coverage. Local uncommitted changes; visible release remains V276; user runtime acceptance pending.

@@ -13,7 +13,7 @@ await page.goto('https://roomdesigner.test/');await page.waitForFunction(()=>win
 
 const root=page.locator('#deskProperties');
 async function state(){return page.evaluate(()=>{const d=audit.doc.devices.at(-1),r=new DOMParser().parseFromString(audit.effectiveArtwork(d),'image/svg+xml').querySelector('rect');return {stroke:r?.getAttribute('stroke'),fill:r?.getAttribute('fill')}})}
-for(const code of ['1L-NE','8R-L-AL','1L-AZ']){
+for(const code of ['1L-NE','8R-AL','1L-AZ']){
  await page.evaluate(code=>audit.addDevice(audit.catalog.findIndex(t=>t.code===code)),code);const az=code.endsWith('AZ');assert.equal(await root.locator('[data-desk-prop="borderVisible"]').isDisabled(),true);assert.equal(await root.locator('[data-desk-prop="borderWidth"]').isDisabled(),true);assert.equal(await root.locator('[data-desk-prop="borderColor"]').isDisabled(),true);assert.equal((await state()).stroke,az?'#e9ca16':'none');
  await root.locator('[data-desk-prop="backgroundVisible"]').uncheck();assert.equal((await state()).stroke,az?'#e9ca16':'#000000');assert.equal(await root.locator('[data-desk-prop="borderColor"]').isDisabled(),az);assert.equal(await root.locator('[data-desk-prop="borderVisible"]').isChecked(),true);
  if(!az){const visual=await root.locator('[data-desk-prop="borderColor"]').evaluate(n=>({row:getComputedStyle(n.closest('.desk-field')).opacity,color:getComputedStyle(n.closest('.property-control')).opacity,show:getComputedStyle(n.closest('.desk-field').querySelector('[data-desk-prop="borderVisible"]').closest('.property-control')).opacity}));assert.equal(visual.row,'1');assert.equal(visual.color,'1');assert.ok(Number(visual.show)<1)}

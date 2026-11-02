@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V276",
-    "project_evolution_version": "V276",
+    "software_version": "V277",
+    "project_evolution_version": "V277",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V276",
+  "current_source_release": "V277",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1219,6 +1219,314 @@
       "phase": "Local editor/product changes integrated with main",
       "summary": "RD-187–RD-270 local product catalog/editor changes plus independent main lock/deletion/polyline fixes; local conflicts take precedence.",
       "runtime_status": "2 unit suites and 13 focused browser suites passed; user/device acceptance pending"
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Local power-switch additions",
+      "summary": "RD-271: four palette products, five direction/model real images, zero-command subtype support, scoped service vectors and browser coverage. V276 remains current published release.",
+      "runtime_status": "Local validated changes; user acceptance pending; uncommitted."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Atlas power switch",
+      "summary": "RD-272: one CR-3R-3L-AT product, six editable icons, native reference SVGs; no installation selector.",
+      "runtime_status": "Local browser/unit validation passed; uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Combined bedside products",
+      "summary": "RD-273: new combined-products category and BSP-6R-AL with four socket-position mounts, editable icons and central native vectors.",
+      "runtime_status": "Local browser/unit validation passed; uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Socket orientation geometry",
+      "summary": "RD-274: explicit rotated socket geometry in real/fixed artwork and hole alignment regression.",
+      "runtime_status": "Local change; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Socket hole alignment correction",
+      "summary": "RD-275 supersedes RD-274: horizontal holes for socket-top/bottom in iconic and real modes.",
+      "runtime_status": "Local uncommitted correction."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Persian part-number display and detail callouts",
+      "summary": "RD-276: پارت نامبر labels and optional draggable referenced real image with attached arrow, automatic initial exterior placement and persistent coordinates.",
+      "runtime_status": "Focused browser/unit tests passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "PDF page image import",
+      "summary": "RD-277: local PDF page preview/selection, independent cropping and batch image placement, bundled PDF.js.",
+      "runtime_status": "Focused actual-file browser test passed, desktop/mobile visual review; local uncommitted changes; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Direct crop manipulation",
+      "summary": "RD-278: move/resize PDF crop with eight handles; remove percentage fields.",
+      "runtime_status": "Local uncommitted changes, user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Inspector value selection and detail captions",
+      "summary": "RD-279: double-click full-value selection; move caption from owner to linked detail image with directional placement.",
+      "runtime_status": "Focused browser regression passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Actuator hardware catalog",
+      "summary": "RD-280: rename consumers, new actuator/sensor section and AC12CH/PT portless product prototypes with three display modes.",
+      "runtime_status": "Unit/browser validation passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Hardware body colors",
+      "summary": "RD-281: gray actuator and brown terminal iconic backgrounds with mode-aware defaults and old-black upgrade.",
+      "runtime_status": "Local tests, user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Optional physical ports and unified bus",
+      "summary": "RD-282: Ports inspector tab, inactive catalog definitions, five connection types, AC12CH relay outputs and terminal buses.",
+      "runtime_status": "Focused unit/browser validation passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Manual cable polylines and pictorial port sides",
+      "summary": "RD-283: cable midpoint/node editing, remove route/reserve UI, frozen legacy geometry, solid/dashed and port-side radios.",
+      "runtime_status": "Focused browser/unit tests passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Line and cable bend cleanup",
+      "summary": "RD-284: compact restored straight segments and merged vertices; remove cable add-bend menu; contextual bend deletion.",
+      "runtime_status": "Three focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "port_visibility_cable_flow_and_shift",
+      "summary": "RD-285: Replace individual port activation checkboxes with one consistently styled show/hide checkbox for all device ports. Add explicit cable flow animation toggle to right-click. Shift-drag line/cable bends to the closer straight or 90-degree shape.",
+      "runtime_status": "Focused browser regression passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "cable_label_and_inspector",
+      "summary": "RD-286: Clicking a cable label must expose its rotation handle. Remove the colored label halo. Order cable properties as name, thickness, line style, text angle, animation checkbox, label visibility checkbox.",
+      "runtime_status": "Focused browser regression passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "cable_draft_bends_and_compact_ports",
+      "summary": "RD-287: Clicks away from ports add intermediate cable vertices until a destination port completes the connection; Escape cancels. Show each port as a compact single row with name, colored type-tooltip dot and side options. Clicking a name blinks its corresponding device port twice.",
+      "runtime_status": "Focused browser tests passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "orthogonal_shift_snap",
+      "summary": "RD-288: Shift 90-degree snapping must create horizontal/vertical legs with orthogonal adjacent corners, not arbitrary oblique right angles.",
+      "runtime_status": "Focused browser tests passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "shift_straight_bend_cleanup",
+      "summary": "RD-289: Dragging the midpoint of a straight cable and pressing Shift must not leave overlapping bend vertices or extra midpoint handles after straightening. Verify the latest task and run the preview.",
+      "runtime_status": "Focused browser tests passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Fixed Shift drag anchors",
+      "summary": "RD-290: immutable original anchors captured at pointerdown for line and cable gestures.",
+      "runtime_status": "Focused browser regression passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Single-bend Shift straightening",
+      "summary": "RD-291: prevent tiny endpoint elbows when Shift is applied to a displaced straight connection.",
+      "runtime_status": "Three focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Remove collinear reverse tails",
+      "summary": "RD-292: prevent Shift-generated doubled segments and outward tails by compacting reversals.",
+      "runtime_status": "Three focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Product detail real-face crop",
+      "summary": "RD-293: align detail image, arrow, caption and page bounds to cropped real artwork.",
+      "runtime_status": "Two focused browser suites passed; screenshot reviewed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Uniform standard detail scale",
+      "summary": "RD-294: product details use 1.4x standard real-display dimensions.",
+      "runtime_status": "Two focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Global display properties",
+      "summary": "RD-295: no-selection details/ports controls with aggregate state and new-device visible-port inheritance.",
+      "runtime_status": "Three focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Shift gesture lifecycle distinction",
+      "summary": "RD-296: initial midpoint Shift straightens; re-grabbed completed bend uses settled local handles.",
+      "runtime_status": "Four focused browser suites passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-10-31",
+      "phase": "Unified polyline editor audit",
+      "summary": "RD-297: shared geometry, overlap normalization, stable gestures, complete cancellation, no-op history handling and axis-constrained drafting.",
+      "runtime_status": "6,000 generated geometry cases, deterministic checks, nine browser suites and localhost smoke passed; local uncommitted; user acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Near-axis return stroke correction",
+      "summary": "RD-298: remove almost-collinear returning tails during line/cable editing, preserving port endpoints and gesture anchors.",
+      "runtime_status": "6,000 shared geometry invariants, 2,016 offset/reversed/rotated/zoomed screenshot previews and 2,000 seeded orthogonal walks passed. Nine focused browser suites and actual localhost startup smoke passed; user acceptance pending. Local uncommitted."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Empty selection normalization",
+      "summary": "RD-299: blank canvas and empty marquee display global detail/port options.",
+      "runtime_status": "Extended global-display browser suite passed: real blank clicks after single and multiple selections, empty marquee, global toggles, Undo/Redo, inheritance and reload. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Cable title rotation handle spacing",
+      "summary": "RD-300: compact zoom-independent gap anchored to the measured text edge.",
+      "runtime_status": "90 browser zoom/rotation/name combinations passed with measured 14-pixel gap and 5-pixel hit clearance; actual drag rotation and existing cable-flow-shift suite passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Electrical panel and configurable ports",
+      "summary": "RD-301: new panel artwork and configurable per-instance ports in the actuators section.",
+      "runtime_status": "Catalog unit checks and four browser suites passed: electrical panel, existing actuator hardware, equipment ports and global display controls. Panel photo/iconic gallery visually checked. Tests cover 15 custom ports, all five types/sides, visibility, locator, stable IDs, cable attachment/removal guard, Undo/Redo and reload. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Panel form refinement",
+      "summary": "RD-302: EP part number, compact delete controls, form spacing/alignment and retained type/side choices.",
+      "runtime_status": "Extended electrical-panel browser suite passed: EP palette, retained type/side and cleared name after each add, measured compact trash button, form/action spacing and left alignment, plus existing port/cable/history/reload checks. Whitespace and generated catalog syntax checks passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Cable strand annotations",
+      "summary": "RD-303: per-cable strand count with oblique count marks.",
+      "runtime_status": "Cable-strands and existing cable-flow-shift browser suites passed. Verified default/edit/count, Undo/Redo, integer validation, locked state, reload, five path orientations/shapes, hidden labels, dashed style, fast keyboard movement and DXF line output. Canvas screenshot visually checked; whitespace check passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "PDF keyboard shortcut",
+      "summary": "RD-304: Ctrl/Cmd+P opens application PDF options.",
+      "runtime_status": "Browser check passed for Ctrl+P, Cmd+P, focused text input, default prevention and preserving options on repeated invocation; no window.print call. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Print font parity",
+      "summary": "RD-305: preserve canvas font definitions and await font load in print output.",
+      "runtime_status": "Print-font browser check passed with a real local test webfont: font-face URL survives blob document, loaded font confirmed before print, computed family matches canvas and caption text length differs by less than 0.1 document unit across viewport scales. Ctrl/Cmd+P regression passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Compact border controls",
+      "summary": "RD-306: combine border visibility, width and swatch/dropper control in one row.",
+      "runtime_status": "Border-cursors and automatic-iconic-frame browser suites passed; live width changes, per-mode cached appearance, fallback outline color, Azin fixed gold, immutable real mode and reload retained. Compact row screenshot visually checked. Corrected stale test assumptions for the current 8R-AL catalog code and per-mode width cache; no application policy change. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Unified compact general/specific properties",
+      "summary": "RD-307: checkbox-dependent controls, flexible sizes, left color pickers and independent caption ink.",
+      "runtime_status": "Five browser suites passed: compact-properties, automatic-iconic-frame, caption-font, doorbell-edit-isolation and shape-properties-placement. Verified hiding/restoration, flexible-size/left-color alignment without overflow, caption ink for normal/detail views with Undo/Redo and reload, room-specific colors/size and icon picker, model policies and shape editing. Both General/Specific screenshots visually checked. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Paired geometry and room controls",
+      "summary": "RD-308: caption ordering, left numeric alignment, paired X/Y and W/H, one room-number row.",
+      "runtime_status": "Compact-properties, shape-properties-placement and doorbell-edit-isolation browser suites passed. Verified caption row ordering, paired X/Y and W/H grouping with existing geometry edits, left font-size alignment, single room row with wider text input, hidden controls/history/reload and selection isolation. General/Specific screenshots visually checked; whitespace check passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Room number width balance",
+      "summary": "RD-309: reduce room text width to give font-size editing more space.",
+      "runtime_status": "Existing compact-properties browser suite passed, including confirming font-size field is wider than room-number text while colors/editing/history/reload remain functional. Whitespace check passed. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Appearance applicability versus readonly",
+      "summary": "RD-310: accurate effective checkbox states without losing per-mode user preferences.",
+      "runtime_status": "Appearance-applicability, automatic-iconic-frame and global-display browser suites passed, plus the model unit suite. Covered Negin/Almas/Azin and Azin power switch in code/iconic/real modes, absent fields hidden/unchecked, present fixed gold frame visible/readonly, fallback border color, detail checkbox, locks and restoration of preferences. Both state screenshots visually checked. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Angle field alignment",
+      "summary": "RD-311: compact angle input aligned with X input.",
+      "runtime_status": "Compact-properties browser suite passed, including measured angle/X end alignment within one pixel. Existing editing, layout and persistence checks remain passing. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Angle edge clarification",
+      "summary": "RD-312: left edge common, right edge aligned to W input.",
+      "runtime_status": "Existing compact-properties browser suite passed with both angle edges measured: left matches control region, right matches W input within one pixel. User acceptance pending."
+    },
+    {
+      "release": "V277 pending release request",
+      "date": "2026-11-01",
+      "phase": "Toolbox drag/drop creation",
+      "summary": "RD-313: exact drop insertion alongside existing click placement.",
+      "runtime_status": "Three browser suites passed: native toolbox-drag-drop, existing shape-properties-placement and line-handles. Verified eight source classes, precise SVG drop coordinates at multiple zoom/pan settings, one-step Undo/Redo, outside/Escape cancellation, foreign payload rejection, active-layer locks, click fallback and reload. Whitespace check passed. User acceptance pending."
+    },
+    {
+      "release": "V277",
+      "date": "2026-11-02",
+      "phase": "Source version promotion",
+      "summary": "RD-314: advance UI and release metadata from V276 to V277, incorporating the accumulated V277 pending changes without rewriting historical records.",
+      "runtime_status": "Static version consistency verified; previous focused feature verification is retained. User runtime acceptance pending."
     }
   ],
   "records": [
@@ -6031,6 +6339,913 @@
         "Passed tests/main-integration.browser.test.cjs",
         "Inline JavaScript syntax and whitespace checks passed; no new ledger ID collisions; historical duplicate RD-081 retained"
       ]
+    },
+    {
+      "id": "RD-271",
+      "record_type": "user_requirement",
+      "module": "power_switch_products",
+      "source": "user chat and five supplied reference images",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Add Almas three-command (one fixed orientation), Almas four-command (portrait/landscape installation), and commandless Negin/Azin power switches, with matching toolbox and real/iconic artwork.",
+      "assistant_interpretation": "Four palette products: CR3R-AL, CR4R-AL, CR-NE, CR-AZ. Model remains fixed per product; mounting only for CR4R-AL. Reuse existing native Almas vectors and create commandless native SVGs, with reference-only asset storage and model appearance policies.",
+      "implementation_status": "Local source edits only; visible version remains V276; no commit or push requested for this addition.",
+      "runtime_status": "Model suite and three focused power-switch browser suites passed; gallery visually inspected; user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/power-switch.browser.test.cjs",
+        "tests/power-switch-azin.browser.test.cjs",
+        "tests/power-switch-additions.browser.test.cjs",
+        "work/power-switch-additions-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-272",
+      "record_type": "user_requirement",
+      "module": "atlas_power_switch",
+      "source": "user chat and supplied Atlas reference image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Add Atlas power switch, fixed installation, code CR-3R-3L-AT, with three request and three lighting icons, all six editable.",
+      "assistant_interpretation": "One power-switch product/subtype 3r3l, Atlas model, fixed landscape orientation. Native vector real and fixed artwork reference the central library; six independent slots and colors, all three display modes, immutable logo/pocket in iconic artwork.",
+      "implementation_status": "Local source edits only, no commit/push; visible release remains V276.",
+      "runtime_status": "Model unit suite and focused Atlas browser suite passed; six icon changes persist through modes and reload, document validation and real ratio verified. Visual gallery checked; user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/power-switch-atlas.browser.test.cjs",
+        "work/power-switch-atlas-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-273",
+      "record_type": "user_requirement",
+      "module": "combined_products_bedside",
+      "source": "user chat and supplied bedside reference image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Add combined-products category after power switches and Almas six-command bedside BSP-6R-AL with four mounting directions and editable icons.",
+      "assistant_interpretation": "One combined-panel product, six independent icon/color slots, mounting choices named by socket position: left, top, right, bottom. New panel type follows generic catalog renderer, model policy and referenced artwork. Each mounting has real and fixed vector assets with upright glyphs.",
+      "implementation_status": "Local uncommitted source only, no push; visible release V276 retained.",
+      "runtime_status": "Model unit suite and focused bedside browser suite passed; four directions, category order, six edits, real ratios, validation and reload verified. Gallery visually inspected; user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/bedside.browser.test.cjs",
+        "work/bedside-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-274",
+      "record_type": "user_requirement",
+      "module": "bedside_socket_rotation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Rotate the socket itself, including its two holes, for socket-top/bottom in both real and iconic modes.",
+      "assistant_interpretation": "Bake socket orientation into SVG geometry rather than relying on a group transform. Top/bottom holes align vertically; left/right holes align horizontally. All fixed and real vectors plus central fallbacks updated.",
+      "implementation_status": "Local uncommitted artwork and regression update; published version unchanged.",
+      "runtime_status": "Focused browser test checks hole coordinates for all eight assets and existing mounting/edit/reload behavior; user acceptance pending.",
+      "verification_evidence": [
+        "tests/bedside.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-275",
+      "record_type": "user_correction",
+      "module": "bedside_socket_rotation",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Socket-top/bottom holes must be horizontal, not vertical.",
+      "assistant_interpretation": "Supersedes RD-274 hole alignment: keep the two holes side by side horizontally in top/bottom fixed and real assets.",
+      "implementation_status": "Four SVGs and central library/fallback updated locally; regression expects horizontal holes in every direction. No commit/push.",
+      "runtime_status": "Focused browser regression and visual gallery verification; user acceptance pending.",
+      "verification_evidence": [
+        "tests/bedside.browser.test.cjs",
+        "work/bedside-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-276",
+      "record_type": "user_requirement",
+      "module": "part_number_detail_callouts",
+      "source": "user chat, attached callout reference and Persian-label correction",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Rename code display/settings to پارت نامبر; optionally show a real product picture with arrow, initially outside other plan items, and allow dragging the picture with the arrow updating.",
+      "assistant_interpretation": "General inspector has a code-mode-only details checkbox. Detail image references the same product/model/mounting real asset; per-owner detailView stores enabled and absolute x/y only. Initial placement chooses nearest free exterior side of all visible objects/walls/details. Pointer drag moves only the detail; leader endpoints recompute from owner and picture edges.",
+      "implementation_status": "Local source and browser regression; no commit or push. Published/visible release remains V276.",
+      "runtime_status": "Focused product-detail browser suite passed: Persian labels, mode gating, nonoverlap, drag/owner isolation, arrow linkage, Undo/Redo, save/reload, schema validation. Model suite and bedside browser regression passed; screenshot visually inspected; user acceptance pending.",
+      "verification_evidence": [
+        "tests/product-detail.browser.test.cjs",
+        "tests/lighting-model.test.cjs",
+        "tests/bedside.browser.test.cjs",
+        "work/product-detail-view.png"
+      ]
+    },
+    {
+      "id": "RD-277",
+      "record_type": "user_requirement",
+      "module": "pdf_page_raster_import",
+      "source": "user chat and supplied ATOUSA.pdf sample",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Implement local PDF selection, preview, selecting one or multiple pages, cropping and adding selected pages to the canvas as images. Defer vector object import.",
+      "assistant_interpretation": "File menu PDF importer with lazy thumbnails, independent normalized page crops, drag and numeric crop controls, quality selection, all/none selection, cancel and staged raster conversion. Imported PNGs use existing imageAssets and image objects, arranged horizontally as one undoable batch.",
+      "implementation_status": "Local source, bundled PDF.js 5.6.205 with licenses, image-import integration and focused browser coverage. No commit/push, visible release remains V276.",
+      "runtime_status": "Passed with the actual six-page rotated sample: selection, per-page pointer crop, crop persistence, aspect ratio, two-page nonoverlap, schema validation, Undo/Redo, save/reload, all/none, cancel, invalid PDF and mobile viewport. Desktop/mobile screenshots reviewed; local preview MIME types verified. User acceptance pending.",
+      "verification_evidence": [
+        "tests/pdf-import.browser.test.cjs",
+        "work/pdf-import-dialog.png",
+        "work/pdf-import-canvas.png",
+        "work/pdf-import-mobile.png",
+        "assets/vendor/pdfjs/NOTICE-ROOMDESIGNER.txt"
+      ]
+    },
+    {
+      "id": "RD-278",
+      "record_type": "user_requirement",
+      "module": "pdf_crop_gestures",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Remove percentage crop fields; allow dragging the selected crop rectangle and resizing it directly in every direction.",
+      "assistant_interpretation": "Replace numeric crop controls with a draggable crop body and eight corner/edge handles. Movement preserves size and clamps to page; resizing anchors opposite edges and maintains a small minimum size. Crop selection outside the current rectangle draws a replacement; reset and per-page persistence remain.",
+      "implementation_status": "Local controller/CSS and browser test update only; no commit/push.",
+      "runtime_status": "Focused browser regression extended for body movement, all eight handles, bounds, keyboard movement, removed fields and downstream import/persistence. User acceptance pending.",
+      "verification_evidence": [
+        "tests/pdf-import.browser.test.cjs",
+        "work/pdf-import-dialog.png"
+      ]
+    },
+    {
+      "id": "RD-279",
+      "record_type": "user_requirement",
+      "module": "inspector_selection_detail_caption",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Double-clicking inspector text/number fields selects the whole value. In part-number detail mode, move the object name to the detail picture, above if the arrow comes from below, otherwise below. Respect show-name checkbox.",
+      "assistant_interpretation": "Delegate full-value selection on desktop/mobile inspector text and number inputs. Suppress owner caption while detail is visible; render one linked caption using existing custom name/font/visibility, above on bottom-edge arrow entry and below otherwise. Disabling details or leaving code mode restores the owner caption.",
+      "implementation_status": "Local source and focused browser regression only; no commit/push. Visible release remains V276.",
+      "runtime_status": "Product-detail browser suite passed: whole-value replacement after double-click on angle and multiword name; all four caption directions, no duplicate owner caption, show/hide/font, detail dragging, Undo/Redo and reload. Screenshot visually inspected; user acceptance pending.",
+      "verification_evidence": [
+        "tests/product-detail.browser.test.cjs",
+        "work/product-detail-view.png"
+      ]
+    },
+    {
+      "id": "RD-280",
+      "record_type": "user_requirement",
+      "module": "actuator_hardware_catalog",
+      "source": "user chat and category-name clarification",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Rename existing loads/sensors category to مصرف‌کننده‌ها. Add عملگرها و سنسورها after combined products, initially with the old 12-channel actuator and power terminal. Support part number, iconic and real modes; no ports or installation direction yet.",
+      "assistant_interpretation": "Two fixed hardware products AC12CH (عملگر دوازده‌کانال) and PT (پاور ترمینال), reusing existing central real SVGs and new schematic vector icons. New actuator-hardware type uses no editable icon slots or physical ports. Existing consumer/sensor objects remain in renamed loads section.",
+      "implementation_status": "Local uncommitted data/source/assets/tests only; no push. Published/visible release remains V276.",
+      "runtime_status": "Model unit suite and actuator-hardware browser suite passed: category order/rename, two entries, exact part numbers, no ports/mount selectors, all three modes, native real ratios, empty specific tab, linked details, schema validation and reload. Gallery visually reviewed; user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/actuator-hardware.browser.test.cjs",
+        "work/actuator-hardware-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-281",
+      "record_type": "user_requirement",
+      "module": "hardware_iconic_backgrounds",
+      "source": "user chat and existing real SVG colors",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Use actual-body background colors in iconic mode for the twelve-channel actuator and power terminal instead of black.",
+      "assistant_interpretation": "Catalog-defined iconic backgrounds: AC12CH #a8a9ad body gray, PT #a98060 board brown. New insertions and re-entry into iconic mode use these defaults. One-time migration updates prior black defaults and cached iconic black while preserving other custom colors and part-number white backgrounds.",
+      "implementation_status": "Local data/source/test update only; no commit/push.",
+      "runtime_status": "Model suite passed; focused hardware browser coverage verifies iconic color on mode change and reload. Visual review and user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/actuator-hardware.browser.test.cjs",
+        "work/actuator-hardware-gallery.png"
+      ]
+    },
+    {
+      "id": "RD-282",
+      "record_type": "user_requirement",
+      "module": "optional_equipment_ports",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Unify RS-485 and RS-485 + Power into green RS-485. Keep red power, orange DO, turquoise DI and blue Ethernet. All lighting/request/thermostat/doorbell/power-switch/combined products have one RS-485, initially disabled. Actuator has one RS-485 and 12 DO; terminal has one power and six RS-485. Enable each from Ports tab.",
+      "assistant_interpretation": "Catalog stores inactive port templates, while placed devices store active instances only. Ports tab toggles each named definition across every display mode. AC12CH includes R1/R2 top and R3-R12 bottom, retaining prior physical-side convention; terminal power left, two buses top/four bottom. Latest final reference to a 12-output terminal is interpreted as the actuator, matching the preceding explicit product distinction.",
+      "implementation_status": "Local uncommitted source/data/tests. Existing names, documents and cables preserved; no new release/version reset or push.",
+      "runtime_status": "Lighting/model suite and equipment-ports browser suite passed: canonical types/colors, initially empty active ports, all family definitions, activation/deactivation, real RS-485 cable creation, connected-port disable guard, Undo/Redo, reload, schema/import roundtrip and alias normalization preserving port IDs. Screenshot reviewed; user acceptance pending.",
+      "verification_evidence": [
+        "tests/lighting-model.test.cjs",
+        "tests/equipment-ports.browser.test.cjs",
+        "work/equipment-ports.png"
+      ]
+    },
+    {
+      "id": "RD-283",
+      "record_type": "user_requirement",
+      "module": "manual_cable_polyline_and_port_sides",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Make cables behave like general lines: initially straight, no route-mode selector, editable bend nodes/midpoints. Remove reserve option, retain solid/dashed style. Add pictorial top/bottom/left/right port location choices.",
+      "assistant_interpretation": "Manual port-bound polylines with endpoint nodes, draggable bend nodes and a midpoint on every segment; midpoint drag inserts one bend and each resulting segment gains a midpoint. Endpoint dragging reconnects only to compatible ports. Port tab has four native radio choices illustrated by face/port icons, usable even before enabling a port.",
+      "implementation_status": "Local uncommitted source and browser regression; visible release remains V276, no commit/push.",
+      "runtime_status": "Passed cable-line-editing browser suite and existing equipment-port suite: straight construction, repeated midpoint insertion, node moves/removal, endpoint reconnection/rejection, solid/dashed controls, absent route/reserve UI, side preference before/after activation, fixed bends on port move, Undo/Redo, legacy geometry freeze and reload. Model suite passed; line regression checked separately. Screenshots reviewed; user acceptance pending.",
+      "verification_evidence": [
+        "tests/cable-line-editing.browser.test.cjs",
+        "tests/equipment-ports.browser.test.cjs",
+        "tests/lighting-model.test.cjs",
+        "work/cable-line-handles.png",
+        "work/port-side-picker.png"
+      ]
+    },
+    {
+      "id": "RD-284",
+      "record_type": "user_requirement",
+      "module": "line_and_cable_bend_cleanup",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Merge overlapping bend vertices and remove redundant bends when restoring a straight line, for both general lines and cables. Remove add-bend from cable context menu; offer delete-bend on an actual bend. Run the preview.",
+      "assistant_interpretation": "Clean up after each point-editing gesture using screen-space tolerances, preserving port references and one midpoint per surviving segment. Contextual deletion also applies to line bend handles.",
+      "implementation_status": "Implemented locally without commit/push; visible version remains V276.",
+      "runtime_status": "Focused cleanup browser regression, existing cable editing and general line handle suites passed. Preview running on localhost:8765. User acceptance pending.",
+      "verification_evidence": [
+        "tests/polyline-cleanup.browser.test.cjs",
+        "tests/cable-line-editing.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-285",
+      "record_type": "user_requirement",
+      "module": "port_visibility_cable_flow_and_shift",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Replace individual port activation checkboxes with one consistently styled show/hide checkbox for all device ports. Add explicit cable flow animation toggle to right-click. Shift-drag line/cable bends to the closer straight or 90-degree shape.",
+      "assistant_interpretation": "Global device visibility retains physical port IDs and connected cables while hiding port handles. On first show all catalog ports are instantiated; old partial activation expands to the complete definition. Explicit persisted cable animation is independent of selection. Shared angle snapping applies during dragging and immediately when Shift is pressed/released.",
+      "implementation_status": "Implemented locally without commit/push; visible version remains V276.",
+      "runtime_status": "Focused browser tests passed; local preview running. User acceptance pending.",
+      "verification_evidence": [
+        "tests/equipment-ports.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/cable-line-editing.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-286",
+      "record_type": "user_requirement",
+      "module": "cable_label_and_inspector",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Clicking a cable label must expose its rotation handle. Remove the colored label halo. Order cable properties as name, thickness, line style, text angle, animation checkbox, label visibility checkbox.",
+      "assistant_interpretation": "Label selection exits multi-selection and supports independent dragging/rotation. Text has no background stroke. Cable inspector contains both persistent visibility switches, text angle disables when text hidden, and export respects hidden labels.",
+      "implementation_status": "Implemented locally without commit/push; visible version remains V276.",
+      "runtime_status": "Focused browser tests passed; local preview running. User acceptance pending.",
+      "verification_evidence": [
+        "tests/cable-flow-shift.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-287",
+      "record_type": "user_requirement",
+      "module": "cable_draft_bends_and_compact_ports",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Clicks away from ports add intermediate cable vertices until a destination port completes the connection; Escape cancels. Show each port as a compact single row with name, colored type-tooltip dot and side options. Clicking a name blinks its corresponding device port twice.",
+      "assistant_interpretation": "Draft vertices are transient until port completion and persist as manual waypoints. Escape discards the draft without history/document changes. Type description is in the dot tooltip. Port locating uses two temporary browser animations in the original type color; hidden ports are temporarily indicated without toggling visibility or mutating the document. Existing cables do not block starting another connection at a port.",
+      "implementation_status": "Implemented locally, no commit/push; visible version V276 retained.",
+      "runtime_status": "Focused browser regression passed; preview running on localhost:8765; user acceptance pending.",
+      "verification_evidence": [
+        "tests/cable-draft-port-list.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-288",
+      "record_type": "user_requirement",
+      "module": "orthogonal_shift_snap",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Shift 90-degree snapping must create horizontal/vertical legs with orthogonal adjacent corners, not arbitrary oblique right angles.",
+      "assistant_interpretation": "Supersedes the RD-285 right-angle-circle decision. Snap to the applicable axis-aligned elbow, preferring compatibility with neighboring segments. For aligned anchors, preserve anchors and create two orthogonal elbows as needed. Frozen gesture base geometry keeps index handling stable when temporary vertices are inserted or removed.",
+      "implementation_status": "Implemented locally, no commit/push; visible version V276 retained.",
+      "runtime_status": "Focused browser regression passed; preview running on localhost:8765; user acceptance pending.",
+      "verification_evidence": [
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-289",
+      "record_type": "user_requirement",
+      "module": "shift_straight_bend_cleanup",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Dragging the midpoint of a straight cable and pressing Shift must not leave overlapping bend vertices or extra midpoint handles after straightening. Verify the latest task and run the preview.",
+      "assistant_interpretation": "Compact snapped geometry immediately during Shift, including collinear vertices and coincident corners, for both lines and cables. A straight path shows just two endpoints and one insertion midpoint while the pointer is still held; release cleanup, Undo/Redo and subsequent edits remain supported.",
+      "implementation_status": "Implemented locally, no commit/push; visible version V276 retained.",
+      "runtime_status": "Focused browser regression passed; preview running on localhost:8765; user acceptance pending.",
+      "verification_evidence": [
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/polyline-cleanup.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-290",
+      "record_type": "user_requirement",
+      "module": "shift_fixed_drag_anchors",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Shift snapping during bend dragging must use the two original fixed vertices, never the temporary midpoint handles shown on newly formed segments.",
+      "assistant_interpretation": "Capture immutable actual-vertex geometry at pointerdown for both cables and lines, including a placeholder only for the dragged midpoint. Reuse that same snapshot throughout pointer moves and repeated Shift toggles; snapping reads original neighboring vertices.",
+      "implementation_status": "Implemented locally; no commit/push; visible V276 unchanged.",
+      "runtime_status": "Focused fixed-anchor browser test passed across existing cable bends, midpoint insertion on cable/line, free preview, repeated Shift changes and immediate straight cleanup. User acceptance pending.",
+      "verification_evidence": [
+        "tests/shift-fixed-anchors.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-291",
+      "record_type": "user_bug_report",
+      "module": "shift_single_bend_straightening",
+      "source": "user chat with two screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "A straight cable pulled to one side forms a lone bend. Shift must return it to a straight connection instead of creating a tiny extra elbow beside a nearly aligned endpoint.",
+      "assistant_interpretation": "When the gesture basis has only two fixed endpoints and the one edited vertex, Shift always projects to the original endpoint segment and compacts the edited vertex. This applies both to newly dragged midpoints and existing lone bends, on cables and lines. Orthogonal elbow selection remains for paths with more original vertices.",
+      "implementation_status": "Implemented locally, V276 retained; no commit/push.",
+      "runtime_status": "Screenshot-like nearly vertical endpoint reproduction passed, including large displacement, immediate Shift cleanup, repeated key toggles, unchanged endpoints and Undo/Redo. Existing Shift and fixed-anchor browser suites passed. User acceptance pending.",
+      "verification_evidence": [
+        "tests/shift-single-bend.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/shift-fixed-anchors.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-292",
+      "record_type": "user_bug_report",
+      "module": "shift_collinear_backtracking",
+      "source": "user chat with two screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Shift dragging the central bend of a zigzag cable creates overlapping top/bottom horizontal segments and redundant outward tails.",
+      "assistant_interpretation": "Remove collinear reversal vertices as well as forward collinear vertices during shared line/cable cleanup. A Shift-generated orthogonal preview must compact the old outward corner and its reversed return, leaving a single continuous path.",
+      "implementation_status": "Implemented locally, no commit/push; visible V276 retained.",
+      "runtime_status": "Screenshot-like zigzag reproduction passed for cables and both mirrored general-line cases, including cleanup while pointer held, fixed endpoints and Undo/Redo. Existing fixed-anchor and polyline cleanup regressions passed; user acceptance pending.",
+      "verification_evidence": [
+        "tests/shift-overlap.browser.test.cjs",
+        "tests/shift-fixed-anchors.browser.test.cjs",
+        "tests/polyline-cleanup.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-293",
+      "record_type": "user_bug_report",
+      "module": "product_detail_artboard_padding",
+      "source": "user chat with screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Lighting product details have an arrow that stops short of the face, an overly distant caption, and empty space which contributes to extra canvas pages; power-switch details look correct.",
+      "assistant_interpretation": "Use the same cropped real artwork as ordinary product rendering for detail images, and derive detail dimensions from the cropped viewBox. Arrow intersection, caption placement, collision placement, print bounds and page expansion then share the actual face dimensions.",
+      "implementation_status": "Implemented locally; no commit/push; visible V276 retained.",
+      "runtime_status": "Six-gang lighting regression verified original artboard cropping, face filling detail dimensions, linked arrow edge, compact caption distance, single-page bounds, power-switch compatibility and reload. Existing detail drag/Undo/mode tests passed. Screenshot reviewed; user acceptance pending.",
+      "verification_evidence": [
+        "tests/product-detail-crop.browser.test.cjs",
+        "tests/product-detail.browser.test.cjs",
+        "work/product-detail-cropped.png"
+      ]
+    },
+    {
+      "id": "RD-294",
+      "record_type": "user_bug_report",
+      "module": "product_detail_standard_scale",
+      "source": "user chat with two screenshots",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "After detail crop correction, lighting details appear much larger than power-switch details. Detail images should follow each product standard real-display size with a consistent modest enlargement.",
+      "assistant_interpretation": "Use LightingModel.standardSize(device, real) multiplied by the same 1.4 factor on both dimensions for every product and installation direction. Retain cropped artwork and the shared detail geometry for arrows, captions and page bounds.",
+      "implementation_status": "Implemented locally, V276 retained; no commit/push.",
+      "runtime_status": "Detail crop/scale regression passed: equal standard widths give equal detail widths, portrait height is retained, all available installation sizes use the same multiplier, and arrows/captions/page bounds/reload remain correct. Existing detail drag/Undo regression passed. User acceptance pending.",
+      "verification_evidence": [
+        "tests/product-detail-crop.browser.test.cjs",
+        "tests/product-detail.browser.test.cjs",
+        "work/product-detail-cropped.png"
+      ]
+    },
+    {
+      "id": "RD-295",
+      "record_type": "user_requirement",
+      "module": "global_display_properties",
+      "source": "user chat and clarification reply",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "When nothing is selected, show global product-details and port-visibility checkboxes. Checked means every applicable product has that display enabled; any missing display means unchecked. Toggling changes all. New devices inherit visible ports if any existing device has visible ports. Clarification: enabling details converts icon/real products to part-number mode and displays image/arrow.",
+      "assistant_interpretation": "No-selection inspector contains two consistently styled aggregate controls, disabled when no eligible targets exist. Details converts every catalog product to standard part-number appearance and enables linked detail views; off hides details and retains mode. Ports show/hide is global across devices with real/catalog ports, preserving identities and connections. New products instantiate visible ports whenever any existing device has visible ports. Multi-selection remains deferred.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Global browser suite passed empty/mixed/all states, mode conversion, hidden port IDs, new-device inheritance, multi-selection exclusion, one-step Undo/Redo and reload. Existing equipment-ports and cable editing regressions passed. User acceptance pending.",
+      "verification_evidence": [
+        "tests/global-display.browser.test.cjs",
+        "tests/equipment-ports.browser.test.cjs",
+        "tests/cable-line-editing.browser.test.cjs",
+        "work/global-display-properties.png"
+      ]
+    },
+    {
+      "id": "RD-296",
+      "record_type": "user_requirement_clarification",
+      "module": "shift_drag_lifecycle",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Distinguish the initial unreleased midpoint drag from re-grabbing a completed bend. Shift in the first gesture must straighten using the endpoints. After release the adjacent displayed points are settled; re-grabbing the bend with Shift must use them and must not flatten the whole cable.",
+      "assistant_interpretation": "A new midpoint on a straight segment uses its original endpoints for the entire gesture. Re-grabbing the sole released bend freezes its already-visible adjacent segment handles as local Shift anchors. Handles appearing later during that same gesture never become anchors. Free dragging retains ordinary geometry without promoting these Shift-only references.",
+      "implementation_status": "Implemented locally; no commit/push; visible V276 retained.",
+      "runtime_status": "Two-stage cable and line browser test passed initial Shift straightening, release/re-grab bent-path retention, settled reference positions, free-drag stability, endpoints and Undo/Redo. Existing line-handle, Shift/flow and fixed-anchor suites passed. User acceptance pending.",
+      "verification_evidence": [
+        "tests/shift-single-bend.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/shift-fixed-anchors.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-297",
+      "record_type": "user_requirement",
+      "module": "unified_polyline_editor_audit",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-10-31",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Review line and cable drawing as a complete interaction system, including straight/orthogonal Shift behavior, temporary versus completed bends, adding/removing/merging vertices and overlap cleanup. Proactively implement and test combinations rather than waiting for individual bug reports. User requested continuation during the work.",
+      "assistant_interpretation": "Extract one testable geometry engine shared by line and cable editing. Keep frozen gesture references, consistent screen-space tolerances and stable Shift choices. Merge edited vertices before index changes, normalize overlaps beyond immediate neighbors, preserve cable port identities and locks, support axis-constrained drafting and line endpoints, editable closed lines, full gesture rollback and no empty Undo steps.",
+      "implementation_status": "Implemented locally with shared polyline-editor.js and documented contracts in POLYLINE-EDITOR.md. Visible V276 retained; no commit/push.",
+      "runtime_status": "Deterministic geometry cases plus 6,000 seeded invariants passed. Nine focused browser suites passed across drafting, free/Shift editing, lifecycle, overlaps, zoom, cancellation/history, ports/locks and persistence. Actual localhost startup smoke passed with the new asset and no browser errors. User runtime acceptance pending.",
+      "verification_evidence": [
+        "POLYLINE-EDITOR.md",
+        "polyline-editor.js",
+        "tests/polyline-editor.test.cjs",
+        "tests/polyline-workflows.browser.test.cjs",
+        "tests/shift-single-bend.browser.test.cjs",
+        "tests/shift-fixed-anchors.browser.test.cjs",
+        "tests/shift-overlap.browser.test.cjs",
+        "tests/polyline-cleanup.browser.test.cjs",
+        "tests/cable-line-editing.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "tests/cable-draft-port-list.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-298",
+      "record_type": "user_bug_report",
+      "module": "polyline_near_axis_retraces",
+      "source": "user chat and annotated screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Shift still leaves a returning cable tail overlapping the lower leg. Recheck temporary versus committed geometry, both sides, line and cable editing, and test the behavior systematically.",
+      "assistant_interpretation": "RD-297 exact-axis overlap fixtures did not cover near-collinear return strokes with a few pixels of endpoint offset. Normalize those reversals using distance to the incoming segment; keep original port endpoints and square adjacent orthogonal junctions. Preserve frozen gesture lifecycle semantics.",
+      "implementation_status": "Implemented locally in shared polyline-editor.js; visible V276 retained; no commit or push.",
+      "runtime_status": "6,000 shared geometry invariants, 2,016 offset/reversed/rotated/zoomed screenshot previews and 2,000 seeded orthogonal walks passed. Nine focused browser suites and actual localhost startup smoke passed; user acceptance pending.",
+      "verification_evidence": [
+        "polyline-editor.js",
+        "tests/polyline-retrace.test.cjs",
+        "tests/polyline-editor.test.cjs",
+        "tests/shift-overlap.browser.test.cjs",
+        "POLYLINE-EDITOR.md"
+      ]
+    },
+    {
+      "id": "RD-299",
+      "record_type": "user_bug_report",
+      "module": "empty_canvas_selection_properties",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Clicking empty canvas shows the multiple-object message despite nothing being selected. Global detail and port checkboxes should appear without first selecting an item and pressing Escape.",
+      "assistant_interpretation": "Empty marquee selection is a truthy object with three empty arrays. Normalize it to null before rendering panels so every no-selection route shares the global inspector.",
+      "implementation_status": "Implemented locally at render entry; no commit/push; visible V276 unchanged.",
+      "runtime_status": "Extended global-display browser suite passed: real blank clicks after single and multiple selections, empty marquee, global toggles, Undo/Redo, inheritance and reload. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/global-display.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-300",
+      "record_type": "user_bug_report",
+      "module": "cable_label_rotation_handle_spacing",
+      "source": "user chat and screenshot",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Cable-label rotation handle looks detached from the text when zoomed out. Keep a logical usable gap at different zoom levels.",
+      "assistant_interpretation": "The old 25-screen-pixel offset dominates tiny zoomed labels. Anchor to the measured SVG text right edge and vertical center, with a 14-screen-pixel center gap independent of zoom and label rotation. The 9-pixel hit radius leaves five pixels clear of the text.",
+      "implementation_status": "Implemented locally in renderRotationHandles; visible V276 retained; no commit/push.",
+      "runtime_status": "90 browser zoom/rotation/name combinations passed with measured 14-pixel gap and 5-pixel hit clearance; actual drag rotation and existing cable-flow-shift suite passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/cable-label-rotation.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-301",
+      "record_type": "user_requirement",
+      "module": "electrical_panel_configurable_ports",
+      "source": "user chat and supplied panel photo",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Add an electrical panel under actuators/sensors, with a toolbox icon, supplied photo as real display and a matching iconic display. It starts with no ports. Its Ports tab must allow adding arbitrary communication types and counts, with side choice at creation and existing visibility/position behavior.",
+      "assistant_interpretation": "Add a catalog product with configurable port policy rather than modifying fixed device port templates. Use shared canonical power/RS-485/DO/DI/Ethernet types, stable instance IDs, normal side controls/locator/visibility, local persistence and Undo/Redo. Keep one shared photo asset reference and vector iconic artwork.",
+      "implementation_status": "Implemented locally; visible V276 retained. Panel uses DB as default part number, no installation selector and zero initial ports. Includes safe unconnected-port removal. No commit or push.",
+      "runtime_status": "Catalog unit checks and four browser suites passed: electrical panel, existing actuator hardware, equipment ports and global display controls. Panel photo/iconic gallery visually checked. Tests cover 15 custom ports, all five types/sides, visibility, locator, stable IDs, cable attachment/removal guard, Undo/Redo and reload. User acceptance pending.",
+      "verification_evidence": [
+        "data/equipment-catalog.json",
+        "data/svg-library.json",
+        "assets/svg/equipment/electrical-panel-real.svg",
+        "assets/svg/equipment/electrical-panel-iconic.svg",
+        "index.html",
+        "equipment-release.js",
+        "svg-engine.js",
+        "tests/electrical-panel.browser.test.cjs",
+        "tests/lighting-model.test.cjs",
+        "ELECTRICAL-PANEL.md"
+      ]
+    },
+    {
+      "id": "RD-302",
+      "record_type": "user_requirement",
+      "module": "electrical_panel_port_form_refinement",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Use EP for the panel part number. Replace bulky X removal buttons with compact delete icons. Add spacing before the add-port heading and action; align the action left. Retain the last type and side after adding, clearing only the name.",
+      "assistant_interpretation": "Update authoritative catalog part number so existing panel instances normalize to EP. Reuse a small trash SVG button; add 18px form and 12px action gaps, left-align the action in RTL. Preserve type/side as session UI defaults across inspector redraws, independent of document and Undo; clear name on submission.",
+      "implementation_status": "Implemented locally. Visible V276 retained; no commit/push.",
+      "runtime_status": "Extended electrical-panel browser suite passed: EP palette, retained type/side and cleared name after each add, measured compact trash button, form/action spacing and left alignment, plus existing port/cable/history/reload checks. Whitespace and generated catalog syntax checks passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "data/equipment-catalog.json",
+        "tests/electrical-panel.browser.test.cjs",
+        "ELECTRICAL-PANEL.md"
+      ]
+    },
+    {
+      "id": "RD-303",
+      "record_type": "user_requirement",
+      "module": "cable_strand_count_marks",
+      "source": "user chat and sample image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Each cable should expose a strand count in properties. When more than one strand is specified, show that number of oblique strokes on the cable route.",
+      "assistant_interpretation": "Add strandCount as an integer cable property, defaulting to one for new and legacy cables. Render N solid oblique ticks in cable color on the longest segment for N>1, away from the label midpoint, rotating with that segment. Keep markers independent of selection, label visibility and dashed style; support movement, persistence, history and exports.",
+      "implementation_status": "Implemented locally with inspector field and shared marker geometry used by canvas, keyboard preview and DXF. Visible V276 retained; no commit/push.",
+      "runtime_status": "Cable-strands and existing cable-flow-shift browser suites passed. Verified default/edit/count, Undo/Redo, integer validation, locked state, reload, five path orientations/shapes, hidden labels, dashed style, fast keyboard movement and DXF line output. Canvas screenshot visually checked; whitespace check passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/cable-strands.browser.test.cjs",
+        "tests/cable-flow-shift.browser.test.cjs",
+        "CONNECTION-MODEL.md"
+      ]
+    },
+    {
+      "id": "RD-304",
+      "record_type": "user_requirement",
+      "module": "pdf_print_keyboard_shortcut",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Ctrl+P should open the application PDF export modal instead of the default browser print dialog.",
+      "assistant_interpretation": "Capture Ctrl/Cmd+P globally, including focused inputs, prevent the browser default and call existing printMenu. Recognize physical KeyP for non-Latin layouts. Suppress key repeats and avoid rebuilding an already-open PDF modal so entered options survive.",
+      "implementation_status": "Implemented locally; no commit/push; visible V276 retained.",
+      "runtime_status": "Browser check passed for Ctrl+P, Cmd+P, focused text input, default prevention and preserving options on repeated invocation; no window.print call. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "work/print-shortcut-check.cjs"
+      ]
+    },
+    {
+      "id": "RD-305",
+      "record_type": "user_bug_report",
+      "module": "print_font_parity",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "The print/PDF output loses the font used on the canvas. Use the same font when printing.",
+      "assistant_interpretation": "The separate print document hardcoded Tahoma and omitted the main document webfont definitions. Copy the computed body font and font-face/import CSS, resolve font asset URLs against the original stylesheet/document, make SVG text inherit the print font and wait for document.fonts.ready plus layout before print.",
+      "implementation_status": "Implemented locally in printNow/printFontStyles; print titleblock/brand inherit the page font. Visible V276 retained; no commit/push.",
+      "runtime_status": "Print-font browser check passed with a real local test webfont: font-face URL survives blob document, loaded font confirmed before print, computed family matches canvas and caption text length differs by less than 0.1 document unit across viewport scales. Ctrl/Cmd+P regression passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/print-font.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-306",
+      "record_type": "user_requirement",
+      "module": "compact_border_properties_row",
+      "source": "user chat and color-control reference image",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Only the border row should use a compact layout: label, checkbox without Display text, width input without its label, and color control without Color text. Keep controls adjacent with small gaps. Style the color control after the supplied swatch/dropper example for the dark theme.",
+      "assistant_interpretation": "Keep one border desk-field containing visibility, 52px width control and a 58px native color picker with swatch and noninteractive dropper glyph. Remove the standalone border-width row and visible helper text, retaining accessible labels/tooltips and existing enabled/disabled policies. Background and other color rows retain their current layout.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Border-cursors and automatic-iconic-frame browser suites passed; live width changes, per-mode cached appearance, fallback outline color, Azin fixed gold, immutable real mode and reload retained. Compact row screenshot visually checked. Corrected stale test assumptions for the current 8R-AL catalog code and per-mode width cache; no application policy change. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/border-cursors.browser.test.cjs",
+        "tests/automatic-iconic-frame.browser.test.cjs",
+        "work/compact-border-properties.png"
+      ]
+    },
+    {
+      "id": "RD-307",
+      "record_type": "user_requirement",
+      "module": "unified_compact_properties_controls",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Extend the compact border pattern to General properties. Hide dependent size/color controls when a checkbox is unchecked. Color belongs at the far left and size fills remaining space. Add caption color. In Specific properties, room appearance has flexible size then left color, bulk-icon color belongs left, and individual icon rows have an icon selector and left color without extra labels.",
+      "assistant_interpretation": "Share accessible swatch/dropper and size helpers for border/background/part number/caption rows and specific room/icon controls. Keep hidden controls/values in the document and restore them when checked. Caption ink is independently persisted and used for regular and detail-view captions, with efficient live color updates. Apply the same background pattern to general shapes; retain fixed model border policies.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Five browser suites passed: compact-properties, automatic-iconic-frame, caption-font, doorbell-edit-isolation and shape-properties-placement. Verified hiding/restoration, flexible-size/left-color alignment without overflow, caption ink for normal/detail views with Undo/Redo and reload, room-specific colors/size and icon picker, model policies and shape editing. Both General/Specific screenshots visually checked. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/compact-properties.browser.test.cjs",
+        "tests/automatic-iconic-frame.browser.test.cjs",
+        "tests/caption-font.browser.test.cjs",
+        "tests/doorbell-edit-isolation.browser.test.cjs",
+        "tests/shape-properties-placement.browser.test.cjs",
+        "work/compact-general-properties.png",
+        "work/compact-specific-properties.png"
+      ]
+    },
+    {
+      "id": "RD-308",
+      "record_type": "user_requirement",
+      "module": "paired_geometry_and_single_row_room_properties",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Move caption row immediately after Name. Left-align font-size inputs. Merge room number textbox, font size and color into one row, giving room number more space. Combine X/Y under a Position label, left-to-right X-input Y-input; combine width/height under Size, left-to-right W-input H-input.",
+      "assistant_interpretation": "Reorder the existing caption fields. Add a shared paired geometry row for device and general-shape positions/dimensions while retaining data attributes, top-left origin conversion and two-decimal formatting. Use one specific text row with a 2:1 text-to-font-size flex ratio and leftmost color. Preserve hidden/disabled dependent-control behavior.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Compact-properties, shape-properties-placement and doorbell-edit-isolation browser suites passed. Verified caption row ordering, paired X/Y and W/H grouping with existing geometry edits, left font-size alignment, single room row with wider text input, hidden controls/history/reload and selection isolation. General/Specific screenshots visually checked; whitespace check passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/compact-properties.browser.test.cjs",
+        "tests/shape-properties-placement.browser.test.cjs",
+        "tests/doorbell-edit-isolation.browser.test.cjs",
+        "work/compact-general-properties.png",
+        "work/compact-specific-properties.png"
+      ]
+    },
+    {
+      "id": "RD-309",
+      "record_type": "user_requirement",
+      "module": "room_number_control_width",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Room numbers usually need four characters; use roughly five characters of width without adding a maximum constraint. Reduce the text field so font-size control has usable width.",
+      "assistant_interpretation": "Set room-number text control to a compact 56px basis; let its font-size control expand through the remaining space. Leave existing input validation and character limits untouched.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Existing compact-properties browser suite passed, including confirming font-size field is wider than room-number text while colors/editing/history/reload remain functional. Whitespace check passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/compact-properties.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-310",
+      "record_type": "user_requirement",
+      "module": "appearance_applicability_and_readonly_state",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Distinguish absent features from present-but-readonly controls. Unsupported mode features should be unchecked, hide their dependent controls, then be disabled. Readonly existing features such as the Azin iconic gold frame should remain checked with visible fixed values. Real-image mode has no editable border/background/part number or product-detail callout.",
+      "assistant_interpretation": "Introduce an effective appearance state separate from saved user preferences. Render checked/applicable/editable states for frame/background/part number/detail view by display mode and model policy. Keep saved settings intact for returning to their applicable mode; captions remain available across modes.",
+      "implementation_status": "Implemented locally in LightingModel.appearanceState and inspector rendering. Visible V276 retained; no commit/push.",
+      "runtime_status": "Appearance-applicability, automatic-iconic-frame and global-display browser suites passed, plus the model unit suite. Covered Negin/Almas/Azin and Azin power switch in code/iconic/real modes, absent fields hidden/unchecked, present fixed gold frame visible/readonly, fallback border color, detail checkbox, locks and restoration of preferences. Both state screenshots visually checked. User acceptance pending.",
+      "verification_evidence": [
+        "lighting-model.js",
+        "index.html",
+        "tests/appearance-applicability.browser.test.cjs",
+        "tests/automatic-iconic-frame.browser.test.cjs",
+        "tests/global-display.browser.test.cjs",
+        "tests/lighting-model.test.cjs",
+        "work/readonly-azin-appearance.png",
+        "work/unsupported-real-appearance.png"
+      ]
+    },
+    {
+      "id": "RD-311",
+      "record_type": "user_requirement",
+      "module": "compact_angle_field_alignment",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Reduce the angle input width and align its end with the X input instead of occupying the entire row.",
+      "assistant_interpretation": "Use the same four-column geometry grid for the angle row with invisible axis-width spacers, placing the single integer angle input in the X-input column. Preserve edit/lock behavior.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Compact-properties browser suite passed, including measured angle/X end alignment within one pixel. Existing editing, layout and persistence checks remain passing. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/compact-properties.browser.test.cjs",
+        "work/compact-general-properties.png"
+      ]
+    },
+    {
+      "id": "RD-312",
+      "record_type": "user_clarification",
+      "module": "angle_field_edge_alignment",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Angle textbox should touch the common left edge; only its right edge should align with the end of the width textbox.",
+      "assistant_interpretation": "Span the angle input across the W label and W input grid columns, so left aligns with full controls and right aligns exactly with W input.",
+      "implementation_status": "Implemented locally; no commit/push; visible V276 retained.",
+      "runtime_status": "Existing compact-properties browser suite passed with both angle edges measured: left matches control region, right matches W input within one pixel. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/compact-properties.browser.test.cjs"
+      ]
+    },
+    {
+      "id": "RD-313",
+      "record_type": "user_requirement",
+      "module": "toolbox_drag_drop_insertion",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-01",
+      "target_version": "V277 pending release request",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance",
+      "user_statement": "Keep adding toolbox items by click, and also let users drag a category item onto any desired position on the canvas to add it there, like draw.io.",
+      "assistant_interpretation": "Make desktop palette cards native draggable sources. Validate an internal source descriptor/document, show a drop-center marker, convert client coordinates through the current SVG transform, and call shared insertion functions with an explicit center. Support catalog devices/loads, architecture, plan symbols, image placeholders and general shapes. Keep click auto-placement and one-step history; cancel outside canvas or Escape.",
+      "implementation_status": "Implemented locally; visible V276 retained; no commit/push.",
+      "runtime_status": "Three browser suites passed: native toolbox-drag-drop, existing shape-properties-placement and line-handles. Verified eight source classes, precise SVG drop coordinates at multiple zoom/pan settings, one-step Undo/Redo, outside/Escape cancellation, foreign payload rejection, active-layer locks, click fallback and reload. Whitespace check passed. User acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "tests/toolbox-drag-drop.browser.test.cjs",
+        "tests/shape-properties-placement.browser.test.cjs",
+        "tests/line-handles.browser.test.cjs",
+        "TOOLBOX-DRAG-DROP.md"
+      ]
+    },
+    {
+      "id": "RD-314",
+      "record_type": "user_requirement",
+      "module": "release_version",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V277",
+      "status": "source_updated_pending_user_commit",
+      "user_statement": "Increase the source version from 276 to 277 and provide the commit title so the user can commit.",
+      "assistant_interpretation": "Update all current UI version markers and release identity to V277; preserve historical entries and provide the V277-M commit title. Do not commit or push.",
+      "implementation_status": "Updated locally; Git commit and push are left to the user.",
+      "runtime_status": "Version markers and JSON consistency verified; prior feature tests retained, user runtime acceptance pending.",
+      "verification_evidence": [
+        "index.html",
+        "project-evolution.json"
+      ]
     }
   ],
   "analyses": [
@@ -7079,6 +8294,270 @@
       "date": "2026-10-31",
       "decision": "File merge favors local conflicts; independent main fixes are retained for locked layers/cables, smart routing, logical polyline identity, paste offsets and deletion dependencies. Duplicate automation record IDs are namespaced with -remote-main plus original_id/source_main_commit to preserve both histories. User explicitly authorizes GitHub-connector publication instead of local-first commit; no .git ACL/security changes or alternate metadata checkout used.",
       "remaining_risks": "User runtime acceptance remains pending. Local HEAD remains V272 until the user performs the provided sync outside the restricted execution environment."
+    },
+    {
+      "id": "RD-271-analysis",
+      "date": "2026-10-31",
+      "decision": "Subtype controlCount, including zero, determines icon slots rather than the lighting-only count list. Empty command products keep all display modes but have no icon color/editor controls. Mounting changes preserve logical icon assignments; cropped Almas originals match supplied photos. Negin/Azin commandless native vectors reproduce face/pocket geometry without embedded raster data.",
+      "remaining_risks": "User visual/runtime acceptance pending. Three new scoped service vectors approximate the supplied symbols; original real artwork remains immutable."
+    },
+    {
+      "id": "RD-272-analysis",
+      "date": "2026-10-31",
+      "decision": "Keep lighting and request controls in one six-slot product rather than duplicating models or introducing mounting choices. Base code CR-3R-3L plus existing Atlas suffix AT yields exact requested code. Fixed SVG uses reusable native logo artwork and pocket geometry; two new scoped lighting vectors reproduce vanity and ceiling-shade symbols. Product identity and real ratio are catalog-defined.",
+      "remaining_risks": "Reference reconstruction is vector artwork; user visual acceptance pending. No ports added."
+    },
+    {
+      "id": "RD-273-analysis",
+      "date": "2026-10-31",
+      "decision": "Use combined-panel type with bedside-6r family and fixed Almas model. Four catalog mounting IDs carry socket-position names and rotations; explicit per-mount assets/layouts retain upright icons and rotate socket geometry. Product identity/code remains unchanged. Toolbox insertion supports both default order and older saved section orders.",
+      "remaining_risks": "Native vector reconstruction uses existing library service/lighting glyphs plus a new wall-light icon; user visual/runtime acceptance pending. Physical ports remain deferred."
+    },
+    {
+      "id": "RD-274-analysis",
+      "date": "2026-10-31",
+      "decision": "The prior SVGs used group rotation for socket geometry. Explicit rotated circle/rectangle coordinates make the required hole alignment intrinsic to every per-mount asset; editable command glyphs remain upright.",
+      "remaining_risks": "User visual confirmation pending."
+    },
+    {
+      "id": "RD-275-analysis",
+      "date": "2026-10-31",
+      "decision": "Correct previous misinterpretation: all mounting choices display horizontal socket holes. Keep top/bottom physical placement and upright command icons unchanged.",
+      "remaining_risks": "User visual acceptance pending."
+    },
+    {
+      "id": "RD-276-analysis",
+      "date": "2026-10-31",
+      "decision": "Keep internal code mode/fields stable for saved-document compatibility; rename visible labels only. Attached detail is an owner property rather than a separate catalog item. Asset-derived aspect ratio and immutable real image persist across mode changes; details render only in code mode. Bounds for pages, fit and SVG/print export include visible details. Owner deletion/hiding/layer visibility and locks govern the attached detail. Drag has one checkpoint per gesture and prevents owner movement.",
+      "remaining_risks": "User runtime acceptance pending. Manual dragging may intentionally overlap objects. Automatic placement uses the exterior of the current visible plan bounding box; sparse/large plans can place details outside the current viewport. Future alternate detail artwork remains deferred."
+    },
+    {
+      "id": "RD-277-analysis",
+      "date": "2026-10-31",
+      "decision": "Use locally bundled Mozilla PDF.js with local worker, CMaps, standard fonts and WASM resources. No CDN/upload. Rendering respects PDF page rotation. Preview/crop happens before document mutation; the selected batch is rasterized sequentially before one commit to in-memory drawing with one Undo checkpoint. Existing image objects provide proportional resizing, movement, layering/locks and export persistence. Original PDF bytes and vector object recognition are not persisted/imported.",
+      "remaining_risks": "User runtime acceptance pending. Password-protected documents require an unencrypted copy. PDF input is capped at 80 MB; output has per-image storage limits and selectable rendering quality. Browser durable-storage limits continue to apply, with existing backup/export messaging. Native file selection is used over HTTP/GitHub Pages/local preview."
+    },
+    {
+      "id": "RD-278-analysis",
+      "date": "2026-10-31",
+      "decision": "Retain normalized crop data and rendering pipeline; change only direct manipulation UI. Eight pointer-captured handles support independent axes/corners, mouse/touch, move and resize cursors. Pointer cancellation restores the previous crop. Arrow keys provide 1-pixel/Shift-10-pixel adjustments for the focused crop or handle.",
+      "remaining_risks": "User runtime acceptance pending. Edge handles may be partially clipped at full-page bounds but remain accessible."
+    },
+    {
+      "id": "RD-279-analysis",
+      "date": "2026-10-31",
+      "decision": "Keep the name, font and visibility on the owner rather than duplicating data on detailView. Determine above/below from the arrow entry edge. Include caption vertical extent in detail page/print bounds. Scoped dblclick selects only text/number-like fields, leaving checkboxes/colors unchanged.",
+      "remaining_risks": "User runtime acceptance pending. Long captions follow existing single-line behavior."
+    },
+    {
+      "id": "RD-280-analysis",
+      "date": "2026-10-31",
+      "decision": "Reuse the generic panel catalog pipeline for hardware with zero configurable icon slots and a standard internal model; hide the internal model in product titles. Optional validated catalog partNumber provides exact hardware part numbers without invented model suffixes; existing devices retain generated model codes. Insert the new section for default and older saved toolbox orders. Keep future wiring and control mapping deferred.",
+      "remaining_risks": "User runtime/visual acceptance pending. PT is a provisional part number because no power-terminal part number was specified. Internal standard model is not user-selectable."
+    },
+    {
+      "id": "RD-281-analysis",
+      "date": "2026-10-31",
+      "decision": "Use optional validated iconicBackgroundColor on catalog entries. Keep existing appearanceByMode overrides and code-mode defaults. Migrate the retired black hardware default once using iconicAppearanceVersion; leave deliberate non-black custom colors unchanged.",
+      "remaining_risks": "User visual acceptance pending. Old explicit black customization cannot be distinguished from the retired default during the one-time upgrade."
+    },
+    {
+      "id": "RD-282-analysis",
+      "date": "2026-10-31",
+      "decision": "Keep active ports as the existing d.ports array to reuse all routing/hit testing/export/clipboard behavior. Define disabled templates in the central catalog and associate active ports by catalogPortId. Off is refused while cables are attached to prevent accidental cable deletion. Dense panel ports distribute within face bounds with smaller handles. Canonical type normalization maps old rs485_power IDs to rs485 without changing link/port IDs; current render does not scan revision history, and imports recursively normalize as required. Legacy relay auto-add ignores inactive templates. SVG/DXF color mappings use green RS-485.",
+      "remaining_risks": "User runtime acceptance pending. Existing consumers retain their previous DO/DI ports because the request addresses semantic equipment families only. Port-position editing and logical control/event mapping remain deferred. Historical connection-model tests describe superseded physical catalogs; current behavior is covered by the focused active-port suite."
+    },
+    {
+      "id": "RD-283-analysis",
+      "date": "2026-10-31",
+      "decision": "New cableGeometryVersion=1 stores only manual waypoints and endpoints; routeMode/autoRouting/offset/reserve are removed from normalized cable data. Legacy rendering is evaluated once and frozen to preserve visible geometry; old reserve becomes dashed. New cables are always straight, superseding previous obstacle-routing defaults. Smart Ports can reorder anchors but never reroutes manual bends. Selection uses blue dashed overlay/nodes without changing underlying cable color/width or adding a bounding rectangle. Port side overrides persist by catalog definition ID and connected paths follow changed anchors. Locked cables guard side changes; endpoints stay attached to compatible ports.",
+      "remaining_risks": "User runtime acceptance pending. Straight/manual geometry may cross devices, per the new explicit behavior. Historical route-mode tests target superseded features. Changing port side means the local side of the rotated device."
+    },
+    {
+      "id": "RD-284-analysis",
+      "date": "2026-10-31",
+      "decision": "Keep point indices stable during drag and compact geometry on release/cancel/focus loss. Merge the edited vertex with another vertex within 6 screen pixels, removing the intervening collapsed span; remove interior vertices within 2 screen pixels of their neighboring segment. Preserve anchored cable endpoints and line shape identity/style. One checkpoint per gesture supports Undo/Redo. Deletion compacts remaining segments as well.",
+      "remaining_risks": "User runtime acceptance pending. Deliberately dragging a vertex onto a nonadjacent vertex collapses the intervening loop. Short segments within the merge tolerance can be collapsed intentionally."
+    },
+    {
+      "id": "RD-285-analysis",
+      "date": "2026-10-31",
+      "decision": "Global device visibility retains physical port IDs and connected cables while hiding port handles. On first show all catalog ports are instantiated; old partial activation expands to the complete definition. Explicit persisted cable animation is independent of selection. Shared angle snapping applies during dragging and immediately when Shift is pressed/released.",
+      "remaining_risks": "User/device runtime acceptance pending. Shift enforces the geometric angle between adjacent segments; a straightened bend is compacted on release. Flow is an SVG motion animation and is omitted from static print/SVG output."
+    },
+    {
+      "id": "RD-286-analysis",
+      "date": "2026-10-31",
+      "decision": "Label selection exits multi-selection and supports independent dragging/rotation. Text has no background stroke. Cable inspector contains both persistent visibility switches, text angle disables when text hidden, and export respects hidden labels.",
+      "remaining_risks": "User/device runtime acceptance pending. Shift enforces the geometric angle between adjacent segments; a straightened bend is compacted on release. Flow is an SVG motion animation and is omitted from static print/SVG output."
+    },
+    {
+      "id": "RD-287-analysis",
+      "date": "2026-10-31",
+      "decision": "Draft vertices are transient until port completion and persist as manual waypoints. Escape discards the draft without history/document changes. Type description is in the dot tooltip. Port locating uses two temporary browser animations in the original type color; hidden ports are temporarily indicated without toggling visibility or mutating the document. Existing cables do not block starting another connection at a port.",
+      "remaining_risks": "User/device acceptance pending. Synthetic touch pointer coverage is not physical mobile-device acceptance. Orthogonal snapping may add elbows to retain fixed anchors."
+    },
+    {
+      "id": "RD-288-analysis",
+      "date": "2026-10-31",
+      "decision": "Supersedes the RD-285 right-angle-circle decision. Snap to the applicable axis-aligned elbow, preferring compatibility with neighboring segments. For aligned anchors, preserve anchors and create two orthogonal elbows as needed. Frozen gesture base geometry keeps index handling stable when temporary vertices are inserted or removed.",
+      "remaining_risks": "User/device acceptance pending. Synthetic touch pointer coverage is not physical mobile-device acceptance. Orthogonal snapping may add elbows to retain fixed anchors."
+    },
+    {
+      "id": "RD-289-analysis",
+      "date": "2026-10-31",
+      "decision": "Compact snapped geometry immediately during Shift, including collinear vertices and coincident corners, for both lines and cables. A straight path shows just two endpoints and one insertion midpoint while the pointer is still held; release cleanup, Undo/Redo and subsequent edits remain supported.",
+      "remaining_risks": "User/device acceptance pending. Synthetic touch pointer coverage is not physical mobile-device acceptance. Orthogonal snapping may add elbows to retain fixed anchors."
+    },
+    {
+      "id": "RD-290-analysis",
+      "date": "2026-10-31",
+      "decision": "Use one shared polylineDragBasis captured before any document mutation, with frozen points and stable edited index. Stop lazy capture after initial segment subdivision and never reconstruct snap anchors from the current preview. General lines create preview segments from the frozen geometry after the first movement checkpoint, matching cables. Temporary insertion handles remain presentation only.",
+      "remaining_risks": "User runtime acceptance pending."
+    },
+    {
+      "id": "RD-291-analysis",
+      "date": "2026-10-31",
+      "decision": "The previous closest-angle rule chose a right-angle corner for a wide V even when the original endpoints were nearly aligned, leaving a tiny port-adjacent leg. A lone edited vertex now takes the straightening branch unconditionally with Shift; shared compaction removes it immediately. This supersedes right-angle snapping for that specific single-bend case.",
+      "remaining_risks": "User acceptance pending. Shift intentionally straightens a lone bend even if its included angle is closer to 90 degrees."
+    },
+    {
+      "id": "RD-292-analysis",
+      "date": "2026-10-31",
+      "decision": "Prior cleanup measured distance to a clamped segment and only removed an interior vertex when its projection lay between the neighbors. A reversal lies outside that interval, so old outward corners survived and doubled the stroke. Use perpendicular distance to the supporting line for collinearity, preserving endpoints; iterative cleanup removes forward runs, reversed runs and exact out-and-back triples. Applies to both real geometry and live Shift previews.",
+      "remaining_risks": "User acceptance pending. Deliberately overlapping backtracking segments are intentionally compacted, matching the requested line/cable behavior."
+    },
+    {
+      "id": "RD-293-analysis",
+      "date": "2026-10-31",
+      "decision": "Legacy Negin SVG artboards include large outer whitespace. effectiveArtwork already crops it for regular rendering, but detail rendering bypassed that function and used raw LightingModel artwork. A bounded transient cache now provides the cropped real artwork and its viewBox aspect ratio. Detail size and rendering share it; existing edge, caption and extent helpers use that same size. No asset or placed-object SVG duplication is introduced.",
+      "remaining_risks": "User acceptance pending. Existing detail x/y coordinates are retained, so a deliberately positioned detail outside the initial page still correctly expands the workspace."
+    },
+    {
+      "id": "RD-294-analysis",
+      "date": "2026-10-31",
+      "decision": "The former ratio-based width buckets (110 for square/landscape, 70 for portrait, 180 for wide) enlarged each category differently. Derive detail width and height directly from catalog-backed standard real dimensions at a uniform 1.4x scale, independent of instance resizing. This supersedes RD-293 detail sizing by cropped viewBox; cropped raw artwork itself remains shared with ordinary real rendering.",
+      "remaining_risks": "User runtime acceptance pending. Existing detail x/y positions are retained while sizes now follow the common scale."
+    },
+    {
+      "id": "RD-295-analysis",
+      "date": "2026-10-31",
+      "decision": "Derive global checked states from all applicable devices instead of storing a separate global preference. Bulk actions use one checkpoint and refresh the inspector explicitly; the no-selection signature includes aggregate state to avoid stale controls. Share portsForDisplay between single-device editing, global display and insertion inheritance. Bulk display commands are explicit document-wide presentation actions; per-device lock flags and layers are retained. Port IDs and cables remain intact when hidden. Details placement preserves existing offsets or chooses a free location when absent.",
+      "remaining_risks": "User acceptance pending. Enabling all details may expand the canvas for newly placed detail images. New products inherit port display only; detail display is not inherited, so the aggregate details checkbox becomes unchecked after adding a product without details."
+    },
+    {
+      "id": "RD-296-analysis",
+      "date": "2026-10-31",
+      "decision": "Supersedes RD-291 unconditional straightening of an existing lone bend. polylineDragBasis now distinguishes insertion from re-grabbing: an existing lone bend receives a frozen Shift-specific basis using the two segment handles visible before pointerdown, while a separate free basis preserves normal drag behavior. Use a screen-space tolerance when classifying nearly aligned anchors so snapping does not produce tiny corner legs that erase those references. No preview-born handles are adopted mid-gesture.",
+      "remaining_risks": "User acceptance pending. Existing settled handles are promoted into geometry only when required by the new Shift gesture; normal free dragging does not add vertices."
+    },
+    {
+      "id": "RD-297-analysis",
+      "date": "2026-10-31",
+      "decision": "Replace accumulated inline special cases with a DOM-independent shared editor and property-based checks. The audit found stale numeric edit indices on final cleanup, nonadjacent collinear overlap loops, incomplete cancellation/history handling, no-op history entries and noneditable closed lines. Merge against the frozen basis during preview; final cleanup is index-independent. Roll back complete edit checkpoints for Escape/cancellation and remove unchanged transactions. Shift draft routing is axis-constrained and preserves the final port exactly. Keep proper geometric crossings separate from electrical connections. Existing RD-296 lifecycle rules remain in force.",
+      "remaining_risks": "Physical mobile-device acceptance is pending; browser touch coverage is synthetic. Deep overlap normalization can be quadratic and runs on release for paths longer than 200 points; preview uses bounded cleanup on those larger paths. Deliberate collinear self-overlap is removed by design. Validation is systematic but is not proof over every possible user sequence."
+    },
+    {
+      "id": "RD-298-analysis",
+      "date": "2026-11-01",
+      "decision": "Supersedes the completeness implied by RD-297 overlap coverage: prior tests checked exact-axis retraces, counts and idempotence but missed almost-collinear reversals. The endpoint chord becomes short on a return stroke, exaggerating a small endpoint offset; exact deep-overlap checks cannot repair it. Use an independent incoming-segment return test with the existing screen merge tolerance, retaining endpoints and aligning an adjacent orthogonal corner. Apply in both preview and commit through the common line/cable engine. Add an independent no-return oracle and offset/rotation/reversal fixtures.",
+      "remaining_risks": "Within six screen pixels an adjacent near-collinear reversal is intentionally collapsed; close but separate parallel legs are not joined. Physical device and user acceptance remain pending. Finite tests do not prove all possible paths."
+    },
+    {
+      "id": "RD-299-analysis",
+      "date": "2026-11-01",
+      "decision": "Normalize empty multi-selection centrally before inspector signatures, quick controls and overlays are computed. This covers blank click, empty marquee and removing the last selected member, rather than hiding only the inspector message.",
+      "remaining_risks": "Nonempty multiple selections retain the existing message; shared multi-object editing remains deferred."
+    },
+    {
+      "id": "RD-300-analysis",
+      "date": "2026-11-01",
+      "decision": "Use actual getBBox edge and center instead of an assumed half-width/baseline, rotate that anchor with the label, and reduce fixed screen offset from 25 to 14 pixels. Preserve the existing icon and hit target dimensions.",
+      "remaining_risks": "Physical touch-device acceptance remains pending; device rotation handles are unchanged."
+    },
+    {
+      "id": "RD-301-analysis",
+      "date": "2026-11-01",
+      "decision": "Catalog entry portPolicy=configurable is authoritative. Per-instance ports carry stable catalogPortId and id; devicePortDefinitions adapts these to the existing editor rather than adding duplicate arrays. Hiding preserves connections and IDs. Refuse removing connected ports. Validate custom types, side mappings and unique definition IDs on import. The real artwork wraps an optimized JPEG copy of the supplied photo in one referenced SVG library asset; the SVG sanitizer permits only embedded PNG/JPEG/WebP base64 images and continues rejecting external sources and embedded SVG. Fixed equipment retains catalog-defined ports.",
+      "remaining_risks": "User/device acceptance pending; connections must be removed before deleting their port. Existing browser storage limits apply; photo data is shared in the library, not copied into product instances."
+    },
+    {
+      "id": "RD-302-analysis",
+      "date": "2026-11-01",
+      "decision": "Use catalog-driven EP without migration special cases. Store reusable form defaults in UI memory, not product port definitions or document history. Default selectors update on valid owned change events. Existing deletion connection/lock guards remain unchanged.",
+      "remaining_risks": "Session form defaults reset on full reload; user acceptance pending."
+    },
+    {
+      "id": "RD-303-analysis",
+      "date": "2026-11-01",
+      "decision": "Use ordinary cable metadata, not extra electrical connections or editable breakpoints. One strand has no marker; 2..99 render exact-count ticks, with spacing compressed to fit short segments. Marker strokes stay solid even on dashed cables. Shared geometry keeps keyboard preview and DXF aligned. Validate integer range on UI/import and inherit metadata through existing copy/history serialization.",
+      "remaining_risks": "Marker placement is automatic on the longest segment; independent dragging of the marker is not part of this request. User acceptance pending."
+    },
+    {
+      "id": "RD-304-analysis",
+      "date": "2026-11-01",
+      "decision": "Use the existing PDF options flow; no native print action occurs until the existing prepare-output action. Prevent defaults even for repeated shortcut events.",
+      "remaining_risks": "Physical OS/browser integration acceptance remains with user."
+    },
+    {
+      "id": "RD-305-analysis",
+      "date": "2026-11-01",
+      "decision": "Preserve CSS font-face rules and imported font stylesheets in the independent blob/downloaded print HTML; normalize relative font URLs to absolute URLs so blob base resolution cannot break them. Use computed font family rather than a fixed fallback stack. Replace the fixed 500ms print delay with actual font readiness and two animation frames.",
+      "remaining_risks": "Remote webfonts retain their source availability/cache requirements, like the main page. Font unavailable at source falls back through the same font stack. Browser/physical printer acceptance remains pending."
+    },
+    {
+      "id": "RD-306-analysis",
+      "date": "2026-11-01",
+      "decision": "Scope styling to border-property/border-controls/color-picker classes so other appearance controls remain unchanged. Use the original native color input, not a new popup/event path; the decorative SVG ignores pointer events. Preserve data attributes for live editing, ownership, locks and model-specific border policies.",
+      "remaining_risks": "Native color dialog appearance is browser-dependent; the compact control itself uses the application dark theme. User acceptance pending."
+    },
+    {
+      "id": "RD-307-analysis",
+      "date": "2026-11-01",
+      "decision": "Use hidden containers for checkbox-dependent controls, preserving values and data attributes for ownership/history. Disable hidden inputs too. Shared RTL flex layout puts color at physical left and size takes remaining width. labelColor is validated at document import and copied/history-serialized normally. Update caption fill directly during color gestures to avoid full-canvas rerender on every input. Regular, door/fallback and relocated detail captions share the same ink. Print/SVG retain the fill attributes.",
+      "remaining_risks": "User/device acceptance pending. Model-defined automatic frames remain automatic; unchecked/disabled checkboxes still follow their existing model policies."
+    },
+    {
+      "id": "RD-308-analysis",
+      "date": "2026-11-01",
+      "decision": "Pair only spatial controls, keeping line thickness/length semantics unchanged. Numeric keys and ownership guards remain intact, with the same original-page top-left origin. Use direction:ltr on the paired region inside RTL property rows; field label remains at right. Room text receives twice the flexible space of font size; color stays fixed at left.",
+      "remaining_risks": "User/device acceptance pending; narrow-screen layout needs normal visual review."
+    },
+    {
+      "id": "RD-309-analysis",
+      "date": "2026-11-01",
+      "decision": "Replace 2:1 proportional text sizing with a fixed 56px text basis; the number control remains flexible. No data model or validation changes.",
+      "remaining_risks": "User acceptance pending."
+    },
+    {
+      "id": "RD-310-analysis",
+      "date": "2026-11-01",
+      "decision": "Do not overwrite persisted preferences simply because a mode cannot display them. Derive effective checkbox state from applicability: all independent styling/callout features off and disabled for real mode; part number and callout off and disabled in iconic mode; automatic Azin frame checked/readonly; Negin/Almas fallback outline retains existing conditional color editability. Code mode restores user choices. Use the existing compact-control hiding mechanism based on effective checked state.",
+      "remaining_risks": "User/device acceptance pending. New product types with additional display capabilities must extend the shared state policy rather than ad hoc UI checks."
+    },
+    {
+      "id": "RD-311-analysis",
+      "date": "2026-11-01",
+      "decision": "Share CSS grid measurements with the X/Y row to maintain alignment without fixed pixel offsets or resize listeners. Invisible pseudo-element labels reserve the axis column widths.",
+      "remaining_risks": "User acceptance pending."
+    },
+    {
+      "id": "RD-312-analysis",
+      "date": "2026-11-01",
+      "decision": "Correct RD-311 alignment interpretation using W/H grid metrics and a two-column input span. Preserve integer editing and locks.",
+      "remaining_risks": "User acceptance pending."
+    },
+    {
+      "id": "RD-313-analysis",
+      "date": "2026-11-01",
+      "decision": "Extend placeNewDevice and insertion factories with an optional explicit center instead of relocating an already-added object or creating a second history step. Share built/plan architecture factories between sheet, desktop click and drop. Trusted in-memory descriptors plus a custom drag MIME prevent arbitrary external payloads from invoking creation. Resolve catalog objects at drop time; ignore drags from a replaced document. Native dragend/Escape clean preview state; real new pointerdown clears suppression of stray source clicks. Respect active-layer locks and existing growth guards. General straight lines use the actual center ordinate.",
+      "remaining_risks": "Native HTML drag/drop behavior depends on browser/input support; desktop Chromium tested. Touch users retain click/tap insertion. Edge auto-pan while dragging from toolbox is not included. User acceptance pending."
+    },
+    {
+      "id": "RD-314-analysis",
+      "date": "2026-11-02",
+      "decision": "Promote the accumulated V277 pending work to the current source release at explicit user request. Historical pending-release records remain unchanged; this entry supersedes their release-request status. No feature behavior or Git state is changed.",
+      "remaining_risks": "User must commit and push; previous user runtime acceptance and historical audit caveats remain pending."
     }
   ],
   "deferred_scope": [
@@ -7866,13 +9345,277 @@
       "date": "2026-10-31",
       "change": "Product/model/mounting catalog, reference SVGs, doorbells, thermostats, power switches, inspector/palette/canvas improvements, selection/resize/line controls, color performance, and latest main safety fixes.",
       "status": "source_implemented_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-271: CR3R-AL fixed orientation, CR4R-AL two mounting directions, commandless CR-NE/CR-AZ, native reference SVGs and palette icons.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-272: fixed Atlas three-request/three-lighting power switch.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-273: combined-products toolbox category and six-command Almas bedside with four mounting directions.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-274: bake bedside socket/hole rotation into all direction assets.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-275: correct top/bottom socket holes to horizontal alignment.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-276: Persian part-number labels and draggable real-product detail callouts.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-277: PDF pages to images with preview, multi-selection, crop and local processing.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-278: direct movement and eight-handle resizing of PDF crop selections.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-279: inspector double-click selection and linked detail captions.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-280: restored actuator and power-terminal products as portless semantic equipment.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-281: real-body colors for hardware iconic backgrounds.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-282: optional equipment ports and unified green RS-485.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-283: line-like cable editing and pictorial port-side selection.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-284: shared bend cleanup and contextual deletion for lines and cables.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-285: port_visibility_cable_flow_and_shift",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-286: cable_label_and_inspector",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-287: cable_draft_bends_and_compact_ports",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-288: orthogonal_shift_snap",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-289: shift_straight_bend_cleanup",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-290: prevent live midpoint handles or subdivided preview geometry from becoming Shift snap anchors.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-291: Shift straightens a single bend between fixed endpoints without adding port-side elbows.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-292: compact collinear backtracking in line/cable Shift previews and release cleanup.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-293: remove legacy SVG artboard whitespace from product detail rendering and geometry.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-294: replace ratio-based detail width buckets with a uniform standard real-size multiplier.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-295: document-wide product detail and port display controls plus visible-port inheritance.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-296: distinguish temporary initial midpoint previews from settled references on a later bend drag.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-10-31",
+      "change": "RD-297: unify and systematically validate line/cable geometry and gesture workflows.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-298: incoming-segment tolerance and symmetric corner cleanup for near-axis retraces.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-299: normalize empty multi-selection before rendering global properties.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-300: cable title rotation handle at measured edge with a 14-pixel screen gap.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-301: electrical panel with real/iconic/part-number modes and editable port definitions.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-302: EP and repeat-friendly compact port form.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-303: strand count and automatic oblique cable markers.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-304: route print shortcut to existing application export modal.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-305: use current app font for print and wait for fonts before printing.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-306: compact border row and dark swatch/dropper picker.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-307: compact conditional properties and configurable caption color.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-308: compact paired geometry and single-row room number controls.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-309: compact room number textbox with flexible font-size width.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-310: distinguish unsupported appearance rows from fixed readonly features.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-311: align compact angle control with first geometry input.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-312: refine angle input left and right edge alignment.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277 pending release request",
+      "date": "2026-11-01",
+      "change": "RD-313: drag toolbox cards onto canvas at an explicit location.",
+      "status": "local_changes_uncommitted_pending_user_runtime_acceptance"
+    },
+    {
+      "version": "V277",
+      "date": "2026-11-02",
+      "change": "RD-314: promote accumulated product catalog, cable editing, PDF import, properties, printing and toolbox drag/drop changes to source version V277.",
+      "status": "source_updated_pending_user_commit"
     }
   ],
   "current_release_gate": {
-    "release": "V276",
-    "source_status": "source_implemented_pending_user_runtime_acceptance",
-    "runtime_status": "2 unit suites and 13 focused browser suites passed; user/device acceptance pending",
-    "audit": "Latest main V275 static audit retained; historical audit/storage caveats remain open. No new five-version boundary at V276."
+    "release": "V277",
+    "source_status": "source_updated_pending_user_commit",
+    "runtime_status": "Prior focused feature tests retained; source version markers and metadata verified. User acceptance pending.",
+    "audit": "No new five-version audit boundary at V277. Existing historical audit and storage caveats remain open. No commit or push performed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

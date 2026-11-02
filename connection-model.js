@@ -26,15 +26,15 @@
   });
   return true;
  }
- const colors={power:'#DC2626',rs485:'#7C3AED',rs485_power:'#16A34A',do:'#D97706',di:'#0891B2',ethernet:'#2563EB'};
- function types(){return Object.fromEntries(Object.entries({power:'Power',rs485:'RS-485',rs485_power:'RS-485 + Power',do:'Digital Output — DO',di:'Digital Input — DI',ethernet:'Ethernet'}).map(([id,name])=>[id,{name,color:colors[id]}]))}
- const equipmentPorts=()=>[{id:'rs485-power',name:'RS-485 + Power',type:'rs485_power',side:'top'}];
+ const colors={power:'#DC2626',rs485:'#16A34A',do:'#D97706',di:'#0891B2',ethernet:'#2563EB'};
+ function types(){return Object.fromEntries(Object.entries({power:'Power',rs485:'RS-485',do:'DO',di:'DI',ethernet:'Ethernet'}).map(([id,name])=>[id,{name,color:colors[id]}]))}
+ const equipmentPorts=()=>[{id:'rs485',name:'RS-485',type:'rs485',side:'top'}];
  function ensureRelayPorts(d){
   let changed=false;
   for(const v of d.devices||[]){
    const entry=global.EquipmentCatalogBuiltin.entries.find(t=>['AC12CH','AC4CH'].includes(t.code)&&((t.assetId===(v.assetId||v.svgType||v.svgAssetId))||t.code===v.code));
    if(!entry||!Array.isArray(v.ports))continue;
-   for(const p of entry.ports.filter(p=>p.type==='do'||p.type==='di')){
+   for(const p of entry.ports.filter(p=>p.enabled!==false&&(p.type==='do'||p.type==='di'))){
     const aliases=p.type==='di'?[p.name,p.id==='sensor-01'?'سنسور 1':'سنسور 2',p.id==='sensor-01'?'سنسور ۱':'سنسور ۲']: [p.name];
     const existing=v.ports.find(existing=>existing.type===p.type&&(existing.catalogPortId===p.id||existing.id===p.id||aliases.includes(existing.name)));
     if(existing){if(p.type==='di'&&aliases.includes(existing.name)&&existing.name!==p.name){existing.name=p.name;changed=true;}continue;}
@@ -65,16 +65,20 @@
    if(kind.startsWith('load-fan-')&&v.svg?.includes('<text x="64" y="74"')){v.svg=t.svg;v.svgOriginal=t.svg;delete v.svgCrop;changed=true;}
   }return changed;
  }
+
+ function normalizeTypes(input={}){const result={...input,...types()};delete result.rs485_power;return result}
+ function normalizeDocumentTypes(d,includeHistory=true){let changed=false;for(const v of d.devices||[])for(const p of v.ports||[])if(p.type==='rs485_power'){p.type='rs485';if(p.name==='RS-485 + Power')p.name='RS-485';changed=true}for(const c of d.cables||[])if(c.type==='rs485_power'){c.type='rs485';if(c.name==='کابل RS-485 + Power')c.name='کابل RS-485';changed=true}if(includeHistory&&Array.isArray(d.revisions))for(const r of d.revisions)if(r.snapshot&&normalizeDocumentTypes(r.snapshot))changed=true;return changed}
+
  function resetDocument(input,inheritedCurrent=false){
   const d=JSON.parse(JSON.stringify(input));
   if(!Array.isArray(d.devices)||!Array.isArray(d.cables))throw Error('Invalid connection document');
   const current=d.connectionModel===version||inheritedCurrent;
   if(!current){
-   for(const v of d.devices)v.ports=global.RoomEquipment.isArchitecture(v)?[]:(v.category==='loads'?(consumers().find(t=>t.kind===v.kind)?.ports||loadPorts()):equipmentPorts()).map((p,i)=>({...p,id:v.id+'-connection-'+i}));
+   for(const v of d.devices)v.ports=global.RoomEquipment.isArchitecture(v)||global.RoomEquipment.definitionFor(v)?[]:(v.category==='loads'?(consumers().find(t=>t.kind===v.kind)?.ports||loadPorts()):equipmentPorts()).map((p,i)=>({...p,id:v.id+'-connection-'+i}));
    d.cables=[];
   }
   d.connectionModel=version;
-  ensureRelayPorts(d);upgradeFieldDevices(d);
+  normalizeDocumentTypes(d,false);ensureRelayPorts(d);upgradeFieldDevices(d);
   if(Array.isArray(d.revisions))for(const r of d.revisions)r.snapshot=resetDocument(r.snapshot,current);
   return d;
  }
@@ -100,5 +104,5 @@
   catch(error){for(const key of [...applied,'rd_connection_model'].reverse()){try{if(original[key]===null)storage.removeItem(key);else storage.setItem(key,original[key])}catch{}}throw error}
   return true;
  }
- global.RoomConnections={version,resetKey,resetBrowserData,recoveryReset:Promise.resolve(true),colors,types,equipmentPorts,ensureRelayPorts,upgradeFieldDevices,consumers,resetDocument,resetCatalog,migrateStorage};
+ global.RoomConnections={normalizeTypes,normalizeDocumentTypes,version,resetKey,resetBrowserData,recoveryReset:Promise.resolve(true),colors,types,equipmentPorts,ensureRelayPorts,upgradeFieldDevices,consumers,resetDocument,resetCatalog,migrateStorage};
 })(globalThis);
