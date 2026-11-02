@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V285-R",
-    "project_evolution_version": "V285-R",
+    "software_version": "V286-R",
+    "project_evolution_version": "V286-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V285-R",
+  "current_source_release": "V286-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1584,6 +1584,13 @@
       "phase": "اصلاح انتخاب واحد DXF و ممیزی ایستای مرز نسخه",
       "summary": "خطای نشانه‌گذاری گزینهٔ میلی‌متر در فهرست واحد DXF را اصلاح کردم؛ گزینهٔ ضریب ۰٫۱ اکنون به‌صورت یک option مستقل تعریف شده است. نمایش نسخه، ارجاع‌های کش و Project Evolution هماهنگ شدند.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER. ممیزی ایستای محدود سورس و تغییرات انجام شد؛ هیچ ادعای اجرای مرورگر یا Build وجود ندارد."
+    },
+    {
+      "release": "V286-R",
+      "date": "2026-11-02",
+      "phase": "اصلاح محدودیت تعداد خطوط در ورود DXF",
+      "summary": "کنترل سقف ۵۰ هزار خط را پس از اعتبارسنجی آبجکت‌های جایگزین‌شده قرار دادم تا خطوطی که به آبجکت تبدیل می‌شوند، اشتباهاً در تعداد دیوارهای واردشده محاسبه نشوند.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
     }
   ],
   "records": [
@@ -7523,6 +7530,25 @@
         "بازخوانی HEAD و SHA فایل‌ها پیش از تهیهٔ تغییر؛ بررسی محدود دامنهٔ Diff و هم‌ترازی نسخه‌ها.",
         "ممیزی مرز مضرب پنج: بررسی ایستای ساختار، تغییرات اخیر، Issues و کد DXF؛ تست، Build و مرورگر اجرا نشد."
       ]
+    },
+    {
+      "id": "RD-326",
+      "record_type": "source_defect",
+      "module": "DXF import line capacity",
+      "source": "GitHub main ca68b1ca3b205c6ee680c44e23e6fd9af2946931 — index.html applyRoomDXFGeometry",
+      "source_actor": "scheduled regression executor",
+      "recorded_by": "RoomDesigner regression V8.2",
+      "created_at": "2026-11-02",
+      "target_version": "V286-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "درخواست اصلاح خودکار نقص‌های مستند سورس، نسخه‌گذاری ترتیبی و پیام Commit فارسی.",
+      "assistant_interpretation": "کنترل سقف خطوط پیش از تشخیص خطوط جایگزین‌شده با آبجکت، همهٔ قطعه‌خط‌های DXF را به‌اشتباه به شمارش دیوارها اضافه می‌کرد و می‌توانست ورودی معتبر را نزدیک سقف ۵۰ هزار خط رد کند.",
+      "implementation_status": "کنترل سقف پس از اعتبارسنجی آبجکت‌ها و با شمارش segments.length-converted.size انجام می‌شود؛ هیچ تغییر دیگری در منطق تبدیل هندسه داده نشد.",
+      "runtime_status": "NOT_RUN — USER_TESTING_POLICY; PENDING_USER",
+      "verification_evidence": [
+        "بازخوانی سورس و HEAD پیش از تغییر؛ مقایسهٔ شمارش پیش و پس از حذف خطوط تبدیل‌شده.",
+        "بازبینی ایستای دامنهٔ تغییر، هم‌ترازی نسخه و کلیدهای کش؛ بدون اجرای تست یا Build."
+      ]
     }
   ],
   "analyses": [
@@ -9995,13 +10021,19 @@
       "date": "2026-11-02",
       "change": "گزینهٔ میلی‌متر را در فهرست واحد ورود DXF اصلاح کردم؛ نسخهٔ نمایشی، کلیدهای کش و دفتر تکامل پروژه را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V286-R",
+      "date": "2026-11-02",
+      "change": "خطای محاسبهٔ سقف خطوط در ورود DXF را اصلاح کردم تا قطعه‌خط‌های تبدیل‌شده به آبجکت، دوباره به‌عنوان دیوار شمارش نشوند؛ نسخه و کش را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V285-R",
+    "release": "V286-R",
     "source_status": "static_source_fix_reviewed_pending_user_acceptance",
     "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "V285 boundary: static review of main HEAD, recent commits, repository structure, Issues, DXF source and focused diff. No automated tests, builds, browser or runtime checks were executed. Full repository audit and user acceptance remain pending."
+    "audit": "Scoped static source review of DXF import, recent commits, repository structure, issues, PDF import, cable routing, SVG and storage risk. No tests or builds executed; user runtime acceptance pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
