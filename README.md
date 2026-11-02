@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V292-R** (runtime acceptance pending user).
+Current source release: **V293-R** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
