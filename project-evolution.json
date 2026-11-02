@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V291-R",
-    "project_evolution_version": "V291-R",
+    "software_version": "V292-R",
+    "project_evolution_version": "V292-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V287-R",
+  "current_source_release": "V292-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1597,6 +1597,13 @@
       "date": "2026-11-02",
       "phase": "اصلاح ایمنی مسیر فلش جزئیات",
       "summary": "حذف خودکار دیوارهایی را که نقطهٔ شروع یا پایان فلش با آن‌ها هم‌پوشانی دارد متوقف کردم؛ اکنون دیوارها در کنترل برخورد باقی می‌مانند و در نبود مسیر ایمن، فلش مسدود گزارش می‌شود.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
+    },
+    {
+      "release": "V292-R",
+      "date": "2026-11-02",
+      "phase": "اصلاح حفظ نام اصلی لایه‌های DXF",
+      "summary": "در خروجی DXF تشخیص لایهٔ واردشده را از پیشوند نام جدا کردم تا نام لایه‌های اصلی مانند RD_PLAN بدون پسوند اضافی حفظ شود؛ نام‌گذاری لایه‌های داخلی تغییر نکرد.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
     }
   ],
@@ -10059,13 +10066,19 @@
       "date": "2026-11-02",
       "change": "حذف ناایمن دیوارهای هم‌پوشان با نقاط فلش جزئیات را متوقف کردم تا مسیری از میان دیوار عبور نکند؛ نسخهٔ نمایشی، کش و تکامل پروژه را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V292-R",
+      "date": "2026-11-02",
+      "change": "اشکال افزودن پسوند به نام لایه‌های اصلی DXF که با RD_ شروع می‌شوند را برطرف کردم؛ لایه‌های داخلی همچنان پسوند نوع آبجکت را دریافت می‌کنند و نسخه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V287-R",
+    "release": "V292-R",
     "source_status": "static_source_fix_reviewed_pending_user_acceptance",
     "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "Scoped static source review of detail-routing, cable-routing, DXF/PDF import, SVG and persistence. No tests or builds executed; user runtime acceptance pending."
+    "audit": "Static review: preserve original DXF layer names beginning RD_ during export; native layers retain type suffixes. Builds and runtime tests not executed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
