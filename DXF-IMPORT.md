@@ -1,4 +1,4 @@
-# Direct DXF vector import — V281
+# Direct DXF vector import — V282
 
 Use **File > Import DXF** (فایل > واردکردن DXF), or Open File with a .dxf file. The application reads the DXF locally and opens its own import dialog. No external conversion to roomplan, image or PDF is required.
 
@@ -25,8 +25,10 @@ node --test tests/dxf-engine.test.cjs tests/dxf-import.test.cjs tests/dxf-object
 TEST_BROWSER_PATH=/path/to/chromium ROOM_DXF_FIXTURE=/path/to/type1.dxf node tests/dxf-import.browser.test.cjs
 ```
 
-48 focused unit tests pass. The browser test was run with the actual 472-line, four-layer Type 1 DXF, including cancellation, unit selection, layer/crop filtering, grouped and ungrouped commits, native validation, Undo/Redo, hide/delete, reload, keyboard isolation, invalid input and mobile layout. The separate `tests/dxf-objects.browser.test.cjs` verifies proposals, confirmed conversion of the actual 12 Type 1 candidates, exact remaining geometry, footprint/rotation, grouping, native document validation, Undo/Redo, save/reload, stale approval clearing, unchecked geometry retention and Ctrl+N/O including Persian physical keys and dialog guards. Screenshots under work/ are ignored. Existing V279 caption-position and rotation-submenu browser regressions also passed. User project acceptance remains pending.
+48 focused unit tests pass. The browser test was run with the actual 472-line, four-layer Type 1 DXF, including cancellation, unit selection, layer/crop filtering, grouped and ungrouped commits, native validation, Undo/Redo, hide/delete, reload, keyboard isolation, invalid input and mobile layout. The separate `tests/dxf-objects.browser.test.cjs` verifies proposals, confirmed conversion of the actual 12 Type 1 candidates, exact remaining geometry, footprint/rotation, grouping, native document validation, Undo/Redo, save/reload, stale approval clearing, unchecked geometry retention and Ctrl+Alt+N / Ctrl+O including Persian physical keys and dialog guards. Screenshots under work/ are ignored. Existing V279 caption-position and rotation-submenu browser regressions also passed. User project acceptance remains pending.
 
 ## File shortcuts and palette
 
-Ctrl+N uses the existing new drawing confirmation; Ctrl+O opens the normal file picker. Hints appear beside File menu entries. The physical key mapping also supports Persian keyboard layouts; modal dialogs guard against unintended resets. Browsers may reserve these shortcuts in some contexts. The architecture palette includes the existing chair and sliding door plus new round table, square table and lamp symbols.
+Ctrl+Alt+N uses the existing new drawing confirmation; Ctrl+O opens the normal file picker. Hints appear beside File menu entries. The physical key mapping also supports Persian keyboard layouts; modal dialogs guard against unintended resets. Browsers may reserve these shortcuts in some contexts. The architecture palette includes the existing chair and sliding door plus new round table, square table and lamp symbols.
+
+V282-R corrects the browser-reserved shortcut: normal browser tabs reserve Ctrl+N for a new window, so the application deliberately leaves it alone. New drawing uses Ctrl+Alt+N (Command+Option+N on macOS). Synthetic DOM/headless events do not validate operating-system/browser accelerator delivery; V281 test success did not establish real Ctrl+N support.

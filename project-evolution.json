@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V281",
+  "current_source_release": "V282",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1555,6 +1555,13 @@
       "phase": "Confirmed native DXF objects and file UX",
       "summary": "RD-319: review native object proposals inside DXF import; approve type/rotation before replacing lines; cm fallback, file shortcuts and architecture symbols.",
       "runtime_status": "Focused 48 tests, both actual-file browser suites, prior caption/rotation regressions and SVG validation PASS; existing unrelated equipment-count failures reproduced on baseline; user acceptance pending."
+    },
+    {
+      "release": "V282",
+      "date": "2026-11-02",
+      "phase": "Browser shortcut regression",
+      "summary": "RD-320: Ctrl+Alt+N replaces reserved Ctrl+N for New Drawing; correct V281 accelerator verification claim.",
+      "runtime_status": "Focused browser automation and source checks; user acceptance pending."
     }
   ],
   "records": [
@@ -7373,6 +7380,27 @@
         "equipment-release.test.cjs: 4 PASS, 2 pre-existing count failures (51 vs 30 and 52 vs 31), independently reproduced on unchanged V280 HEAD; not caused by this change.",
         "Inline/module syntax and whitespace checks PASS; user acceptance pending."
       ]
+    },
+    {
+      "id": "RD-320",
+      "record_type": "user_report",
+      "module": "New drawing keyboard shortcut",
+      "source": "user chat",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V282",
+      "status": "source_and_browser_verified_pending_user_acceptance",
+      "user_statement": "Pressing Ctrl+N opens something new in the browser instead of a new drawing.",
+      "assistant_interpretation": "Chrome reserves Ctrl+N for New Window and can consume it before page handlers. Replace the advertised web shortcut with Ctrl+Alt+N; leave browser Ctrl+N untouched.",
+      "implementation_status": "Shortcut modifier gate and menu hint corrected; existing confirmation, modal protection and Persian physical key handling retained. Ctrl+O unchanged.",
+      "runtime_status": "Focused automated browser regression; real user desktop acceptance pending",
+      "verification_evidence": [
+        "Focused DXF browser regression rerun with Ctrl+Alt+N, Ctrl+O, Persian physical key mapping, modal guard, native conversion, Undo/Redo and reload.",
+        "Source review: unmodified Ctrl+N passes through to browser; user confirmation for new drawing remains existing dispatcher behavior.",
+        "V281 synthetic/headless key tests did not validate real browser-reserved accelerator delivery; prior Ctrl+N runtime claim superseded.",
+        "Inline JS syntax and whitespace checks; user desktop acceptance pending."
+      ]
     }
   ],
   "analyses": [
@@ -8715,6 +8743,13 @@
       "date": "2026-11-02",
       "decision": "Use local heuristic proposals rather than claiming general visual understanding. Semantic INSERT metadata and connected geometry/layer/dimension rules propose objects; none is selected automatically. Units/layers/crop changes clear stale approvals. Recompute approved bounds from exact selected segments, replace only disjoint source indices and preserve native layers/grouping. Default unknown units to cm while honoring supported INSUNITS. Reuse the existing file dispatcher and confirmation for Ctrl+N/O.",
       "remaining_risks": "Recognition may miss or misclassify symbols; human confirmation required. Geometry inference <=5000 selected segments and <=100 visible proposals. Native symbols preserve footprint and cardinal rotation, not every CAD detail or hinge handedness. Browsers can reserve Ctrl+N/O outside page-controlled contexts. User acceptance pending. Two existing equipment-count test failures remain documented, not silently fixed."
+    },
+    {
+      "id": "RD-320-analysis",
+      "date": "2026-11-02",
+      "decision": "Use Ctrl+Alt+N for new drawing in browser tabs. Chromium BrowserCommandController browser test explicitly reserves Ctrl+N. A DOM preventDefault handler cannot guarantee receipt of a reserved accelerator. Preserve Ctrl+O and avoid unrelated UX changes.",
+      "source": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/browser/ui/browser_command_controller_browsertest.cc",
+      "remaining_risks": "Extensions or operating system mappings can intercept alternate combinations; real Windows Chrome acceptance pending. Prior V281 Ctrl+N browser-support claim is corrected, not treated as confirmed."
     }
   ],
   "deferred_scope": [
@@ -9790,13 +9825,19 @@
       "date": "2026-11-02",
       "change": "RD-319: staged DXF object proposals with explicit native conversion, Ctrl+N/O hints/actions, centimeter fallback and architecture palette additions.",
       "status": "source_and_browser_verified_pending_user_acceptance"
+    },
+    {
+      "version": "V282",
+      "date": "2026-11-02",
+      "change": "V282-R: fix New Drawing shortcut/browser conflict using Ctrl+Alt+N and matching menu hint.",
+      "status": "source_and_browser_verified_pending_user_acceptance"
     }
   ],
   "current_release_gate": {
-    "release": "V281",
+    "release": "V282",
     "source_status": "source_and_browser_verified_pending_user_acceptance",
-    "runtime_status": "48 focused tests PASS: dxf-engine, dxf-import, dxf-objects.; Both DXF browser suites PASS in Chromium using actual 472-segment Type 1 file: 12 confirmed native objects and 307 retained lines, precise footprint/rotation, cancellation, approval invalidation, units, crop/layers, unapproved geometry, Undo/Redo, reload, palette and Ctrl+N/O including Persian physical keys and modal guards.; V279 caption-position and rotation-submenu browser regressions PASS; SVG library validator PASS: 163 SVGs, 58 mappings.; equipment-release.test.cjs: 4 PASS, 2 pre-existing count failures (51 vs 30 and 52 vs 31), independently reproduced on unchanged V280 HEAD; not caused by this change.; Inline/module syntax and whitespace checks PASS; user acceptance pending.",
-    "audit": "V280 boundary audit retained in release history. V281 scoped recognition/native conversion/units/shortcut/SVG regression checks completed; no claim of full-app audit. V280 five-version boundary: scoped DXF parser/import review, syntax, geometry/cap/cancel/lock invariants, actual file browser validation and V279 caption/rotation regressions completed. Historical wider maintenance/audit gaps are retained and were not independently re-audited. No claim of full-application audit or user acceptance."
+    "runtime_status": "Focused DXF browser regression rerun with Ctrl+Alt+N, Ctrl+O, Persian physical key mapping, modal guard, native conversion, Undo/Redo and reload.; Source review: unmodified Ctrl+N passes through to browser; user confirmation for new drawing remains existing dispatcher behavior.; V281 synthetic/headless key tests did not validate real browser-reserved accelerator delivery; prior Ctrl+N runtime claim superseded.; Inline JS syntax and whitespace checks; user desktop acceptance pending.",
+    "audit": "Scoped shortcut regression only; V280 audit preserved in earlier release history."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
