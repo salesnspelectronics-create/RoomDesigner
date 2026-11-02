@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V276** (runtime acceptance pending user).
+Current source release: **V278** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -87,3 +87,7 @@ Legacy equipment and dependent cables are removed from browser-local drawings, p
 Semantic equipment is organized by type, subtype, model and installation direction. Lighting, requests, thermostats, doorbells and Negin/Azin three-command power switches use central SVG references, model-specific real artwork, and live properties. The editor adds paged canvas navigation, image objects/paste, line bends and length, integer typography, accurate selection/resize/rotation, and bounded color updates with Undo. Independent main lock/deletion/polyline fixes are retained; local product/editor behavior takes precedence in conflicts. See [model data](./LIGHTING-MODEL.md) and [workspace properties](./WORKSPACE-PROPERTIES.md).
 
 Current regression coverage is in tests/lighting-model.test.cjs and the focused browser suites for power-switch variants, doorbell editing/models, door selection, line length/integer fonts, color-picker performance, images, placement and installation directions. Historical browser fixtures may describe superseded UI/product behavior; they are not the current acceptance specification. Browser/mobile user acceptance remains pending.
+
+## DXF import (V278)
+
+See [DXF-IMPORT.md](./DXF-IMPORT.md) for units, placement, editable grouped imports and unlocking existing reference layers.

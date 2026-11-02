@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V277",
-    "project_evolution_version": "V277",
+    "software_version": "V278",
+    "project_evolution_version": "V278",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V277",
+  "current_source_release": "V278",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1527,6 +1527,13 @@
       "phase": "Source version promotion",
       "summary": "RD-314: advance UI and release metadata from V276 to V277, incorporating the accumulated V277 pending changes without rewriting historical records.",
       "runtime_status": "Static version consistency verified; previous focused feature verification is retained. User runtime acceptance pending."
+    },
+    {
+      "release": "V278",
+      "date": "2026-11-02",
+      "phase": "DXF import repair",
+      "summary": "RD-315: unit-aware editable grouped DXF imports, viewport placement/fitting and actionable lock/deletion feedback.",
+      "runtime_status": "17 focused tests passed; browser and user acceptance pending."
     }
   ],
   "records": [
@@ -7246,6 +7253,26 @@
         "index.html",
         "project-evolution.json"
       ]
+    },
+    {
+      "id": "RD-315",
+      "record_type": "user_defect",
+      "module": "DXF import and layer editing",
+      "source": "user chat and screenshot 20261102-121600",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-02",
+      "target_version": "V278",
+      "status": "source_verified_pending_user_runtime",
+      "user_statement": "Imported Type 1 is tiny near the lower corner, says the layer is locked, cannot be edited or deleted, and remains after deleting other layers. Fix it.",
+      "assistant_interpretation": "The screenshot still contains a locked DXF Reference layer. Import always uses a 0.1 default, normalizes to world origin, auto-locks geometry and does not fit its view. Layer deletion is blocked by the lock; no orphan-geometry defect is established. Also correct the separately supplied sample DXF header from mm to cm.",
+      "implementation_status": "Detect INSUNITS with explicit override; import unlocked as one editable group at viewport center and fit it; explain unlocking and last-layer deletion. Existing intentional locks remain protected. Sample delivery corrected separately; no hotel CAD data added to the repository.",
+      "runtime_status": "NOT_RUN — USER_ACCEPTANCE_PENDING",
+      "verification_evidence": [
+        "tests/dxf-import.test.cjs: 17/17 passed",
+        "Existing import-validation/regression suites: 13/35 pass, identical 22 failures on baseline 796387a (missing test harness globals); no new failures",
+        "Browser interaction: NOT_RUN; user acceptance pending"
+      ]
     }
   ],
   "analyses": [
@@ -8558,6 +8585,12 @@
       "date": "2026-11-02",
       "decision": "Promote the accumulated V277 pending work to the current source release at explicit user request. Historical pending-release records remain unchanged; this entry supersedes their release-request status. No feature behavior or Git state is changed.",
       "remaining_risks": "User must commit and push; previous user runtime acceptance and historical audit caveats remain pending."
+    },
+    {
+      "id": "RD-315-analysis",
+      "date": "2026-11-02",
+      "decision": "Preserve context-menu-only locking and existing lock protection. Do not auto-unlock or delete old reference layers. New DXF imports are editable/grouped, use known header unit defaults, and receive a fitted camera. Confirmed layer deletion retains its existing ownership/dependency cleanup.",
+      "remaining_risks": "Existing incorrectly declared sample files must be replaced by the corrected cm sample or explicitly imported with factor 1. New import grouping can be undone or ungrouped. Browser acceptance pending; baseline test harness failures remain."
     }
   ],
   "deferred_scope": [
@@ -9609,6 +9642,12 @@
       "date": "2026-11-02",
       "change": "RD-314: promote accumulated product catalog, cable editing, PDF import, properties, printing and toolbox drag/drop changes to source version V277.",
       "status": "source_updated_pending_user_commit"
+    },
+    {
+      "version": "V278",
+      "date": "2026-11-02",
+      "change": "RD-315: repair tiny locked corner-positioned DXF imports without bypassing existing layer locks.",
+      "status": "source_verified_pending_user_runtime"
     }
   ],
   "current_release_gate": {
