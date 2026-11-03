@@ -54,9 +54,15 @@ async function open(file,onImport){
   if(objectsTabActive()&&recognitionKey!==key)scheduleRecognition(120);
  }
  function draw(){
-  if(!parsed)return;const art=$('[data-dxf-art]');art.replaceChildren();const colors=['#83c5ff','#f5bf68','#8bdbb3','#c5a0f0','#eea2ae','#81d1db'];const visible=parsed.segments.filter(s=>selected.has(s.layer)),step=Math.max(1,Math.ceil(visible.length/12000));
-  const paths=new Map();for(let j=0;j<visible.length;j+=step){const s=visible[j];paths.set(s.layer,(paths.get(s.layer)||'')+'M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y)}
+  if(!parsed)return;const art=$('[data-dxf-art]');art.replaceChildren();const colors=['#83c5ff','#f5bf68','#8bdbb3','#c5a0f0','#eea2ae','#81d1db'];
+  // Reserve at least one preview stroke per selected layer whenever the 12,000-stroke budget allows it.
+  const groups=new Map();let selectedCount=0;
+  for(const s of parsed.segments)if(selected.has(s.layer)){if(!groups.has(s.layer))groups.set(s.layer,[]);groups.get(s.layer).push(s);selectedCount++}
+  const kept=[...groups].slice(0,12000),extraBudget=12000-kept.length,extraWeight=kept.reduce((n,[,lines])=>n+lines.length-1,0);
+  const paths=new Map();let shown=0;
+  for(const [layer,lines] of kept){const quota=1+(extraWeight?Math.floor(extraBudget*(lines.length-1)/extraWeight):0);let d='';for(let j=0;j<quota;j++){const s=lines[Math.floor(j*lines.length/quota)];d+='M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y}paths.set(layer,d);shown+=quota}
   for(let i=0;i<parsed.layers.length;i++){const l=parsed.layers[i],d=paths.get(l.name);if(d){const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',colors[i%colors.length]);p.setAttribute('stroke-width','1');p.setAttribute('vector-effect','non-scaling-stroke');art.append(p)}}
+  const warnings=Object.entries(parsed.warnings);$('[data-dxf-warnings]').textContent=(warnings.length?'آیتم‌های پشتیبانی‌نشده/حذف‌شده: '+warnings.map(([n,c])=>n+' ('+c.toLocaleString('fa-IR')+')').join('، '):'')+(shown<selectedCount?' پیش‌نمایش برای سرعت نمونه‌برداری شده؛ ورود از تمام خطوط انتخاب‌شده استفاده می‌کند.':'');
   sync();
  }
  function choose(mode){if(!parsed)return;selected=new Set(parsed.layers.filter(l=>mode==='all'||mode==='arch'&&global.RoomDXF.architectural(l.name)).map(l=>l.name));for(const input of layerList.querySelectorAll('input'))input.checked=selected.has(input.dataset.layer);fit();draw()}
@@ -82,8 +88,6 @@ async function open(file,onImport){
   }else if(!knownUnit){
    $('[data-dxf-name]').textContent+=' — واحد فایل نامشخص یا پشتیبانی‌نشده است؛ پیش‌فرض سانتی‌متر (ضریب ۱) را بررسی کنید.';
   }
-  const warnings=Object.entries(parsed.warnings);$('[data-dxf-warnings]').textContent=warnings.length?'آیتم‌های پشتیبانی‌نشده/حذف‌شده: '+warnings.map(([n,c])=>n+' ('+c.toLocaleString('fa-IR')+')').join('، '):'';
-  if(parsed.segments.length>12000)$('[data-dxf-warnings]').textContent+=' پیش‌نمایش برای سرعت نمونه‌برداری شده؛ ورود از تمام خطوط انتخاب‌شده استفاده می‌کند.';
   for(const b of dialog.querySelectorAll('[data-dxf-all],[data-dxf-none],[data-dxf-arch],[data-dxf-crop],[data-dxf-fit],[data-dxf-recognize]'))b.disabled=false;
   fit();draw();if(objectsTabActive())scheduleRecognition();
  }catch(e){if(!closed){status.textContent='خواندن فایل انجام نشد: '+e.message;importButton.disabled=true}}
