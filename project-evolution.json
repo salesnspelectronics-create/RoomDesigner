@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V314-R",
-    "project_evolution_version": "V314-R",
+    "software_version": "V315-R",
+    "project_evolution_version": "V315-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V313-R",
+  "current_source_release": "V315-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1689,6 +1689,13 @@
       "phase": "رفع انتظار نامحدود در بازیابی مرورگر",
       "summary": "در صورت مسدودشدن حذف پایگاه داده بازیابی، وعده بازیابی با نتیجه ناموفق پایان می‌یابد تا صف ذخیره آینه معلق نماند.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN; BROWSER_RUNTIME=PENDING_USER; TESTING_OWNER=USER"
+    },
+    {
+      "release": "V315-R",
+      "date": "2026-11-03",
+      "phase": "حفاظت داده محلی نامعتبر",
+      "summary": "قفل ذخیره rd_last، بسته بازیابی و انتخاب آگاهانه نسخه آینه یا نقشه جاری.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
     }
   ],
   "records": [
@@ -7743,6 +7750,21 @@
       "assistant_interpretation": "ترتیب Z-index نباید تصاویر پس‌زمینه موجود را به روی خطوط CAD منتقل کند؛ نام‌گذاری تجهیزات Doorbell در کاتالوگ ممکن است NSP-DB یا دربل باشد.",
       "implementation_status": "تصاویر دارای Z منفی دوباره زیر خطوط و سایر اشیاء قرار گرفتند؛ الگوی اولویت دربل گسترش یافت.",
       "runtime_status": "STATIC_SYNTAX=PASS; RUNTIME=PENDING_USER"
+    },
+    {
+      "id": "RD-335",
+      "record_type": "bugfix",
+      "module": "Browser persistence and recovery",
+      "source": "Runtime V313-R rd_last invalid screenshot",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V315-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "خطای rd_last را کاملاً رفع و روی main پوش کن.",
+      "assistant_interpretation": "پس از fallback به نقشه خالی، ذخیره خودکار و مهاجرت SVG می‌توانند داده نامعتبر را بازنویسی کنند.",
+      "implementation_status": "قفل نوشتن و حذف rd_last نامعتبر، توقف autosave، خروجی بسته شامل LocalStorage و IndexedDB و Journalها، تأیید کاربر برای انتخاب نسخه.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
     }
   ],
   "analyses": [
@@ -10335,13 +10357,19 @@
       "date": "2026-11-03",
       "change": "انتظار نامحدود حذف مسدودشده پایگاه داده بازیابی را برطرف کردم تا صف ذخیره آینه تعیین‌تکلیف شود.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V315-R",
+      "date": "2026-11-03",
+      "change": "از بازنویسی داده نامعتبر جلوگیری کردم و بازیابی کنترل‌شده مرورگر را اضافه کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V313-R",
-    "source_status": "static_reviewed_pending_runtime",
-    "runtime_status": "BROWSER_RUNTIME=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "بازبینی ایستای اصلاح انجام شد؛ تست خودکار و Build اجرا نشد."
+    "release": "V315-R",
+    "source_status": "static_verified",
+    "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
+    "audit": "Guard invalid rd_last; no automatic overwrite or destructive recovery."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
