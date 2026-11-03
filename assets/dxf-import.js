@@ -60,7 +60,7 @@ async function open(file,onImport){
   for(const s of parsed.segments)if(selected.has(s.layer)){if(!groups.has(s.layer))groups.set(s.layer,[]);groups.get(s.layer).push(s);selectedCount++}
   const kept=[...groups].slice(0,12000),extraBudget=12000-kept.length,extraWeight=kept.reduce((n,[,lines])=>n+lines.length-1,0);
   const paths=new Map();let shown=0;
-  for(const [layer,lines] of kept){const quota=1+(extraWeight?Math.floor(extraBudget*(lines.length-1)/extraWeight):0);let d='';for(let j=0;j<quota;j++){const s=lines[Math.floor(j*lines.length/quota)];d+='M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y}paths.set(layer,d);shown+=quota}
+  for(const [layer,lines] of kept){const quota=Math.min(lines.length,1+(extraWeight?Math.floor(extraBudget*(lines.length-1)/extraWeight):0));let d='';for(let j=0;j<quota;j++){const s=lines[Math.floor(j*lines.length/quota)];d+='M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y}paths.set(layer,d);shown+=quota}
   for(let i=0;i<parsed.layers.length;i++){const l=parsed.layers[i],d=paths.get(l.name);if(d){const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',colors[i%colors.length]);p.setAttribute('stroke-width','1');p.setAttribute('vector-effect','non-scaling-stroke');art.append(p)}}
   const warnings=Object.entries(parsed.warnings);$('[data-dxf-warnings]').textContent=(warnings.length?'آیتم‌های پشتیبانی‌نشده/حذف‌شده: '+warnings.map(([n,c])=>n+' ('+c.toLocaleString('fa-IR')+')').join('، '):'')+(shown<selectedCount?' پیش‌نمایش برای سرعت نمونه‌برداری شده؛ ورود از تمام خطوط انتخاب‌شده استفاده می‌کند.':'');
   sync();
