@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V307-R",
-    "project_evolution_version": "V307-R",
+    "software_version": "V308-R",
+    "project_evolution_version": "V308-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V298-R",
+  "current_source_release": "V308-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1647,6 +1647,13 @@
       "phase": "اصلاح جهت کمان بیضی با بردار نرمال منفی در DXF",
       "summary": "در ELLIPSE مؤلفه Z بردار نرمال بررسی و جهت محور فرعی با علامت آن تنظیم می‌شود تا کمان‌های بیضی با نرمال منفی روی سمت نادرست رسم نشوند؛ بردارهای نرمال غیرمعتبر با هشدار NON-XY OCS کنار گذاشته می‌شوند.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
+    },
+    {
+      "release": "V308-R",
+      "date": "2026-11-03",
+      "phase": "رفع توقف کامل اجرای ویور به‌دلیل خطای نحوی",
+      "summary": "پرانتز جاافتاده در ساخت لایه کابل DXF اصلاح و نسخه نمایشی و کش هماهنگ شد.",
+      "runtime_status": "STATIC_JS_SYNTAX=PASS; BUILD=NOT_RUN; BROWSER_RUNTIME=PENDING_USER"
     }
   ],
   "records": [
@@ -7624,6 +7631,22 @@
         "مقایسهٔ ایستای حذف دیوار در فیلتر active با تابع segmentBlocked در cable-routing.js و پیام مسیر مسدود در index.html.",
         "بازبینی ایستای تغییر محدود و یکپارچگی نسخه؛ بدون اجرای Build یا تست."
       ]
+    },
+    {
+      "id": "RD-328",
+      "record_type": "source_defect",
+      "module": "Viewer startup / DXF cable export",
+      "source": "تصویر خطای اجرا در مرورگر و بررسی سورس main در تاریخ 2026-11-03",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT source audit",
+      "created_at": "2026-11-03",
+      "target_version": "V308-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "ویور. تو رومویر یا همچین خطایی داریم، درستش کن.",
+      "assistant_interpretation": "صفحه خطای Uncaught SyntaxError: missing ) after argument list نشان می‌دهد. فراخوانی coloredLayer در تابع buildDXF فایل index.html یک پرانتز بسته کم دارد و مانع پارس کل اسکریپت اصلی می‌شود.",
+      "implementation_status": "پرانتز بسته فراخوانی exportLayer پیش از پارامتر رنگ اضافه شد؛ نسخه رابط و آدرس‌های cache-busting از 307 به 308 تغییر کرد.",
+      "runtime_status": "PENDING_USER; BUILD=NOT_RUN; BROWSER_RUNTIME=NOT_RUN",
+      "verification_evidence": "پارس استاتیک دو اسکریپت داخلی index.html با موتور JavaScript پس از اصلاح موفق بود؛ پیش از اصلاح، اسکریپت اصلی SyntaxError داشت."
     }
   ],
   "analyses": [
@@ -8997,6 +9020,12 @@
       "date": "2026-11-02",
       "decision": "فقط اصلاح تگ ناقص واحد میلی‌متر در انتخاب‌گر DXF؛ عدم تغییر پیش‌فرض سانتی‌متر، محاسبات ضریب یا رفتار ورود نقشه. نسخهٔ V285-R با یک Commit واحد و پیام فارسی.",
       "remaining_risks": "تأیید انتخاب میلی‌متر در مرورگر و مقیاس نقشه پس از Import بر عهدهٔ کاربر است؛ ممیزی مخزن کامل نیست و تست خودکار عمداً اجرا نشد."
+    },
+    {
+      "id": "RD-328-analysis",
+      "date": "2026-11-03",
+      "decision": "اصلاح محدود خطای نحوی فراخوانی coloredLayer(exportLayer(...),color) در خروجی کابل DXF بدون تغییر منطق رنگ یا نام‌گذاری لایه؛ نسخه V308-R.",
+      "remaining_risks": "تأیید راه‌اندازی واقعی در Chrome و خروجی DXF کابل پس از انتشار GitHub Pages بر عهده کاربر است. Build و آزمون مرورگر اجرا نشد."
     }
   ],
   "deferred_scope": [
@@ -10150,13 +10179,19 @@
       "date": "2026-11-03",
       "change": "جهت کمان بیضی‌های دارای نرمال منفی DXF را اصلاح کردم و بردار نرمال نامعتبر را با هشدار کنار گذاشتم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V308-R",
+      "date": "2026-11-03",
+      "change": "خطای نحوی فراخوانی ساخت لایه کابل DXF را اصلاح کردم تا اسکریپت اصلی ویور اجرا شود؛ نسخه و کش را هماهنگ کردم.",
+      "status": "source_syntax_verified_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V298-R",
-    "source_status": "static_source_fix_reviewed_pending_user_acceptance",
-    "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "Static review: ELLIPSE normal Z (group 230) now determines the minor-axis direction; invalid or tilted normals produce NON-XY OCS warning. No runtime tests/builds executed."
+    "release": "V308-R",
+    "source_status": "static_syntax_verified_pending_user_acceptance",
+    "runtime_status": "BUILD=NOT_RUN; BROWSER_RUNTIME=PENDING_USER; TESTING_OWNER=USER",
+    "audit": "Before: index.html main inline script SyntaxError: missing ) after argument list. After: both inline scripts parsed successfully with JavaScript engine. No browser runtime or build executed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
