@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V296-R",
-    "project_evolution_version": "V296-R",
+    "software_version": "V297-R",
+    "project_evolution_version": "V297-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V296-R",
+  "current_source_release": "V297-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1632,6 +1632,13 @@
       "date": "2026-11-03",
       "phase": "جلوگیری از تبدیل بی‌هشدار منحنی‌های سه‌بعدی DXF به هندسه دوبعدی",
       "summary": "در ARC و CIRCLE ارتفاع مرکز (گروه 30) و در ELLIPSE ارتفاع مرکز و مؤلفه Z محور اصلی (گروه‌های 30 و 31) بررسی می‌شوند؛ مقادیر غیرصفر یا نامعتبر با هشدار NON-XY CURVE کنار گذاشته می‌شوند.",
+      "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
+    },
+    {
+      "release": "V297-R",
+      "date": "2026-11-03",
+      "phase": "جلوگیری از ورود بی‌هشدار بلوک‌های دارای ارتفاع در DXF",
+      "summary": "در INSERT مؤلفه Z نقطه درج (گروه 30) بررسی می‌شود؛ مقدار غیرصفر یا نامعتبر با هشدار NON-XY INSERT کنار گذاشته می‌شود تا هندسه سه‌بعدی به‌اشتباه روی XY تصویر نشود.",
       "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY؛ RUNTIME_REVIEW=PENDING_USER؛ TESTING_OWNER=USER"
     }
   ],
@@ -10124,13 +10131,19 @@
       "date": "2026-11-03",
       "change": "ورود بی‌هشدار کمان، دایره و بیضی دارای مؤلفه ارتفاع را متوقف کردم و هشدار و نسخه را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V297-R",
+      "date": "2026-11-03",
+      "change": "ورود بی‌هشدار بلوک‌های دارای ارتفاع در DXF را متوقف کردم و هشدار و نسخه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V296-R",
+    "release": "V297-R",
     "source_status": "static_source_fix_reviewed_pending_user_acceptance",
     "runtime_status": "AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; RUNTIME_REVIEW=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "Static review: ARC/CIRCLE center Z and ELLIPSE center/major-axis Z are rejected when nonzero or invalid with NON-XY CURVE warning; planar curve paths are unchanged. Builds and runtime tests not executed."
+    "audit": "Static review: INSERT elevation Z (DXF group 30) is rejected when nonzero or invalid with NON-XY INSERT warning; planar INSERT path is unchanged. Builds and runtime tests not executed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
