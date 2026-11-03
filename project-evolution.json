@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V310-R",
-    "project_evolution_version": "V310-R",
+    "software_version": "V311-R",
+    "project_evolution_version": "V311-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V310-R",
+  "current_source_release": "V311-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1668,6 +1668,13 @@
       "phase": "تحلیل خودکار آبجکت‌های DXF",
       "summary": "تشخیص با ورود به تب آبجکت‌ها و تغییر ورودی‌های واحد/لایه/برش خودکار تازه می‌شود؛ بدون تغییر موتور تشخیص یا تبدیل هندسه.",
       "runtime_status": "SOURCE_STATIC_REVIEWED; BROWSER_RUNTIME=PENDING_USER"
+    },
+    {
+      "release": "V311-R",
+      "date": "2026-11-03",
+      "phase": "خصوصیات و جانمایی جزئیات تجهیزات",
+      "summary": "بهبود جانمایی تصاویر، Z-index قابل تنظیم، چرخش ۱۸۰ درجه و خطوط تفکیک خصوصیات.",
+      "runtime_status": "STATIC_SYNTAX=PASS; BROWSER_RUNTIME=PENDING_USER"
     }
   ],
   "records": [
@@ -7693,6 +7700,21 @@
       "implementation_status": "تحلیل هنگام ورود به تب و هنگام تغییر واحد/لایه/برش با تأخیر کوتاه ۱۲۰ میلی‌ثانیه اجرا می‌شود؛ تحلیل در تب غیرفعال به تعویق می‌افتد؛ نتیجه‌های قدیمی بلافاصله پاک می‌شوند؛ تایمر با خروج یا بستن لغو می‌شود؛ تابع تشخیص هندسی و منطق تبدیل تغییر نکرده‌اند.",
       "runtime_status": "PENDING_USER; BROWSER_TEST=NOT_RUN; STATIC_SYNTAX=PASS",
       "verification_evidence": "Added browser regression assertions for tab entry, unit, layer, crop and non-mutation before import."
+    },
+    {
+      "id": "RD-331",
+      "record_type": "runtime_feedback_fix",
+      "module": "Device detail placement, Z-index, rotation and properties",
+      "source": "User runtime review and request 2026-11-03",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V311-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "تصویر جزئیات به نزدیک‌ترین محل بیرون اتاق برود؛ Z-index قابل ویرایش و پیش‌فرض بالا برای دربازکن باشد؛ دکمه‌های ۱۸۰ درجه و جداکننده خصوصیات اضافه شود.",
+      "assistant_interpretation": "چهار اصلاح مستقل از DXF؛ حفظ جای دستی تصاویر؛ حفظ هندسه و منطق تشخیص CAD.",
+      "implementation_status": "جانمایی تصویر در نزدیک‌ترین لبه بیرونی محدوده با کاهش تداخل؛ مرتب‌سازی نمایش و hit-test تجهیزات بر اساس Z-index، کنترل Properties و کلیک راست، دکمه‌های ۱۸۰ درجه و مرزبندی بصری گروه‌ها.",
+      "runtime_status": "PENDING_USER; STATIC_JS_SYNTAX=PASS; BROWSER_TEST=NOT_RUN"
     }
   ],
   "analyses": [
@@ -9084,6 +9106,12 @@
       "date": "2026-11-03",
       "decision": "در مرحله دوم فقط orchestration تحلیل خودکار DXF تغییر می‌کند؛ پیشنهادهای تشخیص تا زمان ورود نهایی صرفاً staged باقی می‌مانند.",
       "remaining_risks": "صحت تشخیص هندسی و حفظ هندسه در تبدیل آبجکت خارج از دامنه مرحله دوم است؛ تست مرورگر نیازمند اجرای محیط Playwright است."
+    },
+    {
+      "id": "RD-331-analysis",
+      "date": "2026-11-03",
+      "decision": "اصلاحات مستقل در یک نسخه با checkpoint و ذخیره موجود انجام شد؛ موتور DXF دست‌نخورده ماند.",
+      "remaining_risks": "جانمایی بیرونی بر اساس bounding box کل نقشه است و برای چند اتاق پیچیده به بازبینی نیاز دارد؛ تست مرورگر هنوز اجرا نشده."
     }
   ],
   "deferred_scope": [
@@ -10255,13 +10283,19 @@
       "date": "2026-11-03",
       "change": "تشخیص آبجکت‌های DXF را هنگام ورود به تب و تغییر واحد، لایه و برش خودکار کردم و تست‌های رگرسیون مرتبط افزودم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V311-R",
+      "date": "2026-11-03",
+      "change": "جانمایی جزئیات، ترتیب نمایش تجهیزات، چرخش ۱۸۰ درجه و گروه‌بندی خصوصیات را اصلاح کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V310-R",
-    "source_status": "source_static_reviewed_pending_user_acceptance",
+    "release": "V311-R",
+    "source_status": "static_syntax_verified_pending_runtime",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER; TESTING_OWNER=USER",
-    "audit": "No changes to dxf-objects.js, dxf-engine.js, or CAD geometry conversion."
+    "audit": "No changes to DXF parser, recognition or conversion."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
