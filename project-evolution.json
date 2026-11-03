@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V315-R",
+  "current_source_release": "V316-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1695,6 +1695,13 @@
       "date": "2026-11-03",
       "phase": "حفاظت داده محلی نامعتبر",
       "summary": "قفل ذخیره rd_last، بسته بازیابی و انتخاب آگاهانه نسخه آینه یا نقشه جاری.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
+    },
+    {
+      "release": "V316-R",
+      "date": "2026-11-03",
+      "phase": "اصلاح ناسازگاری اعتبارسنجی نقشه ذخیره‌شده",
+      "summary": "موقعیت ذخیره‌شده جزئیات تجهیزات بدون enabled را معتبر شناختم؛ اعتبارسنجی مقادیر نامعتبر حفظ شد.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
     }
   ],
@@ -7765,6 +7772,22 @@
       "assistant_interpretation": "پس از fallback به نقشه خالی، ذخیره خودکار و مهاجرت SVG می‌توانند داده نامعتبر را بازنویسی کنند.",
       "implementation_status": "قفل نوشتن و حذف rd_last نامعتبر، توقف autosave، خروجی بسته شامل LocalStorage و IndexedDB و Journalها، تأیید کاربر برای انتخاب نسخه.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
+    },
+    {
+      "id": "RD-336",
+      "record_type": "bugfix",
+      "module": "Browser persistence and recovery",
+      "source": "Uploaded roomdesigner-recovery-1793688711099.json; V315-R runtime",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V316-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "خطای rd_last دوباره رخ داده؛ فایل بازیابی برای بررسی و رفع مشکل ارسال شد.",
+      "assistant_interpretation": "دو تجهیز دوربل و پاورسوئیچ detailView شامل مختصات دارند اما enabled ندارند؛ اعتبارسنج V315-R این ساختار قدیمی و مجاز را رد می‌کند.",
+      "implementation_status": "اعتبارسنج enabled اختیاری را قبول می‌کند؛ مقدار صریح غیر Boolean همچنان رد می‌شود؛ داده‌های مرورگر بدون تغییر باقی می‌مانند.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
+      "verification_evidence": "LocalStorage و IndexedDB هر دو 99028 کاراکتر و یکسان؛ checksum FNV-1a UTF-16 برابر e0d0090e؛ آزمون واحد موردی برای هر دو تجهیز."
     }
   ],
   "analyses": [
@@ -9168,6 +9191,12 @@
       "date": "2026-11-03",
       "decision": "حفظ سازگاری ترتیب پس‌زمینه تصاویر هنگام معرفی Z-index؛ تغییرات DXF همچنان ممنوع.",
       "remaining_risks": "تست مرورگر برای روی‌هم‌افتادگی چند تصویر و انتخاب آبجکت لازم است."
+    },
+    {
+      "id": "RD-336-analysis",
+      "date": "2026-11-03",
+      "decision": "پذیرش نبود enabled در detailView، بدون بازنویسی فایل کاربران یا تضعیف کنترل نوع داده؛ بازگشت به نقشه اصلی پس از بارگذاری V316-R.",
+      "remaining_risks": "تأیید بازیابی و نمایش تجهیزات در مرورگر کاربر هنوز انجام نشده؛ پیش از آن داده rd_last و IndexedDB پاک نشود."
     }
   ],
   "deferred_scope": [
@@ -10363,13 +10392,19 @@
       "date": "2026-11-03",
       "change": "از بازنویسی داده نامعتبر جلوگیری کردم و بازیابی کنترل‌شده مرورگر را اضافه کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V316-R",
+      "date": "2026-11-03",
+      "change": "رفع خطای اعتبارسنجی جزئیات محصولات قدیمی و بازگشایی امن نقشه ذخیره‌شده.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V315-R",
+    "release": "V316-R",
     "source_status": "static_verified",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "Guard invalid rd_last; no automatic overwrite or destructive recovery."
+    "audit": "Legacy detailView positions without enabled accepted; explicit invalid enabled still rejected. Recovery JSON local/mirror matching checksum."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
