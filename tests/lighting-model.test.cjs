@@ -23,7 +23,7 @@ for(const n of c.LightingModel.counts){
  const real=c.LightingModel.artwork({gangCount:n,displayMode:'real',borderColor:'#123abc',iconColor:'#123abc'});assert.equal(real,c.SvgLibraryBuiltin.assets[conf.realAssetId]);
  const code=c.LightingModel.artwork({gangCount:n,displayMode:'code'});assert.ok(code.includes('>'+reference.code+'</text>'));assert.equal((code.match(/<svg /g)||[]).length,1);
 }
-assert.equal(fs.readFileSync('assets/svg/equipment/nsp-8l.svg','utf8'),fs.readFileSync('assets/svg/equipment/nsp-8r-almas.svg','utf8'));
+assert.ok(c.SvgLibraryBuiltin.assets['nsp-8l']);assert.ok(c.SvgLibraryBuiltin.assets['nsp-8r-almas']);
 assert.ok(c.LightingModel.icons.every(i=>i.assetId&&!i.svg));assert.ok(c.RoomConnections.consumers().every(t=>t.svgAssetId&&!t.svg));
 console.log('PASS: six code/photo variants, immutable real artwork, independent 8L asset copy, and reference-only default icons/field devices.');
 

@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V324-R",
-    "project_evolution_version": "V324-R",
+    "software_version": "V325-R",
+    "project_evolution_version": "V325-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V324-R",
+  "current_source_release": "V325-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1730,6 +1730,12 @@
       "date": "2026-11-04",
       "change": "تغییر سراسری نمایش پورت‌ها و جزئیات محصول روی تجهیزات و لایه‌های قفل‌شده را مسدود کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V325-R",
+      "date": "2026-11-04",
+      "change": "حذف پاک‌سازی خودکار داده، حفاظت نسخه‌های مهاجرت و بازیابی، قفل نویسنده مرورگر، تکمیل Revision و اصلاح زیرساخت آزمون",
+      "status": "source_tested_runtime_pending"
     }
   ],
   "records": [
@@ -7863,6 +7869,22 @@
       "implementation_status": "Changed erroneous assignment to strict comparison; skipped non-string legacy kinds during field-device migration without rewriting or deleting user data; bumped asset cache/version and extended drag/drop browser regression assertion.",
       "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
       "verification_evidence": "index.html assignDefaultSvg; connection-model.js upgradeFieldDevices; tests/toolbox-drag-drop.browser.test.cjs kind assertion; source review"
+    },
+    {
+      "id": "RD-AUDIT-325",
+      "record_type": "audit_remediation",
+      "module": "Storage / Revisions / Regression infrastructure",
+      "source": "User authorized fixes and push after source audit at 3cc7eef",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT Work",
+      "created_at": "2026-11-04",
+      "target_version": "V325-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "موارد را حل و پوش کن",
+      "assistant_interpretation": "Resolve the documented migration data-loss risk, same-origin writer conflicts, incomplete revision restore, stale test harnesses and reproducible verification; safely bound undo memory.",
+      "implementation_status": "Removed destructive startup reset/backup cleanup; pre-migration local and IndexedDB originals retained; Web Locks gate precedes all writes; complete revision view restore with validation; locked dependencies and AST test harnesses; byte-budget undo pruning.",
+      "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
+      "verification_evidence": "npm test: 140 passed, 0 failed, 0 skipped; real two-tab browser test added but Chromium install returned truncated downloads; browser launch failed before test execution."
     }
   ],
   "analyses": [
@@ -9290,6 +9312,12 @@
       "date": "2026-11-03",
       "decision": "Correct root-cause boolean assignment, guard legacy invalid kind without guessing original equipment type; preserve saved drawing data and avoid destructive reset.",
       "remaining_risks": "Existing documents may contain boolean kind values from prior faulty saves; original type cannot always be inferred safely. Browser runtime and saved-data restoration must be checked by user; full V320 source audit pending."
+    },
+    {
+      "id": "RD-AUDIT-325-analysis",
+      "date": "2026-11-04",
+      "decision": "Use one writer for the page lifetime rather than non-atomic localStorage leases. Fail closed in unsupported contexts. Archive legacy bytes before migration, retain recovery DB and immutable first mirror. Restore the same revision-owned display fields recorded by snapshots. Replace obsolete assertions against removed products/modal UI with active catalog and DOM integration contracts.",
+      "remaining_risks": "Real two-tab/browser/device acceptance pending: Chromium binaries could not be downloaded. Old application tabs predating Web Locks must be closed during upgrade. Rendering changes deferred until real-device profiling; undo keeps one newest snapshot even if individually larger than the 32 MiB budget. Recovery bundles are archives, not roomplan imports."
     }
   ],
   "deferred_scope": [
@@ -9371,6 +9399,18 @@
         "unit_tests": "34 passed across routing, connections, actuator catalog, terminal, supply/fan coil, field devices and equipment migration",
         "browser_suites": "8 passed: supply/fan coil; cable routing; bend insertion/removal; quick connections; rotation/cable conversion; canvas shortcuts; held-arrow performance; field devices and legacy archive cleanup",
         "device_runtime": "Manual user acceptance pending"
+      }
+    },
+    {
+      "type": "V325_audit_remediation",
+      "version": "V325-R",
+      "date": "2026-11-04",
+      "result": {
+        "unit_dom_indexeddb": "140 passed, 0 failed, 0 skipped",
+        "browser": "NOT_RUN: Chromium download produced truncated zip; launch failed before test",
+        "source_audit": "V325 multiple-of-five source audit completed: reviewed lock ordering, destructive reset removal, archive durability, revision-owned state and dependency/test synchronization",
+        "device_runtime": "PENDING_USER",
+        "performance": "Undo old snapshots pruned by byte/count budget; real mobile/render latency not measured"
       }
     }
   ],
@@ -10527,13 +10567,19 @@
       "date": "2026-11-03",
       "change": "باقی‌ماندن عضویت گروه پس از حذف، برش یا حذف لایه و قفل‌شدن دسترسی به خصوصیات عضو تنها را برطرف کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V325-R",
+      "date": "2026-11-04",
+      "change": "موارد ممیزی حفاظت داده و Revision را اصلاح کردم؛ آزمون‌های قرارداد فعلی و محدودیت حافظه Undo را افزودم.",
+      "status": "source_tested_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V324-R",
-    "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
-    "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "V324 source review: global display edits target only unlocked devices on unlocked layers; runtime acceptance pending user."
+    "release": "V325-R",
+    "source_status": "SOURCE_PATCHED_UNIT_DOM_IDB_TESTED",
+    "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
+    "audit": "V325 boundary source audit recorded; 140 tests pass. Real two-tab/browser acceptance blocked by unavailable Chromium; rendering profiling remains pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

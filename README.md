@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V324-R** (runtime acceptance pending user).
+Current source release: **V325-R** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -113,3 +113,43 @@ Product display mode and four-side caption placement use mutually exclusive radi
 V284 consolidates runtime feedback: settings/objects import tabs, default-selected proposals and bulk selection, native dressing table with separate lamp/chair, native geometry color without bounding boxes, Persian hover display submenu, property rotation buttons, and header controls before Undo/Redo. Detail leaders route around architectural obstacles; blocked routes show a status rather than crossing walls.
 
 V287-R: مسیر فلش جزئیات دیگر هیچ دیوار هم‌پوشان با نقطهٔ شروع یا پایان را از فهرست موانع حذف نمی‌کند؛ در نبود مسیر ایمن، وضعیت انسداد نمایش داده می‌شود.
+
+
+## Repeatable checks (V325-R)
+
+Use Node 22 or 24. `npm ci` installs the exact development dependencies from
+`package-lock.json`. `npm test` runs all non-browser tests, including DOM-only
+integration checks and the IndexedDB preservation test. These checks do not
+constitute device/browser acceptance.
+
+`npm run test:browser:install` installs Chromium; `npm run test:browser` runs
+browser scripts sequentially. `TEST_BROWSER_PATH` can select an already installed
+compatible browser. Browser installation failure must be reported as NOT_RUN,
+never as a passing browser result.
+
+The current contract uses five physical connection types, 31 product entries,
+51 palette identities and explicitly configured ports. Pre-redesign assertions
+for AC4CH, POWER-SUPPLY, combined RS485+Power, and the removed modal editor were
+updated to current contracts; no tests are silently skipped.
+
+### Storage protection
+
+The application obtains an exclusive Web Lock before migration, journal recovery,
+or any browser-data writes. Another tab shows a retry screen. Browsers without
+Web Locks must use a supported secure context (HTTPS/localhost). The writer lock
+is held for the page lifetime; closing/navigating releases it. Reload after
+returning from the browser back-forward cache reacquires ownership.
+
+Missing migration markers never trigger deletion of browser data or recovery DB.
+Before legacy equipment/connection migration, the original local bytes are saved
+in `rd_preserved_migration_v325`; quota or invalid archive blocks migration and
+provides a local-data download. The first IndexedDB mirror and metadata are
+retained as `preserved-before-v325` before subsequent mirror writes. Original
+archives are not automatically removed. The download button exports both when
+available; this recovery bundle is an archive, not a roomplan import file.
+
+Revision snapshots include page origin, document display flags and product-detail
+positions. Restoring older snapshots resets fields they did not contain.
+Undo history prunes older entries at 60 states or a 32 MiB string budget; the
+newest state remains available even if that one document exceeds the budget.
+Large-document/mobile rendering performance still requires device measurements.

@@ -6,20 +6,9 @@ import vm from 'node:vm';
 import {randomUUID} from 'node:crypto';
 
 const source=readFileSync(new URL('../index.html',import.meta.url),'utf8');
-function extractFunction(name){
- const start=source.indexOf('function '+name+'(');
- assert.ok(start>=0,name+' exists');
- const isAsync=source.slice(Math.max(0,start-6),start)==='async ';
- const body=source.indexOf('{',start);let depth=0,quote='',escape=false;
- for(let i=body;i<source.length;i++){
-  const c=source[i];
-  if(quote){if(escape)escape=false;else if(c==='\\')escape=true;else if(c===quote)quote='';continue}
-  if(c==="'"||c==='"'||c==='\x60'){quote=c;continue}
-  if(c==='{')depth++;else if(c==='}'&&!--depth)return (isAsync?'async ':'')+source.slice(start,i+1);
- }
- throw Error('Unterminated '+name);
-}
-function context(code,globals={}){const sandbox={...globals};vm.createContext(sandbox);vm.runInContext(code,sandbox);return sandbox}
+import harness from './source-harness.cjs';
+const {extractFunction}=harness;
+function context(code,globals={}){const sandbox={trimHistory:()=>{},normalizeSvgReferences:()=>{},mirrorChecksum:value=>String(value),RoomConnections:{normalizeTypes:x=>x},...globals};vm.createContext(sandbox);vm.runInContext(code,sandbox);return sandbox}
 test('source includes stable project export/import and undo APIs',()=>{
  for(const name of ['snapshot','validateRoomDocument','prepareRoomImport','applyRoomImport','performUndo','performRedo','groupAllSelected','ungroupSelected'])assert.ok(source.includes('function '+name+'('),name);
 });
@@ -59,7 +48,7 @@ test('Layers preserves ordinary selection for ungrouped objects and ignores miss
 });
 test('revision snapshot includes layers, active layer, without nested revisions',()=>{
  const scope=context(extractFunction('snapshot'));const d={name:'demo',date:'2026-10-15',devices:[{id:'a'}],cables:[],walls:[],layers:[{id:'main',name:'original',locked:true}],activeLayer:'main',revisions:[{snapshot:{revisions:[]}}]};
- const snap=scope.snapshot(d);assert.equal(snap.schemaVersion,3);assert.equal(snap.activeLayer,'main');assert.equal(snap.layers[0].locked,true);
+ const snap=scope.snapshot(d);assert.equal(snap.schemaVersion,4);assert.equal(snap.activeLayer,'main');assert.equal(snap.layers[0].locked,true);
  assert.equal('revisions' in snap,false);
  d.layers[0].name='changed';d.devices[0].id='changed';
  assert.equal(snap.layers[0].name,'original');assert.equal(snap.devices[0].id,'a');
@@ -143,7 +132,7 @@ function mirrorHarness(){
  function state(){return {mirrorPending,mirrorSaveOk,documentEpoch,mirrorGeneration}}
  function done(){return mirrorQueue}
  `,{
-  safeStorage:{setItem:()=>true},mirrorOperation:async (_mode,value)=>{writes.push(JSON.parse(value).id);if(writes.length===1){notifyStarted();await gate}return true},
+  rdLastBlocked:false,normalizeSvgReferences:()=>{},manualSaveFailed:false,readLocalJSON:()=>null,safeStorage:{setItem:()=>true,getItem:()=>null},mirrorOperation:async (_mode,value)=>{writes.push(JSON.parse(value).id);if(writes.length===1){notifyStarted();await gate}return true},
   persistenceStatus:()=>status.push('updated'),
   $:()=>({textContent:''}),notify:()=>{}
  });
@@ -151,7 +140,7 @@ function mirrorHarness(){
 }
 test('consecutive saves serialize IndexedDB writes and retain latest generation',async()=>{
  const h=mirrorHarness();
- h.ctx.saveAuto();h.ctx.change({id:'b',name:'B',date:'today'});h.ctx.saveAuto();
+ h.ctx.saveAuto();await h.started;h.ctx.change({id:'b',name:'B',date:'today'});h.ctx.saveAuto();
  await h.started;
  assert.deepEqual(h.writes,['a']);
  h.release();await h.ctx.done();
@@ -173,6 +162,7 @@ test('late recovery cannot overwrite a newer unsaved drawing',async()=>{
  validateRoomDocument:x=>x,
  readLocalJSON:()=>null,render:()=>{},updateHistoryControls:()=>{},notify:()=>{}
  });
+ c.readMirrorSnapshot=async()=>({mirror:await pending});
  const recovery=c.recoverMirrorOnStartup();
  c.edit();release(JSON.stringify({id:'stale',devices:[],cables:[]}));
  await recovery;

@@ -61,6 +61,6 @@ test('dragging a free leg moves only its adjacent bends; hit testing selects tha
 test('actual renderer: direct paths always have two endpoints and free paths preserve stored bends',()=>{
  const source=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),code=source.slice(source.indexOf('function cableDisplayPoints('),source.indexOf('function draftCablePreview('));
  const c={a:{dev:'a'},b:{dev:'b'},routeMode:'direct',autoRouting:true,waypoints:[{x:500,y:500}],offset:100},a={x:10,y:10},b={x:60,y:80};
- const context={portSide:()=> 'bottom',cablePathPoints:(pts,mode,side)=>mode==='orthogonal'?R.orthogonal(pts,side):pts,adaptiveCableRoute:()=>{throw Error('Manual routing must not call auto router')}};vm.createContext(context);vm.runInContext(code,context);
- assert.equal(JSON.stringify(context.cableDisplayPoints(c,a,b)),JSON.stringify([a,b]));c.routeMode='broken';c.autoRouting=undefined;const before=JSON.stringify(c.waypoints);assert.equal(JSON.stringify(context.cableDisplayPoints(c,a,b)),JSON.stringify([a,...c.waypoints,b]));assert.equal(JSON.stringify(c.waypoints),before);
+ const context={wireDrag:{cableId:"none"},portSide:()=> 'bottom',cablePathPoints:(pts,mode,side)=>mode==='orthogonal'?R.orthogonal(pts,side):pts,adaptiveCableRoute:()=>{throw Error('Manual routing must not call auto router')}};vm.createContext(context);vm.runInContext(code,context);
+ assert.equal(JSON.stringify(context.cableDisplayPoints({...c,waypoints:[]},a,b)),JSON.stringify([a,b]));c.routeMode='broken';c.autoRouting=undefined;const before=JSON.stringify(c.waypoints);assert.equal(JSON.stringify(context.cableDisplayPoints(c,a,b)),JSON.stringify([a,...c.waypoints,b]));assert.equal(JSON.stringify(c.waypoints),before);
 });

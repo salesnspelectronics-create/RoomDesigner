@@ -5,27 +5,13 @@
  const resetKey='rd_storage_reset_physical_v1';
  function resetBrowserData(storage,idb=global.indexedDB){
   if(storage.getItem(resetKey)==='done')return false;
-  const writeStage=stage=>{storage.setItem(resetKey,stage);if(storage.getItem(resetKey)!==stage)throw Error('Local reset could not be recorded')};
-  if(storage.getItem(resetKey)!=='pending-recovery'){
-   writeStage('clearing');
-   const keys=Array.from({length:storage.length},(_,i)=>storage.key(i)).filter(k=>k&&k.startsWith('rd_')&&k!==resetKey);
-   for(const key of keys){storage.removeItem(key);if(storage.getItem(key)!==null)throw Error('Old local data could not be cleared')}
-   const initial={rd_types:JSON.stringify(types()),rd_catalog:JSON.stringify(resetCatalog([])),rd_connection_model:version,rd_equipment_release:global.RoomEquipment.release};
-   for(const [key,value]of Object.entries(initial)){storage.setItem(key,value);if(storage.getItem(key)!==value)throw Error('New defaults could not be saved')}
-   writeStage('pending-recovery');
-  }
-  global.RoomConnections.recoveryReset=new Promise(resolve=>{
-   const finish=()=>{try{writeStage('done');resolve(true)}catch{resolve(false)}};
-   if(!idb?.deleteDatabase){finish();return}
-   try{
-    const request=idb.deleteDatabase('room-designer-recovery');
-    request.onsuccess=finish;
-    request.onerror=()=>resolve(false);
-    request.onblocked=()=>{global.RoomConnections.resetBlocked=true;resolve(false)};
-   }catch{resolve(false)}
-  });
+  // V325: a missing marker is never permission to erase drawings or recovery DB.
+  storage.setItem(resetKey,'done');
+  if(storage.getItem(resetKey)!=='done')throw Error('Storage initialization could not be recorded');
+  global.RoomConnections.recoveryReset=Promise.resolve(true);
   return true;
  }
+
  const colors={power:'#DC2626',rs485:'#16A34A',do:'#D97706',di:'#0891B2',ethernet:'#2563EB'};
  function types(){return Object.fromEntries(Object.entries({power:'Power',rs485:'RS-485',do:'DO',di:'DI',ethernet:'Ethernet'}).map(([id,name])=>[id,{name,color:colors[id]}]))}
  const equipmentPorts=()=>[{id:'rs485',name:'RS-485',type:'rs485',side:'top'}];
