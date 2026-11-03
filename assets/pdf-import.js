@@ -45,7 +45,7 @@ async function open(file,onImport){
  };
  try{
   if(file.size>80000000)throw Error('حجم PDF باید کمتر از ۸۰ مگابایت باشد.');
-  library??=import(new URL('pdf.min.mjs',base).href);const lib=await library;if(closed)return;lib.GlobalWorkerOptions.workerSrc=new URL('pdf.worker.min.mjs',base).href;
+  library??=import(new URL('pdf.min.mjs',base).href).catch(error=>{library=null;throw error});const lib=await library;if(closed)return;lib.GlobalWorkerOptions.workerSrc=new URL('pdf.worker.min.mjs',base).href;
   const bytes=new Uint8Array(await file.arrayBuffer());if(closed)return;
   loading=lib.getDocument({data:bytes,cMapUrl:new URL('cmaps/',base).href,cMapPacked:true,standardFontDataUrl:new URL('standard_fonts/',base).href,wasmUrl:new URL('wasm/',base).href,isEvalSupported:false,enableXfa:false});pdf=await loading.promise;if(closed)return;
   $('[data-pdf-name]').textContent=file.name+' · '+pdf.numPages+' صفحه';
