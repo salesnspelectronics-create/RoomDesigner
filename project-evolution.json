@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V317-R",
+  "current_source_release": "V318-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1709,6 +1709,13 @@
       "date": "2026-11-03",
       "phase": "اصلاح پیش‌نمایش DXF و کادرهای تشخیص",
       "summary": "کادرهای تشخیص تجهیزات دیگر خودکار روی نقشه نمی‌مانند؛ نمایش آن‌ها اختیاری و مستقل از هندسه اصلی است.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
+    },
+    {
+      "release": "V318-R",
+      "date": "2026-11-03",
+      "phase": "اصلاح هندسه تجهیزات پس از DXF Import",
+      "summary": "تخت و دیگر تجهیزات شناسایی‌شده هندسه اصلی CAD را در قالب آبجکت قابل‌ویرایش حفظ می‌کنند؛ جایگزینی SVG عمومی حذف شد.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
     }
   ],
@@ -7811,6 +7818,22 @@
       "implementation_status": "نمایش کادرهای تشخیص به‌صورت پیش‌فرض خاموش و تنها با دکمه مستقل فعال است؛ با تغییر تب به آبجکت‌ها یا تغییر انتخاب/واحد، خاموش می‌شود. تست رگرسیون تب و حفظ خطوط DXF اضافه شد.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
       "verification_evidence": "index.html V317-R; assets/dxf-import.js explicit overlay toggle; tests/dxf-import.browser.test.cjs new assertions; visual comparison user screenshots."
+    },
+    {
+      "id": "RD-338",
+      "record_type": "bugfix",
+      "module": "DXF semantic import",
+      "source": "User screenshot V317-R after import",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V318-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "پیش‌نمایش درست است اما تخت پس از Import بزرگ یا متفاوت دیده می‌شود.",
+      "assistant_interpretation": "در سورس، قطعات CAD تشخیص‌شده حذف و با نماد عمومی کتابخانه جایگزین می‌شدند؛ در نتیجه شکل و ظاهر تخت با فایل اصلی تفاوت داشت.",
+      "implementation_status": "خطوط منبع به مختصات محلی نرمال آبجکت تبدیل می‌شوند و با چرخش صحیح روی بوم ترسیم می‌شوند؛ اعتبارسنجی و تست مقایسه خطوط افزوده شد.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
+      "verification_evidence": "index.html DXF native conversion/render; tests/dxf-objects.browser.test.cjs geometry assertions"
     }
   ],
   "analyses": [
@@ -9226,6 +9249,12 @@
       "date": "2026-11-03",
       "decision": "عدم تغییر اندازه یا داده‌های DXF؛ رفع اثر بصری کادرهای تشخیص با نمایش opt-in و بازنشانی هنگام تعویض تب.",
       "remaining_risks": "تأیید بصری روی فایل واقعی کاربر و بررسی تطابق شکل آبجکت‌های تبدیل‌شده پس از ورود نهایی هنوز لازم است؛ جایگزینی SVG با هندسه CAD یک موضوع مستقل است."
+    },
+    {
+      "id": "RD-338-analysis",
+      "date": "2026-11-03",
+      "decision": "هندسه CAD برای آبجکت‌های واردشده منبع حقیقت است؛ از SVG عمومی به‌جای خطوط اصلی استفاده نشود.",
+      "remaining_risks": "اجرای تست مرورگر و تأیید روی DXF واقعی کاربر هنوز انجام نشده؛ تشخیص معنایی اشتباه موضوع جداگانه است."
     }
   ],
   "deferred_scope": [
@@ -10433,13 +10462,19 @@
       "date": "2026-11-03",
       "change": "کادرهای تشخیص DXF را از نمایش پیش‌فرض حذف و مشاهده اختیاری آن‌ها را اضافه کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V318-R",
+      "date": "2026-11-03",
+      "change": "شکل و اندازه اصلی تخت و تجهیزات را هنگام ورود DXF حفظ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V317-R",
+    "release": "V318-R",
     "source_status": "static_verified",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "DXF candidate bounds hidden by default; user explicitly toggles preview overlays; original CAD geometry unchanged."
+    "audit": "DXF native semantic objects preserve source CAD strokes, orientation, footprint and resizing in normalized local geometry."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
