@@ -18,7 +18,18 @@ function fixture(unit=5){return `0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n${unit
  await tabObjects.click();
  await page.waitForFunction(()=>document.querySelector('[data-dxf-recognition-status]')?.textContent.includes('۱ پیشنهاد'));
  assert.equal(await candidateRows.count(),1,'tab entry recognizes without pressing manual button');
- await tabInfo.click();await page.locator('[data-dxf-unit]').selectOption('0.1');await tabObjects.click();
+ // Recognition must not paint larger-looking bounds over the original CAD furniture by default.
+ const overlays=page.locator('[data-dxf-objects]'),overlayToggle=page.locator('[data-dxf-overlays]');
+ assert.equal(await overlays.evaluate(n=>n.style.display),'none','automatic recognition leaves original DXF preview untouched');
+ await tabInfo.click();
+ assert.equal(await overlayToggle.isEnabled(),true,'user can explicitly inspect recognition bounds');
+ const originalGeometry=await page.locator('[data-dxf-art]').innerHTML();
+ await overlayToggle.click();assert.equal(await overlays.evaluate(n=>n.style.display),'','overlay is visible only on explicit request');
+ assert.equal(await overlayToggle.getAttribute('aria-pressed'),'true');
+ await tabObjects.click();assert.equal(await overlays.evaluate(n=>n.style.display),'none','entering recognition tab clears overlay opt-in');
+ await tabInfo.click();assert.equal(await overlays.evaluate(n=>n.style.display),'none','returning to file info does not leave ghost outlines');
+ assert.equal(await page.locator('[data-dxf-art]').innerHTML(),originalGeometry,'DXF geometry is unchanged by tab and overlay controls');
+ await page.locator('[data-dxf-unit]').selectOption('0.1');await tabObjects.click();
  await page.waitForFunction(()=>document.querySelector('[data-dxf-recognition-status]')?.textContent.includes('۰ پیشنهاد'));
  assert.equal(await candidateRows.count(),0,'unit change invalidates previous candidates');
  await tabInfo.click();await page.locator('[data-dxf-unit]').selectOption('1');await tabObjects.click();

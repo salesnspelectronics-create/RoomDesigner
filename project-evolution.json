@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V316-R",
+  "current_source_release": "V317-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1702,6 +1702,13 @@
       "date": "2026-11-03",
       "phase": "اصلاح ناسازگاری اعتبارسنجی نقشه ذخیره‌شده",
       "summary": "موقعیت ذخیره‌شده جزئیات تجهیزات بدون enabled را معتبر شناختم؛ اعتبارسنجی مقادیر نامعتبر حفظ شد.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
+    },
+    {
+      "release": "V317-R",
+      "date": "2026-11-03",
+      "phase": "اصلاح پیش‌نمایش DXF و کادرهای تشخیص",
+      "summary": "کادرهای تشخیص تجهیزات دیگر خودکار روی نقشه نمی‌مانند؛ نمایش آن‌ها اختیاری و مستقل از هندسه اصلی است.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
     }
   ],
@@ -7788,6 +7795,22 @@
       "implementation_status": "اعتبارسنج enabled اختیاری را قبول می‌کند؛ مقدار صریح غیر Boolean همچنان رد می‌شود؛ داده‌های مرورگر بدون تغییر باقی می‌مانند.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
       "verification_evidence": "LocalStorage و IndexedDB هر دو 99028 کاراکتر و یکسان؛ checksum FNV-1a UTF-16 برابر e0d0090e؛ آزمون واحد موردی برای هر دو تجهیز."
+    },
+    {
+      "id": "RD-337",
+      "record_type": "bugfix",
+      "module": "DXF import and object recognition",
+      "source": "User screenshots of TYPE-1-clean-cm.dxf before/after object recognition on V316-R",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V317-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "بعد از رفتن به تب تجهیزات، میز/مبلمان بزرگ‌تر دیده می‌شود؛ در تصویر پیش از تب اندازه طبیعی است.",
+      "assistant_interpretation": "مقایسه تصاویر و سورس نشان داد کادرهای SVG تشخیص آبجکت با fill و stroke پس از بازگشت به تب اطلاعات فایل باقی می‌مانند و ظاهراً ابعاد را بزرگ می‌کنند؛ خود خطوط CAD تغییر نمی‌کنند.",
+      "implementation_status": "نمایش کادرهای تشخیص به‌صورت پیش‌فرض خاموش و تنها با دکمه مستقل فعال است؛ با تغییر تب به آبجکت‌ها یا تغییر انتخاب/واحد، خاموش می‌شود. تست رگرسیون تب و حفظ خطوط DXF اضافه شد.",
+      "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
+      "verification_evidence": "index.html V317-R; assets/dxf-import.js explicit overlay toggle; tests/dxf-import.browser.test.cjs new assertions; visual comparison user screenshots."
     }
   ],
   "analyses": [
@@ -9197,6 +9220,12 @@
       "date": "2026-11-03",
       "decision": "پذیرش نبود enabled در detailView، بدون بازنویسی فایل کاربران یا تضعیف کنترل نوع داده؛ بازگشت به نقشه اصلی پس از بارگذاری V316-R.",
       "remaining_risks": "تأیید بازیابی و نمایش تجهیزات در مرورگر کاربر هنوز انجام نشده؛ پیش از آن داده rd_last و IndexedDB پاک نشود."
+    },
+    {
+      "id": "RD-337-analysis",
+      "date": "2026-11-03",
+      "decision": "عدم تغییر اندازه یا داده‌های DXF؛ رفع اثر بصری کادرهای تشخیص با نمایش opt-in و بازنشانی هنگام تعویض تب.",
+      "remaining_risks": "تأیید بصری روی فایل واقعی کاربر و بررسی تطابق شکل آبجکت‌های تبدیل‌شده پس از ورود نهایی هنوز لازم است؛ جایگزینی SVG با هندسه CAD یک موضوع مستقل است."
     }
   ],
   "deferred_scope": [
@@ -10398,13 +10427,19 @@
       "date": "2026-11-03",
       "change": "رفع خطای اعتبارسنجی جزئیات محصولات قدیمی و بازگشایی امن نقشه ذخیره‌شده.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V317-R",
+      "date": "2026-11-03",
+      "change": "کادرهای تشخیص DXF را از نمایش پیش‌فرض حذف و مشاهده اختیاری آن‌ها را اضافه کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V316-R",
+    "release": "V317-R",
     "source_status": "static_verified",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "Legacy detailView positions without enabled accepted; explicit invalid enabled still rejected. Recovery JSON local/mirror matching checksum."
+    "audit": "DXF candidate bounds hidden by default; user explicitly toggles preview overlays; original CAD geometry unchanged."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
