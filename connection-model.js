@@ -21,7 +21,7 @@
     const request=idb.deleteDatabase('room-designer-recovery');
     request.onsuccess=finish;
     request.onerror=()=>resolve(false);
-    request.onblocked=()=>{global.RoomConnections.resetBlocked=true};
+    request.onblocked=()=>{global.RoomConnections.resetBlocked=true;resolve(false)};
    }catch{resolve(false)}
   });
   return true;
