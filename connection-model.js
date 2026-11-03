@@ -59,6 +59,7 @@
  function upgradeFieldDevices(d){
   let changed=false;const defaults=new Map(consumers().map(t=>[t.kind,t]));
   for(const v of d.devices||[]){
+   if(typeof v?.kind!=='string')continue; // Preserve malformed legacy data without crashing every canvas render.
    const kind=v.kind==='load-fan-c'?'load-fan-3':v.kind,legacyFan=/^load-fan-[123]$/.test(kind),number=kind.slice(-1),t=defaults.get(kind)||(legacyFan?{kind,catalogId:kind,name:'دور فن '+number,nameEn:'Fan Speed '+number,svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect x="1" y="1" width="78" height="78" rx="10" fill="#fff"/><g fill="none" stroke="#24374d" stroke-width="3">'+symbols['fan-'+number]+'</g></svg>'}:null);if(!t)continue;
    if(v.kind!==kind){v.kind=kind;v.catalogId=t.catalogId;changed=true;}
    if(['دور فن C','Fan Speed C'].includes(v.name)){v.name=t.name;changed=true;}if(v.nameEn==='Fan Speed C'){v.nameEn=t.nameEn;changed=true;}

@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V319-R",
+  "current_source_release": "V320-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1717,6 +1717,13 @@
       "phase": "اصلاح هندسه تجهیزات پس از DXF Import",
       "summary": "تخت و دیگر تجهیزات شناسایی‌شده هندسه اصلی CAD را در قالب آبجکت قابل‌ویرایش حفظ می‌کنند؛ جایگزینی SVG عمومی حذف شد.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING"
+    },
+    {
+      "release": "V320-R",
+      "date": "2026-11-03",
+      "phase": "رفع توقف سراسری درج آبجکت روی بوم",
+      "summary": "اصلاح انتساب اشتباه نوع آبجکت و محافظت مهاجرت تجهیزات از kind غیررشته‌ای؛ تست رگرسیون درج جعبه ابزار تقویت شد.",
+      "runtime_status": "STATIC_REVIEWED; BROWSER_PENDING"
     }
   ],
   "records": [
@@ -7834,6 +7841,22 @@
       "implementation_status": "خطوط منبع به مختصات محلی نرمال آبجکت تبدیل می‌شوند و با چرخش صحیح روی بوم ترسیم می‌شوند؛ اعتبارسنجی و تست مقایسه خطوط افزوده شد.",
       "runtime_status": "STATIC_VERIFIED; BROWSER_PENDING",
       "verification_evidence": "index.html DXF native conversion/render; tests/dxf-objects.browser.test.cjs geometry assertions"
+    },
+    {
+      "id": "RD-340",
+      "record_type": "critical_bugfix",
+      "module": "Canvas object insertion / equipment normalization",
+      "source": "User screenshot of Room Designer V319-R showing Uncaught TypeError: kind.slice is not a function and all palette tools failing",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT development",
+      "created_at": "2026-11-03",
+      "target_version": "V320-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "هیچ آبجکتی از معماری، روشنایی، سنسورها و خطوط با کلیک یا کشیدن روی بوم ظاهر نمی‌شود؛ خطای kind.slice is not a function نشان داده می‌شود.",
+      "assistant_interpretation": "assignDefaultSvg mistakenly assigns boolean to d.kind via '=' instead of checking equality; upgradeFieldDevices later invokes kind.slice on boolean and aborts rendering.",
+      "implementation_status": "Changed erroneous assignment to strict comparison; skipped non-string legacy kinds during field-device migration without rewriting or deleting user data; bumped asset cache/version and extended drag/drop browser regression assertion.",
+      "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
+      "verification_evidence": "index.html assignDefaultSvg; connection-model.js upgradeFieldDevices; tests/toolbox-drag-drop.browser.test.cjs kind assertion; source review"
     }
   ],
   "analyses": [
@@ -9255,6 +9278,12 @@
       "date": "2026-11-03",
       "decision": "هندسه CAD برای آبجکت‌های واردشده منبع حقیقت است؛ از SVG عمومی به‌جای خطوط اصلی استفاده نشود.",
       "remaining_risks": "اجرای تست مرورگر و تأیید روی DXF واقعی کاربر هنوز انجام نشده؛ تشخیص معنایی اشتباه موضوع جداگانه است."
+    },
+    {
+      "id": "RD-340-analysis",
+      "date": "2026-11-03",
+      "decision": "Correct root-cause boolean assignment, guard legacy invalid kind without guessing original equipment type; preserve saved drawing data and avoid destructive reset.",
+      "remaining_risks": "Existing documents may contain boolean kind values from prior faulty saves; original type cannot always be inferred safely. Browser runtime and saved-data restoration must be checked by user; full V320 source audit pending."
     }
   ],
   "deferred_scope": [
@@ -10468,13 +10497,19 @@
       "date": "2026-11-03",
       "change": "شکل و اندازه اصلی تخت و تجهیزات را هنگام ورود DXF حفظ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V320-R",
+      "date": "2026-11-03",
+      "change": "خرابی سراسری درج آبجکت ناشی از تبدیل kind به بولی و خطای kind.slice را اصلاح کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V319-R",
-    "source_status": "static_verified",
+    "release": "V320-R",
+    "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "DXF preview samples selected strokes by layer so low-density selected layers remain visible within the 12000-stroke preview budget; import geometry is unchanged."
+    "audit": "V320 multiple-of-five source maintenance gate due: focused source audit of insertion/normalization completed; comprehensive audit and browser runtime acceptance pending. Prevent accidental boolean overwrite of kind in assignDefaultSvg and avoid kind.slice crash on legacy malformed devices."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
