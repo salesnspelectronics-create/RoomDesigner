@@ -51,8 +51,8 @@ async function open(file,onImport){
   if(objectsTabActive()&&recognitionKey!==key)scheduleRecognition(120);
  }
  function draw(){
-  if(!parsed)return;const art=$('[data-dxf-art]');art.replaceChildren();const colors=['#83c5ff','#f5bf68','#8bdbb3','#c5a0f0','#eea2ae','#81d1db'];const step=Math.max(1,Math.ceil(parsed.segments.length/12000));
-  const paths=new Map();for(let j=0;j<parsed.segments.length;j+=step){const s=parsed.segments[j];if(!selected.has(s.layer))continue;paths.set(s.layer,(paths.get(s.layer)||'')+'M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y)}
+  if(!parsed)return;const art=$('[data-dxf-art]');art.replaceChildren();const colors=['#83c5ff','#f5bf68','#8bdbb3','#c5a0f0','#eea2ae','#81d1db'];const visible=parsed.segments.filter(s=>selected.has(s.layer)),step=Math.max(1,Math.ceil(visible.length/12000));
+  const paths=new Map();for(let j=0;j<visible.length;j+=step){const s=visible[j];paths.set(s.layer,(paths.get(s.layer)||'')+'M'+s.a.x+' '+s.a.y+'L'+s.b.x+' '+s.b.y)}
   for(let i=0;i<parsed.layers.length;i++){const l=parsed.layers[i],d=paths.get(l.name);if(d){const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',colors[i%colors.length]);p.setAttribute('stroke-width','1');p.setAttribute('vector-effect','non-scaling-stroke');art.append(p)}}
   sync();
  }
