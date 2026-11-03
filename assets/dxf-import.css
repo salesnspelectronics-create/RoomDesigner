@@ -4,3 +4,11 @@
 .dxf-recognition{border:1px solid #40546d;border-radius:8px;padding:10px}.dxf-recognition summary{cursor:pointer;font-weight:bold}.dxf-recognition p{font-size:12px}[data-dxf-candidates]{max-height:190px;overflow:auto}.dxf-candidate{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px;border-bottom:1px solid #40546d}.dxf-candidate small{flex:1;min-width:100px}#dxfImportDialog .dxf-candidate select{width:auto;max-width:150px} .desktop-menu kbd{margin-inline-start:auto;direction:ltr;font:11px monospace;color:#b1d8e2;padding-inline-start:20px}
 
 #dxfImportDialog [hidden]{display:none!important}#dxfImportDialog [role=tab][aria-selected=true]{background:#087b70}#dxfImportDialog [data-dxf-panel=objects]{min-height:300px}#dxfImportDialog [data-dxf-panel=objects] [data-dxf-candidates]{max-height:55vh}
+
+/* Distinct, keyboard-readable tabs for the two DXF import workflows. */
+#dxfImportDialog .dxf-import-tabs{display:flex;align-items:stretch;gap:0;border-bottom:2px solid #526b85;margin:8px 0 3px;flex-wrap:wrap}
+#dxfImportDialog .dxf-import-tabs [role=tab]{border-radius:8px 8px 0 0;border:1px solid #526b85;border-bottom:0;margin:0 0 -2px;min-width:148px;padding:11px 20px;background:#1d3046;color:#b7c9d9;font-weight:700;outline-offset:-3px}
+#dxfImportDialog .dxf-import-tabs [role=tab][aria-selected=true]{background:#087b70;color:#fff;border-color:#49c9b0;box-shadow:inset 0 -3px 0 #6bf1d3}
+#dxfImportDialog .dxf-import-tabs [role=tab]:focus-visible{outline:2px solid #a6e8f5}
+#dxfImportDialog [data-dxf-panel]{min-width:0}
+@media(max-width:700px){#dxfImportDialog .dxf-import-tabs [role=tab]{min-width:0;flex:1;padding:11px 8px}}
