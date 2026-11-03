@@ -37,7 +37,7 @@ function parse(source){
  function walk(list,m,parentLayer,stack,prefix){
   for(let i=0;i<list.length;i++){activeBlockNames=stack;activeBlockPath=prefix;const r=list[i],own=value(r,8,'0'),l=own==='0'&&parentLayer?parentLayer:own,id=prefix+'/'+i;
    if(number(r,60)===1)continue;
-   let em=m;if(['LWPOLYLINE','POLYLINE','ARC','CIRCLE','INSERT'].includes(r.type)){if(Math.abs(number(r,210))>1e-9||Math.abs(number(r,220))>1e-9){warn('NON-XY OCS');continue}if(number(r,230,1)<0)em=multiply(m,[-1,0,0,1,0,0])}
+   let em=m;if(['LWPOLYLINE','POLYLINE','ARC','CIRCLE','INSERT'].includes(r.type)){const nx=number(r,210),ny=number(r,220),nz=number(r,230,1);if(![nx,ny,nz].every(Number.isFinite)||Math.abs(nx)>1e-9||Math.abs(ny)>1e-9||Math.abs(Math.abs(nz)-1)>1e-6){warn('NON-XY OCS');continue}if(nz<0)em=multiply(m,[-1,0,0,1,0,0])}
    if(r.type==='LINE'){const z0=number(r,30),z1=number(r,31);if(!Number.isFinite(z0)||!Number.isFinite(z1)||Math.abs(z0)>1e-9||Math.abs(z1)>1e-9){warn('NON-XY LINE');continue}add({x:number(r,10,NaN),y:number(r,20,NaN)},{x:number(r,11,NaN),y:number(r,21,NaN)},m,l,id);continue}
    if(r.type==='LWPOLYLINE'){const elevation=number(r,38);if(!Number.isFinite(elevation)||Math.abs(elevation)>1e-9){warn('NON-XY POLYLINE');continue}const v=[];for(const [c,n]of r.pairs){if(c===10)v.push({x:Number(n),y:NaN,bulge:0});else if(c===20&&v.length)v.at(-1).y=Number(n);else if(c===42&&v.length)v.at(-1).bulge=Number(n)}poly(v,!!(number(r,70)&1),em,l,id);continue}
    if(r.type==='POLYLINE'&&(number(r,70)&80)){warn('POLYLINE MESH');continue}
