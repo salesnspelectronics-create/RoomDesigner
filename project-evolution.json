@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V325-R",
-    "project_evolution_version": "V325-R",
+    "software_version": "V326-R",
+    "project_evolution_version": "V326-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V325-R",
+  "current_source_release": "V326-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1736,6 +1736,12 @@
       "date": "2026-11-04",
       "change": "حذف پاک‌سازی خودکار داده، حفاظت نسخه‌های مهاجرت و بازیابی، قفل نویسنده مرورگر، تکمیل Revision و اصلاح زیرساخت آزمون",
       "status": "source_tested_runtime_pending"
+    },
+    {
+      "version": "V326-R",
+      "date": "2026-11-04",
+      "change": "پاک‌سازی ناخواسته شورتکات‌های ذخیره‌شده در اولین بازشدن برنامه را برطرف کردم و نسخه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "records": [
@@ -10576,10 +10582,10 @@
     }
   ],
   "current_release_gate": {
-    "release": "V325-R",
-    "source_status": "SOURCE_PATCHED_UNIT_DOM_IDB_TESTED",
-    "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
-    "audit": "V325 boundary source audit recorded; 140 tests pass. Real two-tab/browser acceptance blocked by unavailable Chromium; rendering profiling remains pending."
+    "release": "V326-R",
+    "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
+    "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
+    "audit": "V326 source review: remove first-launch destructive rd_shortcuts reset; retain existing shortcut data, including when legacy reset marker is absent; user runtime review pending."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
