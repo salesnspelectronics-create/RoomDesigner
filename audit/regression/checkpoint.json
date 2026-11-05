@@ -1,0 +1,204 @@
+{
+  "format": 1,
+  "repository": "salesnspelectronics-create/RoomDesigner",
+  "branch": "main",
+  "execution_source": "MANUAL_WORK_ENGINEERING_REMEDIATION",
+  "execution_timestamp": "2026-11-05T14:44:01.133195+00:00",
+  "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+  "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
+  "product_release": "V331-R",
+  "inventory_path": "audit/regression/inventory.json",
+  "inventory_blob_sha": "1e24b67466daebd6bbad8d2e8f4556aad1e2df74",
+  "policy_path": "audit/regression/POLICY.md",
+  "writer_lock": {
+    "ref": "refs/heads/roomdesigner-regression-lock",
+    "owner_commit": "f2c3cf5e3b740dddf89471a32f67a2a6b73d7c16",
+    "lifetime": "owned during delivery; release via child FREE sentinel commit after readback"
+  },
+  "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
+  "coverage_note": "Focused noncontiguous review only. No coverage imported from truncated calls or unverifiable prior sessions; original blobs are not credited by candidate coverage. Product Evolution inspected as ledger, not reviewed line-by-line.",
+  "segments": [
+    {
+      "path": "index.html",
+      "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+      "actual_read_start_line": 270,
+      "actual_read_end_line": 282,
+      "reviewed_start_line": 270,
+      "reviewed_end_line": 282,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD331-01"
+      ],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+      "actual_read_start_line": 350,
+      "actual_read_end_line": 440,
+      "reviewed_start_line": 350,
+      "reviewed_end_line": 440,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+      "actual_read_start_line": 1440,
+      "actual_read_end_line": 1530,
+      "reviewed_start_line": 1440,
+      "reviewed_end_line": 1530,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD331-01",
+        "RD331-02",
+        "RD331-03"
+      ],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+      "actual_read_start_line": 1783,
+      "actual_read_end_line": 1835,
+      "reviewed_start_line": 1783,
+      "reviewed_end_line": 1835,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD331-02"
+      ],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "storage-safety.js",
+      "blob_sha": "71a0d2be036955a32d9a67596a967885144b59ea",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 32,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 32,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "tools/regression-inventory.py",
+      "blob_sha": "7c23d6ba0cc857c5cfd7c8c7498c5b8139ce8ffa",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 55,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 55,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+      "actual_read_start_line": 1904,
+      "actual_read_end_line": 1970,
+      "reviewed_start_line": 1904,
+      "reviewed_end_line": 1970,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "OPEN-JOURNAL-SCHEMA"
+      ],
+      "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+      "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+      "truncated": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "RD331-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "root_cause": "Failed safeStorage rd_last write returns false but shadows durable previous bytes; saveLocal did not restore rd_last, making mirror repair ownership comparison fail.",
+      "correction": "Restore prior rd_last and rd_profiles; require both successful restores before clearing journal after owned mirror compensation."
+    },
+    {
+      "id": "RD331-02",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "root_cause": "New Import/Revision unconditionally replaced pending recovery intents, destroying old rollback values.",
+      "correction": "Refuse new Import/Revision when either raw pending journal exists; recheck after async archive."
+    },
+    {
+      "id": "RD331-03",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "root_cause": "saveLocal captured rollback snapshots before awaiting archive export; later edits/saves/imports could invalidate those snapshots.",
+      "correction": "Recheck document identity/epoch, both local snapshot values and journal absence before mutation."
+    },
+    {
+      "id": "OPEN-CROSS-STORE",
+      "status": "OPEN",
+      "detail": "No atomic commit/authoritative arbitration across LocalStorage and IndexedDB. Torn generation or commit sidecars cannot rank distinct valid documents."
+    },
+    {
+      "id": "OPEN-COMPENSATION",
+      "status": "OPEN",
+      "detail": "Abrupt termination before compensation commits, absent previous local snapshot and storage denial still require manual recovery; no runtime acceptance."
+    },
+    {
+      "id": "OPEN-JOURNAL-SCHEMA",
+      "status": "OPEN_STATIC_RISK",
+      "detail": "Startup expected-entry destructuring and incomplete previous-entry value/uniqueness validation need focused review. No malformed-journal repair claimed."
+    },
+    {
+      "id": "OPEN-GOVERNANCE",
+      "status": "OPEN",
+      "detail": "Historical multiple-of-five audit boundary reconciliation is not completed by this release."
+    }
+  ],
+  "last_completed_segment": {
+    "path": "index.html",
+    "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
+    "actual_read_start_line": 1904,
+    "actual_read_end_line": 1970,
+    "reviewed_start_line": 1904,
+    "reviewed_end_line": 1970,
+    "status": "REVIEWED_WITH_FINDING",
+    "findings": [
+      "OPEN-JOURNAL-SCHEMA"
+    ],
+    "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
+    "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+    "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
+    "truncated": false
+  },
+  "next_segment": {
+    "path": "assets/dxf-import.css",
+    "blob_sha": "719cd6e25a4f443fb33c89eaa5209ee4efeec2e5",
+    "start_line": 1,
+    "end_line": 14,
+    "status": "UNREAD",
+    "reason": "Earliest uncovered eligible manifest path; focused reviews do not skip this frontier."
+  },
+  "validation": {
+    "automated_tests": "NOT_RUN — USER_TESTING_POLICY",
+    "build": "NOT_RUN",
+    "browser_runtime": "NOT_RUN",
+    "runtime_acceptance": "PENDING_USER",
+    "static_diff": "REVIEWED; source hunks and mechanical version alignment inspected; no product execution"
+  }
+}

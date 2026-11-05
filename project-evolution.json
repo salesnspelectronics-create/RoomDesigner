@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V330-R",
-    "project_evolution_version": "V330-R",
+    "software_version": "V331-R",
+    "project_evolution_version": "V331-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V330-R",
+  "current_source_release": "V331-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1753,6 +1753,12 @@
       "version": "V330-R",
       "date": "2026-11-05",
       "change": "لغو یا ازدست‌رفتن pointer capture در برش PDF دیگر تغییر نیمه‌تمام را ثبت نمی‌کند؛ بازگردانی کادر قبلی و هماهنگ‌سازی کش ماژول PDF و شناسه‌های نسخه انجام شد.",
+      "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V331-R",
+      "date": "2026-11-05",
+      "change": "ترمیم وضعیت rd_last پس از شکست ذخیره Revision، جلوگیری از بازنویسی Journal معلق و توقف ادامه ذخیره بر پایه آرشیو منقضی؛ ثبت checkpoint و فهرست پایدار رگرسیون و پروتکل نویسنده انحصاری.",
       "status": "source_reviewed_runtime_pending"
     }
   ],
@@ -7935,6 +7941,22 @@
       "implementation_status": "Only pointerup commits a valid PDF crop; pointercancel/lostpointercapture revert. PDF assets now use versioned cache references.",
       "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
       "verification_evidence": "Static review of PDF crop lifecycle lines 31–36 and matching DXF crop lifecycle; automated tests and builds not run."
+    },
+    {
+      "id": "RD-REMEDIATION-331",
+      "record_type": "engineering_remediation",
+      "module": "Persistence / Revision / Import / regression infrastructure",
+      "source": "User Work Engineering Remediation command; live main 73b63743f51b53a242c4527dcdc2a805a543e31e",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT Work",
+      "created_at": "2026-11-05",
+      "target_version": "V331-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "Establish durable regression checkpoint, prevent concurrent writers, fix evidenced backward-compatible data-loss/recovery defects, commit and push directly to main; NO tests/build/browser execution.",
+      "assistant_interpretation": "Preserve raw legacy storage; repair failed Revision read-through shadow and mirror compensation; refuse replacement of pending recovery journals; reject stale Revision archive continuations. Persist exact blob/range review evidence.",
+      "implementation_status": "Source patches plus Git-backed inventory/checkpoint/policy; exclusive lock branch protocol and existing V10 prompt integration.",
+      "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN; BUILD_VALIDATION=NOT_RUN; BROWSER_RUNTIME=NOT_RUN",
+      "verification_evidence": "Static source and entire diff review only. See audit/regression/checkpoint.json and POLICY.md; delivery commit is the Git commit containing this record."
     }
   ],
   "analyses": [
@@ -9380,6 +9402,12 @@
       "date": "2026-11-05",
       "decision": "Treat lostpointercapture as cancellation, not a successful crop; preserve previous crop on interrupted gesture. Align PDF module cache references and existing Project Evolution identity fields in same source release.",
       "remaining_risks": "User must validate PDF crop cancellation and import on browser/device. No tests or builds run per user policy."
+    },
+    {
+      "id": "RD-REMEDIATION-331-analysis",
+      "date": "2026-11-05",
+      "decision": "Failed safeStorage writes shadow durable rd_last; restore prior rd_last as well as profiles before queued mirror compensation, retaining journal unless both restorations and owned mirror succeed. Block new Import/Revision while either recovery journal exists. After asynchronous history archive, recheck document identity, epoch, local snapshots and journals before mutation. Store deterministic Git-blob inventory and noncontiguous actual review ranges without claiming repository-wide review.",
+      "remaining_risks": "No cross-store ACID transaction; generation and checksum sidecars cannot rank divergent valid snapshots. Crash before compensation, absent previous snapshot, malformed journals and storage failures need further review/user runtime acceptance. Preserve pre-migration archives and valid legacy local precedence. No automated tests/build/runtime executed."
     }
   ],
   "deferred_scope": [
@@ -10659,13 +10687,19 @@
       "date": "2026-11-05",
       "change": "لغو یا ازدست‌رفتن pointer capture در برش PDF دیگر تغییر نیمه‌تمام را ثبت نمی‌کند؛ بازگردانی کادر قبلی و هماهنگ‌سازی کش ماژول PDF و شناسه‌های نسخه انجام شد.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V331-R",
+      "date": "2026-11-05",
+      "change": "ترمیم وضعیت rd_last پس از شکست ذخیره Revision، جلوگیری از بازنویسی Journal معلق و توقف ادامه ذخیره بر پایه آرشیو منقضی؛ ثبت checkpoint و فهرست پایدار رگرسیون و پروتکل نویسنده انحصاری.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V330-R",
+    "release": "V331-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
-    "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "V330-R: PDF crop interrupted gestures now roll back; static review only; AUTOMATED_TESTS=NOT_RUN, BUILD_VALIDATION=NOT_RUN (USER_TESTING_POLICY)."
+    "runtime_status": "PENDING_USER",
+    "audit": "Static source/diff review only; tests/build/browser NOT_RUN by user policy. V330 historical boundary/audit reconciliation remains open; this release does not close it."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
