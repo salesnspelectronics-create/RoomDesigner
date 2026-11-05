@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V328-R",
-    "project_evolution_version": "V328-R",
+    "software_version": "V330-R",
+    "project_evolution_version": "V330-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V329-R",
+  "current_source_release": "V330-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1747,6 +1747,12 @@
       "version": "V329-R",
       "date": "2026-11-05",
       "change": "اصلاح تصمیم مهاجرت Revision دارای نشانگر نسخه قدیمی: نسخه صریح snapshot دیگر با وضعیت نسخه جاری سند والد نادیده گرفته نمی‌شود؛ snapshots فاقد نشانگر همچنان وضعیت والد را به ارث می‌برند.",
+      "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V330-R",
+      "date": "2026-11-05",
+      "change": "لغو یا ازدست‌رفتن pointer capture در برش PDF دیگر تغییر نیمه‌تمام را ثبت نمی‌کند؛ بازگردانی کادر قبلی و هماهنگ‌سازی کش ماژول PDF و شناسه‌های نسخه انجام شد.",
       "status": "source_reviewed_runtime_pending"
     }
   ],
@@ -7913,6 +7919,22 @@
       "implementation_status": "Adjusted resetDocument current-version predicate without changing document format or general migration behavior.",
       "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
       "verification_evidence": "Static cross-file review of index.html snapshot/import validators and connection-model.js; no automated tests or compilation run under user policy."
+    },
+    {
+      "id": "RD-AUDIT-330",
+      "record_type": "audit_remediation",
+      "module": "PDF import / crop pointer lifecycle",
+      "source": "V10 scheduled line-by-line review of assets/pdf-import.js lines 1–59 at blob a11e5b5808ce59a665f8272bc8003611b2cb891e",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT",
+      "created_at": "2026-11-05",
+      "target_version": "V330-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "رگرسیون ساعتی، بررسی خط‌به‌خط، اصلاح و پوش ایرادهای واقعی با حفظ تست ران‌تایم برای کاربر",
+      "assistant_interpretation": "Restore previous PDF crop when pointer capture is lost unexpectedly, matching the fixed DXF crop cancellation contract.",
+      "implementation_status": "Only pointerup commits a valid PDF crop; pointercancel/lostpointercapture revert. PDF assets now use versioned cache references.",
+      "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
+      "verification_evidence": "Static review of PDF crop lifecycle lines 31–36 and matching DXF crop lifecycle; automated tests and builds not run."
     }
   ],
   "analyses": [
@@ -9352,6 +9374,12 @@
       "date": "2026-11-05",
       "decision": "A revision with explicit legacy connectionModel must be migrated independently. Inherited current state applies only when revision has no marker, preserving legacy compatibility.",
       "remaining_risks": "No user runtime validation. Cross-store storage atomicity and browser recovery acceptance remain separate outstanding concerns."
+    },
+    {
+      "id": "RD-AUDIT-330-analysis",
+      "date": "2026-11-05",
+      "decision": "Treat lostpointercapture as cancellation, not a successful crop; preserve previous crop on interrupted gesture. Align PDF module cache references and existing Project Evolution identity fields in same source release.",
+      "remaining_risks": "User must validate PDF crop cancellation and import on browser/device. No tests or builds run per user policy."
     }
   ],
   "deferred_scope": [
@@ -10625,13 +10653,19 @@
       "date": "2026-11-05",
       "change": "اصلاح تصمیم مهاجرت Revision دارای نشانگر نسخه قدیمی: نسخه صریح snapshot دیگر با وضعیت نسخه جاری سند والد نادیده گرفته نمی‌شود؛ snapshots فاقد نشانگر همچنان وضعیت والد را به ارث می‌برند.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V330-R",
+      "date": "2026-11-05",
+      "change": "لغو یا ازدست‌رفتن pointer capture در برش PDF دیگر تغییر نیمه‌تمام را ثبت نمی‌کند؛ بازگردانی کادر قبلی و هماهنگ‌سازی کش ماژول PDF و شناسه‌های نسخه انجام شد.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V329-R",
+    "release": "V330-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "V329-R: explicit legacy Revision connectionModel overrides inherited current-version state. Source review only; AUTOMATED_TESTS=NOT_RUN and BUILD_VALIDATION=NOT_RUN (USER_TESTING_POLICY)."
+    "audit": "V330-R: PDF crop interrupted gestures now roll back; static review only; AUTOMATED_TESTS=NOT_RUN, BUILD_VALIDATION=NOT_RUN (USER_TESTING_POLICY)."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
