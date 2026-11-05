@@ -59,7 +59,8 @@
  function resetDocument(input,inheritedCurrent=false){
   const d=JSON.parse(JSON.stringify(input));
   if(!Array.isArray(d.devices)||!Array.isArray(d.cables))throw Error('Invalid connection document');
-  const current=d.connectionModel===version||inheritedCurrent;
+  // An explicit legacy revision marker overrides the parent's current version.
+  const current=d.connectionModel===version||(inheritedCurrent&&d.connectionModel==null);
   if(!current){
    for(const v of d.devices)v.ports=global.RoomEquipment.isArchitecture(v)||global.RoomEquipment.definitionFor(v)?[]:(v.category==='loads'?(consumers().find(t=>t.kind===v.kind)?.ports||loadPorts()):equipmentPorts()).map((p,i)=>({...p,id:v.id+'-connection-'+i}));
    d.cables=[];

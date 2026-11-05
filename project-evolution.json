@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V328-R",
+  "current_source_release": "V329-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1741,6 +1741,12 @@
       "version": "V326-R",
       "date": "2026-11-04",
       "change": "پاک‌سازی ناخواسته شورتکات‌های ذخیره‌شده در اولین بازشدن برنامه را برطرف کردم و نسخه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V329-R",
+      "date": "2026-11-05",
+      "change": "اصلاح تصمیم مهاجرت Revision دارای نشانگر نسخه قدیمی: نسخه صریح snapshot دیگر با وضعیت نسخه جاری سند والد نادیده گرفته نمی‌شود؛ snapshots فاقد نشانگر همچنان وضعیت والد را به ارث می‌برند.",
       "status": "source_reviewed_runtime_pending"
     }
   ],
@@ -7891,6 +7897,22 @@
       "implementation_status": "Removed destructive startup reset/backup cleanup; pre-migration local and IndexedDB originals retained; Web Locks gate precedes all writes; complete revision view restore with validation; locked dependencies and AST test harnesses; byte-budget undo pruning.",
       "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
       "verification_evidence": "npm test: 140 passed, 0 failed, 0 skipped; real two-tab browser test added but Chromium install returned truncated downloads; browser launch failed before test execution."
+    },
+    {
+      "id": "RD-AUDIT-329",
+      "record_type": "audit_remediation",
+      "module": "Physical connections / Revision migration",
+      "source": "RoomDesigner V10 live main source review",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT",
+      "created_at": "2026-11-05",
+      "target_version": "V329-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "کاملا اصلاح و پوش کن",
+      "assistant_interpretation": "Respect a revision snapshot's explicit connectionModel version when migrating nested revisions; inherit the parent only when the snapshot has no version marker.",
+      "implementation_status": "Adjusted resetDocument current-version predicate without changing document format or general migration behavior.",
+      "runtime_status": "BROWSER_RUNTIME=NOT_RUN; DEVICE_ACCEPTANCE=PENDING_USER",
+      "verification_evidence": "Static cross-file review of index.html snapshot/import validators and connection-model.js; no automated tests or compilation run under user policy."
     }
   ],
   "analyses": [
@@ -9324,6 +9346,12 @@
       "date": "2026-11-04",
       "decision": "Use one writer for the page lifetime rather than non-atomic localStorage leases. Fail closed in unsupported contexts. Archive legacy bytes before migration, retain recovery DB and immutable first mirror. Restore the same revision-owned display fields recorded by snapshots. Replace obsolete assertions against removed products/modal UI with active catalog and DOM integration contracts.",
       "remaining_risks": "Real two-tab/browser/device acceptance pending: Chromium binaries could not be downloaded. Old application tabs predating Web Locks must be closed during upgrade. Rendering changes deferred until real-device profiling; undo keeps one newest snapshot even if individually larger than the 32 MiB budget. Recovery bundles are archives, not roomplan imports."
+    },
+    {
+      "id": "RD-AUDIT-329-analysis",
+      "date": "2026-11-05",
+      "decision": "A revision with explicit legacy connectionModel must be migrated independently. Inherited current state applies only when revision has no marker, preserving legacy compatibility.",
+      "remaining_risks": "No user runtime validation. Cross-store storage atomicity and browser recovery acceptance remain separate outstanding concerns."
     }
   ],
   "deferred_scope": [
@@ -10591,13 +10619,19 @@
       "date": "2026-11-05",
       "change": "بازماندن برش ناتمام DXF پس از لغو اشاره‌گر یا از دست رفتن غیرمنتظره کنترل آن را اصلاح کردم و نسخه برنامه را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V329-R",
+      "date": "2026-11-05",
+      "change": "اصلاح تصمیم مهاجرت Revision دارای نشانگر نسخه قدیمی: نسخه صریح snapshot دیگر با وضعیت نسخه جاری سند والد نادیده گرفته نمی‌شود؛ snapshots فاقد نشانگر همچنان وضعیت والد را به ارث می‌برند.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V328-R",
+    "release": "V329-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "V328-R: DXF crop pointer cancellation or unexpected lostpointercapture now restores previous crop rather than accepting an unfinished drag. Static review only; automated tests NOT_RUN (USER_TESTING_POLICY)."
+    "audit": "V329-R: explicit legacy Revision connectionModel overrides inherited current-version state. Source review only; AUTOMATED_TESTS=NOT_RUN and BUILD_VALIDATION=NOT_RUN (USER_TESTING_POLICY)."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
