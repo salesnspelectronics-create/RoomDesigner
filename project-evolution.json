@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V327-R",
-    "project_evolution_version": "V327-R",
+    "software_version": "V328-R",
+    "project_evolution_version": "V328-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -61,7 +61,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V327-R",
+  "current_source_release": "V328-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -10585,13 +10585,19 @@
       "date": "2026-11-05",
       "change": "مغایرت شماره نسخه بسته و فایل قفل وابستگی‌ها با نسخه برنامه را اصلاح کردم و نمایش نسخه، کلیدهای کش و سند تکامل پروژه را هماهنگ کردم.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V328-R",
+      "date": "2026-11-05",
+      "change": "بازماندن برش ناتمام DXF پس از لغو اشاره‌گر یا از دست رفتن غیرمنتظره کنترل آن را اصلاح کردم و نسخه برنامه را هماهنگ کردم.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V327-R",
+    "release": "V328-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "BROWSER_RUNTIME=PENDING_USER",
-    "audit": "V327-R: aligned package.json and package-lock.json version metadata with current UI release version; package version was stale at 325.0.0 while UI/ledger were V326-R. Updated cache keys and UI/ledger to V327-R. Static source inspection only; automated tests NOT_RUN under user testing policy."
+    "audit": "V328-R: DXF crop pointer cancellation or unexpected lostpointercapture now restores previous crop rather than accepting an unfinished drag. Static review only; automated tests NOT_RUN (USER_TESTING_POLICY)."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
