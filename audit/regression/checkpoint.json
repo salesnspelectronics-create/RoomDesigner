@@ -2,21 +2,21 @@
   "format": 1,
   "repository": "salesnspelectronics-create/RoomDesigner",
   "branch": "main",
-  "execution_source": "MANUAL_FEATURE_IMPORT",
-  "execution_timestamp": "2026-11-07T13:24:01.749722+00:00",
-  "source_head": "a6d294b4b0b529f8f096c37b72296189900b8961",
+  "execution_source": "MANUAL_REMEDIATION",
+  "execution_timestamp": "2026-11-07",
+  "source_head": "1c29acda04c241d0982683f6bee6749f70fc7a41",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V334",
+  "product_release": "V335-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "830de87f228bbbaea6b711844b18c3ca5a6574c3",
+  "inventory_blob_sha": "269ba0f4ece66b5354d8dcd32bdacf624c796585",
   "policy_path": "audit/regression/POLICY.md",
   "writer_lock": {
     "ref": "refs/heads/roomdesigner-regression-lock",
-    "owner_commit": "10e42fdd65717136ac29bbb2e146aea3a7edc2fc",
-    "lifetime": "Owned for checkpoint delivery; release via child FREE commit and exact expected_sha readback"
+    "owner_commit": "e7961a54996ede37b7e4ff2f9043d78ef61f6371",
+    "lifetime": "Owned for atomic V335-R delivery; append-only child FREE release after independent readback"
   },
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim.",
   "segments": [
     {
       "path": "index.html",
@@ -35,7 +35,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -52,7 +53,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -73,7 +75,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -92,7 +95,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "storage-safety.js",
@@ -142,7 +146,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "storage-safety.js",
@@ -176,7 +181,8 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -197,7 +203,8 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -218,7 +225,8 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -240,7 +248,8 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "index.html",
@@ -259,7 +268,8 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V334 changed source; preserve history without coverage credit"
+      "invalidation_reason": "V334 changed source; preserve history without coverage credit",
+      "stale": true
     },
     {
       "path": "assets/dxf-import.css",
@@ -458,6 +468,15 @@
       "root_cause": "PDF import dialog could close during await onImport(result), allowing another dialog while canvas mutation continues.",
       "correction": "Guard close while busy; refuse replacement dialog until active import finishes; close(true) only after successful callback.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD335-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "fileInput change handler / .roomplan",
+      "root_cause": "Async File.text could resolve after active document edits or navigation, then apply stale import and replace newer state.",
+      "correction": "Capture original document identity, persistence epoch, and exact in-memory serialized document; reject if changed after file read before preparing/applying import.",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "last_completed_segment": {
@@ -490,7 +509,7 @@
     "browser_runtime": "NOT_RUN",
     "runtime_acceptance": "PENDING_USER",
     "testing_owner": "USER",
-    "static_diff": "Reviewed unified menu, common DXF callback, worker cancellation/timeouts, local pinned asset imports and vendor license/source notices. No product execution."
+    "static_diff": "Reviewed document identity/epoch/content guard on awaited file read; version and metadata synced. Open storage architecture issues preserved."
   },
   "lock_recovery": {
     "authorization": "Explicit one-time user governance exception in current conversation: مجاز لست; prior user statement that Work completed reconciled with checkpoint owner",
@@ -505,8 +524,8 @@
     "limitation": "No independent old Work process liveness record; explicit user exception is authority. No future automatic takeover authorized."
   },
   "inventory_refresh": {
-    "method": "tools/regression-inventory.py --staged; Git blob metadata only",
-    "baseline_head": "a6d294b4b0b529f8f096c37b72296189900b8961",
+    "method": "Deterministic pinned Git-blob inventory update, source files not executed",
+    "baseline_head": "1c29acda04c241d0982683f6bee6749f70fc7a41",
     "entries": 566,
     "no_product_execution": true
   },

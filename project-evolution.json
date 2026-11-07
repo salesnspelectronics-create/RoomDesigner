@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V334",
-    "project_evolution_version": "V334",
+    "software_version": "V335-R",
+    "project_evolution_version": "V335-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,7 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V335-R; historical audit evidence remains pending reconciliation",
+    "next_due_boundary": "V340-R; historical audit evidence remains pending reconciliation",
     "historical_reconciliation_status": "OPEN; stale V290 future-boundary label superseded in V332-R; no historical audit credited by this correction"
   },
   "_file_documentation": {
@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V334",
+  "current_source_release": "V335-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1779,6 +1779,12 @@
       "date": "2026-11-07",
       "change": "منوی واحد Import، تبدیل محلی DWG و ورود از همان پنجره کامل DXF؛ حفظ PDF، راهنمای تبدیل CDR و ثبت محدودیت‌ها.",
       "status": "source_implemented_runtime_pending"
+    },
+    {
+      "version": "V335-R",
+      "date": "2026-11-07",
+      "change": "جلوگیری از جایگزینی نقشه با فایل پروژه‌ای که خواندن ناهم‌زمان آن پس از تغییر نقشه تمام می‌شود؛ کنترل هویت سند، دوره ذخیره و محتوای سند پیش از اعمال Import.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "records": [
@@ -8013,6 +8019,22 @@
         "assets/dwg-worker.mjs",
         "IMPORT-FORMATS.md"
       ]
+    },
+    {
+      "id": "RD335-01",
+      "record_type": "engineering_remediation",
+      "module": "Import / document state",
+      "source": "Live main 1c29acda04c241d0982683f6bee6749f70fc7a41: index.html fileInput change async text()",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT",
+      "created_at": "2026-11-07",
+      "target_version": "V335-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "تمام مواردی که نیاز به اصلاح داشت را حل کن و Push کن؛ Runtime با من.",
+      "assistant_interpretation": "Reject asynchronous .roomplan file import when the active document or its in-memory contents changed while awaiting file text, preventing stale file contents replacing newer unsaved work.",
+      "implementation_status": "Pre-await identity/epoch/content snapshot; exact post-await guard before prepareRoomImport/applyRoomImport. No storage format or cross-store authority changed.",
+      "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; BUILD_VALIDATION=NOT_RUN",
+      "verification_evidence": "Pinned GitHub source and static diff; no product execution."
     }
   ],
   "analyses": [
@@ -10779,13 +10801,19 @@
       "date": "2026-11-07",
       "change": "منوی واحد Import، تبدیل محلی DWG و ورود از همان پنجره کامل DXF؛ حفظ PDF، راهنمای تبدیل CDR و ثبت محدودیت‌ها.",
       "status": "source_implemented_runtime_pending"
+    },
+    {
+      "version": "V335-R",
+      "date": "2026-11-07",
+      "change": "جلوگیری از جایگزینی نقشه با فایل پروژه‌ای که خواندن ناهم‌زمان آن پس از تغییر نقشه تمام می‌شود؛ کنترل هویت سند، دوره ذخیره و محتوای سند پیش از اعمال Import.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V333-R",
+    "release": "V335-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "PENDING_USER",
-    "audit": "PDF async import dialog guard statically inspected. OPEN-CROSS-STORE, OPEN-COMPENSATION and OPEN-GOVERNANCE remain unresolved; no tests/build/browser/runtime executed."
+    "audit": "V335 boundary: exact source-level diff review and backlog inspection performed without tests/build. Historical multiple-of-five evidence remains OPEN and is not retroactively credited; earlier source findings remain pending user runtime acceptance."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
