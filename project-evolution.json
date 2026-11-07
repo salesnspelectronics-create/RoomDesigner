@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V335-R",
-    "project_evolution_version": "V335-R",
+    "software_version": "V336-R",
+    "project_evolution_version": "V336-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V335-R",
+  "current_source_release": "V336-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -10807,13 +10807,19 @@
       "date": "2026-11-07",
       "change": "جلوگیری از جایگزینی نقشه با فایل پروژه‌ای که خواندن ناهم‌زمان آن پس از تغییر نقشه تمام می‌شود؛ کنترل هویت سند، دوره ذخیره و محتوای سند پیش از اعمال Import.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V336-R",
+      "date": "2026-11-08",
+      "change": "جلوگیری از اعمال ورود DXF/DWG پس از ویرایش نقشه در زمان تبدیل یا پیش‌نمایش؛ کنترل هویت، دوره و محتوای سند.",
+      "status": "source_implemented_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V335-R",
+    "release": "V336-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "PENDING_USER",
-    "audit": "V335 boundary: exact source-level diff review and backlog inspection performed without tests/build. Historical multiple-of-five evidence remains OPEN and is not retroactively credited; earlier source findings remain pending user runtime acceptance."
+    "audit": "DXF/DWG asynchronous import stale-document guard reviewed statically; no build/tests."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
