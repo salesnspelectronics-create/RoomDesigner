@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V331-R",
-    "project_evolution_version": "V331-R",
+    "software_version": "V332-R",
+    "project_evolution_version": "V332-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -38,7 +38,8 @@
     "status": "adopted_for_future_releases",
     "multiple_of_five_release_gate": true,
     "rule": "At V10, V15, V20... record applicable source maintenance and audit evidence; no claim of successful runtime test without user confirmation.",
-    "next_due_boundary": "V290 (V155–V225 historical audit records remain unreconciled)"
+    "next_due_boundary": "V335-R; historical audit evidence remains pending reconciliation",
+    "historical_reconciliation_status": "OPEN; stale V290 future-boundary label superseded in V332-R; no historical audit credited by this correction"
   },
   "_file_documentation": {
     "title": "RoomDesigner Project Evolution",
@@ -61,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V331-R",
+  "current_source_release": "V332-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1759,6 +1760,12 @@
       "version": "V331-R",
       "date": "2026-11-05",
       "change": "ترمیم وضعیت rd_last پس از شکست ذخیره Revision، جلوگیری از بازنویسی Journal معلق و توقف ادامه ذخیره بر پایه آرشیو منقضی؛ ثبت checkpoint و فهرست پایدار رگرسیون و پروتکل نویسنده انحصاری.",
+      "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V332-R",
+      "date": "2026-11-07",
+      "change": "اعتبارسنجی کامل Journal و حفظ رکوردهای ناقص؛ حفاظت اطلاعات بازیابی در شکست پاک‌سازی و rollback، توقف autosave و مهاجرت تا تعیین‌تکلیف بازیابی؛ تکمیل بسته خروجی و تطبیق مالک Journal در callback آینه.",
       "status": "source_reviewed_runtime_pending"
     }
   ],
@@ -7957,6 +7964,22 @@
       "implementation_status": "Source patches plus Git-backed inventory/checkpoint/policy; exclusive lock branch protocol and existing V10 prompt integration.",
       "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN; BUILD_VALIDATION=NOT_RUN; BROWSER_RUNTIME=NOT_RUN",
       "verification_evidence": "Static source and entire diff review only. See audit/regression/checkpoint.json and POLICY.md; delivery commit is the Git commit containing this record."
+    },
+    {
+      "id": "RD-REMEDIATION-332",
+      "record_type": "engineering_remediation",
+      "module": "Persistence / Journal schema / compensation / regression governance",
+      "source": "Live main e29aaf5f89113d756c07b2b6a52828cc3b17b9cb; explicit one-time lock-recovery exception authorized by user in current Work conversation",
+      "source_actor": "user",
+      "recorded_by": "ChatGPT Work",
+      "created_at": "2026-11-07",
+      "target_version": "V332-R",
+      "status": "source_fixed_runtime_pending",
+      "user_statement": "Recover the stale Work lock, fix independently evidenced defects, push to main, preserve durable regression; all testing belongs to USER. One-time policy exception explicitly authorized: مجاز لست.",
+      "assistant_interpretation": "Validate all journal entries before destructuring/replay; keep raw recovery records and prevent autosave/migration from overwriting unresolved startup recovery; retain journals after local rollback until mirror review; restore rejected profile write view and bind async import cleanup to exact journal; preserve current types/catalog/commit marker in recovery export.",
+      "implementation_status": "اعتبارسنجی کامل Journal و حفظ رکوردهای ناقص؛ حفاظت اطلاعات بازیابی در شکست پاک‌سازی و rollback، توقف autosave و مهاجرت تا تعیین‌تکلیف بازیابی؛ تکمیل بسته خروجی و تطبیق مالک Journal در callback آینه.",
+      "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; BUILD_VALIDATION=NOT_RUN",
+      "verification_evidence": "Static source/diff inspection only; pinned manifest/tree comparison; all branches enumerated, only main and coordination lock. Original checkpoint preserves findings and exact-blob coverage. Lock recovery FREE 8caba83941a2fd0d3411566fccb805e131c2ac7f, owner cc9264598dde82189619ed9782cb6c1699929a71"
     }
   ],
   "analyses": [
@@ -9408,6 +9431,12 @@
       "date": "2026-11-05",
       "decision": "Failed safeStorage writes shadow durable rd_last; restore prior rd_last as well as profiles before queued mirror compensation, retaining journal unless both restorations and owned mirror succeed. Block new Import/Revision while either recovery journal exists. After asynchronous history archive, recheck document identity, epoch, local snapshots and journals before mutation. Store deterministic Git-blob inventory and noncontiguous actual review ranges without claiming repository-wide review.",
       "remaining_risks": "No cross-store ACID transaction; generation and checksum sidecars cannot rank divergent valid snapshots. Crash before compensation, absent previous snapshot, malformed journals and storage failures need further review/user runtime acceptance. Preserve pre-migration archives and valid legacy local precedence. No automated tests/build/runtime executed."
+    },
+    {
+      "id": "RD-REMEDIATION-332-analysis",
+      "date": "2026-11-07",
+      "decision": "Keep raw legacy storage formats; reject malformed/duplicate/mismatched journal key/value/hash arrays before replay; unsupported/future records remain exportable. Local rollback is not proof of mirror compensation, so journal and autosave barrier persist for explicit review. Preserve failed-delete raw bytes in safeStorage fallback. Repair profile shadow after rejected profile save. Capture exact journal in mirror completion. Export related current values and stop stale acknowledgement. One-time lock exception does not enable future stealing.",
+      "remaining_risks": "No cross-store ACID or authority between divergent valid snapshots. Crash before compensation, storage denial, absent prior snapshot and download retention remain user-review risks. Historical multiple-of-five audit evidence remains incomplete. No tests/build/compilation/browser/product execution."
     }
   ],
   "deferred_scope": [
@@ -10693,13 +10722,19 @@
       "date": "2026-11-05",
       "change": "ترمیم وضعیت rd_last پس از شکست ذخیره Revision، جلوگیری از بازنویسی Journal معلق و توقف ادامه ذخیره بر پایه آرشیو منقضی؛ ثبت checkpoint و فهرست پایدار رگرسیون و پروتکل نویسنده انحصاری.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V332-R",
+      "date": "2026-11-07",
+      "change": "اعتبارسنجی کامل Journal و حفظ رکوردهای ناقص؛ حفاظت اطلاعات بازیابی در شکست پاک‌سازی و rollback، توقف autosave و مهاجرت تا تعیین‌تکلیف بازیابی؛ تکمیل بسته خروجی و تطبیق مالک Journal در callback آینه.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V331-R",
+    "release": "V332-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "PENDING_USER",
-    "audit": "Static source/diff review only; tests/build/browser NOT_RUN by user policy. V330 historical boundary/audit reconciliation remains open; this release does not close it."
+    "audit": "No cross-store ACID or authority between divergent valid snapshots. Crash before compensation, storage denial, absent prior snapshot and download retention remain user-review risks. Historical multiple-of-five audit evidence remains incomplete. No tests/build/compilation/browser/product execution."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

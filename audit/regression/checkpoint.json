@@ -2,21 +2,21 @@
   "format": 1,
   "repository": "salesnspelectronics-create/RoomDesigner",
   "branch": "main",
-  "execution_source": "MANUAL_WORK_ENGINEERING_REMEDIATION",
-  "execution_timestamp": "2026-11-05T14:44:01.133195+00:00",
-  "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+  "execution_source": "MANUAL_WORK_RECOVERY_REMEDIATION",
+  "execution_timestamp": "2026-11-07T01:53:15.692851+00:00",
+  "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V331-R",
+  "product_release": "V332-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "1e24b67466daebd6bbad8d2e8f4556aad1e2df74",
+  "inventory_blob_sha": "e1a12ca147c965a9cd3f4bdffda797d693cc92e1",
   "policy_path": "audit/regression/POLICY.md",
   "writer_lock": {
     "ref": "refs/heads/roomdesigner-regression-lock",
-    "owner_commit": "f2c3cf5e3b740dddf89471a32f67a2a6b73d7c16",
-    "lifetime": "owned during delivery; release via child FREE sentinel commit after readback"
+    "owner_commit": "cc9264598dde82189619ed9782cb6c1699929a71",
+    "lifetime": "Owned for atomic delivery; release verified separately on append-only coordination ref, never self-reference a future commit"
   },
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Focused noncontiguous review only. No coverage imported from truncated calls or unverifiable prior sessions; original blobs are not credited by candidate coverage. Product Evolution inspected as ledger, not reviewed line-by-line.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete.",
   "segments": [
     {
       "path": "index.html",
@@ -25,14 +25,17 @@
       "actual_read_end_line": 282,
       "reviewed_start_line": 270,
       "reviewed_end_line": 282,
-      "status": "REVIEWED_WITH_FINDING",
+      "status": "STALE_BLOB",
       "findings": [
         "RD331-01"
       ],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_WITH_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Source blob changed in V332-R; historical record retained"
     },
     {
       "path": "index.html",
@@ -41,12 +44,15 @@
       "actual_read_end_line": 440,
       "reviewed_start_line": 350,
       "reviewed_end_line": 440,
-      "status": "REVIEWED_NO_FINDING",
+      "status": "STALE_BLOB",
       "findings": [],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_NO_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Source blob changed in V332-R; historical record retained"
     },
     {
       "path": "index.html",
@@ -55,7 +61,7 @@
       "actual_read_end_line": 1530,
       "reviewed_start_line": 1440,
       "reviewed_end_line": 1530,
-      "status": "REVIEWED_WITH_FINDING",
+      "status": "STALE_BLOB",
       "findings": [
         "RD331-01",
         "RD331-02",
@@ -64,7 +70,10 @@
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_WITH_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Source blob changed in V332-R; historical record retained"
     },
     {
       "path": "index.html",
@@ -73,14 +82,17 @@
       "actual_read_end_line": 1835,
       "reviewed_start_line": 1783,
       "reviewed_end_line": 1835,
-      "status": "REVIEWED_WITH_FINDING",
+      "status": "STALE_BLOB",
       "findings": [
         "RD331-02"
       ],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_WITH_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Source blob changed in V332-R; historical record retained"
     },
     {
       "path": "storage-safety.js",
@@ -89,12 +101,15 @@
       "actual_read_end_line": 32,
       "reviewed_start_line": 1,
       "reviewed_end_line": 32,
-      "status": "REVIEWED_NO_FINDING",
+      "status": "INVALID_HISTORICAL_RANGE",
       "findings": [],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_NO_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Historical claimed range exceeds actual pinned file length; original record retained without current coverage credit"
     },
     {
       "path": "tools/regression-inventory.py",
@@ -117,14 +132,139 @@
       "actual_read_end_line": 1970,
       "reviewed_start_line": 1904,
       "reviewed_end_line": 1970,
-      "status": "REVIEWED_WITH_FINDING",
+      "status": "STALE_BLOB",
       "findings": [
         "OPEN-JOURNAL-SCHEMA"
       ],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
       "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-      "truncated": false
+      "truncated": false,
+      "historical_status": "REVIEWED_WITH_FINDING",
+      "coverage_valid": false,
+      "invalidation_reason": "Source blob changed in V332-R; historical record retained"
+    },
+    {
+      "path": "storage-safety.js",
+      "blob_sha": "71a0d2be036955a32d9a67596a967885144b59ea",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 30,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 30,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "bdb00f96d27c1b83546bd3d848db3a588bfff83e",
+      "actual_read_start_line": 270,
+      "actual_read_end_line": 286,
+      "reviewed_start_line": 270,
+      "reviewed_end_line": 286,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD332-06"
+      ],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "bdb00f96d27c1b83546bd3d848db3a588bfff83e",
+      "actual_read_start_line": 380,
+      "actual_read_end_line": 414,
+      "reviewed_start_line": 380,
+      "reviewed_end_line": 414,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD332-02",
+        "RD332-06",
+        "RD332-07"
+      ],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "bdb00f96d27c1b83546bd3d848db3a588bfff83e",
+      "actual_read_start_line": 1444,
+      "actual_read_end_line": 1560,
+      "reviewed_start_line": 1444,
+      "reviewed_end_line": 1560,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "OPEN-JOURNAL-SCHEMA",
+        "RD332-02",
+        "RD332-04"
+      ],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "bdb00f96d27c1b83546bd3d848db3a588bfff83e",
+      "actual_read_start_line": 1933,
+      "actual_read_end_line": 2057,
+      "reviewed_start_line": 1933,
+      "reviewed_end_line": 2057,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "OPEN-JOURNAL-SCHEMA",
+        "RD332-03",
+        "RD332-05",
+        "RD332-06"
+      ],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "bdb00f96d27c1b83546bd3d848db3a588bfff83e",
+      "actual_read_start_line": 2408,
+      "actual_read_end_line": 2426,
+      "reviewed_start_line": 2408,
+      "reviewed_end_line": 2426,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD332-06"
+      ],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
+    },
+    {
+      "path": "assets/dxf-import.css",
+      "blob_sha": "719cd6e25a4f443fb33c89eaa5209ee4efeec2e5",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 14,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 14,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+      "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+      "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+      "truncated": false,
+      "coverage_valid": true
     }
   ],
   "findings": [
@@ -133,72 +273,175 @@
       "status": "SOURCE_FIXED_RUNTIME_PENDING",
       "path": "index.html",
       "root_cause": "Failed safeStorage rd_last write returns false but shadows durable previous bytes; saveLocal did not restore rd_last, making mirror repair ownership comparison fail.",
-      "correction": "Restore prior rd_last and rd_profiles; require both successful restores before clearing journal after owned mirror compensation."
+      "correction": "Restore prior rd_last and rd_profiles; require both successful restores before clearing journal after owned mirror compensation.",
+      "source_recheck": "Original correction remains present in V332-R saveLocal/applyRoomImport; no runtime acceptance claimed"
     },
     {
       "id": "RD331-02",
       "status": "SOURCE_FIXED_RUNTIME_PENDING",
       "path": "index.html",
       "root_cause": "New Import/Revision unconditionally replaced pending recovery intents, destroying old rollback values.",
-      "correction": "Refuse new Import/Revision when either raw pending journal exists; recheck after async archive."
+      "correction": "Refuse new Import/Revision when either raw pending journal exists; recheck after async archive.",
+      "source_recheck": "Original correction remains present in V332-R saveLocal/applyRoomImport; no runtime acceptance claimed"
     },
     {
       "id": "RD331-03",
       "status": "SOURCE_FIXED_RUNTIME_PENDING",
       "path": "index.html",
       "root_cause": "saveLocal captured rollback snapshots before awaiting archive export; later edits/saves/imports could invalidate those snapshots.",
-      "correction": "Recheck document identity/epoch, both local snapshot values and journal absence before mutation."
+      "correction": "Recheck document identity/epoch, both local snapshot values and journal absence before mutation.",
+      "source_recheck": "Original correction remains present in V332-R saveLocal/applyRoomImport; no runtime acceptance claimed"
     },
     {
       "id": "OPEN-CROSS-STORE",
       "status": "OPEN",
-      "detail": "No atomic commit/authoritative arbitration across LocalStorage and IndexedDB. Torn generation or commit sidecars cannot rank distinct valid documents."
+      "detail": "No atomic commit/authoritative arbitration across LocalStorage and IndexedDB. Torn generation or commit sidecars cannot rank distinct valid documents.",
+      "source_assessment": "OPEN: legacy raw payloads, non-atomic sidecars and distinct transactions remain; no safe authoritative ordering of divergent valid documents. Requires agreed backward-compatible transaction/selection design, plus user interruption tests."
     },
     {
       "id": "OPEN-COMPENSATION",
       "status": "OPEN",
-      "detail": "Abrupt termination before compensation commits, absent previous local snapshot and storage denial still require manual recovery; no runtime acceptance."
+      "detail": "Abrupt termination before compensation commits, absent previous local snapshot and storage denial still require manual recovery; no runtime acceptance.",
+      "source_assessment": "PARTIAL_SOURCE_FIX: startup rollback keeps journals; cleanup failure retains visible raw intent; failed profiles restored explicitly; autosave/migrations fenced. Still OPEN for abrupt termination, unavailable prior snapshot, durable denial and cross-store compensation."
     },
     {
       "id": "OPEN-JOURNAL-SCHEMA",
-      "status": "OPEN_STATIC_RISK",
-      "detail": "Startup expected-entry destructuring and incomplete previous-entry value/uniqueness validation need focused review. No malformed-journal repair claimed."
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "detail": "Startup expected-entry destructuring and incomplete previous-entry value/uniqueness validation need focused review. No malformed-journal repair claimed.",
+      "correction": "validRecoveryJournal validates all entries, unique allowed key sets, string/null old values and exact checksum sets before destructuring; malformed/unsupported records retained; simultaneous intents not replayed"
     },
     {
       "id": "OPEN-GOVERNANCE",
       "status": "OPEN",
-      "detail": "Historical multiple-of-five audit boundary reconciliation is not completed by this release."
+      "detail": "Historical multiple-of-five audit boundary reconciliation is not completed by this release.",
+      "source_assessment": "PARTIAL_SOURCE_FIX: explicit one-time lock exception and lineage documented; original checkpoint authoritative; stale V290 next-due label corrected to V335-R without historical credit. Historical audit reconciliation remains OPEN."
+    },
+    {
+      "id": "RD332-02",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "clearRecoveryJournal",
+      "root_cause": "Failed safeStorage journal deletion shadowed durable intent with null, hiding recovery export and allowing another transaction",
+      "correction": "Restore raw intent to fallback on failed deletion and retain autosave recovery barrier"
+    },
+    {
+      "id": "RD332-03",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "startup Revision/Import recovery",
+      "root_cause": "Startup local rollback cleared undo intent before mirror compensation, allowing later stale mirror promotion",
+      "correction": "Retain raw intent across reloads and suppress automatic mirror recovery until explicit review"
+    },
+    {
+      "id": "RD332-04",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "saveLocal profile failure",
+      "root_cause": "Rejected profile write shadows previous durable bytes; comparing the shadow does not restore prior state",
+      "correction": "Explicitly restore previous profiles before clearing journal; retain on failed restoration"
+    },
+    {
+      "id": "RD332-05",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "offerPendingJournalReview",
+      "root_cause": "Recovery bundle omitted current types/catalog/import marker and acknowledgement ignored related-key changes; unreadable IndexedDB prevented any export",
+      "correction": "Export/capture related values, reject stale acknowledgement, clearly mark partial mirror-unavailable export and require user confirmation"
+    },
+    {
+      "id": "RD332-06",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "startup/saveAuto/migrations",
+      "root_cause": "Unresolved startup or failed-compensation records allowed autosave/migration to overwrite recovery sources",
+      "correction": "Fence autosave and startup equipment/connection/SVG storage migrations until journal acknowledgement; conflicting journals not replayed"
+    },
+    {
+      "id": "RD332-07",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "function": "saveAuto mirror completion",
+      "root_cause": "Import cleanup callback read whichever journal was current instead of binding the save to a captured intent",
+      "correction": "Require exact captured import-journal bytes plus current generation/payload/marker before cleanup"
     }
   ],
   "last_completed_segment": {
-    "path": "index.html",
-    "blob_sha": "7a6737b59c18cd68ed69a03984ce82e727f79c39",
-    "actual_read_start_line": 1904,
-    "actual_read_end_line": 1970,
-    "reviewed_start_line": 1904,
-    "reviewed_end_line": 1970,
-    "status": "REVIEWED_WITH_FINDING",
-    "findings": [
-      "OPEN-JOURNAL-SCHEMA"
-    ],
-    "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
-    "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
-    "review_basis": "candidate blob after source patch; exact blob is in this delivery commit",
-    "truncated": false
-  },
-  "next_segment": {
     "path": "assets/dxf-import.css",
     "blob_sha": "719cd6e25a4f443fb33c89eaa5209ee4efeec2e5",
+    "actual_read_start_line": 1,
+    "actual_read_end_line": 14,
+    "reviewed_start_line": 1,
+    "reviewed_end_line": 14,
+    "status": "REVIEWED_NO_FINDING",
+    "findings": [],
+    "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
+    "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+    "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
+    "truncated": false,
+    "coverage_valid": true
+  },
+  "next_segment": {
+    "path": "assets/dxf-import.js",
+    "blob_sha": "c7468f6b92667073a59bc79cc0bd8468612c3279",
     "start_line": 1,
-    "end_line": 14,
+    "end_line": 97,
     "status": "UNREAD",
-    "reason": "Earliest uncovered eligible manifest path; focused reviews do not skip this frontier."
+    "reason": "Earliest uncovered eligible manifest entry after CSS completion; exploratory DXF reads not credited without bounded long-line slices"
   },
   "validation": {
     "automated_tests": "NOT_RUN — USER_TESTING_POLICY",
     "build": "NOT_RUN",
+    "compilation": "NOT_RUN",
     "browser_runtime": "NOT_RUN",
     "runtime_acceptance": "PENDING_USER",
-    "static_diff": "REVIEWED; source hunks and mechanical version alignment inspected; no product execution"
+    "testing_owner": "USER",
+    "static_diff": "Reviewed source hunks, relevant callers, failure paths and mechanical version alignment; no product code or tests executed"
+  },
+  "lock_recovery": {
+    "authorization": "Explicit one-time user governance exception in current conversation: مجاز لست; prior user statement that Work completed reconciled with checkpoint owner",
+    "previous_owner_commit": "f2c3cf5e3b740dddf89471a32f67a2a6b73d7c16",
+    "recovery_free_commit": "8caba83941a2fd0d3411566fccb805e131c2ac7f",
+    "acquired_owner_commit": "cc9264598dde82189619ed9782cb6c1699929a71",
+    "automation_id": "6aec3b232ca48191ab8341fec2a6502d",
+    "automation_last_recorded_run": "bac372e1-8cec-832c-a851-7d61aa364f3e",
+    "automation_last_recorded_status": "completed",
+    "collision_guard": "At least 300 seconds after confirmed pause; refs/run state reread before recovery",
+    "recovery_updates": "Same-tree append-only children, expected_sha exact, force=false; FREE and ownership independently read back",
+    "limitation": "No independent old Work process liveness record; explicit user exception is authority. No future automatic takeover authorized."
+  },
+  "inventory_refresh": {
+    "method": "All 558 baseline entries compared by exact path/blob to the non-truncated pinned Git tree (560 blobs including excluded checkpoint/inventory); only six changed payloads recomputed from exact candidate bytes",
+    "baseline_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
+    "entries": 558,
+    "modified_entries": [
+      "index.html",
+      "package.json",
+      "package-lock.json",
+      "project-evolution.json",
+      "audit/regression/POLICY.md",
+      "audit/roomdesigner-phase1-open-backlog.md"
+    ],
+    "no_product_execution": true
+  },
+  "branch_review": {
+    "branches": [
+      "main",
+      "roomdesigner-regression-lock"
+    ],
+    "pagination": "REST pages 1 and 2 (empty); connector cursor Mg also exhausted",
+    "merge_base": "73b63743f51b53a242c4527dcdc2a805a543e31e",
+    "lock_compare": "Diverged coordination-only child; empty source file diff; excluded from merge",
+    "source_merges": [],
+    "issues": "REST all-state issues page 1 empty",
+    "pull_requests": "REST all-state pulls page 1 empty"
+  },
+  "warnings": {
+    "confirmed_existing_logs": [],
+    "log_inventory": "No committed .log/warning/error-named artifacts in pinned tree",
+    "potential_static": [
+      "Non-atomic LocalStorage and IndexedDB authority remains OPEN-CROSS-STORE",
+      "Storage denial, missing prior snapshot, compensation interruption and browser download retention remain runtime risks"
+    ],
+    "console_paths": "Existing SVG fallback, DXF safety-limit/save-picker and SVG migration console.warn call sites are potential diagnostics, not observed runtime warnings"
   }
 }

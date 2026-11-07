@@ -72,3 +72,22 @@ not increment product version. A genuine source correction increments V<number>-
 sequentially, preserves numeric package/cache conventions, and updates HTML,
 package metadata and Project Evolution together. Source fixes remain runtime
 pending until the user accepts them.
+
+## One-time recovery authorization — 2026-11-07
+
+The user explicitly authorized the replacement Work executor in the current
+conversation (reply: «مجاز لست») to release only the stale owner
+`f2c3cf5e3b740dddf89471a32f67a2a6b73d7c16`. This is a recorded, consumed
+one-time governance exception to “Never release another owner”, not a general
+expiry, automatic takeover, or authorization for future workers. The user's
+prior statement that Work completed was reconciled with the owner recorded in
+the original checkpoint and the completed Automation run
+`bac372e1-8cec-832c-a851-7d61aa364f3e`. Independent old Work process liveness
+was unavailable; the user's explicit exception is the recovery authority.
+
+The original Automation was paused, the five-minute collision guard elapsed,
+and unchanged main/lock refs were reread. Recovery used a same-tree child FREE
+commit `8caba83941a2fd0d3411566fccb805e131c2ac7f`, exact expected SHA and
+force=false, followed by independent FREE readback and unique child owner
+`cc9264598dde82189619ed9782cb6c1699929a71`, acquired and independently
+read back before source edits. Preserve this history and all ordinary lock rules.
