@@ -4,7 +4,7 @@
 const base=new URL('./vendor/pdfjs/',document.currentScript.src);
 let library,active=null;
 async function open(file,onImport){
- if(active)active.close();
+ if(active&&!active.close())return;
  const dialog=document.createElement('dialog');dialog.id='pdfImportDialog';dialog.dir='rtl';
  dialog.innerHTML=`<div class="pdf-shell"><header><strong>واردکردن صفحات PDF</strong><button type="button" data-pdf-close aria-label="بستن">×</button></header><p data-pdf-name></p><p role="status" data-pdf-status>در حال خواندن فایل…</p><div class="pdf-toolbar"><button data-pdf-all disabled>انتخاب همه</button><button data-pdf-none disabled>پاک‌کردن انتخاب‌ها</button><label>کیفیت عکس <select data-pdf-quality><option value="1500">معمولی</option><option value="2400" selected>بالا</option><option value="3200">بسیار بالا</option></select></label></div><div class="pdf-workspace"><div class="pdf-pages" aria-label="صفحات PDF"></div><section class="pdf-editor"><div class="pdf-editor-heading"><strong data-pdf-page-title>پیش‌نمایش صفحه</strong><button data-pdf-reset disabled>حذف برش این صفحه</button></div><p class="pdf-instruction">روی تصویر کادر بکشید؛ داخل کادر را برای جابه‌جایی و دستگیره‌ها را برای تغییر اندازه بگیرید.</p><div class="pdf-preview"><div class="pdf-stage"><div class="pdf-crop" hidden></div></div></div></section></div><footer><span data-pdf-count>صفحه‌ای انتخاب نشده</span><button data-pdf-close>انصراف</button><button class="primary" data-pdf-import disabled>افزودن به بوم</button></footer></div>`;
  document.body.append(dialog);dialog.showModal();
@@ -12,7 +12,7 @@ async function open(file,onImport){
  let resizeObserver=null;
  let pdf=null,loading=null,closed=false,busy=false,current=1,previewToken=0,gesture=null,observer=null,thumbQueue=Promise.resolve();
  const errorText=e=>e?.name==='PasswordException'?'این PDF رمز دارد؛ ابتدا نسخهٔ بدون رمز آن را انتخاب کنید.':e?.name==='InvalidPDFException'?'فایل PDF معتبر یا قابل خواندن نیست.':'خواندن PDF انجام نشد. فایل دیگری انتخاب کنید.';
- const close=()=>{if(closed)return;closed=true;previewToken++;observer?.disconnect();resizeObserver?.disconnect();if(loading)loading.destroy().catch(()=>{});dialog.close();dialog.remove();if(active?.dialog===dialog)active=null};
+ const close=(force=false)=>{if(closed)return true;if(busy&&!force)return false;closed=true;previewToken++;observer?.disconnect();resizeObserver?.disconnect();if(loading)loading.destroy().catch(()=>{});dialog.close();dialog.remove();if(active?.dialog===dialog)active=null;return true};
  active={dialog,close};
  dialog.querySelectorAll('[data-pdf-close]').forEach(b=>b.onclick=close);dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
  $('[data-pdf-name]').textContent=file.name;
@@ -40,7 +40,7 @@ async function open(file,onImport){
   if(busy||!selected.size||closed)return;busy=true;previewToken++;dialog.querySelectorAll('input,select,[data-pdf-all],[data-pdf-none],[data-pdf-reset]').forEach(x=>x.disabled=true);update();
   try{const result=[],order=[...selected].sort((a,b)=>a-b),quality=+$('[data-pdf-quality]').value;
    for(const n of order){if(closed)return;status.textContent='آماده‌سازی صفحهٔ '+n+' ('+(result.length+1)+' از '+order.length+')…';const source=await renderCanvas(n,quality);if(closed)return;const c=crops.get(n)||{x:0,y:0,w:1,h:1},sx=Math.floor(c.x*source.width),sy=Math.floor(c.y*source.height),w=Math.max(1,Math.min(source.width-sx,Math.round(c.w*source.width))),h=Math.max(1,Math.min(source.height-sy,Math.round(c.h*source.height))),out=document.createElement('canvas');out.width=w;out.height=h;out.getContext('2d').drawImage(source,sx,sy,w,h,0,0,w,h);const data=out.toDataURL('image/png');source.width=source.height=out.width=out.height=1;if(data.length>12000000)throw Error('حجم عکس صفحهٔ '+n+' زیاد است؛ کیفیت پایین‌تری انتخاب کنید.');result.push({data,width:w,height:h,page:n,crop:{...c},fileName:file.name})}
-   if(closed)return;await onImport(result);close();
+   if(closed)return;await onImport(result);close(true);
   }catch(e){if(!closed){status.textContent=e.message||errorText(e);busy=false;dialog.querySelectorAll('input,select,[data-pdf-all],[data-pdf-none]').forEach(x=>x.disabled=false);syncCrop();update()}}
  };
  try{

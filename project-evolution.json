@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V332-R",
-    "project_evolution_version": "V332-R",
+    "software_version": "V333-R",
+    "project_evolution_version": "V333-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V332-R",
+  "current_source_release": "V333-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -1766,6 +1766,12 @@
       "version": "V332-R",
       "date": "2026-11-07",
       "change": "اعتبارسنجی کامل Journal و حفظ رکوردهای ناقص؛ حفاظت اطلاعات بازیابی در شکست پاک‌سازی و rollback، توقف autosave و مهاجرت تا تعیین‌تکلیف بازیابی؛ تکمیل بسته خروجی و تطبیق مالک Journal در callback آینه.",
+      "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V333-R",
+      "date": "2026-11-07",
+      "change": "جلوگیری از بسته‌شدن پنجره واردکننده PDF هنگام Commit ناهم‌زمان و جلوگیری از بازشدن واردکننده دوم پیش از پایان عملیات؛ حفظ بستن اجباری پس از موفقیت و تفکیک لغو پیش از Commit.",
       "status": "source_reviewed_runtime_pending"
     }
   ],
@@ -10731,10 +10737,10 @@
     }
   ],
   "current_release_gate": {
-    "release": "V332-R",
+    "release": "V333-R",
     "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
     "runtime_status": "PENDING_USER",
-    "audit": "No cross-store ACID or authority between divergent valid snapshots. Crash before compensation, storage denial, absent prior snapshot and download retention remain user-review risks. Historical multiple-of-five audit evidence remains incomplete. No tests/build/compilation/browser/product execution."
+    "audit": "PDF async import dialog guard statically inspected. OPEN-CROSS-STORE, OPEN-COMPENSATION and OPEN-GOVERNANCE remain unresolved; no tests/build/browser/runtime executed."
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",
