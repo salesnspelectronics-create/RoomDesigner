@@ -3,8 +3,8 @@
   "repository": "salesnspelectronics-create/RoomDesigner",
   "branch": "main",
   "execution_source": "SCHEDULED",
-  "execution_timestamp": "2026-11-07T02:12:00Z",
-  "source_head": "ef521b1dd34b9cfca53bf1bb3d3952db245cc755",
+  "execution_timestamp": "2026-11-07T05:20:00Z",
+  "source_head": "f34f6cb9a9a2ff3797a84fd62d65b5e44ab55887",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
   "product_release": "V332-R",
   "inventory_path": "audit/regression/inventory.json",
@@ -12,11 +12,11 @@
   "policy_path": "audit/regression/POLICY.md",
   "writer_lock": {
     "ref": "refs/heads/roomdesigner-regression-lock",
-    "owner_commit": "2a8de83707bd124c5998ff35c355328bfc3baad5",
-    "lifetime": "Owned for atomic delivery; release verified separately on append-only coordination ref, never self-reference a future commit"
+    "owner_commit": "6373cad864e603443b850314862a6615772bfb9d",
+    "lifetime": "Owned for checkpoint delivery; release via child FREE commit and exact expected_sha readback"
   },
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits.",
   "segments": [
     {
       "path": "index.html",
@@ -280,6 +280,21 @@
       "review_basis": "Pinned complete source text inspected in four bounded 24-line chunks, including full 3051-character line 7; no product code executed.",
       "truncated": false,
       "coverage_valid": true
+    },
+    {
+      "path": "assets/pdf-import.css",
+      "blob_sha": "3db6f6a35478878e27d41c3c8eee09425ea66e11",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 4,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 4,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-07T05:20:00Z",
+      "source_head": "f34f6cb9a9a2ff3797a84fd62d65b5e44ab55887",
+      "review_basis": "Exact complete 4386-byte pinned CSS source read including all four physical lines; no truncation or product execution. No independently evidenced source defect in this CSS segment. Open persistence findings remain unresolved.",
+      "truncated": false,
+      "coverage_valid": true
     }
   ],
   "findings": [
@@ -381,27 +396,27 @@
     }
   ],
   "last_completed_segment": {
-    "path": "assets/dxf-import.js",
-    "blob_sha": "c7468f6b92667073a59bc79cc0bd8468612c3279",
+    "path": "assets/pdf-import.css",
+    "blob_sha": "3db6f6a35478878e27d41c3c8eee09425ea66e11",
     "actual_read_start_line": 1,
-    "actual_read_end_line": 97,
+    "actual_read_end_line": 4,
     "reviewed_start_line": 1,
-    "reviewed_end_line": 97,
+    "reviewed_end_line": 4,
     "status": "REVIEWED_NO_FINDING",
     "findings": [],
-    "reviewed_at": "2026-11-07T02:12:00Z",
-    "source_head": "ef521b1dd34b9cfca53bf1bb3d3952db245cc755",
-    "review_basis": "Pinned complete source text inspected in four bounded 24-line chunks, including full 3051-character line 7; no product code executed.",
+    "reviewed_at": "2026-11-07T05:20:00Z",
+    "source_head": "f34f6cb9a9a2ff3797a84fd62d65b5e44ab55887",
+    "review_basis": "Exact complete 4386-byte pinned CSS source read including all four physical lines; no truncation or product execution. No independently evidenced source defect in this CSS segment. Open persistence findings remain unresolved.",
     "truncated": false,
     "coverage_valid": true
   },
   "next_segment": {
-    "path": "assets/pdf-import.css",
-    "blob_sha": "3db6f6a35478878e27d41c3c8eee09425ea66e11",
+    "path": "assets/pdf-import.js",
+    "blob_sha": "8d17baf473c4f41064cf069d37040a7d0b8f1c2e",
     "start_line": 1,
-    "end_line": 4,
+    "end_line": 58,
     "status": "UNREAD",
-    "reason": "Earliest uncovered eligible inventory entry after complete DXF JS review"
+    "reason": "Earliest uncovered eligible inventory entry after PDF CSS"
   },
   "validation": {
     "automated_tests": "NOT_RUN — USER_TESTING_POLICY",
