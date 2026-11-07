@@ -1,0 +1,18 @@
+{
+  "package": "dwgdxf",
+  "version": "2.0.1",
+  "license": "MIT",
+  "source": "https://github.com/ducflair/dwgdxf",
+  "tarball_sha1": "473b799eab555da43b030b7a63e58d9d2e86a37d",
+  "files": {
+    "dwgdxf.js": "e197f757ee3b957cf92a91c4f226326fdd0d033cf33557ed9bbc86fd08277508",
+    "dwgdxf_bg.wasm": "f2daf01c1873e82d4bcae3da82b26ac9a92e916affd767a2babbe1443793f728"
+  },
+  "underlying_parser": {
+    "name": "acadrust",
+    "version": "0.4.0",
+    "license": "MPL-2.0",
+    "source_archive": "https://static.crates.io/crates/acadrust/acadrust-0.4.0.crate",
+    "note": "Upstream README calls this MIT; the actual 0.4.0 crate declares MPL-2.0. Unmodified library; source available at this exact archive."
+  }
+}
