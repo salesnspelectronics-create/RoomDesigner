@@ -150,11 +150,13 @@
     },
     {
       "path": "assets/dwg-import.js",
-      "blob_sha": "c9f0d0240bbc7b3948f901cb4ab4b6b03d28b240",
+      "blob_sha": "cabf97bddfcb488eda967a44583c64b9fbd29914",
       "mode": "100644",
       "category": "source_or_configuration",
       "binary": false,
-      "metadata_pending_refresh": true
+      "metadata_pending_refresh": true,
+      "bytes": 6917,
+      "lines": 64
     },
     {
       "path": "assets/dwg-worker.mjs",
@@ -3909,11 +3911,13 @@
     },
     {
       "path": "index.html",
-      "blob_sha": "11ad47ddaef9e796ef48733a6bb68699e90af92c",
+      "blob_sha": "3e821bc93fecf4cc7ce174940d0f4c373b1f1f7e",
       "mode": "100644",
       "category": "source_or_configuration",
       "binary": false,
-      "metadata_pending_refresh": true
+      "metadata_pending_refresh": true,
+      "bytes": 519780,
+      "lines": 2646
     },
     {
       "path": "lighting-model.js",
@@ -3934,11 +3938,13 @@
     },
     {
       "path": "package.json",
-      "blob_sha": "04fddba1c21c4e38036bed0db7ae956b82e9e17a",
+      "blob_sha": "96de33044b3997b438dce8325baf6ccd09e11f01",
       "mode": "100644",
       "category": "source_or_configuration",
       "binary": false,
-      "metadata_pending_refresh": true
+      "metadata_pending_refresh": true,
+      "bytes": 424,
+      "lines": 19
     },
     {
       "path": "polyline-editor.js",
@@ -3951,11 +3957,13 @@
     },
     {
       "path": "project-evolution.json",
-      "blob_sha": "0675acedf430e6b370a7d3b322ca8ae5c4527ce2",
+      "blob_sha": "7c6137657b677b9a48620b2ee4701199164dd42b",
       "mode": "100644",
       "category": "source_or_configuration",
       "binary": false,
-      "metadata_pending_refresh": true
+      "metadata_pending_refresh": true,
+      "bytes": 734797,
+      "lines": 11005
     },
     {
       "path": "selection-geometry.js",

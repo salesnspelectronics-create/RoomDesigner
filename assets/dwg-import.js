@@ -1,7 +1,7 @@
 /* Thumbnail first; full conversion is an explicit, cancellable operation. */
 (function(global){
 'use strict';
-const workerURL=new URL('./dwg-worker.mjs?v=348',document.currentScript.src);
+const workerURL=new URL('./dwg-worker.mjs?v=351',document.currentScript.src);
 let active=null;
 async function convert(file){
  if(active)throw Error('فایل DWG دیگری در حال بررسی است.');
@@ -31,7 +31,7 @@ async function convert(file){
    $('[data-dwg-diagnostics]').hidden=false;
    global.dispatchEvent(new CustomEvent('room-dwg-error',{detail:lastDiagnostic}));
   }
-  $('[data-dwg-diagnostics]').onclick=()=>{if(!lastDiagnostic)return;const url=URL.createObjectURL(new Blob([JSON.stringify({schema:'roomdesigner-dwg-diagnostic/v1',version:'V348',...lastDiagnostic},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='roomdesigner-dwg-diagnostic.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)};
+  $('[data-dwg-diagnostics]').onclick=()=>{if(!lastDiagnostic)return;const url=URL.createObjectURL(new Blob([JSON.stringify({schema:'roomdesigner-dwg-diagnostic/v1',version:'V351',...lastDiagnostic},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='roomdesigner-dwg-diagnostic.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)};
   start.onclick=async()=>{
    if(finished||busy)return;
    if(file.size>80*1024*1024&&!confirm('تبدیل کامل این فایل بزرگ ممکن است چند گیگابایت حافظه مصرف کند و متوقف شود. ادامه می‌دهید؟'))return;
@@ -43,6 +43,7 @@ async function convert(file){
     const buffer=await file.arrayBuffer();if(finished||token!==generation)return;
     worker=new Worker(workerURL,{type:'module'});
     worker.onerror=event=>{event.preventDefault();if(token===generation)failure(Error(event.message||'موتور DWG بارگذاری نشد.'),'worker')};
+    worker.onmessageerror=()=>{if(token===generation)failure(Error('دریافت پاسخ موتور DWG ممکن نشد.'),'worker-message')};
     worker.onmessage=event=>{
      if(finished||token!==generation)return;const data=event.data;
      if(data?.error){const error=Error(data.error);if(data.stack)error.stack=data.stack;failure(error,data.stage||'conversion');return}
