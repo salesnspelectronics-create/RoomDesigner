@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V347",
-    "project_evolution_version": "V347",
+    "software_version": "V2307",
+    "project_evolution_version": "V2307",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -1791,6 +1791,12 @@
       "date": "2026-11-08",
       "change": "Experimental bounded DWG PNG overview, explicit conversion, visible cancellation and diagnostic logging. Accurate regional import remains OPEN.",
       "status": "source_implemented_runtime_pending"
+    },
+    {
+      "version": "V2307",
+      "date": "2026-11-08",
+      "change": "انتشار تغییرات آمادهٔ محلی V347 با شمارهٔ V2307 به درخواست صریح کاربر؛ هماهنگ‌سازی نسخهٔ رابط، بسته، کش DWG و تکامل پروژه.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "records": [
@@ -8062,6 +8068,27 @@
         "Isolated LibreDWG 0.8.7 probe read with warning 119; database conversion did not complete during bounded investigation and was stopped; not shipped.",
         "V347: 6 DWG tests and 41 DXF tests passed; real thumbnail read 1499 bytes. Browser launch blocked by EPERM. Full unit run has 22 failures reproduced on baseline V346. See DWG-IMPORT-V347.md."
       ]
+    },
+    {
+      "id": "RD-RELEASE-V2307",
+      "record_type": "user_requirement",
+      "module": "Release",
+      "source": "User request in Codex, 2026-11-08",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-08",
+      "target_version": "V2307",
+      "status": "SOURCE_REVIEWED_RUNTIME_PENDING",
+      "user_statement": "تغییرات محلی V347 در کامیت 9ff5dac بررسی و با نسخه V2307 در main منتشر شود؛ شاخه‌ها فقط پس از بررسی امن ادغام شوند؛ ساخت، تست و اجرا با کاربر است.",
+      "assistant_interpretation": "Preserve the local V347 implementation and original validation evidence; align release markers to V2307 and publish without force push.",
+      "implementation_status": "Version markers aligned. Only remote branches: main and roomdesigner-regression-lock. Lock branch excluded as operational history: 56 empty commits since common ancestor 73b6374, no source delta.",
+      "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN; BUILD_VALIDATION=NOT_RUN",
+      "verification_evidence": [
+        "Local commit 9ff5dac22547c93d562f834665457fa7d725a92e verified in the requested Windows path; clean main; origin matches the requested repository.",
+        "Remote main before release: cff81dc18b4ee9dda5022d571b30695a9bccf355.",
+        "Original V347 report: 6 DWG and 41 DXF tests passed, 22 baseline failures, browser visual acceptance pending; not rerun for V2307.",
+        "Precise extents and regional geometry extraction remain open; existing converter still fails on the supplied large file. No new CAD engine shipped."
+      ]
     }
   ],
   "analyses": [
@@ -9542,6 +9569,17 @@
         "Legacy full conversion still fails for supplied large file; two-minute worker timeout remains.",
         "User runtime acceptance pending."
       ]
+    },
+    {
+      "id": "RELEASE-V2307-ANALYSIS",
+      "date": "2026-11-08",
+      "target_version": "V2307",
+      "decision": "User explicitly requested V2307 instead of the usual sequential increment. Preserve append-only V347 history. Do not merge the unrelated operational lock branch into product history.",
+      "remaining_risks": [
+        "Runtime and visual acceptance remain with the user.",
+        "Embedded PNG may show only a saved view; it is not reliable CAD geometry.",
+        "No precise extents or new conversion engine is implemented."
+      ]
     }
   ],
   "deferred_scope": [
@@ -10863,10 +10901,16 @@
       "date": "2026-11-08",
       "change": "Experimental bounded DWG PNG overview, explicit conversion, visible cancellation and diagnostic logging. Accurate regional import remains OPEN.",
       "status": "source_implemented_runtime_pending"
+    },
+    {
+      "version": "V2307",
+      "date": "2026-11-08",
+      "change": "انتشار تغییرات آمادهٔ محلی V347 با شمارهٔ V2307 به درخواست صریح کاربر؛ هماهنگ‌سازی نسخهٔ رابط، بسته، کش DWG و تکامل پروژه.",
+      "status": "source_reviewed_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V347",
+    "release": "V2307",
     "source_status": "PARTIAL_SOURCE_IMPLEMENTED_RUNTIME_PENDING",
     "runtime_status": "PENDING_USER",
     "audit": "6 DWG and 41 DXF tests pass; inline syntax verified; 22 baseline unit failures reproduced; browser launch blocked; user acceptance pending"

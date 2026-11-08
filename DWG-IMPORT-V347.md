@@ -1,5 +1,7 @@
 # V347 experimental DWG preview
 
+Release mapping: local V347 (`9ff5dac22547c93d562f834665457fa7d725a92e`) is prepared for publication as V2307 at the user's explicit request. This report preserves the original V347 validation; no build, test or application runtime was run for the V2307 release.
+
 This release reads the optional embedded PNG thumbnail before starting any full conversion. It does not implement model-coordinate overview rendering, device picking, or accurate regional geometry extraction. The embedded image can represent a saved view rather than the whole project. Full conversion still uses the existing dwgdxf 2.0.1 worker, explicitly started by the user, with its two-minute limit.
 
 Desktop cancellation is now visible and terminates the conversion worker. Original worker error messages, stacks, stages, file size and signature are retained in the File error log and in a downloadable conversion diagnostic. A failed conversion remains visible in its dialog until dismissed. General notifications now last ten seconds.
