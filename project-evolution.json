@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V337-R",
-    "project_evolution_version": "V337-R",
+    "software_version": "V347",
+    "project_evolution_version": "V347",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -1785,6 +1785,12 @@
       "date": "2026-11-07",
       "change": "جلوگیری از جایگزینی نقشه با فایل پروژه‌ای که خواندن ناهم‌زمان آن پس از تغییر نقشه تمام می‌شود؛ کنترل هویت سند، دوره ذخیره و محتوای سند پیش از اعمال Import.",
       "status": "source_reviewed_runtime_pending"
+    },
+    {
+      "version": "V347",
+      "date": "2026-11-08",
+      "change": "Experimental bounded DWG PNG overview, explicit conversion, visible cancellation and diagnostic logging. Accurate regional import remains OPEN.",
+      "status": "source_implemented_runtime_pending"
     }
   ],
   "records": [
@@ -8035,6 +8041,27 @@
       "implementation_status": "Pre-await identity/epoch/content snapshot; exact post-await guard before prepareRoomImport/applyRoomImport. No storage format or cross-store authority changed.",
       "runtime_status": "PENDING_USER; AUTOMATED_TESTS=NOT_RUN — USER_TESTING_POLICY; BUILD_VALIDATION=NOT_RUN",
       "verification_evidence": "Pinned GitHub source and static diff; no product execution."
+    },
+    {
+      "id": "RD-DWG-V347",
+      "record_type": "user_requirement",
+      "module": "DWG import",
+      "source": "Codex conversation 2026-11-08",
+      "source_actor": "user",
+      "recorded_by": "Codex",
+      "created_at": "2026-11-08",
+      "target_version": "V347",
+      "status": "PARTIAL_SOURCE_IMPLEMENTED_RUNTIME_PENDING",
+      "user_statement": "همین فایل بزرگ DWG را سبک نمایش بدهیم و قسمت انتخاب‌شده را دقیق پردازش و وارد کنیم؛ نسخه بده و پوش کن تا تست کنم. انصراف باید دیده شود و خطاها حداقل ۱۰ ثانیه بمانند.",
+      "assistant_interpretation": "Fast overview followed by accurate regional import. Ship only genuine bounded thumbnail preview and conversion diagnostics in this experimental release; accurate regional processing remains open.",
+      "implementation_status": "Thumbnail-first local preview (PNG); explicit legacy conversion; desktop cancel visibility; original worker errors persisted/downloadable; notifications 10 seconds. No server or new CAD runtime bundled.",
+      "runtime_status": "PENDING_USER",
+      "verification_evidence": [
+        "Real 128525665-byte AC1027 input: original converter traps after 184371 ms; about 4.15 GB external memory.",
+        "Embedded PNG is 256x111; must not be treated as CAD coordinates.",
+        "Isolated LibreDWG 0.8.7 probe read with warning 119; database conversion did not complete during bounded investigation and was stopped; not shipped.",
+        "V347: 6 DWG tests and 41 DXF tests passed; real thumbnail read 1499 bytes. Browser launch blocked by EPERM. Full unit run has 22 failures reproduced on baseline V346. See DWG-IMPORT-V347.md."
+      ]
     }
   ],
   "analyses": [
@@ -9504,6 +9531,17 @@
         "acadrust 0.4.0 actual license is MPL-2.0 despite upstream wrapper README MIT claim; license and exact source archive included in NOTICE"
       ],
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "DWG-V347-ANALYSIS",
+      "date": "2026-11-08",
+      "target_version": "V347",
+      "decision": "Do not claim thumbnail cropping is precise DWG extraction. A different validated CAD reader and model-coordinate preview are still required.",
+      "remaining_risks": [
+        "Embedded PNG optional and low resolution; old BMP-only DWGs have no quick preview in this version.",
+        "Legacy full conversion still fails for supplied large file; two-minute worker timeout remains.",
+        "User runtime acceptance pending."
+      ]
     }
   ],
   "deferred_scope": [
@@ -10819,13 +10857,19 @@
       "date": "2026-11-08",
       "description": "نگهداری Journal نسخه تا ثبت موفق IndexedDB و تطبیق checksum سند و پروفایل",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "version": "V347",
+      "date": "2026-11-08",
+      "change": "Experimental bounded DWG PNG overview, explicit conversion, visible cancellation and diagnostic logging. Accurate regional import remains OPEN.",
+      "status": "source_implemented_runtime_pending"
     }
   ],
   "current_release_gate": {
-    "release": "V337-R",
-    "source_status": "SOURCE_FIXED_RUNTIME_PENDING",
+    "release": "V347",
+    "source_status": "PARTIAL_SOURCE_IMPLEMENTED_RUNTIME_PENDING",
     "runtime_status": "PENDING_USER",
-    "audit": "Static review only; no build/tests"
+    "audit": "6 DWG and 41 DXF tests pass; inline syntax verified; 22 baseline unit failures reproduced; browser launch blocked; user acceptance pending"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

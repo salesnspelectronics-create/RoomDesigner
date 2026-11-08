@@ -1,0 +1,11 @@
+#dwgImportDialog{width:min(800px,94vw);max-height:90dvh;padding:0;border:1px solid #42576a;border-radius:12px;background:#152638;color:#e1edf5;font-family:inherit;overflow:auto}
+#dwgImportDialog::backdrop{background:#0009}
+#dwgImportDialog .dwg-shell{display:flex;flex-direction:column;padding:16px;gap:12px}
+#dwgImportDialog header,#dwgImportDialog footer{position:static;display:flex!important;flex-wrap:wrap;align-items:center;height:auto;min-height:0;gap:10px;background:none;border:0;padding:0}
+#dwgImportDialog header strong{flex:1}
+#dwgImportDialog p{margin:0;line-height:1.8;overflow-wrap:anywhere}
+#dwgImportDialog button{flex:none;min-height:44px;width:auto}
+#dwgImportDialog [data-dwg-warning]{color:#ffd58c}
+#dwgImportDialog .dwg-preview{background:#090e15;min-height:160px;display:grid;place-items:center;padding:12px}
+#dwgImportDialog img{max-width:100%;max-height:40dvh;object-fit:contain}
+#dwgImportDialog [hidden]{display:none!important}
