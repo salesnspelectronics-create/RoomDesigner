@@ -8,6 +8,9 @@ self.onmessage=async event=>{
   stage='conversion';
   const bytes=convertDwgToDxf(new Uint8Array(event.data));
   if(!bytes.length||!Number.isSafeInteger(bytes.length))throw Error('خروجی DXF معتبر نیست.');
-  self.postMessage({bytes},[bytes.buffer]);
+  // Copy the exact view: WASM-owned buffers may be shared, offset or non-transferable.
+  const output=new Uint8Array(bytes.length);
+  output.set(bytes);
+  self.postMessage({bytes:output},[output.buffer]);
  }catch(error){self.postMessage({error:String(error?.message||error||'خطای نامشخص'),stack:error?.stack||null,stage})}
 };
