@@ -53,10 +53,10 @@ async function convert(file){
    }catch(error){if(token===generation)failure(error)}
   };
   (async()=>{try{
-   const preview=await global.RoomDWGPreview.read(file);if(finished)return;
+   const preview=await global.RoomDWGPreview.read(file);if(finished||busy)return;
    if(preview){imageURL=URL.createObjectURL(preview.blob);$('.dwg-preview img').src=imageURL;$('.dwg-preview').hidden=false;status.textContent='تصویر ذخیره‌شده آماده است؛ تبدیل کامل شروع نشده است.';$('[data-dwg-info]').textContent='وضوح تصویر: '+preview.width+' × '+preview.height+' پیکسل · دادهٔ خوانده‌شده: '+(preview.bytesRead/1024).toFixed(1)+' کیلوبایت';}
    else status.textContent='تصویر PNG ذخیره‌شدهٔ قابل‌نمایش در این فایل پیدا نشد. می‌توانید تبدیل کامل را امتحان کنید.';
-  }catch(error){if(!finished)status.textContent='خواندن پیش‌نمایش ممکن نشد: '+String(error?.message||error)}finally{if(!finished)start.disabled=false}})();
+  }catch(error){if(!finished&&!busy)status.textContent='خواندن پیش‌نمایش ممکن نشد: '+String(error?.message||error)}finally{if(!finished&&!busy)start.disabled=false}})();
  });
 }
 global.RoomDWGImport={convert};

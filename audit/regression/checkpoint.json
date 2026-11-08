@@ -4,19 +4,14 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-08",
-  "source_head": "5589bb5097ba9b1ce3b8a27575d04c70ad115472",
+  "source_head": "ce41c7a182bb0c82f85102cad9119e524440dc0a",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V337-R",
+  "product_release": "V350-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "13f68508fe2d23b70537cf4bab0179803ebe79e8",
+  "inventory_blob_sha": "50553e56c89726a0e211b1a3f33237c3b2b79abc",
   "policy_path": "audit/regression/POLICY.md",
-  "writer_lock": {
-    "ref": "refs/heads/roomdesigner-regression-lock",
-    "owner_commit": "e7961a54996ede37b7e4ff2f9043d78ef61f6371",
-    "lifetime": "Owned for atomic V335-R delivery; append-only child FREE release after independent readback"
-  },
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending.",
   "segments": [
     {
       "path": "index.html",
@@ -35,7 +30,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -53,7 +48,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -75,7 +70,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -95,7 +90,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -146,7 +141,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -181,7 +176,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -203,7 +198,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -225,7 +220,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -248,7 +243,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -268,7 +263,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V337 source change",
+      "invalidation_reason": "V350-R changed blob",
       "stale": true
     },
     {
@@ -340,13 +335,15 @@
       "actual_read_end_line": 40,
       "reviewed_start_line": 1,
       "reviewed_end_line": 40,
-      "status": "REVIEWED_NO_FINDING",
+      "status": "STALE_BLOB",
       "findings": [],
       "reviewed_at": "2026-11-07T13:24:01.749722+00:00",
       "source_head": "a6d294b4b0b529f8f096c37b72296189900b8961",
       "review_basis": "Complete focused static candidate source review; no execution",
       "truncated": false,
-      "coverage_valid": true
+      "coverage_valid": false,
+      "stale": true,
+      "invalidation_reason": "V350-R changed blob"
     },
     {
       "path": "assets/dwg-worker.mjs",
@@ -355,13 +352,15 @@
       "actual_read_end_line": 11,
       "reviewed_start_line": 1,
       "reviewed_end_line": 11,
-      "status": "REVIEWED_NO_FINDING",
+      "status": "STALE_BLOB",
       "findings": [],
       "reviewed_at": "2026-11-07T13:24:01.749722+00:00",
       "source_head": "a6d294b4b0b529f8f096c37b72296189900b8961",
       "review_basis": "Complete focused static candidate source review; no execution",
       "truncated": false,
-      "coverage_valid": true
+      "coverage_valid": false,
+      "stale": true,
+      "invalidation_reason": "V350-R changed blob"
     }
   ],
   "findings": [
@@ -493,6 +492,14 @@
       "root_cause": "Revision undo journal removed before asynchronous mirror commit.",
       "correction": "Clear only after matching mirror completion and local payload/profile checksum checks.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD350-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "assets/dwg-import.js",
+      "root_cause": "Async DWG preview completion overwrote active conversion status and could re-enable button while busy.",
+      "correction": "Guard preview success, error, finally UI updates when busy/finished.",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "last_completed_segment": {
@@ -511,12 +518,12 @@
     "coverage_valid": true
   },
   "next_segment": {
-    "path": "assets/svg-source/12r-almas.svg",
-    "blob_sha": "65424c36c6476ef5272c49ff84ce845ce81a4b40",
+    "path": "assets/dwg-import.js",
+    "blob_sha": "c9f0d0240bbc7b3948f901cb4ab4b6b03d28b240",
     "start_line": 1,
-    "end_line": 145,
+    "end_line": 40,
     "status": "UNREAD",
-    "reason": "Earliest uncovered eligible candidate manifest entry"
+    "reason": "Changed blob; sequential cursor requires full review"
   },
   "validation": {
     "automated_tests": "NOT_RUN — USER_TESTING_POLICY",
