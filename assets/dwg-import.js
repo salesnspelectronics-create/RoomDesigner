@@ -1,11 +1,11 @@
 /* Convert DWG locally in an isolated, cancellable module worker. */
 (function(global){
 'use strict';
-const workerURL=new URL('./dwg-worker.mjs?v=334',document.currentScript.src);
+const workerURL=new URL('./dwg-worker.mjs?v=343',document.currentScript.src);
 let active=null;
 async function convert(file){
  if(active)throw Error('تبدیل DWG دیگری در حال انجام است.');
- if(!file.size||file.size>25*1024*1024)throw Error('حجم DWG باید بین ۱ بایت و ۲۵ مگابایت باشد.');
+ if(!file.size)throw Error('فایل DWG خالی است.');if(file.size>80*1024*1024&&!confirm('فایل DWG بزرگ است؛ تبدیل در مرورگر ممکن است حافظه زیادی مصرف کند یا متوقف شود. ادامه می‌دهید؟'))throw new DOMException('انتخاب کاربر لغو شد','AbortError');
  const signature=new TextDecoder('ascii').decode(await file.slice(0,6).arrayBuffer());
  if(!['AC1012','AC1014','AC1015','AC1018','AC1021','AC1024','AC1027','AC1032'].includes(signature))throw Error('نسخهٔ DWG پشتیبانی نمی‌شود؛ خروجی ASCII DXF بگیرید.');
  if(active)throw Error('تبدیل DWG دیگری در حال انجام است.');
@@ -29,7 +29,7 @@ async function convert(file){
    worker.onmessage=event=>{
     const data=event.data;
     if(data?.error){finish(Error(data.error));return}
-    if(!(data?.bytes instanceof Uint8Array)||!data.bytes.length||data.bytes.length>80*1024*1024){finish(Error('خروجی تبدیل DWG معتبر نیست یا بیش از ۸۰ مگابایت است.'));return}
+    if(!(data?.bytes instanceof Uint8Array)||!data.bytes.length||!Number.isSafeInteger(data.bytes.length)){finish(Error('خروجی تبدیل DWG معتبر نیست.'));return}
     finish(null,new File([data.bytes],file.name.replace(/\.dwg$/i,'')+'.dxf',{type:'application/dxf'}));
    };
    worker.postMessage(buffer,[buffer]);
