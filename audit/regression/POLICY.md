@@ -6,36 +6,11 @@ these files at a freshly resolved main commit before every manual/scheduled run.
 Project Evolution remains the product requirements/release ledger, not a second
 line-review cursor. No runtime acceptance is implied by this state.
 
-## Exclusive writer and optimistic delivery
+## Direct delivery without advisory lock
 
-1. Read the existing V10 Automation `6aec3b232ca48191ab8341fec2a6502d` including
-   recorded run state. Manual work temporarily pauses it, confirms no recorded
-   in-progress run, and observes the existing five-minute collision guard. Resume
-   the same task after releasing the lock; never create another hourly writer.
-2. Before any main/checkpoint mutation, acquire the fixed GitHub branch
-   `roomdesigner-regression-lock`. Bootstrap an absent branch by atomic
-   create-reference pointing to a unique owner commit. Once present, inspect its
-   exact tip commit: only a message beginning `ROOMDESIGNER_REGRESSION_LOCK=FREE`
-   is available. Create a child owner commit (same tree) with owner, timestamp and
-   source HEAD in its message, then update_ref with expected_sha=free-tip and
-   force=false. Continue only after readback proves ownership. An owned/unknown
-   tip or rejected lease means BLOCKED_CONCURRENCY; never treat an existing
-   branch as successful acquisition or use an upsert. Reading is allowed.
-   No automatic expiry/stealing: a crashed owner requires explicit reconciliation
-   of the recorded run and owner before manual release.
-3. Immediately re-read main and affected blob SHAs before editing and before
-   publishing. A changed HEAD invalidates the candidate; fetch and re-review.
-   Commit source, inventory and checkpoint together. Use a normal fast-forward
-   push from that exact parent, or update_ref with expected_sha and force=false.
-   Never force-push/rebase over an intervening writer. A rejected push is a
-   conflict, not permission to retry with old checkpoint data.
-4. Independently read final GitHub HEAD/commit and checkpoint blobs. Verify the
-   lock still identifies this owner. Release by creating its child commit (same
-   tree), message beginning `ROOMDESIGNER_REGRESSION_LOCK=FREE`, and update_ref
-   with expected_sha=owned-tip and force=false; read back the free tip. Keep this
-   lock branch as an append-only coordination ledger. Release on failure too when
-   ownership is certain, and resume the existing schedule. Pausing a schedule
-   alone does not cancel an already running worker. Never release another owner.
+The repository advisory regression lock, lock branch ownership, lease commits, automatic expiry, five-minute manual collision guard, and schedule pausing for lock acquisition are abolished by explicit owner instruction (2026-11-08). Do not acquire, inspect, require, or release `roomdesigner-regression-lock` for regression work. Do not interpret an automation's own `in_progress` status as a competing Git writer.
+
+Before any mutation, read current `main` and affected file blob SHAs. Prepare changes against that exact baseline, and publish only via a non-force fast-forward update with `expected_sha` (or equivalent optimistic concurrency check). If `main` or any affected blob changes, stop and re-review the candidate against the new state. Never overwrite concurrent edits or force-push. Keep the existing single hourly automation; do not create duplicate writers. Source fixes, version metadata, inventory, and checkpoint must be committed together when possible; verify the resulting `main` HEAD and file contents independently.
 
 ## Inventory, coverage and continuation
 
@@ -73,21 +48,6 @@ sequentially, preserves numeric package/cache conventions, and updates HTML,
 package metadata and Project Evolution together. Source fixes remain runtime
 pending until the user accepts them.
 
-## One-time recovery authorization — 2026-11-07
+## Historical lock records (inactive)
 
-The user explicitly authorized the replacement Work executor in the current
-conversation (reply: «مجاز لست») to release only the stale owner
-`f2c3cf5e3b740dddf89471a32f67a2a6b73d7c16`. This is a recorded, consumed
-one-time governance exception to “Never release another owner”, not a general
-expiry, automatic takeover, or authorization for future workers. The user's
-prior statement that Work completed was reconciled with the owner recorded in
-the original checkpoint and the completed Automation run
-`bac372e1-8cec-832c-a851-7d61aa364f3e`. Independent old Work process liveness
-was unavailable; the user's explicit exception is the recovery authority.
-
-The original Automation was paused, the five-minute collision guard elapsed,
-and unchanged main/lock refs were reread. Recovery used a same-tree child FREE
-commit `8caba83941a2fd0d3411566fccb805e131c2ac7f`, exact expected SHA and
-force=false, followed by independent FREE readback and unique child owner
-`cc9264598dde82189619ed9782cb6c1699929a71`, acquired and independently
-read back before source edits. Preserve this history and all ordinary lock rules.
+Earlier lock/lease commits and checkpoint owner fields are historical audit records only. They impose no current acquisition, release, or manual collision requirements. No new lock commits should be created.
