@@ -1,6 +1,6 @@
 # RoomDesigner
 
-Current source release: **V2307** (runtime acceptance pending user).
+Current source release: **V348** (runtime acceptance pending user).
 
 V272: [physical connections, equipment and field devices](./CONNECTION-MODEL.md).
 
@@ -8,9 +8,9 @@ Cable drawing and editing: [drawing modes, editing and obstacle-safe automatic r
 
 Standalone mobile-first technical room and connection diagram prototype.
 
-V2307 experimental DWG import: reads an embedded PNG thumbnail before any full conversion. The thumbnail is not a model-coordinate preview and cannot support precise regional import. Full conversion remains the previous engine, explicitly started by the user. Cancel is visible on desktop; original conversion failures are logged and downloadable.
+V348 experimental DWG import: reads an embedded PNG thumbnail before any full conversion. The thumbnail is not a model-coordinate preview and cannot support precise regional import. Full conversion remains the previous engine, explicitly started by the user. Cancel is visible on desktop; original conversion failures are logged and downloadable.
 
-Source prepared locally as V347 (`9ff5dac`); published release number requested by the user: V2307. Prior validation and open limitations are recorded in [DWG-IMPORT-V347.md](./DWG-IMPORT-V347.md).
+Source prepared locally as V347 (`9ff5dac`); published release number requested by the user: V348. Prior validation and open limitations are recorded in [DWG-IMPORT-V347.md](./DWG-IMPORT-V347.md).
 
 ## Versioning
 
