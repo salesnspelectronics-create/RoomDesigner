@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V336-R",
-    "project_evolution_version": "V336-R",
+    "software_version": "V337-R",
+    "project_evolution_version": "V337-R",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V336-R",
+  "current_source_release": "V337-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -10813,13 +10813,19 @@
       "date": "2026-11-08",
       "change": "جلوگیری از اعمال ورود DXF/DWG پس از ویرایش نقشه در زمان تبدیل یا پیش‌نمایش؛ کنترل هویت، دوره و محتوای سند.",
       "status": "source_implemented_runtime_pending"
+    },
+    {
+      "version": "V337-R",
+      "date": "2026-11-08",
+      "description": "نگهداری Journal نسخه تا ثبت موفق IndexedDB و تطبیق checksum سند و پروفایل",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "current_release_gate": {
-    "release": "V336-R",
-    "source_status": "SOURCE_PATCHED_STATIC_REVIEWED",
+    "release": "V337-R",
+    "source_status": "SOURCE_FIXED_RUNTIME_PENDING",
     "runtime_status": "PENDING_USER",
-    "audit": "DXF/DWG asynchronous import stale-document guard reviewed statically; no build/tests."
+    "audit": "Static review only; no build/tests"
   },
   "handoff": {
     "target": "Continue UX and SVG work on RoomDesigner; do not change NSPOffice or add IIS server storage yet.",

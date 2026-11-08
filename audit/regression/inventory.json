@@ -3912,10 +3912,10 @@
     },
     {
       "path": "index.html",
-      "blob_sha": "58e8c27b87e490954dc89878579af546eba4fbdd",
+      "blob_sha": "7a29a95ec30950de88738015621e8930b15e2232",
       "mode": "100644",
-      "bytes": 501035,
-      "lines": 2433,
+      "bytes": 502051,
+      "lines": 2443,
       "category": "source_or_configuration",
       "binary": false
     },
@@ -3930,7 +3930,7 @@
     },
     {
       "path": "package-lock.json",
-      "blob_sha": "00e1e3dcc18dc34a5ef72263af493a5172749fb0",
+      "blob_sha": "8bb728310a1cfcda9c2183a70836cf474a1319bf",
       "mode": "100644",
       "bytes": 21009,
       "lines": 621,
@@ -3939,7 +3939,7 @@
     },
     {
       "path": "package.json",
-      "blob_sha": "6e75cae642004a353db01a27528eff61bcbd9363",
+      "blob_sha": "fd699f8606c97c6161c8536d222b39131e313c41",
       "mode": "100644",
       "bytes": 424,
       "lines": 19,
@@ -3957,10 +3957,10 @@
     },
     {
       "path": "project-evolution.json",
-      "blob_sha": "678925296c8d47eb9b79ffa9d13f56abd1414c46",
+      "blob_sha": "8e75b6e0d6fc6ad9ae6a989a6d5f5c5cefb1d7d5",
       "mode": "100644",
-      "bytes": 724537,
-      "lines": 10831,
+      "bytes": 724890,
+      "lines": 10843,
       "category": "source_or_configuration",
       "binary": false
     },

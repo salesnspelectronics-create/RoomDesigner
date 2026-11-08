@@ -4,11 +4,11 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-08",
-  "source_head": "f384f0ab0ea5d946f760ffe36a257d5ef9d3b0cb",
+  "source_head": "5589bb5097ba9b1ce3b8a27575d04c70ad115472",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V336-R",
+  "product_release": "V337-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "020c525efe308efe83ab80e705d46b5786c806b2",
+  "inventory_blob_sha": "13f68508fe2d23b70537cf4bab0179803ebe79e8",
   "policy_path": "audit/regression/POLICY.md",
   "writer_lock": {
     "ref": "refs/heads/roomdesigner-regression-lock",
@@ -16,7 +16,7 @@
     "lifetime": "Owned for atomic V335-R delivery; append-only child FREE release after independent readback"
   },
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit.",
   "segments": [
     {
       "path": "index.html",
@@ -35,7 +35,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -53,7 +53,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -75,7 +75,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -95,7 +95,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -146,7 +146,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -181,7 +181,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -203,7 +203,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -225,7 +225,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -248,7 +248,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -268,7 +268,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V336 source change",
+      "invalidation_reason": "V337 source change",
       "stale": true
     },
     {
@@ -485,6 +485,14 @@
       "root_cause": "DXF/DWG asynchronous conversion and preview guarded document identity only; same-document edits could be overwritten by stale import.",
       "correction": "Capture document identity, epoch and exact serialized snapshot before conversion; recheck after conversion and immediately before applying preview.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD337-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "index.html",
+      "root_cause": "Revision undo journal removed before asynchronous mirror commit.",
+      "correction": "Clear only after matching mirror completion and local payload/profile checksum checks.",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "last_completed_segment": {
@@ -517,7 +525,9 @@
     "browser_runtime": "NOT_RUN",
     "runtime_acceptance": "PENDING_USER",
     "testing_owner": "USER",
-    "static_diff": "Reviewed document identity/epoch/content guard on awaited file read; version and metadata synced. Open storage architecture issues preserved."
+    "static_diff": "Reviewed document identity/epoch/content guard on awaited file read; version and metadata synced. Open storage architecture issues preserved.",
+    "build_validation": "NOT_RUN",
+    "runtime_review": "PENDING_USER"
   },
   "lock_recovery": {
     "authorization": "Explicit one-time user governance exception in current conversation: مجاز لست; prior user statement that Work completed reconciled with checkpoint owner",
