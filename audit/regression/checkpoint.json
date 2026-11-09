@@ -4,14 +4,14 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-09",
-  "source_head": "b3a07a9373981774c142878340891d20c6512273",
+  "source_head": "0ff155c438a13f22a1034dc25649aeb10e9085b7",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V357-R",
+  "product_release": "V358-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "f946540061fb915b16cdacc8c782eba53a74968b",
+  "inventory_blob_sha": "bac5555f8afe7841aaf1bdf3ebc2e22c1304d8ec",
   "policy_path": "audit/regression/POLICY.md",
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated. V356-R: empty migration archive rejected; focused storage-safety inspection; no full-blob coverage credited. V357-R: four stale user-facing V349 labels corrected; changed index blob invalidated; storage-safety.js read in full.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated. V356-R: empty migration archive rejected; focused storage-safety inspection; no full-blob coverage credited. V357-R: four stale user-facing V349 labels corrected; changed index blob invalidated; storage-safety.js read in full. V358-R: browser tab title was V356 while current release V357; corrected to V358. New index blob coverage invalidated; only first-line title inspected, not full 200-line segment.",
   "segments": [
     {
       "path": "index.html",
@@ -30,7 +30,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -48,7 +48,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -70,7 +70,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -90,7 +90,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -142,7 +142,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -179,7 +179,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -201,7 +201,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -223,7 +223,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -246,7 +246,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -266,7 +266,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V356 source change",
+      "invalidation_reason": "V358 index source change",
       "stale": true
     },
     {
@@ -581,6 +581,13 @@
       "status": "SOURCE_FIXED_RUNTIME_PENDING",
       "detail": "Four user-facing UI labels displayed V349 despite V356 package version.",
       "source_assessment": "Corrected header/help/about/desktop badge to V357; historical CSS V349 comment retained."
+    },
+    {
+      "id": "RD358-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "detail": "Browser tab title V356 was stale on V357 main; updated to V358 in release.",
+      "path": "index.html",
+      "previous_blob_sha": "3711a0885230e36c8e0bf046080fe53703a4989d"
     }
   ],
   "last_completed_segment": {
@@ -592,10 +599,11 @@
   },
   "next_segment": {
     "path": "index.html",
+    "blob_sha": "723e1f37a383dd6da3d5840121427c141067b4bb",
     "start_line": 1,
     "end_line": 200,
     "status": "UNREAD",
-    "reason": "Changed index blob needs new coverage"
+    "reason": "Changed index blob needs complete bounded review; title inspected only"
   },
   "validation": {
     "automated_tests": "NOT_RUN",
@@ -604,7 +612,7 @@
     "browser_runtime": "NOT_RUN",
     "runtime_acceptance": "PENDING_USER",
     "testing_owner": "USER",
-    "static_diff": "Reviewed document identity/epoch/content guard on awaited file read; version and metadata synced. Open storage architecture issues preserved.",
+    "static_diff": "V358: verified exact stale browser title V356 and corrected to V358; package and Project Evolution aligned. No build or runtime executed.",
     "build_validation": "NOT_RUN",
     "runtime_review": "PENDING_USER"
   },
