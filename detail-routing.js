@@ -7,7 +7,7 @@
   const points=box=>{const out=[],fractions=[.2,.5,.8];for(const t of fractions){out.push(['left',{x:box.x,y:box.y+box.h*t}],['right',{x:box.x+box.w,y:box.y+box.h*t}],['top',{x:box.x+box.w*t,y:box.y}],['bottom',{x:box.x+box.w*t,y:box.y+box.h}])}return out};
   const outward=side=>side==='left'?{x:-1,y:0}:side==='right'?{x:1,y:0}:side==='top'?{x:0,y:-1}:{x:0,y:1};
   const endpointPenalty=(side,from,to)=>{const v=outward(side),dx=to.x-from.x,dy=to.y-from.y,dot=dx*v.x+dy*v.y;return dot>0?0:90};
-  const routeScore=path=>{let length=0,bends=0;for(let i=1;i<path.length;i++)length+=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);for(let i=1;i<path.length-1;i++){const a=path[i-1],b=path[i],c=path[i+1],cross=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);if(Math.abs(cross)>.001)bends++}return length+bends*24};
+  const routeScore=path=>{let length=0,bends=0,shortPenalty=0;for(let i=1;i<path.length;i++){const seg=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);length+=seg;if(seg<22)shortPenalty+=(22-seg)*5}for(let i=1;i<path.length-1;i++){const a=path[i-1],b=path[i],c=path[i+1],cross=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);if(Math.abs(cross)>.001)bends++}return length+bends*52+shortPenalty};
   const ends=points(target),starts=points(source);const pairs=starts.flatMap(([side,a])=>ends.map(([endSide,b])=>({side,a,endSide,b,length:Math.abs(a.x-b.x)+Math.abs(a.y-b.y),preference:Math.abs(a.x-b.x)+Math.abs(a.y-b.y)+endpointPenalty(side,a,b)+endpointPenalty(endSide,b,a)}))).sort((a,b)=>a.preference-b.preference);
   let result=null,bestScore=Infinity;for(const p of pairs.slice(0,48)){
    const active=boxes;
