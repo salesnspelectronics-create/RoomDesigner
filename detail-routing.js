@@ -13,12 +13,19 @@
    if(path){result=path;break}
   }
   if(!result&&pairs.length){
-   // Visual detail leaders must never disappear. When every collision-free
-   // route is blocked, use a simple orthogonal fallback and allow it to cross
-   // walls/devices; the user can reposition the detail card afterward.
-   const p=pairs[0],horizontalFirst=Math.abs(p.a.x-p.b.x)>=Math.abs(p.a.y-p.b.y);
-   const elbow=horizontalFirst?{x:p.b.x,y:p.a.y}:{x:p.a.x,y:p.b.y};
-   result=g.CableRouting.simplify([p.a,elbow,p.b],true);
+   // Always keep a visible leader. Give both endpoints a short directional
+   // lead so the fallback reads like a deliberate routed leader, not a raw L.
+   const p=pairs[0],lead=18;
+   const step=(pt,side,amount)=>{
+    if(side==='left')return{x:pt.x-amount,y:pt.y};
+    if(side==='right')return{x:pt.x+amount,y:pt.y};
+    if(side==='top')return{x:pt.x,y:pt.y-amount};
+    return{x:pt.x,y:pt.y+amount};
+   };
+   const s1=step(p.a,p.side,lead),t1=step(p.b,p.endSide,lead);
+   const horizontalFirst=Math.abs(s1.x-t1.x)>=Math.abs(s1.y-t1.y);
+   const elbow=horizontalFirst?{x:t1.x,y:s1.y}:{x:s1.x,y:t1.y};
+   result=g.CableRouting.simplify([p.a,s1,elbow,t1,p.b],true);
   }
   if(cache.size>100)cache.clear();cache.set(key,result);return result;
  }
