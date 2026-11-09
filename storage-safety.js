@@ -17,7 +17,7 @@
   if(storage.getItem('rd_equipment_release')===equipmentRelease&&storage.getItem('rd_connection_model')===connectionVersion)return false;
   // Keep the first archive immutable; never replace the only pre-migration copy.
   const existing=storage.getItem(archiveKey);
-  if(existing!==null){const saved=JSON.parse(existing);if(saved.format!==1||!saved.values||typeof saved.values!=='object')throw Error('بسته حفاظت مهاجرت نامعتبر است');return false}
+  if(existing!==null){const saved=JSON.parse(existing);if(!saved||saved.format!==1||!saved.values||Array.isArray(saved.values)||typeof saved.values!=='object'||Object.entries(saved.values).some(([key,value])=>!key.startsWith('rd_')||key===archiveKey||(value!==null&&typeof value!=='string')))throw Error('بسته حفاظت مهاجرت نامعتبر است');return false}
   const values={};
   for(let i=0;i<storage.length;i++){const key=storage.key(i);if(key?.startsWith('rd_')&&key!==archiveKey)values[key]=storage.getItem(key)}
   if(!Object.keys(values).length)return false;

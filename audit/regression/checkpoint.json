@@ -4,14 +4,14 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-09",
-  "source_head": "c80b554ba3bc274ca43011da65bb556c0983dc55",
+  "source_head": "cc602d581d2afe143ba54f786f8d75839a8236f5",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V352-R",
+  "product_release": "V353-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "dd27cd3458f3558c35a513b4a6c82beab3a0d7be",
+  "inventory_blob_sha": "4142883e70b1ba7029575f4fea1142aae1f99d69",
   "policy_path": "audit/regression/POLICY.md",
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated.",
   "segments": [
     {
       "path": "index.html",
@@ -151,13 +151,14 @@
       "actual_read_end_line": 30,
       "reviewed_start_line": 1,
       "reviewed_end_line": 30,
-      "status": "REVIEWED_NO_FINDING",
+      "status": "STALE_BLOB",
       "findings": [],
       "reviewed_at": "2026-11-07T01:53:15.692851+00:00",
       "source_head": "e29aaf5f89113d756c07b2b6a52828cc3b17b9cb",
       "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
       "truncated": false,
-      "coverage_valid": true
+      "coverage_valid": false,
+      "stale": true
     },
     {
       "path": "index.html",
@@ -361,6 +362,23 @@
       "coverage_valid": false,
       "stale": true,
       "invalidation_reason": "V350-R changed blob"
+    },
+    {
+      "path": "storage-safety.js",
+      "blob_sha": "d4630e7e91d246f87132cf9ee36d43e80f76f409",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 30,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 30,
+      "status": "REVIEWED_WITH_FINDING",
+      "findings": [
+        "RD353-01"
+      ],
+      "reviewed_at": "2026-11-09T00:16:50Z",
+      "source_head": "cc602d581d2afe143ba54f786f8d75839a8236f5",
+      "review_basis": "focused full-file read and narrow static patch",
+      "truncated": false,
+      "coverage_valid": true
     }
   ],
   "findings": [
@@ -507,6 +525,14 @@
       "path": "assets/dwg-import.js",
       "root_cause": "Preview promise may settle after worker failure, when stop() clears busy, overwriting diagnostic status and controls.",
       "correction": "Invalidate late preview UI writes on conversion failure in success/catch/finally.",
+      "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD353-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "storage-safety.js",
+      "root_cause": "Existing migration archive accepted arrays, unrelated keys and non-string values, treating malformed preservation as valid.",
+      "correction": "Validate archive object and rd_ key/value types before trusting preservation.",
       "runtime_status": "PENDING_USER"
     }
   ],
