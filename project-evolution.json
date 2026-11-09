@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V353-R",
+  "current_source_release": "V354-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -10992,6 +10992,12 @@
       "version": "V353-R",
       "date": "2026-11-09",
       "change": "اعتبارسنجی ساختار بسته حفاظت مهاجرت قبل از پذیرش آن و رد آرشیو ناسالم",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING"
+    },
+    {
+      "version": "V354-R",
+      "date": "2026-11-09",
+      "change": "مدیریت خطای ساخت فایل خروجی DXF در پاسخ Worker به‌جای باقی‌ماندن Promise معلق",
       "status": "SOURCE_FIXED_RUNTIME_PENDING"
     }
   ],

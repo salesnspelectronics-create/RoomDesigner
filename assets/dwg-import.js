@@ -48,7 +48,8 @@ async function convert(file){
      if(finished||token!==generation)return;const data=event.data;
      if(data?.error){const error=Error(data.error);if(data.stack)error.stack=data.stack;failure(error,data.stage||'conversion');return}
      if(!(data?.bytes instanceof Uint8Array)||!data.bytes.length){failure(Error('خروجی تبدیل DWG معتبر نیست.'));return}
-     finish(null,new File([data.bytes],file.name.replace(/\.dwg$/i,'')+'.dxf',{type:'application/dxf'}));
+     try{const result=new File([data.bytes],file.name.replace(/\.dwg$/i,'')+'.dxf',{type:'application/dxf'});finish(null,result)}
+     catch(error){failure(error,'output')}
     };
     worker.postMessage(buffer,[buffer]);
    }catch(error){if(token===generation)failure(error)}
