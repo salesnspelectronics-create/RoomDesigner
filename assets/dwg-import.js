@@ -1,7 +1,7 @@
 /* Thumbnail first; full conversion is an explicit, cancellable operation. */
 (function(global){
 'use strict';
-const workerURL=new URL('./dwg-worker.mjs?v=352',document.currentScript.src);
+const workerURL=new URL('./dwg-worker.mjs?v=355',document.currentScript.src);
 let active=null;
 async function convert(file){
  if(active)throw Error('فایل DWG دیگری در حال بررسی است.');
@@ -31,11 +31,11 @@ async function convert(file){
    $('[data-dwg-diagnostics]').hidden=false;
    global.dispatchEvent(new CustomEvent('room-dwg-error',{detail:lastDiagnostic}));
   }
-  $('[data-dwg-diagnostics]').onclick=()=>{if(!lastDiagnostic)return;const url=URL.createObjectURL(new Blob([JSON.stringify({schema:'roomdesigner-dwg-diagnostic/v1',version:'V352',...lastDiagnostic},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='roomdesigner-dwg-diagnostic.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)};
+  $('[data-dwg-diagnostics]').onclick=()=>{if(!lastDiagnostic)return;const url=URL.createObjectURL(new Blob([JSON.stringify({schema:'roomdesigner-dwg-diagnostic/v1',version:'V355',...lastDiagnostic},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='roomdesigner-dwg-diagnostic.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)};
   start.onclick=async()=>{
    if(finished||busy)return;
    if(file.size>80*1024*1024&&!confirm('تبدیل کامل این فایل بزرگ ممکن است چند گیگابایت حافظه مصرف کند و متوقف شود. ادامه می‌دهید؟'))return;
-   busy=true;start.disabled=true;const began=Date.now(),token=++generation;
+   busy=true;start.disabled=true;lastDiagnostic=null;$('[data-dwg-diagnostics]').hidden=true;const began=Date.now(),token=++generation;
    status.textContent='در حال خواندن فایل برای تبدیل کامل…';
    tick=setInterval(()=>{status.textContent='در حال تبدیل کامل محلی به DXF… '+Math.floor((Date.now()-began)/1000)+' ثانیه؛ انصراف در دسترس است.'},1000);
    timer=setTimeout(()=>failure(Error('مهلت دو دقیقه‌ای تبدیل تمام شد؛ پردازش متوقف شد.'),'timeout'),120000);

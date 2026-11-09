@@ -1,6 +1,6 @@
 {
   "name": "room-designer",
-  "version": "354.0.0",
+  "version": "355.0.0",
   "private": true,
   "engines": {
     "node": ">=22 <25"

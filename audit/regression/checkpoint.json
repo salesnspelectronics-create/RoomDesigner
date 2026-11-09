@@ -4,11 +4,11 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-09",
-  "source_head": "3e7f714d6343a4813f23e9c31418420b32c0affd",
+  "source_head": "3dbab6469f3e7f0ecfef5cffbc4db514108f8890",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V354-R",
+  "product_release": "V355-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "ef816b5f72833972b0c324421f8cddc3db210612",
+  "inventory_blob_sha": "4526fabeb27048913b295082c8397a6ef5d91146",
   "policy_path": "audit/regression/POLICY.md",
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
   "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated.",
@@ -542,6 +542,14 @@
       "root_cause": "Exception constructing output File inside worker message callback leaves conversion Promise unsettled.",
       "correction": "Catch output construction errors and report failure at output stage.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD355-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "assets/dwg-import.js",
+      "root_cause": "Retrying a failed DWG conversion left the previous failure diagnostic visible and downloadable during a new conversion.",
+      "correction": "Reset previous diagnostic state and hide its download action on retry.",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "last_completed_segment": {
@@ -561,7 +569,7 @@
   },
   "next_segment": {
     "path": "assets/dwg-import.js",
-    "blob_sha": "80cecddb7df9911b64f4020e909526ff856af672",
+    "blob_sha": "c087f04474548ee5b52ce35025bb2ca07fccae57",
     "start_line": 1,
     "end_line": 65,
     "status": "UNREAD",
