@@ -4,14 +4,14 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-09",
-  "source_head": "b25ef9f7cedc4226b533b577fd07f69bc832f6ea",
+  "source_head": "b3a07a9373981774c142878340891d20c6512273",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V356-R",
+  "product_release": "V357-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "24299c1589951a04de7193ac73624b522990d232",
+  "inventory_blob_sha": "f946540061fb915b16cdacc8c782eba53a74968b",
   "policy_path": "audit/regression/POLICY.md",
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated. V356-R: empty migration archive rejected; focused storage-safety inspection; no full-blob coverage credited.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated. V356-R: empty migration archive rejected; focused storage-safety inspection; no full-blob coverage credited. V357-R: four stale user-facing V349 labels corrected; changed index blob invalidated; storage-safety.js read in full.",
   "segments": [
     {
       "path": "index.html",
@@ -383,6 +383,19 @@
       "coverage_valid": false,
       "stale": true,
       "invalidation_reason": "V356 source change"
+    },
+    {
+      "path": "storage-safety.js",
+      "blob_sha": "cdbbcb8d85c7f6c7023253578afe6d6bda320545",
+      "actual_read_start_line": 1,
+      "actual_read_end_line": 30,
+      "reviewed_start_line": 1,
+      "reviewed_end_line": 30,
+      "status": "REVIEWED_NO_FINDING",
+      "findings": [],
+      "reviewed_at": "2026-11-09T04:14:59Z",
+      "source_head": "b3a07a9373981774c142878340891d20c6512273",
+      "truncated": false
     }
   ],
   "findings": [
@@ -562,30 +575,27 @@
       "root_cause": "Empty migration archive values object accepted despite writer never creating empty archives.",
       "correction": "Reject zero-entry archived values before accepting existing migration archive.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD357-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "detail": "Four user-facing UI labels displayed V349 despite V356 package version.",
+      "source_assessment": "Corrected header/help/about/desktop badge to V357; historical CSS V349 comment retained."
     }
   ],
   "last_completed_segment": {
-    "path": "assets/dwg-worker.mjs",
-    "blob_sha": "20ec65e50b5c3ba5a35fd9b1fff3803dd2749a42",
-    "actual_read_start_line": 1,
-    "actual_read_end_line": 11,
-    "reviewed_start_line": 1,
-    "reviewed_end_line": 11,
-    "status": "REVIEWED_NO_FINDING",
-    "findings": [],
-    "reviewed_at": "2026-11-07T13:24:01.749722+00:00",
-    "source_head": "a6d294b4b0b529f8f096c37b72296189900b8961",
-    "review_basis": "Complete focused static candidate source review; no execution",
-    "truncated": false,
-    "coverage_valid": true
-  },
-  "next_segment": {
     "path": "storage-safety.js",
     "blob_sha": "cdbbcb8d85c7f6c7023253578afe6d6bda320545",
     "start_line": 1,
     "end_line": 30,
+    "status": "REVIEWED_NO_FINDING"
+  },
+  "next_segment": {
+    "path": "index.html",
+    "start_line": 1,
+    "end_line": 200,
     "status": "UNREAD",
-    "reason": "New blob needs full deterministic coverage"
+    "reason": "Changed index blob needs new coverage"
   },
   "validation": {
     "automated_tests": "NOT_RUN",

@@ -8,8 +8,8 @@
     "provenance": "Adapted from NSP Office Project Evolution V129-updated artifact (2026-09-13); independent project record, NOT a copy of NSP Office source/history."
   },
   "_project_evolution_identity": {
-    "software_version": "V356",
-    "project_evolution_version": "V356",
+    "software_version": "V357",
+    "project_evolution_version": "V357",
     "version_alignment_required": true,
     "version_alignment_rule": "Each RoomDesigner source release increments by one integer; Project Evolution version must match the released UI version.",
     "applies_to": "RoomDesigner"
@@ -62,7 +62,7 @@
   },
   "project": "RoomDesigner",
   "created_at": "2026-10-09",
-  "current_source_release": "V356-R",
+  "current_source_release": "V357-R",
   "project_identity_and_technical_profile": {
     "product_name": "Room Designer — Powered by NSP",
     "record_scope": "standalone, framework-independent roadmap",
@@ -11010,6 +11010,12 @@
       "version": "V356-R",
       "date": "2026-11-09",
       "change": "رد آرشیو مهاجرت خالی فاقد داده حفاظت‌شده",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING"
+    },
+    {
+      "version": "V357-R",
+      "date": "2026-11-09",
+      "change": "اصلاح نمایش نسخه قدیمی V349 در چهار محل رابط کاربری؛ همگام‌سازی نسخه و ممیزی",
       "status": "SOURCE_FIXED_RUNTIME_PENDING"
     }
   ],
