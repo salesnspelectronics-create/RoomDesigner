@@ -4,14 +4,14 @@
   "branch": "main",
   "execution_source": "SCHEDULED",
   "execution_timestamp": "2026-11-09",
-  "source_head": "3dbab6469f3e7f0ecfef5cffbc4db514108f8890",
+  "source_head": "b25ef9f7cedc4226b533b577fd07f69bc832f6ea",
   "delivery_commit": "Git commit containing this checkpoint (not self-referential)",
-  "product_release": "V355-R",
+  "product_release": "V356-R",
   "inventory_path": "audit/regression/inventory.json",
-  "inventory_blob_sha": "4526fabeb27048913b295082c8397a6ef5d91146",
+  "inventory_blob_sha": "24299c1589951a04de7193ac73624b522990d232",
   "policy_path": "audit/regression/POLICY.md",
   "default_review_status": "UNREAD unless an exact-blob segment below covers that line",
-  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated.",
+  "coverage_note": "Historical segments preserved; changed blobs invalidated, old overlong storage range flagged invalid. Focused candidate review does not replace deterministic cursor. CSS lines 1-14 completely read, long line 1 in <=1200-character slices. No unread/truncated credit; repository-wide review is not complete. Scheduled V10 reviewed exact DXF JS lines 1-97 with no confirmed new findings; next frontier PDF CSS. Scheduled turn 5 reviewed PDF CSS 1-4; no new finding. OPEN-CROSS-STORE/COMPENSATION/GOVERNANCE retained; no speculative source edits. V333-R PDF import: full 58 physical lines reviewed, old blob invalidated; new blob guard inspected. V334 feature Import: changed blob coverage invalidated; focused new DWG adapter/worker statically reviewed. No broad regression coverage claimed. Existing OPEN findings preserved. V335-R: revised index.html blob invalidates earlier source coverage; focused import listener reviewed; no broad line credit or archival gate claim. V336-R: focused DXF/DWG async stale-document guard reviewed; changed index blob invalidates its earlier coverage; SVG 12r-almas inspected for embedded script/event handlers only, not full line credit. V337-R: focused revision cleanup source fix; index coverage invalidated. No new broad segment credit. V350-R: DWG preview/conversion race corrected; affected blobs invalidated. Full manifest line/byte recount pending. V351-R: DWG worker messageerror handler added after focused static inspection; no new broad inventory cursor coverage claimed. V352-R: DWG preview error race patched; changed blob coverage requires new readback. V353-R: migration archive schema check hardened; focused storage-safety review 1-30; changed-blob coverage invalidated. V354-R: DWG output File constructor exception handled; changed blob coverage invalidated. V356-R: empty migration archive rejected; focused storage-safety inspection; no full-blob coverage credited.",
   "segments": [
     {
       "path": "index.html",
@@ -30,7 +30,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -48,7 +48,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -70,7 +70,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -90,7 +90,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -100,7 +100,7 @@
       "actual_read_end_line": 32,
       "reviewed_start_line": 1,
       "reviewed_end_line": 32,
-      "status": "INVALID_HISTORICAL_RANGE",
+      "status": "STALE_BLOB",
       "findings": [],
       "reviewed_at": "2026-11-05T14:44:01.133195+00:00",
       "source_head": "73b63743f51b53a242c4527dcdc2a805a543e31e",
@@ -108,7 +108,8 @@
       "truncated": false,
       "historical_status": "REVIEWED_NO_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "Historical claimed range exceeds actual pinned file length; original record retained without current coverage credit"
+      "invalidation_reason": "V356 source change",
+      "stale": true
     },
     {
       "path": "tools/regression-inventory.py",
@@ -141,7 +142,7 @@
       "truncated": false,
       "historical_status": "REVIEWED_WITH_FINDING",
       "coverage_valid": false,
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -158,7 +159,8 @@
       "review_basis": "Exact candidate source content read statically after patch; same unchanged pinned blob for CSS/storage. No runtime execution.",
       "truncated": false,
       "coverage_valid": false,
-      "stale": true
+      "stale": true,
+      "invalidation_reason": "V356 source change"
     },
     {
       "path": "index.html",
@@ -177,7 +179,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -199,7 +201,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -221,7 +223,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -244,7 +246,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -264,7 +266,7 @@
       "truncated": false,
       "coverage_valid": false,
       "historical_status": "REVIEWED_WITH_FINDING",
-      "invalidation_reason": "V350-R changed blob",
+      "invalidation_reason": "V356 source change",
       "stale": true
     },
     {
@@ -370,7 +372,7 @@
       "actual_read_end_line": 30,
       "reviewed_start_line": 1,
       "reviewed_end_line": 30,
-      "status": "REVIEWED_WITH_FINDING",
+      "status": "STALE_BLOB",
       "findings": [
         "RD353-01"
       ],
@@ -378,7 +380,9 @@
       "source_head": "cc602d581d2afe143ba54f786f8d75839a8236f5",
       "review_basis": "focused full-file read and narrow static patch",
       "truncated": false,
-      "coverage_valid": true
+      "coverage_valid": false,
+      "stale": true,
+      "invalidation_reason": "V356 source change"
     }
   ],
   "findings": [
@@ -550,6 +554,14 @@
       "root_cause": "Retrying a failed DWG conversion left the previous failure diagnostic visible and downloadable during a new conversion.",
       "correction": "Reset previous diagnostic state and hide its download action on retry.",
       "runtime_status": "PENDING_USER"
+    },
+    {
+      "id": "RD356-01",
+      "status": "SOURCE_FIXED_RUNTIME_PENDING",
+      "path": "storage-safety.js",
+      "root_cause": "Empty migration archive values object accepted despite writer never creating empty archives.",
+      "correction": "Reject zero-entry archived values before accepting existing migration archive.",
+      "runtime_status": "PENDING_USER"
     }
   ],
   "last_completed_segment": {
@@ -568,12 +580,12 @@
     "coverage_valid": true
   },
   "next_segment": {
-    "path": "assets/dwg-import.js",
-    "blob_sha": "c087f04474548ee5b52ce35025bb2ca07fccae57",
+    "path": "storage-safety.js",
+    "blob_sha": "cdbbcb8d85c7f6c7023253578afe6d6bda320545",
     "start_line": 1,
-    "end_line": 65,
+    "end_line": 30,
     "status": "UNREAD",
-    "reason": "Changed blob requires re-review"
+    "reason": "New blob needs full deterministic coverage"
   },
   "validation": {
     "automated_tests": "NOT_RUN",
