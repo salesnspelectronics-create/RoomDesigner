@@ -1,4 +1,4 @@
-/* Detail leaders avoid visible architectural walls; no unsafe straight-line fallback. */
+/* Detail leaders prefer obstacle-free routes; if none exists, always fall back to a visible route. */
 (function(g){
  const cache=new Map();
  function route(source,target,walls,devices=[]){
@@ -11,6 +11,14 @@
    const active=boxes;
    const path=g.CableRouting.safeRoute({a:p.a,b:p.b,sourceSide:p.side,targetSide:p.endSide,sourceId:'source',targetId:'target',rects:[...active,{id:'source',minX:source.x,maxX:source.x+source.w,minY:source.y,maxY:source.y+source.h},{id:'target',minX:target.x,maxX:target.x+target.w,minY:target.y,maxY:target.y+target.h}]});
    if(path){result=path;break}
+  }
+  if(!result&&pairs.length){
+   // Visual detail leaders must never disappear. When every collision-free
+   // route is blocked, use a simple orthogonal fallback and allow it to cross
+   // walls/devices; the user can reposition the detail card afterward.
+   const p=pairs[0],horizontalFirst=Math.abs(p.a.x-p.b.x)>=Math.abs(p.a.y-p.b.y);
+   const elbow=horizontalFirst?{x:p.b.x,y:p.a.y}:{x:p.a.x,y:p.b.y};
+   result=g.CableRouting.simplify([p.a,elbow,p.b],true);
   }
   if(cache.size>100)cache.clear();cache.set(key,result);return result;
  }
