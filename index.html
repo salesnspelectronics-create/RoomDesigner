@@ -1038,7 +1038,14 @@ function compactLineShape(id,index=-1,remove=false){const parts=(doc.walls||[]).
 function compactCable(c,index=-1){const a=portInfo(device(c.a.dev),c.a.port),b=portInfo(device(c.b.dev),c.b.port);if(a&&b)setCablePolyline(c,compactEditedPolyline(cableDisplayPoints(c,a,b),index))}
 function setCablePolyline(c,points){c.waypoints=points.slice(1,-1).map(p=>({x:p.x,y:p.y}));c.cableGeometryVersion=1;delete c.routeMode;delete c.autoRouting;delete c.offset;delete c.reserve}
 function normalizeCableGeometry(){let changed=false;for(const c of doc.cables){if(c.cableGeometryVersion===1)continue;const da=device(c.a?.dev),db=device(c.b?.dev);if(!da||!db)continue;const a=portInfo(da,c.a.port),b=portInfo(db,c.b.port);if(!a||!b)continue;let points=legacyCableDisplayPoints(c,a,b);if(points.length<2)points=[a,...(c.waypoints||[]),b];if(c.reserve)c.lineStyle='dashed';setCablePolyline(c,points);changed=true}return changed}
-function cableDisplayPoints(c,a,b){const points=[a,...(c.waypoints||[]).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)),b].map(p=>({x:p.x,y:p.y}));if(wireDrag?.id===c.id&&wireDrag.endpoint&&wireDrag.preview)points[wireDrag.index===0?0:points.length-1]={...wireDrag.preview};return points}
+function cableDisplayPoints(c,a,b){
+ // Auto-routed cables must use the obstacle-aware orthogonal router, not stale saved bends.
+ // Explicit manual cables keep their exact user-edited geometry.
+ const routed=c.autoRouting===true&&c.routeMode!=='direct'?adaptiveCableRoute(c,a,b):null;
+ const points=(routed||[a,...(c.waypoints||[]).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)),b]).map(p=>({x:p.x,y:p.y}));
+ if(wireDrag?.id===c.id&&wireDrag.endpoint&&wireDrag.preview)points[wireDrag.index===0?0:points.length-1]={...wireDrag.preview};
+ return points;
+}
 function draftCablePreview(last,tip,fixed){if(!cableDraftShift)return [{x:last.x,y:last.y},{x:tip.x,y:tip.y}];return previewIsPort?PolylineEditor.connect(fixed,tip,true).slice(fixed.length-1):[last,PolylineEditor.axisPoint(last,tip)]}
 function draftCablePoint(e){const raw=point(e),last=routePoints.at(-1)||(start&&portInfo(device(start.dev),start.port));return e.shiftKey&&last?PolylineEditor.axisPoint(last,raw):raw}
 
